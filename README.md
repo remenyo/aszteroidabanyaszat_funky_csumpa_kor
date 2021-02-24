@@ -1,0 +1,2 @@
+# aszteroidabanyaszat_funky_csumpa_kor
+A BMEVIIIAB02 Szoftver projekt laboratórium funky_csumpa_kor csapat által fejlesztett Aszteroidabányászat játéka.
