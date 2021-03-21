@@ -8,7 +8,8 @@ public class Uran extends Nyersanyag {
 
     @Override
     public void felszinreKerul(Aszteroida a) {
-        // TODO napközelben?
-        super.robbanas();
+        if (a.isNapközelben()) {
+            a.Robbanas();
+        }
     }
 }
