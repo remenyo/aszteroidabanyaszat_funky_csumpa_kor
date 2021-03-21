@@ -33,7 +33,6 @@ public class Aszteroida {
         szomszedok.get(0).szomszedRobbant(this);
         szomszedok.get(1).szomszedRobbant(this);
         szereplok.get(0).Robbanas();
-        szereplok.get(1).Robbanas();
         nap.torolAszteroida(this);
         
     }
