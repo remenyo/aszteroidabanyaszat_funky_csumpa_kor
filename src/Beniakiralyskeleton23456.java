@@ -15,6 +15,16 @@ public class Beniakiralyskeleton23456 {
 			
 	}
 	
+	public void telepesFurasUran() 
+	{
+		Telepes t = new Telepes();
+		Aszteroida a = new Aszteroida(2,false,new Nap(),new Uran());
+		Aszteroida b = new Aszteroida(2,false,new Nap(),new Uran());
+		Portal p = new Portal();
+		a.hozzaadSzomszed(b);
+		a.hozzaadSzomszed(p);
+		a.Furas();
+	}
 	
 	
 }
