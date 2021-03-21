@@ -60,4 +60,26 @@ public class RandomUtils {
         double szorzo = Math.pow(10.0, pontossag);
         return (r.nextInt((int) szorzo) <= ((int) (valoszinuseg * szorzo)));
     }
+
+    private void test() {
+        // randomIntHatarokKozott.test
+        for (int i = 0; i < 500; i++) {
+            System.out.println(randomIntHatarokKozott(-22, -3));
+        }
+
+        // randomBooleanValoszinuseggel.test
+        for (float i = 0; i < 1.1; i += 0.1) { // 0.0 -> 1.0
+            float t = 0;
+            float f = 0;
+            for (int j = 0; j < 1000; j++) {
+                if (randomBooleanValoszinuseggel(i, 7))
+                    t++;
+                else
+                    f++;
+            }
+            System.out.println("True/False expected " + i + ", actual " + t / 1000 + "\t(" + +t + "/" + f + ")");
+            t = 0;
+            f = 0;
+        }
+    }
 }
