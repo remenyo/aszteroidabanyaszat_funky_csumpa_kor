@@ -18,7 +18,12 @@ public class NyersanyagKoltseg {
 
     public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
         Scanner in = new Scanner(System.in);
-        return new Szkeleton().Kerdes("Meg van nï¿½la az ï¿½sszes szï¿½ksï¿½ges nyersanyag? (1:Igen 0:Nem)");
+        boolean vannyersanyag = Szkeleton.Kerdes("Meg van nï¿½la az ï¿½sszes szï¿½ksï¿½ges nyersanyag? (1:Igen 0:Nem)");
+        
+        if(vannyersanyag && !Szkeleton.Kerdes("Van elég nyersanyag a játék megnyeréséhez?")) {
+        	Jatek.getInstance().jatekVegeVesztett();
+        }
+        return vannyersanyag;
     }
 
     // Majd a kï¿½sz ï¿½sszehasonlï¿½tï¿½s

@@ -32,21 +32,21 @@ public class Portal extends Hely {
 	}
 	private void mukodesbeHelyezes(Aszteroida a) {
      		
-		if(par.getVegpont()!=null) {
+		if(Szkeleton.Kerdes("A portal párjának van végpontja?")) {
 			beallitAktiv();
 			par.beallitAktiv();
 		}
 			
 	}
 	private void Beszippant() {
-		if(birtokos!=null)
+		if(Szkeleton.Kerdes("A portalnak van tulajdonosa?"))
 			birtokos.torolPortal(this);
-		if(vegpont!=null)
+		if(Szkeleton.Kerdes("A portal rajta van egy aszteroidán?"))
 			vegpont.torolSzomszed(this);
 			
 	}
 	public void Utazas(Szereplo sz) {
-		if(par!=null)
+		if(Szkeleton.Kerdes("A portal párjának van végpontja?"))
 			par.Teleportalas(sz);
 	}
 	public void Teleportalas(Szereplo sz) {

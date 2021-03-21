@@ -14,64 +14,30 @@ public class SzkeletonPoPo78910 {
 	
 	public void portalkapuEpites() {
 		Telepes t = new Telepes();
-		//Jatek jatek = new Jatek();
 		NyersanyagKoltseg nyk1 = new NyersanyagKoltseg();
 		NyersanyagKoltseg nyk2 = new NyersanyagKoltseg(); //robotéptéshez használt
 		t.hozzaadKoltseg(nyk1);
 		t.hozzaadKoltseg(nyk2);
 
-		ArrayList<Nyersanyag> portalkoltseg = new ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ nyersanyagok feltöltése
-		portalkoltseg.forEach(nyersanyag -> nyk1.hozzaadNyersanyag(nyersanyag)); 
+		//ArrayList<Nyersanyag> portalkoltseg = new ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ nyersanyagok feltöltése
+		//portalkoltseg.forEach(nyersanyag -> nyk1.hozzaadNyersanyag(nyersanyag)); 
 
 		
-		boolean valasz = false;
-		String hiba="";
-		if(!Kerdes("A telepesnél van már portálkapu?")) {
-			System.out.println("Nem sikerült portál létrehozni: A telepesnél van már portálkapu");
-		}
-		else {
-			if(!Kerdes("A telepesnek van elegendõ nyersanyaga az építéshez?")) {
-				t.epitPortal();
-				System.out.println("Nincs elegendõ nyersanyag.");
-			} else {
-				portalkoltseg.forEach(nyersanyag -> t.hozzaadNyersanyag(nyersanyag)); 
-				t.epitPortal();
-				
-
-				if(!Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
-					Jatek.getInstance().jatekVegeVesztett();
-					System.out.println("A játéknak vége, a játékosok vesztettek");
-				}
-			} 	
-		}
+		t.epitPortal();
 	}
 	
 	
 	public void robotEpites() {
 		Telepes t = new Telepes();
-		//Jatek jatek = new Jatek();
 		NyersanyagKoltseg nyk1 = new NyersanyagKoltseg(); //portalépítéshez használt
 		NyersanyagKoltseg nyk2 = new NyersanyagKoltseg(); 
 		t.hozzaadKoltseg(nyk1);
 		t.hozzaadKoltseg(nyk2);
 		
-		ArrayList<Nyersanyag> robotkoltseg = new ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ nyersanyagok feltöltése
-		robotkoltseg.forEach(nyersanyag -> nyk2.hozzaadNyersanyag(nyersanyag)); 
+		//ArrayList<Nyersanyag> robotkoltseg = new ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ nyersanyagok feltöltése
+		//robotkoltseg.forEach(nyersanyag -> nyk2.hozzaadNyersanyag(nyersanyag)); 
 		
-		
-		if(!Kerdes("A telepesnek van elegendõ nyersanyaga az építéshez?")) {
-			t.epitRobot();
-			System.out.println("Nincs elegendõ nyersanyag.");
-		}
-		else {
-			robotkoltseg.forEach(nyersanyag -> t.hozzaadNyersanyag(nyersanyag)); 
-			t.epitRobot();
-
-			if(!Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
-				Jatek.getInstance().jatekVegeVesztett();
-				System.out.println("A játéknak vége, a játékosok vesztettek");
-			}
-		}
+		t.epitRobot();
 
 	}
 	
@@ -95,35 +61,17 @@ public class SzkeletonPoPo78910 {
 		t.beallitAszteroida(a);
 		
 		Portal p1 = new Portal(); //telepesé
-		Portal p2 = new Potral(); //p1 szomszédja
+		Portal p2 = new Portal(); //p1 szomszédja
 		
-		p1.beallitPar(p2);
-		p2.beallitPar(p1);
-		
-		
-		if(!Kerdes("A telepesnél van Portal?")) {
-			System.out.println("A telepesnél nincs portal amit lehelyezhetne.");
-		}
-		else {			
+		if(Kerdes("Van a telepesnél portal?")) {
 			t.setPortal(p1);
 			
-			if(!Kerdes("A portál párjának van végpontja?")) {
-				t.lehelyezPortal(p1);
-				
-				System.out.println("A portal lehelyezve, viszont nem aktív");
-			}
-			else {
-				p2.beallitVegpont(a2);
-				
-				t.lehelyezPortal(p1);
-				
-				System.out.println("A portal lehelyezve, és aktív");
-			}
+			p1.beallitPar(p2);
+			p2.beallitPar(p1);
 			
-			if(!Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
-				Jatek.getInstance().jatekVegeVesztett();
-				System.out.println("A játéknak vége, a játékosok vesztettek");
-			}
+			p2.beallitVegpont(a2);
+			
+			t.lehelyezPortal(p1);
 		}
 	}
 }

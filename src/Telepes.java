@@ -16,7 +16,7 @@ public class Telepes extends Szereplo {
 
 	public void Banyaszat() {
 		Nyersanyag temp = aszteroida.Banyaszat();
-		if (temp != null) {
+		if (Szkeleton.Kerdes("Van az aszteroidában nyersanyag?")) {
 			nyersanyagok.add(temp);
 			aszteroida.ellenorizNyert();
 		}
@@ -42,7 +42,7 @@ public class Telepes extends Szereplo {
 	}
 
 	public void epitPortal() {
-		if (portal.isEmpty()) {
+		if (!Szkeleton.Kerdes("Van a telepesnél portálkapu?")) {
 			boolean vaneleg = epiteskoltseg.get(0).koltsegSzamitas(nyersanyagok); // ??????????????????????
 			if (vaneleg) {
 				Portal p1 = new Portal();
@@ -90,5 +90,9 @@ public class Telepes extends Szereplo {
 
 	public static void hozzaadKoltseg(NyersanyagKoltseg k) {
 		epiteskoltseg.add(k);
+	}
+	
+	public void setPortal(Portal p) {
+		portal.add(p);
 	}
 }
