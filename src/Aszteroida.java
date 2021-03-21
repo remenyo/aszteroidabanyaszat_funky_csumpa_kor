@@ -32,13 +32,16 @@ public class Aszteroida extends Hely {
 
     public void Robbanas() {
     	Log.info("Meghivodott");
-        nyersanyag.Robbanas();
-        szomszedok.get(0).szomszedRobbant(this);
-        if(szomszedok.size()>1) {
-        	szomszedok.get(1).szomszedRobbant(this);
+        nyersanyag.Robbanas();//nem e null
+        if(szomszedok.size()!=0) {
+        	szomszedok.get(0).szomszedRobbant(this); 
+        	if(szomszedok.size()==2) {
+        		szomszedok.get(1).szomszedRobbant(this);
+        	}
         }
-        szereplok.get(0).Robbanas();
-        
+        if(szereplok.size()!=0) {
+        	szereplok.get(0).Robbanas(); 
+        }
         nap.torolAszteroida(this);
 
     }
@@ -65,7 +68,6 @@ public class Aszteroida extends Hely {
         szomszedok.remove(h);
         if (!Szkeleton.Kerdes("Maradt szomszéd?")) {
             szereplok.get(0).Meghal();
-            szomszedok.clear();
             Robbanas();
         }
     }

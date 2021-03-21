@@ -63,5 +63,8 @@ public class Portal extends Hely {
 		Log.info("Meghivodott");
 		birtokos = t;
 	}
+	public void setVegpont(Aszteroida a) {
+		vegpont = a;
+	}
 	
 }

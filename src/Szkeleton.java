@@ -104,10 +104,14 @@ public class Szkeleton {
 
 	public void UranVisszahelyezes() {
 		Aszteroida a = new Aszteroida(1, true, new Nap(), null);
-		Aszteroida b = new Aszteroida(1, true, new Nap(), null);
+		Aszteroida b = new Aszteroida(1, true, new Nap(), new Szen());
 		Uran u = new Uran();
 		Telepes t = new Telepes();
 		Telepes t2 = new Telepes();
+		t2.setPortal(new Portal());
+		t.hozzaadNyersanyag(new Szen());
+		t.setPortal(new Portal());
+		t2.hozzaadNyersanyag(new Szen());
 		b.hozzaadSzereplo(t2);
 		a.hozzaadSzereplo(t);
 		a.hozzaadSzomszed(b);
@@ -141,8 +145,8 @@ public class Szkeleton {
 		a.hozzaadSzereplo(t);
 		p.beallitPar(p2);
 		p2.beallitPar(p);
-		p.beallitVegpont(a);
-		p2.beallitVegpont(b); //ketszer hivodik meg setterre kene cserelni
+		p.setVegpont(a);
+		p2.setVegpont(b);
 		
 		p.Utazas(t);
 	}
@@ -290,7 +294,7 @@ public class Szkeleton {
 			p1.beallitPar(p2);
 			p2.beallitPar(p1);
 			
-			p2.beallitVegpont(a2);
+			p2.setVegpont(a2);
 			
 			t.lehelyezPortal(p1);
 		}

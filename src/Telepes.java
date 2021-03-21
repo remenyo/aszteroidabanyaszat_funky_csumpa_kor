@@ -72,6 +72,7 @@ public class Telepes extends Szereplo {
 	public void visszarakNyersanyag(Nyersanyag ny) {
 		Log.info("Meghivodott");
 		if (Szkeleton.Kerdes("Üres és kifúrt?")) {
+			nyersanyagok.remove(ny);
 			aszteroida.hozzaadNyersanyag(ny);
 		}
 
@@ -85,12 +86,8 @@ public class Telepes extends Szereplo {
 	public void Meghal() {
 		Log.info("Meghivodott");
 		aszteroida.torolSzereplo(this);
-		for (Portal p : portal) {
-			p.Robbanas();
-		}
-		for (Nyersanyag ny : nyersanyagok) {
-			ny.Robbanas();
-		}
+		portal.remove(0);
+		nyersanyagok.remove(0);
 		Jatek.getInstance().torolLeptetheto(this);
 		Jatek.getInstance().telepesMeghal();
 	}
