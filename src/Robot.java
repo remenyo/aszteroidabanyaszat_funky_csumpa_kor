@@ -2,7 +2,7 @@ package src;
 
 import java.util.Random;
 
-public class Robot {
+public class Robot extends Szereplo{
 	public void Robbanas() {
 		mozgasIntelligencia();
 	}
