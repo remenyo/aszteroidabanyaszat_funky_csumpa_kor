@@ -37,44 +37,73 @@ public class SzkeletonPoPo78910 {
 				t.epitPortal();
 				
 
-				if(Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
-					Jatek.getInstance().jatekVegeNyert();
+				if(!Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
+					Jatek.getInstance().jatekVegeVesztett();
 				}
 			} 	
 		}
 	}
-		
-		
-
 	
 	
 	public void robotEpites() {
-		System.out.println("A telepesnek van elegendõ nyersanyaga az építéshez?");
+		Telepes t = new Telepes();
+		//Jatek jatek = new Jatek();
+		NyersanyagKoltseg nyk1 = new NyersanyagKoltseg(); //portalépítéshez használt
+		NyersanyagKoltseg nyk2 = new NyersanyagKoltseg(); 
+		t.hozzaadKoltseg(nyk1);
+		t.hozzaadKoltseg(nyk2);
 		
-		System.out.println("Van elegendõ nyersanyag a játék befejezéséhez?");
+		ArrayList<Nyersanyag> robotkoltseg = new ArrayList<Nyersanyag>(); //megfelelõ nyersanyagok feltöltése
+		robotkoltseg.forEach(nyersanyag -> nyk2.hozzaadNyersanyag(nyersanyag)); 
+		
+		
+		if(!Kerdes("A telepesnek van elegendõ nyersanyaga az építéshez?")) {
+			t.epitRobot();
+			System.out.println("Nincs elegendõ nyersanyag.");
+		}
+		else {
+			robotkoltseg.forEach(nyersanyag -> t.hozzaadNyersanyag(nyersanyag)); 
+			t.epitRobot();
+
+			if(!Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
+				Jatek.getInstance().jatekVegeVesztett();
+			}
+		}
 
 	}
 	
 	public void nyersanyagVisszahelyezés() {
-		System.out.println("A telepesnél van nyersanyag?");
+		//System.out.println("A telepesnél van nyersanyag?");
 		
-		System.out.println("Az aszteroidában van már elhelyezve nyersanyag?");
+		//System.out.println("Az aszteroidában van már elhelyezve nyersanyag?");
 		
-		System.out.println("Az aszteroida napközelben van?");
+		//System.out.println("Az aszteroida napközelben van?");
 		
-		System.out.println("Van elegendõ nyersanyag a játék befejezéséhez?");
+		//System.out.println("Van elegendõ nyersanyag a játék befejezéséhez?");
 		
-		System.out.println("Maradtak életben játékosok?");
+		//System.out.println("Maradtak életben játékosok?");
 
 	}
 	
 	public void portalLehelyezes() {
-		System.out.println("A telepesnél van Portal?");
+		Telepes t = new Telepes();
+		Aszteroida a = new Aszteroida(3, false, new Nap(), new Szen());
+		t.beallitAszteroida(a);
 		
-		System.out.println("A portál párjának van végpontja?"); //bõvült
 		
-		System.out.println("Van elegendõ nyersanyag a játék befejezéséhez?");
-
-
+		if(!Kerdes("A telepesnél van Portal?")) {
+			System.out.println("A telepesnél nincs portal amit lehelyezhetne.");
+		}
+		else {
+			t.setPortal(new Portal());
+			
+			if(!Kerdes("A portál párjának van végpontja?")) {
+				
+			}
+			
+			if(!Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
+				Jatek.getInstance().jatekVegeVesztett();
+			}
+		}
 	}
 }
