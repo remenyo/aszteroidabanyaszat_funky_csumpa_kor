@@ -16,8 +16,8 @@ public class Szkeleton {
 
 	public void Menu() {
 		
-		int valasz;
-		while(true) {
+		Scanner be = new Scanner(System.in);
+		//while(true) {
 			System.out.println("------------------------");
 			System.out.println("1. Mozgás ûrhajóval\r\n"
 					+ "2. Mozgás teleport kapun keresztül\r\n"
@@ -32,8 +32,10 @@ public class Szkeleton {
 					+ "11. Robot Urán fúrás\r\n"
 					+ "12. Napvihar");
 			System.out.println("------------------------");
-			Scanner be = new Scanner(System.in);
-			valasz = be.nextInt();
+			
+			
+			int valasz = be.nextInt();
+			be = new Scanner(System.in);
 			switch (valasz) {
 				case 1: MozgasUrhajoval();break;
 				case 2:	Vizjegfuras(); break;
@@ -52,7 +54,8 @@ public class Szkeleton {
 		
 				default:System.out.println("Nincs ilyen."); break;
 			}
-		}
+			
+		//}
 	}
 
 	public void BanyaszatMenu() {
