@@ -1,6 +1,5 @@
 package src;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class NyersanyagKoltseg {
@@ -8,7 +7,7 @@ public class NyersanyagKoltseg {
     ArrayList<Nyersanyag> masolatTarolo;
 
     public void hozzaadNyersanyag(Nyersanyag ny) {
-    	Log.info("Meghivodott");
+        Log.call();
         koltseg.add(ny);
     }
 
@@ -18,12 +17,11 @@ public class NyersanyagKoltseg {
     // }
 
     public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
-    	Log.info("Meghivodott");
-        Scanner in = new Scanner(System.in);
-        boolean vannyersanyag = Szkeleton.Kerdes("Meg van nála az összes szükséges nyersanyag? (1:Igen 0:Nem)");
+        Log.call();
+        boolean vannyersanyag = Szkeleton.Kerdes("Meg van nála az összes szükséges nyersanyag?");
 
         if (vannyersanyag && !Szkeleton.Kerdes("Van elég nyersanyag a játék megnyeréséhez?")) {
-            Jatek.getInstance().jatekVegeVesztett();
+            Jatek.jatekVegeVesztett();
         }
         return vannyersanyag;
     }
@@ -46,7 +44,7 @@ public class NyersanyagKoltseg {
     // }
 
     public void felulirNyersanyagok(ArrayList<Nyersanyag> ny) {
-    	Log.info("Meghivodott");
+        Log.call();
         koltseg = ny;
     }
 

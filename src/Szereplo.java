@@ -6,48 +6,49 @@ public class Szereplo implements Leptetheto {
     protected Aszteroida aszteroida;
 
     public Szereplo() {
-    	Jatek.getInstance().leptethetok.add(this);
+        Log.ctor();
+        Jatek.leptethetok.add(this);
     }
 
     public void Mozgas(int sorszam) {
-        Log.info("Meghívódott");
+        Log.call();
         Hely uj = aszteroida.getSzomszed(sorszam);
         aszteroida.torolSzereplo(this);
-        uj.Utazas(this); 
+        uj.Utazas(this);
     }
 
     public void Furas() {
-    	Log.info("Meghivodott");
+        Log.call();
         aszteroida.Furas();
     }
 
     public void Meghal() {
-    	Log.info("Meghivodott");
+        Log.call();
         aszteroida.torolSzereplo(this);
-        Jatek.getInstance().torolLeptetheto(this);
+        Jatek.torolLeptetheto(this);
     }
 
     public void Napvihar() {
-    	Log.info("Meghivodott");
+        Log.call();
         this.Meghal();
     }
 
     public void Robbanas() {
-    	Log.info("Meghivodott");
+        Log.call();
 
     }
 
     public ArrayList<Nyersanyag> getNyersanyagok() {
-    	Log.info("Meghivodott");
+        Log.call();
         return null;
     }
 
     public void Lepes() {
-    	Log.info("Meghivodott");
+        Log.call();
     }
 
     public void beallitAszteroida(Aszteroida a) {
-    	Log.info("Meghivodott");
+        Log.call();
         aszteroida = a;
     }
 }

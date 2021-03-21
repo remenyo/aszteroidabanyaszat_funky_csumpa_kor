@@ -4,21 +4,23 @@ abstract public class Nyersanyag {
     private String nev = "Nyersanyag";
 
     Nyersanyag(String nev) {
+        Log.ctor();
         this.nev = nev;
     }
 
     abstract public void ellenorizVesztett();
+
     public void felszinreKerul(Aszteroida a) {
-    	
+
     }
 
     public void Robbanas() {
-    	Log.info("Meghivodott");
+        Log.call();
         ellenorizVesztett();
     };
 
     public boolean azonos(Nyersanyag ny) {
-    	Log.info("Meghivodott");
+        Log.call();
         return this.nev.equals(ny.nev);
     }
 }

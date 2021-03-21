@@ -5,13 +5,13 @@ public class Uran extends Nyersanyag {
 
     Uran() {
         super("Ur·n");
-        osszesUran++; // ez felt√©telezi hogy az √∫j objektum el van t√°rolva √©s meg van h√≠vva
-        // megsz≈±n√©skor a robban√°s
+        Log.ctor();
+        osszesUran++;
     }
 
     @Override
     public void felszinreKerul(Aszteroida a) {
-    	Log.info("Meghivodott");
+        Log.call();
         if (a.isNapkozelben()) {
             a.Robbanas();
         }
@@ -19,12 +19,11 @@ public class Uran extends Nyersanyag {
 
     @Override
     public void ellenorizVesztett() {
-    	Log.info("Meghivodott");
-    	osszesUran--;
+        Log.call();
+        osszesUran--;
         if (!Szkeleton.Kerdes("Van elÈg ur·n mÈg a j·tÈkban a gyızelemhez?")) {
-            Jatek.getInstance().jatekVegeVesztett();
+            Jatek.jatekVegeVesztett();
         }
     }
 
-    
 }

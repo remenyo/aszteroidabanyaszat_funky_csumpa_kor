@@ -3,21 +3,22 @@ package src;
 import java.util.Random;
 
 public class RandomUtils {
-    private Random r;
+    public static final RandomUtils INSTANCE = new RandomUtils();
+    private static Random r;
 
-    RandomUtils() {
+    private RandomUtils() {
         r = new Random();
     }
 
     /**
-     * Visszaad vÃ©letlenszerÅ±en egy egÃ©sz szÃ¡mot a megadott kÃ©t hatÃ¡rÃ©rtÃ©k kÃ¶zÃ¶tt, a
-     * hatÃ¡rokat is beleÃ©rtve. Az alsÃ³ hatÃ¡r nem kell hogy kisebb legyen a felsÅ‘nÃ©l.
-     * MindkettÅ‘ Ã©rtÃ©k lehet negatÃ­v.
+     * Visszaad véletlenszerûen egy egész számot a megadott két hatá k a
+     * határokat is beleértve. Az alsó határ nem kell  gy  legyen a fel .
+     * Mindkettõ érték lehet negatív.
      *
-     * @param alsoHatar  Az alsÃ³ hatÃ¡r
-     * @param felsoHatar Az felsÅ‘ hatÃ¡r
+     * @param alsoHatar  Az alsó határ
+     * @param felsoHatar Az felsõ határ
      */
-    public int randomIntHatarokKozott(int alsoHatar, int felsoHatar) {
+    public static int randomIntHatarokKozott(int alsoHatar, int felsoHatar) {
         if (alsoHatar > felsoHatar) {
             // TODO log warning
             int a = alsoHatar;
@@ -29,24 +30,24 @@ public class RandomUtils {
     }
 
     /**
-     * Visszaad egy booleant, ami {@code valoszinuseg} valÃ³szÃ­nÅ±sÃ©ggel lesz igaz
-     * Ã©rtÃ©kÅ±. (A pontossÃ¡g 5.)
+     * Visszaad egy booleant, ami {@code valoszinuseg} valószínûséggel lesz igaz
+     * értékû. (A pontosság 5.)
      *
-     * @param valoszinuseg (0.0 - 1.0) {@code true} valÃ³szÃ­nÅ±sÃ©ge
+     * @param valoszinuseg (0.0 - 1.0) {@code true} valószínûsége
      */
     public boolean randomBooleanValoszinuseggel(float valoszinuseg) {
         return randomBooleanValoszinuseggel(valoszinuseg, 5);
     }
 
     /**
-     * Visszaad egy booleant, ami {@code valoszinuseg} valÃ³szÃ­nÅ±sÃ©ggel lesz igaz
-     * Ã©rtÃ©kÅ±.
+     * Visszaad egy booleant, ami {@code valoszinuseg} valószínûséggel lesz igaz
+     * értékû.
      *
-     * @param valoszinuseg (0.0 - 1.0) a {@code true} valÃ³szÃ­nÅ±sÃ©ge
-     * @param pontossag    (1-7) minnÃ©l nagyobb, annÃ¡l kÃ¶zelebb lesz a valÃ³di
-     *                     valÃ³szÃ­nÅ±sÃ©g a kÃ­vÃ¡nt Ã©rtÃ©khez
+     * @param valoszinuseg (0.0 - 1.0) a {@code true} valószínûsége
+     * @param pontossag    (1-7) minnél nagyobb, annál közelebb lesz a valódi
+     *                     valószínûség a kívánt értékhez
      */
-    public boolean randomBooleanValoszinuseggel(float valoszinuseg, int pontossag) {
+    public static boolean randomBooleanValoszinuseggel(float valoszinuseg, int pontossag) {
         pontossag = Math.min(7, Math.max(1, pontossag));
         if (valoszinuseg >= 1)
             return true; // TODO log warning

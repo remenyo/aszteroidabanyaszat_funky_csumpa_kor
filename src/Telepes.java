@@ -1,7 +1,6 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Telepes extends Szereplo {
@@ -10,13 +9,13 @@ public class Telepes extends Szereplo {
 	private ArrayList<Portal> portal = new ArrayList<Portal>();
 
 	public void Mozgas(int sorszam) {
-		Log.info("Meghivodott");
+		Log.call();
 		super.Mozgas(sorszam);
 		aszteroida.ellenorizNyert();
 	}
 
 	public void Banyaszat() {
-		Log.info("Meghivodott");
+		Log.call();
 		Nyersanyag temp = aszteroida.Banyaszat();
 		if (Szkeleton.Kerdes("Van az aszteroidában nyersanyag?")) {
 			nyersanyagok.add(temp);
@@ -25,12 +24,12 @@ public class Telepes extends Szereplo {
 	}
 
 	public ArrayList<Nyersanyag> getNyersanyagok() {
-		Log.info("Meghivodott");
+		Log.call();
 		return nyersanyagok;
 	}
 
 	public void Lepes() {
-		Log.info("Meghivodott");
+		Log.call();
 		Scanner in = new Scanner(System.in);
 		String s = in.nextLine();
 		// nemtom hogy itt mizu
@@ -38,7 +37,7 @@ public class Telepes extends Szereplo {
 	}
 
 	public void epitRobot() {
-		Log.info("Meghivodott");
+		Log.call();
 		boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok); // ??????????????????????
 		if (vaneleg) {
 			Robot r = new Robot();
@@ -47,7 +46,7 @@ public class Telepes extends Szereplo {
 	}
 
 	public void epitPortal() {
-		Log.info("Meghivodott");
+		Log.call();
 		if (!Szkeleton.Kerdes("Van a telepesnél portálkapu?")) {
 			boolean vaneleg = epiteskoltseg.get(0).koltsegSzamitas(nyersanyagok); // ??????????????????????
 			if (vaneleg) {
@@ -60,17 +59,17 @@ public class Telepes extends Szereplo {
 	}
 
 	public void lehelyezPortal(Portal p) {
-		Log.info("Meghivodott");
+		Log.call();
 		p.beallitVegpont(aszteroida);
 	}
 
 	public void torolPortal(Portal p) {
-		Log.info("Meghivodott");
+		Log.call();
 		portal.remove(p);
 	}
 
 	public void visszarakNyersanyag(Nyersanyag ny) {
-		Log.info("Meghivodott");
+		Log.call();
 		if (Szkeleton.Kerdes("Üres és kifúrt?")) {
 			nyersanyagok.remove(ny);
 			aszteroida.hozzaadNyersanyag(ny);
@@ -79,31 +78,31 @@ public class Telepes extends Szereplo {
 	}
 
 	public void Robbanas() {
-		Log.info("Meghivodott");
+		Log.call();
 		Meghal();
 	}
 
 	public void Meghal() {
-		Log.info("Meghivodott");
+		Log.call();
 		aszteroida.torolSzereplo(this);
 		portal.remove(0);
 		nyersanyagok.remove(0);
-		Jatek.getInstance().torolLeptetheto(this);
-		Jatek.getInstance().telepesMeghal();
+		Jatek.torolLeptetheto(this);
+		Jatek.telepesMeghal();
 	}
 
 	public void hozzaadNyersanyag(Nyersanyag ny) {
-		Log.info("Meghivodott");
+		Log.call();
 		nyersanyagok.add(ny);
 	}
 
 	public static void hozzaadKoltseg(NyersanyagKoltseg k) {
-		Log.info("Meghivodott");
+		Log.call();
 		epiteskoltseg.add(k);
 	}
-	
+
 	public void setPortal(Portal p) {
-		Log.info("Meghivodott");
+		Log.call();
 		portal.add(p);
 	}
 }
