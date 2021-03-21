@@ -3,12 +3,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Telepes extends Szereplo {
-	private List<Nyersanyag> nyersanyagok = new ArrayList<Nyersanyag>();
-	private static List<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>();
-	private List<Portal> portal = new ArrayList<Portal>();
+	private ArrayList<Nyersanyag> nyersanyagok = new ArrayList<Nyersanyag>();
+	private static ArrayListList<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>();
+	private ArrayListList<Portal> portal = new ArrayList<Portal>();
 	
-	public mozgas() {
-		super.mozgas(); //????????ezt h kell?
+	public Mozgas() {
+		super.Mozgas(); //????????ezt h kell?
 		a.ellenorizNyert();
 	}
 	
@@ -20,7 +20,7 @@ public class Telepes extends Szereplo {
 		}
 	}
 	
-	public List<Nyersanyag> getNyersanyagok() {
+	public ArrayListList<Nyersanyag> getNyersanyagok() {
 		return nyersanyagok;
 	}
 	
@@ -88,6 +88,4 @@ public class Telepes extends Szereplo {
 	public static void hozzaadKoltseg(NyersanyagKoltseg k) {
 		epiteskoltseg.add(k);
 	}
-	
-	
 }
