@@ -36,15 +36,15 @@ public class Szkeleton {
 			case 1: MozgasUrhajoval();break;
 			case 2:	Vizjegfuras(); break;
 			case 3: BanyaszatMenu();break;
-			case 4:break;
-			case 5:break;
-			case 6:break;
-			case 7:break;
-			case 8:break;
-			case 9:break;
-			case 10:break;
-			case 11:break;
-			case 12:break;
+			case 4: Vizjegfuras();break;
+			case 5: telepesFurasUran();
+			case 6: Vasfuras();break;
+			case 7: /*"popo"*/;break;
+			case 8:/*"popo"*/;break;
+			case 9: NyersanyagVisszahelyezesMenu();break;
+			case 10: /*"popo"*/break;
+			case 11: robotFurasUran();
+			case 12: Napvihar();
 				
 				
 	
@@ -53,13 +53,37 @@ public class Szkeleton {
 	}
 
 	public void BanyaszatMenu() {
-		System.out.println(
-				"1. Urï¿½n Bï¿½nyï¿½szat\r\n" + "2. Vï¿½zjï¿½g Bï¿½nyï¿½szat\r\n" + "3. Szï¿½n Bï¿½nyï¿½szat\r\n" + "4. Vas Bï¿½nyï¿½szat");
+		System.out.println("1. Urán Bányászat\r\n"
+				+ "2. Vízjég Bányászat\r\n"
+				+ "3. Szén Bányászat\r\n"
+				+ "4. Vas Bányászat");
+		Scanner be = new Scanner(System.in);
+		int valasz = be.nextInt();
+		switch (valasz) {
+			case 1: uranBanyaszat();break;
+			case 2:	vizjegBanyaszat(); break;
+			case 3: szenBanyaszat();break;
+			case 4: vasBanyaszat();break;
+				
+			default: break;
+		}
 	}
 
 	public void NyersanyagVisszahelyezesMenu() {
-		System.out.println("1. Urï¿½n Visszahelyzï¿½s\r\n" + "2. Vï¿½zjï¿½g Visszahelyzï¿½s\r\n" + "3. Szï¿½n Visszahelyzï¿½s\r\n"
-				+ "4. Vas Visszahelyzï¿½s");
+		System.out.println("1. Urán visszahelyezés\r\n"
+				+ "2. Vízjég visszahelyezés\r\n"
+				+ "3. Szén visszahelyezés\r\n"
+				+ "4. Vas visszahelyezés");
+		Scanner be = new Scanner(System.in);
+		int valasz = be.nextInt();
+		switch (valasz) {
+			case 1: UranVisszahelyezes();break;
+			case 2:	VizjegVisszahelyezes(); break;
+			case 3: break;
+			case 4: break;
+				
+			default: break;
+		}
 	}
 
 	public void MozgasUrhajoval() {
