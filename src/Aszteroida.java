@@ -78,8 +78,9 @@ public class Aszteroida extends Hely {
     }
 
     public void ellenorizNyert() {
-        ArrayList<Nyersanyag> aszteroidanLevoNyersanyagok = new ArrayList<Nyersanyag>();
-        aszteroidanLevoNyersanyagok.addAll(szereplok.get(0).getNyersanyagok());// TTTTTTTTTTTTOOOOOOOOOOOODDDDDDDDDDDOOOOOOOOOOOOOOOOOOOO
+        if (Szkeleton.Kerdes("Megvan az összes nyersanyag?")) {
+            Jatek.getInstance().jatekVegeNyert();
+        }
     }
 
     public void hozzaadSzereplo(Szereplo sz) {

@@ -15,40 +15,43 @@ public class Szkeleton {
 	}
 
 	public void Menu() {
-		Scanner be = new Scanner(System.in);
+		
 		int valasz;
-		System.out.println("------------------------");
-		System.out.println("1. Mozgás ûrhajóval\r\n"
-				+ "2. Mozgás teleport kapun keresztül\r\n"
-				+ "3. Bányászat\r\n"
-				+ "4. Vízjég Fúrás\r\n"
-				+ "5. Urán fúrás\r\n"
-				+ "6. Fúrás vas\r\n"
-				+ "7. Portálkapu építés\r\n"
-				+ "8. Robot építés\r\n"
-				+ "9. Nyersanyag visszahelyezés\r\n"
-				+ "10. Portál lehelyezés\r\n"
-				+ "11. Robot Urán fúrás\r\n"
-				+ "12. Napvihar");
-		System.out.println("------------------------");
-		valasz = be.nextInt();
-		switch (valasz) {
-			case 1: MozgasUrhajoval();break;
-			case 2:	Vizjegfuras(); break;
-			case 3: BanyaszatMenu();break;
-			case 4: Vizjegfuras();break;
-			case 5: telepesFurasUran();
-			case 6: Vasfuras();break;
-			case 7: /*"popo"*/;break;
-			case 8:/*"popo"*/;break;
-			case 9: NyersanyagVisszahelyezesMenu();break;
-			case 10: /*"popo"*/break;
-			case 11: robotFurasUran();
-			case 12: Napvihar();
-				
-				
-	
-			default: break;
+		while(true) {
+			System.out.println("------------------------");
+			System.out.println("1. Mozgás ûrhajóval\r\n"
+					+ "2. Mozgás teleport kapun keresztül\r\n"
+					+ "3. Bányászat\r\n"
+					+ "4. Vízjég Fúrás\r\n"
+					+ "5. Urán fúrás\r\n"
+					+ "6. Fúrás vas\r\n"
+					+ "7. Portálkapu építés\r\n"
+					+ "8. Robot építés\r\n"
+					+ "9. Nyersanyag visszahelyezés\r\n"
+					+ "10. Portál lehelyezés\r\n"
+					+ "11. Robot Urán fúrás\r\n"
+					+ "12. Napvihar");
+			System.out.println("------------------------");
+			Scanner be = new Scanner(System.in);
+			valasz = be.nextInt();
+			switch (valasz) {
+				case 1: MozgasUrhajoval();break;
+				case 2:	Vizjegfuras(); break;
+				case 3: BanyaszatMenu();break;
+				case 4: Vizjegfuras();break;
+				case 5: telepesFurasUran();
+				case 6: Vasfuras();break;
+				case 7: /*"popo"*/;break;
+				case 8:/*"popo"*/;break;
+				case 9: NyersanyagVisszahelyezesMenu();break;
+				case 10: /*"popo"*/break;
+				case 11: robotFurasUran();
+				case 12: Napvihar();
+				case 13: System.exit(0);	
+					
+		
+				default:System.out.println("Nincs ilyen."); break;
+			}
 		}
 	}
 
@@ -90,6 +93,8 @@ public class Szkeleton {
 		Telepes t = new Telepes();
 		Aszteroida regi = new Aszteroida(1, true, new Nap(), new Uran());
 		Aszteroida uj = new Aszteroida(1, true, new Nap(), new Uran());
+		regi.hozzaadSzomszed(uj);
+		uj.hozzaadSzomszed(regi);
 		regi.hozzaadSzereplo(t);
 		t.beallitAszteroida(regi);
 		t.Mozgas(0);

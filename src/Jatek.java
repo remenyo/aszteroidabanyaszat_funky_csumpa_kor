@@ -3,15 +3,18 @@ package src;
 import java.util.ArrayList;
 
 public class Jatek {
-	private static Jatek jatek = new Jatek();
+	private static Jatek jatek = null;
 	int telepesszam;
 	ArrayList<Leptetheto> leptethetok;
 
-	Jatek() {
+	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
 
 	public static Jatek getInstance() {
+		if (jatek == null)
+			jatek = new Jatek();
+
 		return jatek;
 	}
 
