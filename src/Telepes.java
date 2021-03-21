@@ -78,8 +78,8 @@ public class Telepes extends Szereplo {
 		{ 
 		    ny.Robbanas();
 		}
-		jatek.torolLeptetheto(this);
-		jatek.telepesMeghal();
+		Jatek.getInstance().torolLeptetheto(this);
+		Jatek.getInstance().telepesMeghal();
 	}
 	
 	public void hozzaadNyersanyag(Nyersanyag ny) {
