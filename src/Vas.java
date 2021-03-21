@@ -16,7 +16,7 @@ public class Vas extends Nyersanyag{
     }
 
     @Override
-    public void ellenorizNyersanyag() {
+    public void ellenorizVesztett() {
         if (osszesVas < MIN_VAS) {
             jatekVegeVesztett();
         }

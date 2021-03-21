@@ -1,21 +1,61 @@
 package src;
 
-// még nincs kész
-// TODO opcionális verbose parameter, ne kelljen new sem...
-
 public class Log {
 
-    // https://stackoverflow.com/a/4065546
-    Log(String message, boolean verbose) {
-        StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
-        StackTraceElement e = stacktrace[2];// magic, it's used for debug. Anyway...
-        if (verbose)
-            System.out.println("[LOG] " + e.getFileName() + ":" + e.getLineNumber() + " (" + e.getClassName() + ") "
-                    + e.getMethodName() + "() : " + message);
-        else
-            System.out.println(e.getClassName() + " " + e.getMethodName() + ": " + message);
+    // https://stackoverflow.com/a/4065546 az alap innen jött
 
+    private static StackTraceElement getCaller() {
+        return Thread.currentThread().getStackTrace()[4]; // 🪄 magic
     }
+
+    private static String verboseLogBuilder(String level, StackTraceElement e) {
+        return "[" + level + "] " + e.getFileName() + ":" + e.getLineNumber() + " (" + e.getClassName() + ") "
+                + e.getMethodName() + "() : ";
+    }
+
+    private static String simpleLogBuilder(String level, StackTraceElement e) {
+        return "[" + level + "] " + e.getClassName() + " " + e.getMethodName() + "() : ";
+    }
+
+    private static void log(String level, String message, boolean verbose) {
+        if (verbose)
+            System.out.println(verboseLogBuilder(level, getCaller()) + message);
+        else
+            System.out.println(simpleLogBuilder(level, getCaller()) + message);
+    }
+
+    static void error(String message) {
+        log("ERROR", message, false);
+    }
+
+    static void error(String message, boolean verbose) {
+        log("ERROR", message, verbose);
+    }
+
+    static void warn(String message) {
+        log("WARN", message, false);
+    }
+
+    static void warn(String message, boolean verbose) {
+        log("WARN", message, verbose);
+    }
+
+    static void info(String message) {
+        log("INFO", message, false);
+    }
+
+    static void info(String message, boolean verbose) {
+        log("INFO", message, verbose);
+    }
+
+    static void debug(String message) {
+        log("DEBUG", message, false);
+    }
+
+    static void debug(String message, boolean verbose) {
+        log("DEBUG", message, verbose);
+    }
+
 }
 
 /*

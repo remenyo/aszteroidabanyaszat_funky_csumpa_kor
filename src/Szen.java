@@ -16,7 +16,7 @@ public class Szen extends Nyersanyag {
     }
 
     @Override
-    public void ellenorizNyersanyag() {
+    public void ellenorizVesztett() {
         if (osszesSzen < MIN_SZEN) {
             jatekVegeVesztett();
         }
