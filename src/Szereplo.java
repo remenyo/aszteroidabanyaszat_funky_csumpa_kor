@@ -6,6 +6,11 @@ import java.util.ArrayList;
 public class Szereplo implements Leptetheto{
 	Aszteroida aszteroida;
     
+	public Szereplo() 
+	{
+		
+	}
+	
     public void Mozgas() 
     {
         Scanner in = new Scanner(System.in);

@@ -6,8 +6,7 @@ public class App {
 
         new Log("Szia hello", false);
 
-        RandomUtils r = new RandomUtils();
-        System.out.println("Hello, World!");
-
+        Szkeleton szkeleton = new Szkeleton();
+        szkeleton.Menu();
     }
 }
