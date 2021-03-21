@@ -1,10 +1,9 @@
 package src;
 
-import java.util.Scanner;
 
-public class Portal {
+public class Portal extends Hely {
 	private Boolean aktiv=false;
-	private Telepes birtoskos;
+	private Telepes birtokos;
 	private Portal par;
 	private Aszteroida vegpont;
 	

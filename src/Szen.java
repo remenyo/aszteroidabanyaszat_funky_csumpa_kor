@@ -4,28 +4,18 @@ public class Szen extends Nyersanyag {
     private static int osszesSzen = 0;
 
     Szen() {
-        super("Sz√©n");
+        super("Szen");
         osszesSzen++; // ez felt√©telezi hogy az √∫j objektum el van t√°rolva √©s meg van h√≠vva
         // megsz≈±n√©skor a robban√°s
 
     }
 
     @Override
-    public void felszinreKerul(Aszteroida a) {
-        // do nothing;
-    }
-
-    @Override
     public void ellenorizVesztett() {
-        if (osszesSzen < MIN_SZEN) {
-            jatekVegeVesztett();
+    	osszesSzen--;
+        if (!Szkeleton.Kerdes("Van elÈg szÈn mÈg a j·tÈkban a gyızelemhez?")) {
+            Jatek.getInstance().jatekVegeVesztett();
         }
-    }
-
-    @Override
-    public void robbanas() {
-        osszesSzen--;
-        super.robbanas();
     }
 
 }

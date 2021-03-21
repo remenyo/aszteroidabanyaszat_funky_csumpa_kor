@@ -1,8 +1,5 @@
 package src;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 abstract public class Nyersanyag {
     private String nev = "Nyersanyag";
 
@@ -12,10 +9,12 @@ abstract public class Nyersanyag {
 
     abstract public void ellenorizVesztett();
 
-    abstract public void felszinreKerul(Aszteroida a);
+    public void felszinreKerul(Aszteroida a) {
+    	//ne csináljon semmit
+    };
 
     public void Robbanas() {
-        ellenorizNyersanyag();
+        ellenorizVesztett();
     };
 
     public boolean azonos(Nyersanyag ny) {

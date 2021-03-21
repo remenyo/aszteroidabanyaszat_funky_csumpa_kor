@@ -1,5 +1,7 @@
 package src;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Szkeleton {
@@ -16,43 +18,37 @@ public class Szkeleton {
 		Scanner be = new Scanner(System.in);
 		int valasz;
 		System.out.println("------------------------");
-		System.out.println("1. Mozgï¿½s ï¿½rhajï¿½val\r\n" + "2. Mozgï¿½s teleport kapun keresztï¿½l\r\n" + "3. Bï¿½nyï¿½szat\r\n"
-				+ "4. Vï¿½zjï¿½g Fï¿½rï¿½s\r\n" + "5. Urï¿½n fï¿½rï¿½s\r\n" + "6. Fï¿½rï¿½s vas\r\n" + "7. Portï¿½lkapu ï¿½pï¿½tï¿½s\r\n"
-				+ "8. Robot ï¿½pï¿½tï¿½s\r\n" + "9. Nyersanyag visszahelyezï¿½s\r\n" + "10. Portï¿½l lehelyezï¿½s\r\n"
-				+ "11. Robot Urï¿½n fï¿½rï¿½s\r\n" + "12. Napvihar");
+		System.out.println("1. Mozgás ûrhajóval\r\n"
+				+ "2. Mozgás teleport kapun keresztül\r\n"
+				+ "3. Bányászat\r\n"
+				+ "4. Vízjég Fúrás\r\n"
+				+ "5. Urán fúrás\r\n"
+				+ "6. Fúrás vas\r\n"
+				+ "7. Portálkapu építés\r\n"
+				+ "8. Robot építés\r\n"
+				+ "9. Nyersanyag visszahelyezés\r\n"
+				+ "10. Portál lehelyezés\r\n"
+				+ "11. Robot Urán fúrás\r\n"
+				+ "12. Napvihar");
 		System.out.println("------------------------");
 		valasz = be.nextInt();
 		switch (valasz) {
-		case 1:
-			MozgasUrhajoval();
-			break;
-		case 2:
-			break;
-		case 3:
-			BanyaszatMenu();
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
-			break;
-		case 8:
-			break;
-		case 9:
-			NyersanyagVisszahelyezesMenu();
-			break;
-		case 10:
-			break;
-		case 11:
-			break;
-		case 12:
-			break;
-
-		default:
-			break;
+			case 1: MozgasUrhajoval();break;
+			case 2:	Vizjegfuras(); break;
+			case 3: BanyaszatMenu();break;
+			case 4:break;
+			case 5:break;
+			case 6:break;
+			case 7:break;
+			case 8:break;
+			case 9:break;
+			case 10:break;
+			case 11:break;
+			case 12:break;
+				
+				
+	
+			default: break;
 		}
 	}
 
@@ -72,7 +68,7 @@ public class Szkeleton {
 		Aszteroida uj = new Aszteroida(1, true, new Nap(), new Uran());
 		regi.hozzaadSzereplo(t);
 		t.beallitAszteroida(regi);
-		t.Mozgas();
+		t.Mozgas(0);
 	}
 
 	public void UranVisszahelyezes() {
@@ -145,5 +141,53 @@ public class Szkeleton {
 		t.beallitAszteroida(a);
 		a.hozzaadSzereplo(t);
 		a.Banyaszat();
+	}
+	public void robotFurasUran() {
+		Robot r = new Robot();
+		Aszteroida a = new Aszteroida(2,false,new Nap(),new Uran());
+		Aszteroida b = new Aszteroida(2,false,new Nap(),new Uran());
+		Portal p = new Portal();
+		a.hozzaadSzomszed(b);
+		a.hozzaadSzomszed(p);
+		a.Furas();
+	
+			
+	}
+	
+	public void telepesFurasUran() {
+		Telepes t = new Telepes();
+		Aszteroida a = new Aszteroida(2,false,new Nap(),new Uran());
+		Aszteroida b = new Aszteroida(2,false,new Nap(),new Uran());
+		Portal p = new Portal();
+		a.hozzaadSzomszed(b);
+		a.hozzaadSzomszed(p);
+		a.Furas();
+	}
+	
+	public void Vizjegfuras() {
+		Telepes t = new Telepes();
+		Aszteroida a = new Aszteroida(1,true,new Nap(),new Vizjeg());
+		t.beallitAszteroida(a);
+		t.Furas();
+	}
+	
+	public void Vasfuras() {
+		Telepes t = new Telepes();
+		Aszteroida a = new Aszteroida(1,true,new Nap(),new Vas());
+		t.beallitAszteroida(a);
+		t.Furas();
+	}
+	
+	public void Napvihar() {
+		Nap nap = new Nap();
+		Aszteroida a = new Aszteroida(1,true,nap,new Vas());
+		Telepes t = new Telepes();
+		Robot r = new Robot();
+		a.hozzaadSzereplo(t);
+		t.beallitAszteroida(a);
+		r.beallitAszteroida(a);
+		a.hozzaadSzereplo(r);
+		nap.hozzaadAszteroidak(new ArrayList<Aszteroida>(Arrays.asList(a)));
+		nap.Lepes();
 	}
 }

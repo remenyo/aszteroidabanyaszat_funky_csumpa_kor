@@ -6,25 +6,14 @@ public class Vas extends Nyersanyag{
     Vas() {
         super("Vas");
         osszesVas++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
-                  // megszűnéskor a robbanás
-
-    }
-
-    @Override
-    public void felszinreKerul(Aszteroida a) {
-        // do nothing;
+                  // megszűnéskor a robbaná
     }
 
     @Override
     public void ellenorizVesztett() {
-        if (osszesVas < MIN_VAS) {
-            jatekVegeVesztett();
+    	osszesVas--;
+        if (!Szkeleton.Kerdes("Van el�g vas m�g a j�t�kban a gy�zelemhez?")) {
+            Jatek.getInstance().jatekVegeVesztett();
         }
-    }
-
-    @Override
-    public void robbanas() {
-        osszesVas--;
-        super.robbanas();
     }
 }

@@ -9,8 +9,8 @@ public class Telepes extends Szereplo {
 	private static ArrayList<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>();
 	private ArrayList<Portal> portal = new ArrayList<Portal>();
 
-	public void Mozgas() {
-		super.Mozgas();
+	public void Mozgas(int sorszam) {
+		super.Mozgas(sorszam);
 		aszteroida.ellenorizNyert();
 	}
 
@@ -62,8 +62,7 @@ public class Telepes extends Szereplo {
 	}
 
 	public void visszarakNyersanyag(Nyersanyag ny) {
-		Szkeleton sz = Szkeleton();
-		if (sz.Kerdes("van mï¿½g kï¿½reg rï¿½teg?") && sz.Kerdes("A van nyersanyag benne??")) {
+		if (Szkeleton.Kerdes("Üres és kifúrt?")) {
 			aszteroida.hozzaadNyersanyag(ny);
 		}
 
@@ -86,7 +85,7 @@ public class Telepes extends Szereplo {
 	}
 
 	public void hozzaadNyersanyag(Nyersanyag ny) {
-		nyersanyag.add(ny);
+		nyersanyagok.add(ny);
 	}
 
 	public static void hozzaadKoltseg(NyersanyagKoltseg k) {

@@ -1,25 +1,20 @@
 package src;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Szereplo implements Leptetheto {
-    Aszteroida aszteroida;
+    protected Aszteroida aszteroida;
 
     public Szereplo() {
 
     }
 
-    public void Mozgas() {
-        Log.info("Meghï¿½vï¿½dott");
-        Scanner in = new Scanner(System.in);
-
-        System.out.println("Kï¿½rem a szomszï¿½d sorszï¿½mï¿½t");
-        int sorszam = in.nextInt();
-        Aszteroida uj = aszteroida.getSzomszed(sorszam);
+    public void Mozgas(int sorszam) {
+        Log.info("Meghívódott");
+        Hely uj = aszteroida.getSzomszed(sorszam);
         aszteroida.torolSzereplo(this);
-        uj.Utazas(this);
-        uj.ellenorizNyert();
+        uj.Utazas(this); 
+        
 
     }
 

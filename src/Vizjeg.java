@@ -4,38 +4,27 @@ public class Vizjeg extends Nyersanyag {
     private static int osszesVizjeg = 0;
 
     Vizjeg() {
-        super("V√≠zj√©g");
+        super("VÌzjÈg");
         osszesVizjeg++; // ez felt√©telezi hogy az √∫j objektum el van t√°rolva √©s meg van h√≠vva
         // megsz≈±n√©skor a robban√°s
     }
 
     @Override
     public void felszinreKerul(Aszteroida a) {
-        if (a.isNapk√∂zelben()) {
-            a.torolNyersanyag(this);
+        if (a.isNapkozelben()) {
+            a.torolNyersanyag();
             ellenorizVesztett();
         }
     }
 
     @Override
     public void ellenorizVesztett() {
-        if (osszesVizjeg < MIN_SZEN) {
-            jatekVegeVesztett();
+    	osszesVizjeg--;
+        if (!Szkeleton.Kerdes("Van elÈg vÌzjÈg mÈg a j·tÈkban a gyızelemhez?")) {
+            Jatek.getInstance().jatekVegeVesztett();
         }
         Log.info("Meghivodott");
     }
 
-    @Override
-    public void robbanas() {
-        osszesVizjeg--;
-        super.robbanas();
-    }
-
-    public void ellenorizVesztett() {
-        boolean valasz = Szkeleton().Kerdes("Van eleg nyersanyag a jatek folytatasahoz?\n1-Igen,2-Nem");
-        if (!valasz) {
-            Jatek.getInstance().jatekVegeVesztett();
-        }
-    }
 
 }

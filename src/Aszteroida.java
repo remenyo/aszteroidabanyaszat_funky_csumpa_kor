@@ -39,7 +39,7 @@ public class Aszteroida extends Hely {
     }
 
     public void Napvihar() {
-        boolean valasz = Szkeleton().Kerdes("Ures az aszteroida es ki van furva?");
+        boolean valasz = Szkeleton.Kerdes("Ures az aszteroida es ki van furva?");
         if (valasz) {
             szereplok.get(0).Napvihar();
             szereplok.get(1).Napvihar();
@@ -48,7 +48,7 @@ public class Aszteroida extends Hely {
     }
 
     public void Furas() {
-        boolean elfogyott = Szkeleton().Kerdes("Elfogy a kï¿½peny? (1:Igen 0:Nem)");
+        boolean elfogyott = Szkeleton.Kerdes("Elfogy a kï¿½peny? (1:Igen 0:Nem)");
         if (elfogyott)
             nyersanyag.felszinreKerul(this);
 
@@ -77,8 +77,8 @@ public class Aszteroida extends Hely {
     }
 
     public void ellenorizNyert(){
-    	ArrayList<Nyersanyag> 
-        szereplok.get(0).getNyersanyagok();
+    	ArrayList<Nyersanyag> aszteroidanLevoNyersanyagok = new ArrayList<Nyersanyag>();
+        aszteroidanLevoNyersanyagok.addAll(szereplok.get(0).getNyersanyagok());//TTTTTTTTTTTTOOOOOOOOOOOODDDDDDDDDDDOOOOOOOOOOOOOOOOOOOO
     }
 
     public void hozzaadSzereplo(Szereplo sz) {
@@ -111,10 +111,15 @@ public class Aszteroida extends Hely {
     }
 
     public boolean isNapkozelben() {
-        return Szkeleton().Kerdes("Napkï¿½zelben van az aszteroida?");
+        return Szkeleton.Kerdes("Napközelben van az aszteroida?");
     }
 
     public void setNyersanyag(Nyersanyag ny) {
         nyersanyag = ny;
     }
+
+	public ArrayList<Hely> getSzomszedok() {
+		return szomszedok;
+	}
+    
 }

@@ -3,9 +3,15 @@ package src;
 import java.util.Random;
 
 public class Robot extends Szereplo{
+	
+	Robot(){
+		super();
+	}
+	
 	public void Robbanas() {
 		mozgasIntelligencia();
 	}
+	
 	public void Lepes() {
 		Random rand = new Random();
 		int cselekves = rand.nextInt(4);
@@ -23,12 +29,12 @@ public class Robot extends Szereplo{
 	//felhasználásra kerül mindkét függvényben
 	public void mozgasIntelligencia() {
 		Random rand = new Random();
-		int szomszedszam = aszteroida.getSzomszedSzam();
+		int szomszedszam = aszteroida.getSzomszedok().size();
 		//Aszteroidába egy függvény, ami lekérdezi a szomszédok tömb hosszát;
 		//szükséges az Aszteroida felrobbanásához, ha az aszteroidának nem maradtak szomszédai
 		//~~Analízis model2 - 4.4.2 szekvencia
 		
-		Mozgas( rand.nextInt(szomszedszam) ); //véletlenszerûen vándorlik egy szomszédra
+		Mozgas( 0 ); //véletlenszerûen vándorlik egy szomszédra
 	}
 	
 }
