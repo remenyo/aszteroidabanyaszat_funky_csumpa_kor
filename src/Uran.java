@@ -11,7 +11,7 @@ public class Uran extends Nyersanyag {
 
     @Override
     public void felszinreKerul(Aszteroida a) {
-        if (Szkeleton.Kerdes("Napközelben van?")) {
+        if (a.isNapkozelben()) {
             a.Robbanas();
         }
     }
