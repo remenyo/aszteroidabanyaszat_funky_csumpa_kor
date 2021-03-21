@@ -44,7 +44,10 @@ public class Aszteroida {
     }
     
     public void Furas(){
-        //TODO kérdezzünk vagy ne
+        boolean elfogyott = new Szkeleton().Kerdes("Elfogy a köpeny? (1:Igen 0:Nem)");
+        if(elfogyott)
+        	nyersanyag.felszinreKerul(this);
+        
     }
     
     public void torolSzomszed(Hely h){
