@@ -7,8 +7,8 @@ public class Telepes extends Szereplo {
 	private static List<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>();
 	private List<Portal> portal = new ArrayList<Portal>();
 	
-	public Mozgas(int i) {
-		super.Mozgas(i); //????????ezt h kell?
+	public mozgas() {
+		super.mozgas(); //????????ezt h kell?
 		a.ellenorizNyert();
 	}
 	

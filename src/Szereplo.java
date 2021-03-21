@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Szereplo {
 	Aszteroida aszteroida;
     
-    public void mozgas() 
+    public void Mozgas() 
     {
         Scanner in = new Scanner(System.in);
 
