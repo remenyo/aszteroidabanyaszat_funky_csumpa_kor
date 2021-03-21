@@ -1,11 +1,11 @@
 package src;
 
 public class Vas extends Nyersanyag{
-    private static int amount = 0;
+    private static int osszesVas = 0;
 
     Vas() {
         super("Vas");
-        amount++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
+        osszesVas++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
                   // megszűnéskor a robbanás
 
     }
@@ -16,8 +16,15 @@ public class Vas extends Nyersanyag{
     }
 
     @Override
+    public void ellenorizNyersanyag() {
+        if (osszesVas < MIN_VAS) {
+            jatekVegeVesztett();
+        }
+    }
+
+    @Override
     public void robbanas() {
-        amount--;
+        osszesVas--;
         super.robbanas();
     }
 }
