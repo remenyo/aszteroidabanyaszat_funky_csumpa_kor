@@ -1,11 +1,11 @@
 package src;
 
 public class Uran extends Nyersanyag {
-    private static int amount = 0;
+    private static int osszesUran = 0;
 
     Uran() {
         super("Urán");
-        amount++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
+        osszesUran++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
         // megszűnéskor a robbanás
     }
 
@@ -17,8 +17,15 @@ public class Uran extends Nyersanyag {
     }
 
     @Override
+    public void ellenorizNyersanyag() {
+        if (osszesUran < MIN_URAN) {
+            jatekVegeVesztett();
+        }
+    }
+
+    @Override
     public void robbanas() {
-        amount--;
+        osszesUran--;
         super.robbanas();
     }
 }
