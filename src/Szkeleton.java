@@ -6,7 +6,7 @@ public class Szkeleton {
 	
 	public boolean Kerdes(String kerdesSzoveg) {
 		Scanner be = new Scanner(System.in);
-		System.out.println(kerdesSzoveg+" 1-Igen 0-Nem");
+		System.out.println(kerdesSzoveg+" 1-Igen 0-Nem\n");
 		int valasz = be.nextInt();
 		return valasz==1;
 	}
@@ -38,7 +38,7 @@ public class Szkeleton {
 			case 6:break;
 			case 7:break;
 			case 8:break;
-			case 9:break;
+			case 9: NyersanyagVisszahelyezesMenu();break;
 			case 10:break;
 			case 11:break;
 			case 12:break;
@@ -56,6 +56,13 @@ public class Szkeleton {
 				+ "4. Vas Bányászat");
 	}
 	
+	public void NyersanyagVisszahelyezesMenu() {
+		System.out.println("1. Urán Visszahelyzés\r\n"
+				+ "2. Vízjég Visszahelyzés\r\n"
+				+ "3. Szén Visszahelyzés\r\n"
+				+ "4. Vas Visszahelyzés");
+	}
+	
 	public void MozgasUrhajoval() {
 		Telepes t = new Telepes();
 		Aszteroida regi = new Aszteroida(1,true,new Nap(),new Uran());
@@ -64,13 +71,27 @@ public class Szkeleton {
 		t.beallitAszteroida(regi);
 		t.Mozgas();
 	}
-	
-	public void NyersanyagVisszahelyezésMenu() {
-		System.out.println("1. Urán Visszahelyzés\r\n"
-				+ "2. Vízjég Bányászat\r\n"
-				+ "3. Szén Bányászat\r\n"
-				+ "4. Vas Bányászat");
+
+	public void UranVisszahelyezes() {
+		Aszteroida a = new Aszteroida(1,true,new Nap(),new Uran());
+		Uran u = new Uran();
+		Telepes t = new Telepes();
+		a.hozzaadSzereplo(t);
+		t.beallitAszteroida(a);
+		t.hozzaadNyersanyag(u);
+		t.visszarakNyersanyag(u);
 	}
+	
+	public void VizjegVisszahelyezes() {
+		Aszteroida a = new Aszteroida(1,true,new Nap(),new Uran());
+		Vizjeg v = new Vizjeg();
+		Telepes t = new Telepes();
+		a.hozzaadSzereplo(t);
+		t.beallitAszteroida(a);
+		t.hozzaadNyersanyag(v);
+		t.visszarakNyersanyag(v);
+	}
+	
 	
 	public void mozgasTeleporttal() 
 	{

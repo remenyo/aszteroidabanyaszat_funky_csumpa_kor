@@ -6,7 +6,7 @@ import java.util.Scanner;
  *
  * @author Danesz
  */
-public class Aszteroida {
+public class Aszteroida extends Hely {
     private int reteg;
     private boolean napkozel;
     private ArrayList<Szereplo> szereplok; //elso helyen mindig egy telepes masodikon egy robot
@@ -91,6 +91,7 @@ public class Aszteroida {
     
     public void hozzaadNyersanyag(Nyersanyag ny){
         nyersanyag = ny;
+        ny.felszinreKerul(this);
     }
     
     public void Utazas(Szereplo sz){
@@ -109,6 +110,9 @@ public class Aszteroida {
     	return new Szkeleton().Kerdes("Napközelben van az aszteroida?");
     }
     
+    public void setNyersanyag(Nyersanyag ny) {
+    	nyersanyag = ny;
+    }
 }
 
 
