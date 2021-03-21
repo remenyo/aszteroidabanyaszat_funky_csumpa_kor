@@ -39,8 +39,12 @@ public class Aszteroida extends Hely {
     }
 
     public void Napvihar() {
-        szereplok.get(0).Napvihar();
-        szereplok.get(1).Napvihar();
+        boolean valasz = Szkeleton().Kerdes("Ures az aszteroida es ki van furva?");
+        if (valasz) {
+            szereplok.get(0).Napvihar();
+            szereplok.get(1).Napvihar();
+        }
+
     }
 
     public void Furas() {
