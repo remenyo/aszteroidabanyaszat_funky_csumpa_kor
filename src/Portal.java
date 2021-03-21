@@ -32,10 +32,7 @@ public class Portal {
 		par=p;
 	}
 	private void mukodesbeHelyezes(Aszteroida a) {
-		Scanner in = new Scanner(System.in);
-        System.out.println("Meg van nála az összes szükséges nyersanyag?\n 1:Igen\n 2:Nem");
-        int megvan = in.nextInt();
-		
+     		
 		if(par.getVegpont()!=null) {
 			beallitAktiv();
 			par.beallitAktiv();
