@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Telepes extends Szereplo {
-	private Jatek jatek;
 	private List<Nyersanyag> nyersanyagok = new ArrayList<Nyersanyag>();
 	private static List<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>();
 	private List<Portal> portal = new ArrayList<Portal>();
