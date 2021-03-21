@@ -1,10 +1,10 @@
+package src;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Nap implements Leptetheto{
-	private List<Aszteroida> aszteroidak = new ArrayList<Aszteroida>();
-	private boolean elorejelzesvan = false;
-	
+	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>();
+	private boolean elorejelzesvan = false;	
 	public void Lepes() {
 		if(!elorejelzesvan) {
 			Random r = new Random();
@@ -30,7 +30,7 @@ public class Nap implements Leptetheto{
 		//hat ez ugytunik nem kell de lepesbe belelehet rakni ha akarjuk
 	}
 	
-	public void hozzaadAszteroidak(List<Aszteroida> a) {
+	public void hozzaadAszteroidak(ArrayList<Aszteroida> a) {
 		aszteroidak = a;
 	}
 }
