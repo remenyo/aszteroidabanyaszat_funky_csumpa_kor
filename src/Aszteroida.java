@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Aszteroida {
     private int reteg;
     private boolean napkozel;
-    private ArrayList<Szereplok> szereplok; //elso helyen mindig egy telepes masodikon egy robot
+    private ArrayList<Szereplo> szereplok; //elso helyen mindig egy telepes masodikon egy robot
     private ArrayList<Hely> szomszedok; //elso helyen mindig aszteroida masodikon portal
     private Nap nap;
     private Nyersanyag nyersanyag;
@@ -18,7 +18,7 @@ public class Aszteroida {
     Aszteroida(int reteg,boolean napkozel,Nap nap,Nyersanyag nyersanyag){
         this.reteg = reteg;
         this.napkozel =  napkozel;
-        szereplok = new ArrayList<Szereplok>();
+        szereplok = new ArrayList<Szereplo>();
         szomszedok = new ArrayList<Hely>();
         this.nap = nap;
         this.nyersanyag = nyersanyag;
@@ -65,7 +65,8 @@ public class Aszteroida {
     }
     
     public void ellenorizNyert(){
-        //TODO Itt biztosan kérdés alapján
+    	ArrayList<Nyersanyag> 
+        szereplok.get(0).getNyersanyagok();
     }
     
     public void hozzaadSzereplo(Szereplo sz){
