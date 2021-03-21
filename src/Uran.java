@@ -11,6 +11,7 @@ public class Uran extends Nyersanyag {
 
     @Override
     public void felszinreKerul(Aszteroida a) {
+    	Log.info("Meghivodott");
         if (a.isNapkozelben()) {
             a.Robbanas();
         }
@@ -18,6 +19,7 @@ public class Uran extends Nyersanyag {
 
     @Override
     public void ellenorizVesztett() {
+    	Log.info("Meghivodott");
     	osszesUran--;
         if (!Szkeleton.Kerdes("Van elég urán még a játékban a gyõzelemhez?")) {
             Jatek.getInstance().jatekVegeVesztett();

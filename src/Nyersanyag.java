@@ -8,16 +8,17 @@ abstract public class Nyersanyag {
     }
 
     abstract public void ellenorizVesztett();
-
     public void felszinreKerul(Aszteroida a) {
-    	//ne csináljon semmit
-    };
+    	
+    }
 
     public void Robbanas() {
+    	Log.info("Meghivodott");
         ellenorizVesztett();
     };
 
     public boolean azonos(Nyersanyag ny) {
+    	Log.info("Meghivodott");
         return this.nev.equals(ny.nev);
     }
 }

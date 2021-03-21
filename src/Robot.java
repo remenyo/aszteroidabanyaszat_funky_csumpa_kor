@@ -9,10 +9,12 @@ public class Robot extends Szereplo{
 	}
 	
 	public void Robbanas() {
+		Log.info("Meghivodott");
 		mozgasIntelligencia();
 	}
 	
 	public void Lepes() {
+		Log.info("Meghivodott");
 		Random rand = new Random();
 		int cselekves = rand.nextInt(4);
 		
@@ -28,6 +30,7 @@ public class Robot extends Szereplo{
 	//Ne legyen kódismétlés
 	//felhasználásra kerül mindkét függvényben
 	public void mozgasIntelligencia() {
+		Log.info("Meghivodott");
 		Random rand = new Random();
 		int szomszedszam = aszteroida.getSzomszedok().size();
 		//Aszteroidába egy függvény, ami lekérdezi a szomszédok tömb hosszát;
