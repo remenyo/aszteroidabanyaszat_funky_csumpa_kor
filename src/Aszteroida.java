@@ -48,7 +48,7 @@ public class Aszteroida extends Hely {
     }
 
     public void Furas() {
-        boolean elfogyott = Szkeleton.Kerdes("Elfogy a kï¿½peny? (1:Igen 0:Nem)");
+        boolean elfogyott = Szkeleton.Kerdes("Elfogy a köpeny? (1:Igen 0:Nem)");
         if (elfogyott)
             nyersanyag.felszinreKerul(this);
 

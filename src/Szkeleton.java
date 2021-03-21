@@ -41,10 +41,10 @@ public class Szkeleton {
 				case 4: Vizjegfuras();break;
 				case 5: telepesFurasUran();
 				case 6: Vasfuras();break;
-				case 7: /*"popo"*/;break;
-				case 8:/*"popo"*/;break;
+				case 7: portalkapuEpites();break;
+				case 8: robotEpites();break;
 				case 9: NyersanyagVisszahelyezesMenu();break;
-				case 10: /*"popo"*/break;
+				case 10: portalLehelyezes();break;
 				case 11: robotFurasUran();
 				case 12: Napvihar();
 				case 13: System.exit(0);	
@@ -218,5 +218,68 @@ public class Szkeleton {
 		a.hozzaadSzereplo(r);
 		nap.hozzaadAszteroidak(new ArrayList<Aszteroida>(Arrays.asList(a)));
 		nap.Lepes();
+	}
+	
+	public void portalkapuEpites() {
+		Telepes t = new Telepes();
+		NyersanyagKoltseg nyk1 = new NyersanyagKoltseg();
+		NyersanyagKoltseg nyk2 = new NyersanyagKoltseg(); //robotéptéshez használt
+		t.hozzaadKoltseg(nyk1);
+		t.hozzaadKoltseg(nyk2);
+
+		//ArrayList<Nyersanyag> portalkoltseg = new ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ nyersanyagok feltöltése
+		//portalkoltseg.forEach(nyersanyag -> nyk1.hozzaadNyersanyag(nyersanyag)); 
+
+		
+		t.epitPortal();
+	}
+	
+	
+	public void robotEpites() {
+		Telepes t = new Telepes();
+		NyersanyagKoltseg nyk1 = new NyersanyagKoltseg(); //portalépítéshez használt
+		NyersanyagKoltseg nyk2 = new NyersanyagKoltseg(); 
+		t.hozzaadKoltseg(nyk1);
+		t.hozzaadKoltseg(nyk2);
+		
+		//ArrayList<Nyersanyag> robotkoltseg = new ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ nyersanyagok feltöltése
+		//robotkoltseg.forEach(nyersanyag -> nyk2.hozzaadNyersanyag(nyersanyag)); 
+		
+		t.epitRobot();
+
+	}
+	
+	public void nyersanyagVisszahelyezes() {
+		//System.out.println("A telepesnél van nyersanyag?");
+		
+		//System.out.println("Az aszteroidában van már elhelyezve nyersanyag?");
+		
+		//System.out.println("Az aszteroida napközelben van?");
+		
+		//System.out.println("Van elegendõ nyersanyag a játék befejezéséhez?");
+		
+		//System.out.println("Maradtak életben játékosok?");
+
+	}
+	
+	public void portalLehelyezes() {
+		Telepes t = new Telepes();
+		Aszteroida a = new Aszteroida(3, false, new Nap(), new Szen()); //telepes helyezkedik el rajta
+		Aszteroida a2 = new Aszteroida(3, false, new Nap(), new Szen()); //p2 lesz rajta
+		t.beallitAszteroida(a);
+		
+		Portal p1 = new Portal(); //telepesé
+		Portal p2 = new Portal(); //p1 szomszédja
+		
+		if(Kerdes("Van a telepesnél portal?")) {
+			t.setPortal(p1);
+			
+			p1.beallitPar(p2);
+			p2.beallitPar(p1);
+			
+			p2.beallitVegpont(a2);
+			
+			t.lehelyezPortal(p1);
+		}
 	}
 }
