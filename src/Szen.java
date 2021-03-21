@@ -12,6 +12,7 @@ public class Szen extends Nyersanyag {
 
     @Override
     public void ellenorizVesztett() {
+    	Log.info("Meghivodott");
     	osszesSzen--;
         if (!Szkeleton.Kerdes("Van elég szén még a játékban a gyõzelemhez?")) {
             Jatek.getInstance().jatekVegeVesztett();

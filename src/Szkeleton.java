@@ -10,7 +10,6 @@ public class Szkeleton {
 		Scanner be = new Scanner(System.in);
 		System.out.println(kerdesSzoveg + " 1=Igen 0=Nem\n");
 		int valasz = be.nextInt();
-		be.close();
 		return valasz == 1;
 	}
 
@@ -38,18 +37,18 @@ public class Szkeleton {
 			be = new Scanner(System.in);
 			switch (valasz) {
 				case 1: MozgasUrhajoval();break;
-				case 2:	Vizjegfuras(); break;
+				case 2:	mozgasTeleporttal(); break;
 				case 3: BanyaszatMenu();break;
 				case 4: Vizjegfuras();break;
-				case 5: telepesFurasUran();
+				case 5: telepesFurasUran();break;
 				case 6: Vasfuras();break;
 				case 7: portalkapuEpites();break;
 				case 8: robotEpites();break;
 				case 9: NyersanyagVisszahelyezesMenu();break;
 				case 10: portalLehelyezes();break;
-				case 11: robotFurasUran();
-				case 12: Napvihar();
-				case 13: System.exit(0);	
+				case 11: robotFurasUran();break;
+				case 12: Napvihar();break;
+				case 13: System.exit(0);break;
 					
 		
 				default:System.out.println("Nincs ilyen."); break;
@@ -104,17 +103,27 @@ public class Szkeleton {
 	}
 
 	public void UranVisszahelyezes() {
-		Aszteroida a = new Aszteroida(1, true, new Nap(), new Uran());
+		Aszteroida a = new Aszteroida(1, true, new Nap(), null);
+		Aszteroida b = new Aszteroida(1, true, new Nap(), new Szen());
 		Uran u = new Uran();
 		Telepes t = new Telepes();
+		Telepes t2 = new Telepes();
+		t2.setPortal(new Portal());
+		t.hozzaadNyersanyag(new Szen());
+		t.setPortal(new Portal());
+		t2.hozzaadNyersanyag(new Szen());
+		b.hozzaadSzereplo(t2);
 		a.hozzaadSzereplo(t);
+		a.hozzaadSzomszed(b);
+		b.hozzaadSzomszed(a);
 		t.beallitAszteroida(a);
+		t2.beallitAszteroida(b);
 		t.hozzaadNyersanyag(u);
 		t.visszarakNyersanyag(u);
 	}
 
 	public void VizjegVisszahelyezes() {
-		Aszteroida a = new Aszteroida(1, true, new Nap(), new Uran());
+		Aszteroida a = new Aszteroida(1, true, new Nap(), new Vizjeg());
 		Vizjeg v = new Vizjeg();
 		Telepes t = new Telepes();
 		a.hozzaadSzereplo(t);
@@ -130,12 +139,15 @@ public class Szkeleton {
 		Aszteroida b = new Aszteroida(3, false, nap, new Szen());
 		Portal p = new Portal();
 		Telepes t = new Telepes();
+		p.setBirtokos(t);
+		p2.setBirtokos(t);
 		t.beallitAszteroida(a);
 		a.hozzaadSzereplo(t);
-		p.beallitVegpont(a);
-		p2.beallitVegpont(b);
 		p.beallitPar(p2);
 		p2.beallitPar(p);
+		p.setVegpont(a);
+		p2.setVegpont(b);
+		
 		p.Utazas(t);
 	}
 
@@ -215,10 +227,10 @@ public class Szkeleton {
 		Aszteroida a = new Aszteroida(1,true,nap,new Vas());
 		Telepes t = new Telepes();
 		Robot r = new Robot();
-		a.hozzaadSzereplo(t);
 		t.beallitAszteroida(a);
 		r.beallitAszteroida(a);
 		a.hozzaadSzereplo(r);
+		a.hozzaadSzereplo(t);
 		nap.hozzaadAszteroidak(new ArrayList<Aszteroida>(Arrays.asList(a)));
 		nap.Lepes();
 	}
@@ -244,7 +256,7 @@ public class Szkeleton {
 		NyersanyagKoltseg nyk2 = new NyersanyagKoltseg(); 
 		t.hozzaadKoltseg(nyk1);
 		t.hozzaadKoltseg(nyk2);
-		
+		t.beallitAszteroida(new Aszteroida(0, false, null, null));
 		//ArrayList<Nyersanyag> robotkoltseg = new ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ nyersanyagok feltöltése
 		//robotkoltseg.forEach(nyersanyag -> nyk2.hozzaadNyersanyag(nyersanyag)); 
 		
@@ -274,13 +286,15 @@ public class Szkeleton {
 		Portal p1 = new Portal(); //telepesé
 		Portal p2 = new Portal(); //p1 szomszédja
 		
+		p1.setBirtokos(t);
+		p2.setBirtokos(t);
 		if(Kerdes("Van a telepesnél portal?")) {
 			t.setPortal(p1);
 			
 			p1.beallitPar(p2);
 			p2.beallitPar(p1);
 			
-			p2.beallitVegpont(a2);
+			p2.setVegpont(a2);
 			
 			t.lehelyezPortal(p1);
 		}

@@ -8,6 +8,7 @@ public class NyersanyagKoltseg {
     ArrayList<Nyersanyag> masolatTarolo;
 
     public void hozzaadNyersanyag(Nyersanyag ny) {
+    	Log.info("Meghivodott");
         koltseg.add(ny);
     }
 
@@ -17,6 +18,7 @@ public class NyersanyagKoltseg {
     // }
 
     public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
+    	Log.info("Meghivodott");
         Scanner in = new Scanner(System.in);
         boolean vannyersanyag = Szkeleton.Kerdes("Meg van nála az összes szükséges nyersanyag? (1:Igen 0:Nem)");
 
@@ -44,6 +46,7 @@ public class NyersanyagKoltseg {
     // }
 
     public void felulirNyersanyagok(ArrayList<Nyersanyag> ny) {
+    	Log.info("Meghivodott");
         koltseg = ny;
     }
 

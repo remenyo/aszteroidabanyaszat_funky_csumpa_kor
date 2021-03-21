@@ -11,6 +11,7 @@ public class Vas extends Nyersanyag{
 
     @Override
     public void ellenorizVesztett() {
+    	Log.info("Meghivodott");
     	osszesVas--;
         if (!Szkeleton.Kerdes("Van elég vas még a játékban a gyõzelemhez?")) {
             Jatek.getInstance().jatekVegeVesztett();

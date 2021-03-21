@@ -10,11 +10,13 @@ public class Telepes extends Szereplo {
 	private ArrayList<Portal> portal = new ArrayList<Portal>();
 
 	public void Mozgas(int sorszam) {
+		Log.info("Meghivodott");
 		super.Mozgas(sorszam);
 		aszteroida.ellenorizNyert();
 	}
 
 	public void Banyaszat() {
+		Log.info("Meghivodott");
 		Nyersanyag temp = aszteroida.Banyaszat();
 		if (Szkeleton.Kerdes("Van az aszteroidában nyersanyag?")) {
 			nyersanyagok.add(temp);
@@ -23,10 +25,12 @@ public class Telepes extends Szereplo {
 	}
 
 	public ArrayList<Nyersanyag> getNyersanyagok() {
+		Log.info("Meghivodott");
 		return nyersanyagok;
 	}
 
 	public void Lepes() {
+		Log.info("Meghivodott");
 		Scanner in = new Scanner(System.in);
 		String s = in.nextLine();
 		// nemtom hogy itt mizu
@@ -34,6 +38,7 @@ public class Telepes extends Szereplo {
 	}
 
 	public void epitRobot() {
+		Log.info("Meghivodott");
 		boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok); // ??????????????????????
 		if (vaneleg) {
 			Robot r = new Robot();
@@ -42,6 +47,7 @@ public class Telepes extends Szereplo {
 	}
 
 	public void epitPortal() {
+		Log.info("Meghivodott");
 		if (!Szkeleton.Kerdes("Van a telepesnél portálkapu?")) {
 			boolean vaneleg = epiteskoltseg.get(0).koltsegSzamitas(nyersanyagok); // ??????????????????????
 			if (vaneleg) {
@@ -54,45 +60,50 @@ public class Telepes extends Szereplo {
 	}
 
 	public void lehelyezPortal(Portal p) {
+		Log.info("Meghivodott");
 		p.beallitVegpont(aszteroida);
 	}
 
 	public void torolPortal(Portal p) {
+		Log.info("Meghivodott");
 		portal.remove(p);
 	}
 
 	public void visszarakNyersanyag(Nyersanyag ny) {
+		Log.info("Meghivodott");
 		if (Szkeleton.Kerdes("Üres és kifúrt?")) {
+			nyersanyagok.remove(ny);
 			aszteroida.hozzaadNyersanyag(ny);
 		}
 
 	}
 
 	public void Robbanas() {
+		Log.info("Meghivodott");
 		Meghal();
 	}
 
 	public void Meghal() {
+		Log.info("Meghivodott");
 		aszteroida.torolSzereplo(this);
-		for (Portal p : portal) {
-			p.Robbanas();
-		}
-		for (Nyersanyag ny : nyersanyagok) {
-			ny.Robbanas();
-		}
+		portal.remove(0);
+		nyersanyagok.remove(0);
 		Jatek.getInstance().torolLeptetheto(this);
 		Jatek.getInstance().telepesMeghal();
 	}
 
 	public void hozzaadNyersanyag(Nyersanyag ny) {
+		Log.info("Meghivodott");
 		nyersanyagok.add(ny);
 	}
 
 	public static void hozzaadKoltseg(NyersanyagKoltseg k) {
+		Log.info("Meghivodott");
 		epiteskoltseg.add(k);
 	}
 	
 	public void setPortal(Portal p) {
+		Log.info("Meghivodott");
 		portal.add(p);
 	}
 }

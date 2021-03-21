@@ -13,13 +13,16 @@ public class Portal extends Hely {
 	}
 	
 	void beallitAktiv() {
+		Log.info("Meghivodott");
 		aktiv=true;
 	}
 	
 	public Aszteroida getVegpont() {
+		Log.info("Meghivodott");
 		return vegpont;
 	}
 	public void beallitVegpont(Aszteroida a) {
+		Log.info("Meghivodott");
 		vegpont=a;
 		birtokos.torolPortal(this);
 		birtokos=null;
@@ -28,10 +31,11 @@ public class Portal extends Hely {
 		mukodesbeHelyezes(a);
 	}
 	public void beallitPar(Portal p) {
+		Log.info("Meghivodott");
 		par=p;
 	}
 	private void mukodesbeHelyezes(Aszteroida a) {
-     		
+		Log.info("Meghivodott");
 		if(Szkeleton.Kerdes("A portal párjának van végpontja?")) {
 			beallitAktiv();
 			par.beallitAktiv();
@@ -39,6 +43,7 @@ public class Portal extends Hely {
 			
 	}
 	private void Beszippant() {
+		Log.info("Meghivodott");
 		if(Szkeleton.Kerdes("A portalnak van tulajdonosa?"))
 			birtokos.torolPortal(this);
 		if(Szkeleton.Kerdes("A portal rajta van egy aszteroidán?"))
@@ -46,10 +51,20 @@ public class Portal extends Hely {
 			
 	}
 	public void Utazas(Szereplo sz) {
-		if(Szkeleton.Kerdes("A portal párjának van végpontja?"))
+		Log.info("Meghivodott");
+		if(Szkeleton.Kerdes("A portal aktív?"))
 			par.Teleportalas(sz);
 	}
 	public void Teleportalas(Szereplo sz) {
+		Log.info("Meghivodott");
 		vegpont.Utazas(sz);
 	}
+	public void setBirtokos(Telepes t) {
+		Log.info("Meghivodott");
+		birtokos = t;
+	}
+	public void setVegpont(Aszteroida a) {
+		vegpont = a;
+	}
+	
 }

@@ -11,6 +11,7 @@ public class Vizjeg extends Nyersanyag {
 
     @Override
     public void felszinreKerul(Aszteroida a) {
+    	Log.info("Meghivodott");
         if (a.isNapkozelben()) {
             a.torolNyersanyag();
             ellenorizVesztett();
@@ -19,11 +20,12 @@ public class Vizjeg extends Nyersanyag {
 
     @Override
     public void ellenorizVesztett() {
+    	Log.info("Meghivodott");
     	osszesVizjeg--;
         if (!Szkeleton.Kerdes("Van elég vízjég még a játékban a gyõzelemhez?")) {
             Jatek.getInstance().jatekVegeVesztett();
         }
-        Log.info("Meghivodott");
+        
     }
 
 
