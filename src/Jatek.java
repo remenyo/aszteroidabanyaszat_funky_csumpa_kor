@@ -8,7 +8,9 @@ public class Jatek {
 	    
 	    public void Kor()
 	    {
-	        
+	        for (Leptetheto leptetheto : leptethetok) {
+				leptetheto.Lepes();
+			}
 	    } 
 	    
 	    public void torolLeptetheto(Leptetheto l)
@@ -23,12 +25,12 @@ public class Jatek {
 	    
 	    public void jatekVegeNyert()
 	    {
-	        
+	        System.out.println("Gratulálunk nyertél!! :)");
 	    }
 	    
 	    public void jatekVegeVesztett()
 	    {
-	        
+	        System.out.println("Gratulálunk vesztettél !! :)");
 	    }
 	    
 	    public void jatekInditas()
