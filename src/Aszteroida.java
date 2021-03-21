@@ -104,6 +104,11 @@ public class Aszteroida {
     public void szomszedRobbant(Aszteroida a){
         torolSzomszed(a);
     }
+    
+    public boolean isNapkozelben() {
+    	return new Szkeleton().Kerdes("Napközelben van az aszteroida?");
+    }
+    
 }
 
 
