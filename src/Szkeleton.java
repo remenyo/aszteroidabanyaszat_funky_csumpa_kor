@@ -101,8 +101,10 @@ public class Szkeleton {
 			VizjegVisszahelyezes();
 			break;
 		case 3:
+			VasVisszahelyez();
 			break;
 		case 4:
+			SzenVisszahelyez();
 			break;
 
 		default:
@@ -119,6 +121,26 @@ public class Szkeleton {
 		regi.hozzaadSzereplo(t);
 		t.beallitAszteroida(regi);
 		t.Mozgas(0);
+	}
+
+	public void VasVisszahelyez() {
+		Aszteroida a = new Aszteroida(1, true, new Nap(), null);
+		Vas v = new Vas();
+		Telepes t = new Telepes();
+		a.hozzaadSzereplo(t);
+		t.beallitAszteroida(a);
+		t.hozzaadNyersanyag(v);
+		t.visszarakNyersanyag(v);
+	}
+
+	public void SzenVisszahelyez() {
+		Aszteroida a = new Aszteroida(1, true, new Nap(), null);
+		Szen sz = new Szen();
+		Telepes t = new Telepes();
+		a.hozzaadSzereplo(t);
+		t.beallitAszteroida(a);
+		t.hozzaadNyersanyag(sz);
+		t.visszarakNyersanyag(sz);
 	}
 
 	public void UranVisszahelyezes() {
@@ -142,7 +164,7 @@ public class Szkeleton {
 	}
 
 	public void VizjegVisszahelyezes() {
-		Aszteroida a = new Aszteroida(1, true, new Nap(), new Vizjeg());
+		Aszteroida a = new Aszteroida(1, true, new Nap(), null);
 		Vizjeg v = new Vizjeg();
 		Telepes t = new Telepes();
 		a.hozzaadSzereplo(t);
