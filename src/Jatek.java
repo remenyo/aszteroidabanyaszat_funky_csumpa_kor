@@ -7,7 +7,7 @@ public class Jatek {
 	 int telepesszam;
 	    ArrayList<Leptetheto> leptethetok;
 	    
-	    private Jatek() {
+	    Jatek() {
 	    	leptethetok = new ArrayList<Leptetheto>();
 	    }
 	    

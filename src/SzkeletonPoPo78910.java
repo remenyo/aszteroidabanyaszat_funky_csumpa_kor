@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class SzkeletonPoPo78910 {
@@ -19,7 +20,7 @@ public class SzkeletonPoPo78910 {
 		t.hozzaadKoltseg(nyk1);
 		t.hozzaadKoltseg(nyk2);
 
-		ArrayList<Nyersanyag> portalkoltseg = new ArrayList<Nyersanyag>(); //megfelelõ nyersanyagok feltöltése
+		ArrayList<Nyersanyag> portalkoltseg = new ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ nyersanyagok feltöltése
 		portalkoltseg.forEach(nyersanyag -> nyk1.hozzaadNyersanyag(nyersanyag)); 
 
 		
@@ -37,44 +38,92 @@ public class SzkeletonPoPo78910 {
 				t.epitPortal();
 				
 
-				if(Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
-					Jatek.getInstance().jatekVegeNyert();
+				if(!Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
+					Jatek.getInstance().jatekVegeVesztett();
+					System.out.println("A játéknak vége, a játékosok vesztettek");
 				}
 			} 	
 		}
 	}
-		
-		
-
 	
 	
 	public void robotEpites() {
-		System.out.println("A telepesnek van elegendõ nyersanyaga az építéshez?");
+		Telepes t = new Telepes();
+		//Jatek jatek = new Jatek();
+		NyersanyagKoltseg nyk1 = new NyersanyagKoltseg(); //portalépítéshez használt
+		NyersanyagKoltseg nyk2 = new NyersanyagKoltseg(); 
+		t.hozzaadKoltseg(nyk1);
+		t.hozzaadKoltseg(nyk2);
 		
-		System.out.println("Van elegendõ nyersanyag a játék befejezéséhez?");
+		ArrayList<Nyersanyag> robotkoltseg = new ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ nyersanyagok feltöltése
+		robotkoltseg.forEach(nyersanyag -> nyk2.hozzaadNyersanyag(nyersanyag)); 
+		
+		
+		if(!Kerdes("A telepesnek van elegendõ nyersanyaga az építéshez?")) {
+			t.epitRobot();
+			System.out.println("Nincs elegendõ nyersanyag.");
+		}
+		else {
+			robotkoltseg.forEach(nyersanyag -> t.hozzaadNyersanyag(nyersanyag)); 
+			t.epitRobot();
+
+			if(!Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
+				Jatek.getInstance().jatekVegeVesztett();
+				System.out.println("A játéknak vége, a játékosok vesztettek");
+			}
+		}
 
 	}
 	
-	public void nyersanyagVisszahelyezés() {
-		System.out.println("A telepesnél van nyersanyag?");
+	public void nyersanyagVisszahelyezes() {
+		//System.out.println("A telepesnél van nyersanyag?");
 		
-		System.out.println("Az aszteroidában van már elhelyezve nyersanyag?");
+		//System.out.println("Az aszteroidában van már elhelyezve nyersanyag?");
 		
-		System.out.println("Az aszteroida napközelben van?");
+		//System.out.println("Az aszteroida napközelben van?");
 		
-		System.out.println("Van elegendõ nyersanyag a játék befejezéséhez?");
+		//System.out.println("Van elegendõ nyersanyag a játék befejezéséhez?");
 		
-		System.out.println("Maradtak életben játékosok?");
+		//System.out.println("Maradtak életben játékosok?");
 
 	}
 	
 	public void portalLehelyezes() {
-		System.out.println("A telepesnél van Portal?");
+		Telepes t = new Telepes();
+		Aszteroida a = new Aszteroida(3, false, new Nap(), new Szen()); //telepes helyezkedik el rajta
+		Aszteroida a2 = new Aszteroida(3, false, new Nap(), new Szen()); //p2 lesz rajta
+		t.beallitAszteroida(a);
 		
-		System.out.println("A portál párjának van végpontja?"); //bõvült
+		Portal p1 = new Portal(); //telepesé
+		Portal p2 = new Potral(); //p1 szomszédja
 		
-		System.out.println("Van elegendõ nyersanyag a játék befejezéséhez?");
-
-
+		p1.beallitPar(p2);
+		p2.beallitPar(p1);
+		
+		
+		if(!Kerdes("A telepesnél van Portal?")) {
+			System.out.println("A telepesnél nincs portal amit lehelyezhetne.");
+		}
+		else {			
+			t.setPortal(p1);
+			
+			if(!Kerdes("A portál párjának van végpontja?")) {
+				t.lehelyezPortal(p1);
+				
+				System.out.println("A portal lehelyezve, viszont nem aktív");
+			}
+			else {
+				p2.beallitVegpont(a2);
+				
+				t.lehelyezPortal(p1);
+				
+				System.out.println("A portal lehelyezve, és aktív");
+			}
+			
+			if(!Kerdes("Van elegendõ nyersanyag a játék befejezéséhez?")) {
+				Jatek.getInstance().jatekVegeVesztett();
+				System.out.println("A játéknak vége, a játékosok vesztettek");
+			}
+		}
 	}
 }

@@ -15,8 +15,8 @@ abstract public class Nyersanyag {
 
     abstract public void felszinreKerul(Aszteroida a);
 
-    public void robbanas() {
-        ellenorizVesztett();
+    public void Robbanas() {
+        ellenorizNyersanyag();
     };
 
     public boolean azonos(Nyersanyag ny) {
