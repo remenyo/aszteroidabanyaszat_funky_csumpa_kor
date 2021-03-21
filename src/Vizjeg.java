@@ -11,10 +11,12 @@ public class Vizjeg extends Nyersanyag {
 
     @Override
     public void felszinreKerul(Aszteroida a) {
-        if (a.isNapközelben()) {
-            a.torolNyersanyag(this);
+    	new Log("Meghivodott");
+        if (a.isNapkozelben()) {
+        	a.torolNyersanyag();
             super.ellenorizNyersanyag();
         }
+        new Log("Meghivodott");      
     }
 
     @Override
@@ -22,4 +24,12 @@ public class Vizjeg extends Nyersanyag {
         amount--;
         super.robbanas();
     }
+    
+    public void ellenorizVesztett() {
+    	boolean valasz = new Szkeleton().Kerdes("Van eleg nyersanyag a jatek folytatasahoz?\n1-Igen,2-Nem");
+    	if(!valasz) {
+    		Jatek.getInstance().jatekVegeVesztett();
+    	}
+    }
+    
 }
