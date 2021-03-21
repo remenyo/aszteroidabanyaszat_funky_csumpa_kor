@@ -11,14 +11,11 @@ abstract public class Nyersanyag {
         this.nev = nev;
     }
 
-    public static void ellenorizNyersanyag() {
-        logger.log(Level.FINE, "Ellenoriz");
-        // akkor itt kérdezni kéne
-    };
+    abstract public void ellenorizNyersanyag();
 
     abstract public void felszinreKerul(Aszteroida a);
 
-    public void robbanas() {
+    public void Robbanas() {
         ellenorizNyersanyag();
     };
 

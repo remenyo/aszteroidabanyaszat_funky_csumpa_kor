@@ -19,9 +19,7 @@ ArrayList<Nyersanyag> szuksegesek;
     public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny)
     {
         Scanner in = new Scanner(System.in);
-        System.out.println("Meg van nála az összes szükséges nyersanyag?\n 1:Igen\n 2:Nem");
-        int megvan = in.nextInt();
-        return megvan==1;
+        return new Szkeleton().Kerdes("Meg van nála az összes szükséges nyersanyag? (1:Igen 0:Nem)");
     }
     
     public void felulirNyersanyagok(ArrayList<Nyersanyag> ny)

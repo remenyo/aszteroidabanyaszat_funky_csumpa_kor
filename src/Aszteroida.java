@@ -44,7 +44,10 @@ public class Aszteroida {
     }
     
     public void Furas(){
-        //TODO kérdezzünk vagy ne
+        boolean elfogyott = new Szkeleton().Kerdes("Elfogy a köpeny? (1:Igen 0:Nem)");
+        if(elfogyott)
+        	nyersanyag.felszinreKerul(this);
+        
     }
     
     public void torolSzomszed(Hely h){
@@ -101,6 +104,11 @@ public class Aszteroida {
     public void szomszedRobbant(Aszteroida a){
         torolSzomszed(a);
     }
+    
+    public boolean isNapkozelben() {
+    	return new Szkeleton().Kerdes("Napközelben van az aszteroida?");
+    }
+    
 }
 
 

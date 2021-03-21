@@ -1,11 +1,11 @@
 package src;
 
 public class Vizjeg extends Nyersanyag {
-    private static int amount = 0;
+    private static int osszesVizjeg = 0;
 
     Vizjeg() {
         super("Vízjég");
-        amount++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
+        osszesVizjeg++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
         // megszűnéskor a robbanás
     }
 
@@ -13,13 +13,20 @@ public class Vizjeg extends Nyersanyag {
     public void felszinreKerul(Aszteroida a) {
         if (a.isNapközelben()) {
             a.torolNyersanyag(this);
-            super.ellenorizNyersanyag();
+            ellenorizNyersanyag();
+        }
+    }
+
+    @Override
+    public void ellenorizNyersanyag() {
+        if (osszesVizjeg < MIN_SZEN) {
+            jatekVegeVesztett();
         }
     }
 
     @Override
     public void robbanas() {
-        amount--;
+        osszesVizjeg--;
         super.robbanas();
     }
 }
