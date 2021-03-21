@@ -13,31 +13,33 @@ ArrayList<Nyersanyag> masolatTarolo;
          koltseg.add(ny);
      }
     
+    //túlbonyolítaná, koltsegSzamitasban könnyebb
     //public void Szukseges(Nyersanyag ny)
-    //{
-        
+    //{ 
     //}
     
-    //public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny)
-    //{
-    //    Scanner in = new Scanner(System.in);
-    //    return new Szkeleton().Kerdes("Meg van nála az összes szükséges nyersanyag? (1:Igen 0:Nem)");
-    //}
-    
-    public void koltsegSzamitas(ArrayList<Nyersanyag> ny) {
-    	ArrayList<Nyersanyag> koltsegKlon = koltseg;
-    	masolatTarolo = ny;
-    	
-    	for(Nyersanyag m : masolatTarolo) {
-    		for(Nyersanyag k : koltsegKlon) {
-    			if(m.azonos(k)) {
-    				
-    			}
-    		}
-    	}
-    	
-    	
+    public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny)
+    {
+        Scanner in = new Scanner(System.in);
+        return new Szkeleton().Kerdes("Meg van nála az összes szükséges nyersanyag? (1:Igen 0:Nem)");
     }
+    
+    //Majd a kész összehasonlítás
+    //public void koltsegSzamitas(ArrayList<Nyersanyag> ny) {
+    //	ArrayList<Nyersanyag> koltsegKlon = koltseg;
+    //	masolatTarolo = ny;
+    	
+    //	for(int m=0; m<=masolatTarolo.size(); m++) {
+    //		for(int k=0; k<=koltsegKlon.size(); k++) {
+    //			if(masolatTarolo.get(m).azonos(koltsegKlon.get(k))) {
+    //				masolatTarolo.remove(m);
+    //				koltsegKlon.remove(k);
+    //				m++;
+    //				break;
+    //			}
+    //		}
+    //	}
+    //}
     
     public void felulirNyersanyagok(ArrayList<Nyersanyag> ny)
     {
