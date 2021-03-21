@@ -1,10 +1,10 @@
 package src;
 
-public class Szen extends Nyersanyag {
+public class Vas extends Nyersanyag{
     private static int amount = 0;
 
-    Szen() {
-        super("Szén");
+    Vas() {
+        super("Vas");
         amount++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
                   // megszűnéskor a robbanás
 
@@ -20,5 +20,4 @@ public class Szen extends Nyersanyag {
         amount--;
         super.robbanas();
     }
-
 }
