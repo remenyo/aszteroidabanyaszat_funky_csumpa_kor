@@ -3,8 +3,17 @@ package src;
 import java.util.ArrayList;
 
 public class Jatek {
+	private static Jatek jatek = new Jatek();
 	 int telepesszam;
 	    ArrayList<Leptetheto> leptethetok;
+	    
+	    private Jatek() {
+	    	leptethetok = new ArrayList<Leptetheto>();
+	    }
+	    
+	    public static Jatek getInstance() {
+	        return jatek;
+	    }
 	    
 	    public void Kor()
 	    {
