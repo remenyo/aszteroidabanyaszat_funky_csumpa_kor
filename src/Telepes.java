@@ -1,26 +1,27 @@
+package src;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Telepes extends Szereplo {
 	private ArrayList<Nyersanyag> nyersanyagok = new ArrayList<Nyersanyag>();
-	private static ArrayListList<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>();
-	private ArrayListList<Portal> portal = new ArrayList<Portal>();
+	private static ArrayList<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>();
+	private ArrayList<Portal> portal = new ArrayList<Portal>();
 	
-	public Mozgas() {
-		super.Mozgas(); //????????ezt h kell?
-		a.ellenorizNyert();
+	public void Mozgas() {
+		super.Mozgas(); 
+		aszteroida.ellenorizNyert();
 	}
 	
 	public void Banyaszat() {
-		Nyersanyag temp = a.Banyaszat();
+		Nyersanyag temp = aszteroida.Banyaszat();
 		if (temp != null) {
 			nyersanyagok.add(temp);
-			a.ellenorizNyert();
+			aszteroida.ellenorizNyert();
 		}
 	}
 	
-	public ArrayListList<Nyersanyag> getNyersanyagok() {
+	public ArrayList<Nyersanyag> getNyersanyagok() {
 		return nyersanyagok;
 	}
 	
@@ -32,16 +33,16 @@ public class Telepes extends Szereplo {
 	}
 	
 	public void epitRobot() {
-		boolean vaneleg = k.get(1).koltsegSzamitas(nyersanyagok); //??????????????????????
+		boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok); //??????????????????????
 		if(vaneleg) {
 			Robot r = new Robot();
-			a.Utazas(r);
+			aszteroida.Utazas(r);
 		}
 	}
 	
 	public void epitPortal() {
 		if(portal.isEmpty()) {
-			boolean vaneleg = k.get(0).koltsegSzamitas(nyersanyagok); //??????????????????????
+			boolean vaneleg = epiteskoltseg.get(0).koltsegSzamitas(nyersanyagok); //??????????????????????
 			if(vaneleg) {
 				Portal p1 = new Portal();
 				Portal p2 = new Portal();
@@ -52,7 +53,7 @@ public class Telepes extends Szereplo {
 	}
 	
 	public void lehelyezPortal(Portal p) {
-		p.beallitVegpont(a);
+		p.beallitVegpont(aszteroida);
 	}
 	
 	public void torolPortal(Portal p) {
@@ -60,15 +61,15 @@ public class Telepes extends Szereplo {
 	}
 	
 	public void visszarakNyersanyag(Nyersanyag ny) {
-			a.hozzaadNyersanyag(ny);
+			aszteroida.hozzaadNyersanyag(ny);
 	}
 	
 	public void Robbanas() {
-		Halal();
+		Meghal();
 	}
 	
 	public void Meghal() {
-		a.torolSzereplo(this);
+		aszteroida.torolSzereplo(this);
 		for (Portal p : portal) 
 		{ 
 		    p.Robbanas();
