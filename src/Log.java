@@ -9,12 +9,11 @@ public class Log {
     }
 
     private static String verboseLogBuilder(String level, StackTraceElement e) {
-        return "[" + level + "] " + e.getFileName() + ":" + e.getLineNumber() + " (" + e.getClassName() + ") "
-                + e.getMethodName() + "() : ";
+        return "[" + level + "] " + e.toString() + ": ";
     }
 
     private static String simpleLogBuilder(String level, StackTraceElement e) {
-        return "[" + level + RESET + "] " + e.getClassName() + " " + e.getMethodName() + "() : ";
+        return "[" + level + RESET + "] " + e.getClassName() + "." + e.getMethodName() + ": ";
     }
 
     private static void log(String level, String message, boolean verbose) {
