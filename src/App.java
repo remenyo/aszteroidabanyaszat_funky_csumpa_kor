@@ -1,7 +1,26 @@
 package src;
 
+import java.util.logging.FileHandler;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.util.logging.SimpleFormatter;
+
 public class App {
+    private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static FileHandler fh = null;
+    private static ConsoleHandler ch = null;
+
     public static void main(String[] args) throws Exception {
+
+        fh = new FileHandler("loggerExample.log", false);
+        ch = new ConsoleHandler();
+        ch.setFormatter(new SimpleFormatter());
+        fh.setFormatter(new SimpleFormatter());
+        logger.addHandler(fh);
+        logger.addHandler(ch);
+        logger.setLevel(Level.ALL);
+
         RandomUtils r = new RandomUtils();
         System.out.println("Hello, World!");
 

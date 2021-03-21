@@ -1,12 +1,16 @@
 package src;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RandomUtils {
+    private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private Random r;
 
     RandomUtils() {
         r = new Random();
+        logger.log(Level.FINE, "RandomUtils Ctor");
     }
 
     /**
