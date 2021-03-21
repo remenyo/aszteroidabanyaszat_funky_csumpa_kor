@@ -2,10 +2,10 @@ package src;
 
 public class Log {
 
-    // https://stackoverflow.com/a/4065546 az alap innen jött
+    // https://stackoverflow.com/a/4065546 az alap innen j�tt
 
     private static StackTraceElement getCaller() {
-        return Thread.currentThread().getStackTrace()[4]; // 🪄 magic
+        return Thread.currentThread().getStackTrace()[4]; // ?? magic
     }
 
     private static String verboseLogBuilder(String level, StackTraceElement e) {
@@ -14,7 +14,7 @@ public class Log {
     }
 
     private static String simpleLogBuilder(String level, StackTraceElement e) {
-        return "[" + level + "] " + e.getClassName() + " " + e.getMethodName() + "() : ";
+        return "[" + level + RESET + "] " + e.getClassName() + " " + e.getMethodName() + "() : ";
     }
 
     private static void log(String level, String message, boolean verbose) {
@@ -25,36 +25,109 @@ public class Log {
     }
 
     static void error(String message) {
-        log("ERROR", message, false);
+        log(RED + "ERROR", message, false);
     }
 
     static void error(String message, boolean verbose) {
-        log("ERROR", message, verbose);
+        log(RED + "ERROR", message, verbose);
     }
 
     static void warn(String message) {
-        log("WARN", message, false);
+        log(YELLOW + "WARN", message, false);
     }
 
     static void warn(String message, boolean verbose) {
-        log("WARN", message, verbose);
+        log(YELLOW + "WARN", message, verbose);
     }
 
     static void info(String message) {
-        log("INFO", message, false);
+        log(BLUE + "INFO", message, false);
     }
 
     static void info(String message, boolean verbose) {
-        log("INFO", message, verbose);
+        log(BLUE + "INFO", message, verbose);
     }
 
     static void debug(String message) {
-        log("DEBUG", message, false);
+        log(PURPLE + "DEBUG", message, false);
     }
 
     static void debug(String message, boolean verbose) {
-        log("DEBUG", message, verbose);
+        log(PURPLE + "DEBUG", message, verbose);
     }
+
+    // Reset
+    public static final String RESET = "\033[0m"; // Text Reset
+
+    // Regular Colors
+    public static final String BLACK = "\033[0;30m"; // BLACK
+    public static final String RED = "\033[0;31m"; // RED
+    public static final String GREEN = "\033[0;32m"; // GREEN
+    public static final String YELLOW = "\033[0;33m"; // YELLOW
+    public static final String BLUE = "\033[0;34m"; // BLUE
+    public static final String PURPLE = "\033[0;35m"; // PURPLE
+    public static final String CYAN = "\033[0;36m"; // CYAN
+    public static final String WHITE = "\033[0;37m"; // WHITE
+
+    // Bold
+    public static final String BLACK_BOLD = "\033[1;30m"; // BLACK
+    public static final String RED_BOLD = "\033[1;31m"; // RED
+    public static final String GREEN_BOLD = "\033[1;32m"; // GREEN
+    public static final String YELLOW_BOLD = "\033[1;33m"; // YELLOW
+    public static final String BLUE_BOLD = "\033[1;34m"; // BLUE
+    public static final String PURPLE_BOLD = "\033[1;35m"; // PURPLE
+    public static final String CYAN_BOLD = "\033[1;36m"; // CYAN
+    public static final String WHITE_BOLD = "\033[1;37m"; // WHITE
+
+    // Underline
+    public static final String BLACK_UNDERLINED = "\033[4;30m"; // BLACK
+    public static final String RED_UNDERLINED = "\033[4;31m"; // RED
+    public static final String GREEN_UNDERLINED = "\033[4;32m"; // GREEN
+    public static final String YELLOW_UNDERLINED = "\033[4;33m"; // YELLOW
+    public static final String BLUE_UNDERLINED = "\033[4;34m"; // BLUE
+    public static final String PURPLE_UNDERLINED = "\033[4;35m"; // PURPLE
+    public static final String CYAN_UNDERLINED = "\033[4;36m"; // CYAN
+    public static final String WHITE_UNDERLINED = "\033[4;37m"; // WHITE
+
+    // Background
+    public static final String BLACK_BACKGROUND = "\033[40m"; // BLACK
+    public static final String RED_BACKGROUND = "\033[41m"; // RED
+    public static final String GREEN_BACKGROUND = "\033[42m"; // GREEN
+    public static final String YELLOW_BACKGROUND = "\033[43m"; // YELLOW
+    public static final String BLUE_BACKGROUND = "\033[44m"; // BLUE
+    public static final String PURPLE_BACKGROUND = "\033[45m"; // PURPLE
+    public static final String CYAN_BACKGROUND = "\033[46m"; // CYAN
+    public static final String WHITE_BACKGROUND = "\033[47m"; // WHITE
+
+    // High Intensity
+    public static final String BLACK_BRIGHT = "\033[0;90m"; // BLACK
+    public static final String RED_BRIGHT = "\033[0;91m"; // RED
+    public static final String GREEN_BRIGHT = "\033[0;92m"; // GREEN
+    public static final String YELLOW_BRIGHT = "\033[0;93m"; // YELLOW
+    public static final String BLUE_BRIGHT = "\033[0;94m"; // BLUE
+    public static final String PURPLE_BRIGHT = "\033[0;95m"; // PURPLE
+    public static final String CYAN_BRIGHT = "\033[0;96m"; // CYAN
+    public static final String WHITE_BRIGHT = "\033[0;97m"; // WHITE
+
+    // Bold High Intensity
+    public static final String BLACK_BOLD_BRIGHT = "\033[1;90m"; // BLACK
+    public static final String RED_BOLD_BRIGHT = "\033[1;91m"; // RED
+    public static final String GREEN_BOLD_BRIGHT = "\033[1;92m"; // GREEN
+    public static final String YELLOW_BOLD_BRIGHT = "\033[1;93m";// YELLOW
+    public static final String BLUE_BOLD_BRIGHT = "\033[1;94m"; // BLUE
+    public static final String PURPLE_BOLD_BRIGHT = "\033[1;95m";// PURPLE
+    public static final String CYAN_BOLD_BRIGHT = "\033[1;96m"; // CYAN
+    public static final String WHITE_BOLD_BRIGHT = "\033[1;97m"; // WHITE
+
+    // High Intensity backgrounds
+    public static final String BLACK_BACKGROUND_BRIGHT = "\033[0;100m";// BLACK
+    public static final String RED_BACKGROUND_BRIGHT = "\033[0;101m";// RED
+    public static final String GREEN_BACKGROUND_BRIGHT = "\033[0;102m";// GREEN
+    public static final String YELLOW_BACKGROUND_BRIGHT = "\033[0;103m";// YELLOW
+    public static final String BLUE_BACKGROUND_BRIGHT = "\033[0;104m";// BLUE
+    public static final String PURPLE_BACKGROUND_BRIGHT = "\033[0;105m"; // PURPLE
+    public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m"; // CYAN
+    public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m"; // WHITE
 
 }
 
