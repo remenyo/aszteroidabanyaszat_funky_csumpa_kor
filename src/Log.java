@@ -11,26 +11,29 @@ public class Log {
     }
 
     private static String verboseLogBuilder(String level, StackTraceElement e) {
-        return "[" + level + "] " + e.toString() + ": ";
+        return "[" + level + "] " + e.toString();
     }
 
     private static String simpleLogBuilder(String level, StackTraceElement e) {
-        return "[" + level + RESET + "] " + e.getClassName() + "." + e.getMethodName() + ": ";
+        return "[" + level + RESET + "] " + e.getClassName() + "." + e.getMethodName();
     }
 
     private static void log(String level, String message, boolean verbose, int magic_stack_pointer) {
         if (verbose)
-            System.out.println(verboseLogBuilder(level, getCaller(magic_stack_pointer)) + message);
+            System.out.println(verboseLogBuilder(level, getCaller(magic_stack_pointer))
+                    + (message.equals("") ? "" : ": ") + message);
         else
-            System.out.println(simpleLogBuilder(level, getCaller(magic_stack_pointer)) + message);
+            System.out.println(simpleLogBuilder(level, getCaller(magic_stack_pointer))
+                    + (message.equals("") ? "" : ": ") + message);
     }
 
     static void error(String message) {
-        log(RED + "ERROR", message, false, 0);
+        error(message, 0, 1);
     }
 
     static void error(String message, int... options) {
-        log(RED + "ERROR", message, options[0] == 1, options[1]);
+        if (Jatek.LOG_LEVEL > 0)
+            log(RED + "ERROR", message, options[0] == 1, options[1]);
     }
 
     static void warn(String message) {
@@ -38,31 +41,36 @@ public class Log {
     }
 
     static void warn(String message, int... options) {
-        log(YELLOW + "WARN", message, options[0] == 1, options[1]);
+        if (Jatek.LOG_LEVEL > 1)
+            log(YELLOW + "WARN", message, options[0] == 1, options[1]);
     }
 
     static void info(String message) {
-        log(BLUE + "INFO", message, false, 0);
+        info(message, 0, 1);
     }
 
     static void info(String message, int... options) {
-        log(BLUE + "INFO", message, options[0] == 1, options[1]);
+        if (Jatek.LOG_LEVEL > 2)
+            log(BLUE + "INFO", message, options[0] == 1, options[1]);
     }
 
     static void debug(String message) {
-        log(PURPLE + "DEBUG", message, false, 0);
+        debug(message, 0, 1);
     }
 
     static void debug(String message, int... options) {
-        log(PURPLE + "DEBUG", message, options[0] == 1, options[1]);
+        if (Jatek.LOG_LEVEL > 3)
+            log(PURPLE + "DEBUG", message, options[0] == 1, options[1]);
     }
 
     static void call() {
-        log(PURPLE + "CALL", "", false, 0);
+        if (Jatek.LOG_FUNCTION_CALLS)
+            log(GREEN + "CALL", "", false, 0);
     }
 
     static void ctor() {
-        log(PURPLE + "CTOR", "", false, 0);
+        if (Jatek.LOG_CONSTRUCTORS)
+            log(CYAN + "CTOR", "", false, 0);
     }
 
     // a szinek innen vannak: https://stackoverflow.com/a/45444716
@@ -77,8 +85,8 @@ public class Log {
     private static final String PURPLE = "\033[0;35m"; // PURPLE
 
     // private static final String BLACK = "\033[0;30m"; // BLACK
-    // private static final String GREEN = "\033[0;32m"; // GREEN
-    // private static final String CYAN = "\033[0;36m"; // CYAN
+    private static final String GREEN = "\033[0;32m"; // GREEN
+    private static final String CYAN = "\033[0;36m"; // CYAN
     // private static final String WHITE = "\033[0;37m"; // WHITE
     /*
      * // Bold private static final String BLACK_BOLD = "\033[1;30m"; // BLACK

@@ -6,8 +6,7 @@ public class Vas extends Nyersanyag {
     Vas() {
         super("Vas");
         Log.ctor();
-        osszesVas++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
-                     // megszűnéskor a robbaná
+        osszesVas++;
     }
 
     @Override

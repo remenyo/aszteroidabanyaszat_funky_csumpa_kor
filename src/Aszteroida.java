@@ -48,9 +48,10 @@ public class Aszteroida extends Hely {
 
     public void Napvihar() {
         Log.call();
-        boolean valasz = Szkeleton.Kerdes("Ures az aszteroida es ki van furva?");
-        if (!valasz) {
-            szereplok.get(0).Napvihar();
+        if (!Szkeleton.Kerdes("Ures az aszteroida es ki van furva?")) {
+            for (Szereplo szereplo : szereplok) {
+                szereplo.Napvihar();
+            }
         }
 
     }
@@ -67,7 +68,9 @@ public class Aszteroida extends Hely {
         Log.call();
         szomszedok.remove(h);
         if (!Szkeleton.Kerdes("Maradt szomszéd?")) {
-            szereplok.get(0).Meghal();
+            for (Szereplo szereplo : szereplok) {
+                szereplo.Meghal();
+            }
             Robbanas();
         }
     }

@@ -28,11 +28,13 @@ public class Telepes extends Szereplo {
 		return nyersanyagok;
 	}
 
+	@Override
 	public void Lepes() {
 		Log.call();
 		Scanner in = new Scanner(System.in);
 		String s = in.nextLine();
 		// nemtom hogy itt mizu
+		// TODO nem kell scanner az fix
 
 	}
 
@@ -77,17 +79,19 @@ public class Telepes extends Szereplo {
 
 	}
 
+	@Override
 	public void Robbanas() {
 		Log.call();
 		Meghal();
 	}
 
+	@Override
 	public void Meghal() {
 		Log.call();
-		aszteroida.torolSzereplo(this);
+		Log.debug("Telepes meghal");
 		portal.remove(0);
 		nyersanyagok.remove(0);
-		Jatek.torolLeptetheto(this);
+		super.Meghal();
 		Jatek.telepesMeghal();
 	}
 

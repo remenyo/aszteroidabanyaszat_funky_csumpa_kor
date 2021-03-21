@@ -11,16 +11,17 @@ public class RandomUtils {
     }
 
     /**
-     * Visszaad véletlenszerûen egy egész számot a megadott két hatá k a
-     * határokat is beleértve. Az alsó határ nem kell  gy  legyen a fel .
-     * Mindkettõ érték lehet negatív.
+     * Visszaad véletlenszerûen egy egész számot a megadott két hatá k a határokat
+     * is beleértve. Az alsó határ nem kell gy legyen a fel . Mindkettõ érték lehet
+     * negatív.
      *
      * @param alsoHatar  Az alsó határ
      * @param felsoHatar Az felsõ határ
      */
     public static int randomIntHatarokKozott(int alsoHatar, int felsoHatar) {
         if (alsoHatar > felsoHatar) {
-            // TODO log warning
+            Log.debug("randomIntHatarokKozott: Alsó határ nagyobb mint a felsõ, megcseréltem. (" + alsoHatar + ">"
+                    + felsoHatar + ") A hívó neve található a debugban.", 1, 1);
             int a = alsoHatar;
             alsoHatar = felsoHatar;
             felsoHatar = a;
@@ -49,10 +50,14 @@ public class RandomUtils {
      */
     public static boolean randomBooleanValoszinuseggel(float valoszinuseg, int pontossag) {
         pontossag = Math.min(7, Math.max(1, pontossag));
-        if (valoszinuseg >= 1)
-            return true; // TODO log warning
-        if (valoszinuseg <= 0)
-            return false; // TODO log warning
+        if (valoszinuseg >= 1) {
+            Log.debug("1-nél nagyobb vagy egyenlõ valószínûség -> igen", 1, 1);
+            return true;
+        }
+        if (valoszinuseg <= 0) {
+            Log.debug("0-nál kisebb vagy egyenlõ valószínûség -> nem", 1, 1);
+            return false;
+        }
 
         double szorzo = Math.pow(10.0, pontossag);
         return (r.nextInt((int) szorzo) <= ((int) (valoszinuseg * szorzo)));

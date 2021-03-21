@@ -2,11 +2,10 @@ package src;
 
 import java.util.ArrayList;
 
-public class Szereplo implements Leptetheto {
+abstract public class Szereplo implements Leptetheto {
     protected Aszteroida aszteroida;
 
     public Szereplo() {
-        Log.ctor();
         Jatek.leptethetok.add(this);
     }
 
@@ -30,12 +29,12 @@ public class Szereplo implements Leptetheto {
 
     public void Napvihar() {
         Log.call();
-        this.Meghal();
+        Meghal();
     }
 
     public void Robbanas() {
         Log.call();
-
+        // TODO üres?
     }
 
     public ArrayList<Nyersanyag> getNyersanyagok() {

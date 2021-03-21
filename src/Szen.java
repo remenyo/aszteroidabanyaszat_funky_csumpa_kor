@@ -6,8 +6,7 @@ public class Szen extends Nyersanyag {
     Szen() {
         super("Szen");
         Log.ctor();
-        osszesSzen++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
-        // megszűnéskor a robbanás
+        osszesSzen++;
     }
 
     @Override

@@ -6,8 +6,7 @@ public class Vizjeg extends Nyersanyag {
     Vizjeg() {
         super("V�zj�g");
         Log.ctor();
-        osszesVizjeg++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
-        // megszűnéskor a robbanás
+        osszesVizjeg++;
     }
 
     @Override

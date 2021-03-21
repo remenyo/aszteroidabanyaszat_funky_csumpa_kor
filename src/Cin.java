@@ -16,7 +16,21 @@ public class Cin {
     }
 
     public static int getInt() {
-        return scanner.nextInt();
+        try {
+            return scanner.nextInt();
+        } catch (Exception e) {
+            String s = scanner.next();
+            if (s.equals("y") || s.equals("Y")) {
+                Log.info("Válasz átalakítva " + s + "-ról 1-re. ;)");
+                return 1;
+            } else if (s.equals("n") || s.equals("N")) {
+                Log.info("Válasz átalakítva " + s + "-rõl 0-ra. ;)");
+                return 0;
+            } else {
+                Log.error("Nem értelmezett bemenet: \"" + scanner.next() + "\".");
+                return 0;
+            }
+        }
     }
 
     public static int getInt(String kerdes) {
@@ -30,7 +44,7 @@ public class Cin {
 
     public static boolean getBool(String kerdes) {
         kerdez(kerdes);
-        System.out.println("[1] = igen, [más] = nem");
+        System.out.println("[1] = igen, [0] = nem");
         return getBool();
     }
 
@@ -43,7 +57,7 @@ public class Cin {
         kerdez(kerdes);
         int valasz = getInt();
         if (valasz > lehetosegek.length || valasz < 1) {
-            Log.error("Helytelen válasz!", 0, 1);
+            Log.warn("Helytelen válasz!", 0, 1);
             valasz = -1;
         }
         return valasz;
