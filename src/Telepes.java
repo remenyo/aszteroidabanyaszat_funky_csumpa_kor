@@ -61,7 +61,11 @@ public class Telepes extends Szereplo {
 	}
 	
 	public void visszarakNyersanyag(Nyersanyag ny) {
+		Szkeleton sz = new Szkeleton();
+		if(sz.Kerdes("van még kéreg réteg?") && sz.Kerdes("A van nyersanyag benne??")) {
 			aszteroida.hozzaadNyersanyag(ny);
+		}
+			
 	}
 	
 	public void Robbanas() {
