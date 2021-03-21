@@ -4,7 +4,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        Log.error("Szevasz");
+        Log.debug("Szevasz");
 
         Szkeleton szkeleton = new Szkeleton();
         szkeleton.Menu();

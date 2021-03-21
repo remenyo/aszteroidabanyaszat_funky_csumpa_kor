@@ -11,17 +11,17 @@ public class NyersanyagKoltseg {
         koltseg.add(ny);
     }
 
-    // tï¿½lbonyolï¿½tanï¿½, koltsegSzamitasban kï¿½nnyebb
+    // túlbonyolítanó, koltsegSzamitasban könnyebb
     // public void Szukseges(Nyersanyag ny)
     // {
     // }
 
     public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
         Scanner in = new Scanner(System.in);
-        boolean vannyersanyag = Szkeleton.Kerdes("Meg van nï¿½la az ï¿½sszes szï¿½ksï¿½ges nyersanyag? (1:Igen 0:Nem)");
-        
-        if(vannyersanyag && !Szkeleton.Kerdes("Van elég nyersanyag a játék megnyeréséhez?")) {
-        	Jatek.getInstance().jatekVegeVesztett();
+        boolean vannyersanyag = Szkeleton.Kerdes("Meg van nála az összes szükséges nyersanyag? (1:Igen 0:Nem)");
+
+        if (vannyersanyag && !Szkeleton.Kerdes("Van elég nyersanyag a játék megnyeréséhez?")) {
+            Jatek.getInstance().jatekVegeVesztett();
         }
         return vannyersanyag;
     }
