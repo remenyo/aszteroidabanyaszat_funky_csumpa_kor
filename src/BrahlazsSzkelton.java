@@ -1,5 +1,7 @@
 package src;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class BrahlazsSzkelton {
@@ -73,7 +75,23 @@ public class BrahlazsSzkelton {
 	}
 	
 	public void Vasfuras() {
-		
+		Telepes t = new Telepes();
+		Aszteroida a = new Aszteroida(1,true,new Nap(),new Vas());
+		t.beallitAszteroida(a);
+		t.Furas();
+	}
+	
+	public void Napvihar() {
+		Nap nap = new Nap();
+		Aszteroida a = new Aszteroida(1,true,nap,new Vas());
+		Telepes t = new Telepes();
+		Robot r = new Robot();
+		a.hozzaadSzereplo(t);
+		t.beallitAszteroida(a);
+		r.beallitAszteroida(a);
+		a.hozzaadSzereplo(r);
+		nap.hozzaadAszteroidak(new ArrayList<Aszteroida>(Arrays.asList(a)));
+		nap.Napvihar();
 	}
 	
 }
