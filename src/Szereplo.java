@@ -3,7 +3,7 @@ package src;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Szereplo {
+public class Szereplo implements Leptetheto{
 	Aszteroida aszteroida;
     
     public void Mozgas() 
@@ -28,7 +28,7 @@ public class Szereplo {
     public void Meghal() 
     {
         aszteroida.torolSzereplo(this);
-        jatek.torolLeptetheto(this);
+        Jatek.getInstance().torolLeptetheto(this);
     }
 
     public void Napvihar() 
