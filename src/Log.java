@@ -57,6 +57,8 @@ public class Log {
         log(PURPLE + "DEBUG", message, options[0] == 1, options[1]);
     }
 
+    // a szinek innen vannak: https://stackoverflow.com/a/45444716
+
     // Reset
     public static final String RESET = "\033[0m"; // Text Reset
 

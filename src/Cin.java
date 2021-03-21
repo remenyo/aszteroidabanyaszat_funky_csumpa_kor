@@ -39,10 +39,11 @@ public class Cin {
         for (int i = 0; i < lehetosegek.length; i++) {
             kerdes += i + 1 + " - " + lehetosegek[i] + "\n";
         }
+        kerdes += "Válasz (1-" + lehetosegek.length + "): ";
         kerdez(kerdes);
         int valasz = getInt();
         if (valasz > lehetosegek.length || valasz < 1) {
-            Log.error("Helytelen válasz!", 1);
+            Log.error("Helytelen válasz!", 0, 1);
             valasz = -1;
         }
         return valasz;
