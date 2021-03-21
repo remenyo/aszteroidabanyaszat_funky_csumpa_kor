@@ -11,12 +11,12 @@ abstract public class Nyersanyag {
         this.nev = nev;
     }
 
-    abstract public void ellenorizNyersanyag();
+    abstract public void ellenorizVesztett();
 
     abstract public void felszinreKerul(Aszteroida a);
 
     public void robbanas() {
-        ellenorizNyersanyag();
+        ellenorizVesztett();
     };
 
     public boolean azonos(Nyersanyag ny) {

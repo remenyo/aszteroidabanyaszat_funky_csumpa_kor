@@ -11,13 +11,13 @@ public class Uran extends Nyersanyag {
 
     @Override
     public void felszinreKerul(Aszteroida a) {
-        if (a.isNapközelben()) {
+        if (a.isNapkozelben()) {
             a.Robbanas();
         }
     }
 
     @Override
-    public void ellenorizNyersanyag() {
+    public void ellenorizVesztett() {
         if (osszesUran < MIN_URAN) {
             jatekVegeVesztett();
         }

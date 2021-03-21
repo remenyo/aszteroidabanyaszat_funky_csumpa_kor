@@ -13,12 +13,12 @@ public class Vizjeg extends Nyersanyag {
     public void felszinreKerul(Aszteroida a) {
         if (a.isNapközelben()) {
             a.torolNyersanyag(this);
-            ellenorizNyersanyag();
+            ellenorizVesztett();
         }
     }
 
     @Override
-    public void ellenorizNyersanyag() {
+    public void ellenorizVesztett() {
         if (osszesVizjeg < MIN_SZEN) {
             jatekVegeVesztett();
         }
