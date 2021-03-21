@@ -13,6 +13,7 @@ public class Szereplo implements Leptetheto{
 	
     public void Mozgas() 
     {
+    	new Log("Meghívódott");
         Scanner in = new Scanner(System.in);
 
 

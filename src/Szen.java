@@ -1,12 +1,12 @@
 package src;
 
 public class Szen extends Nyersanyag {
-    private static int amount = 0;
+    private static int osszesSzen = 0;
 
     Szen() {
         super("Szén");
-        amount++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
-                  // megszűnéskor a robbanás
+        osszesSzen++; // ez feltételezi hogy az új objektum el van tárolva és meg van hívva
+        // megszűnéskor a robbanás
 
     }
 
@@ -16,8 +16,15 @@ public class Szen extends Nyersanyag {
     }
 
     @Override
+    public void ellenorizNyersanyag() {
+        if (osszesSzen < MIN_SZEN) {
+            jatekVegeVesztett();
+        }
+    }
+
+    @Override
     public void robbanas() {
-        amount--;
+        osszesSzen--;
         super.robbanas();
     }
 
