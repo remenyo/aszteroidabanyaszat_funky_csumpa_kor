@@ -4,27 +4,23 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class NyersanyagKoltseg {
-ArrayList<Nyersanyag> szuksegesek; 
-    
-    public void hozzaadNyersanyag(Nyersanyag ny)
-     {
-         szuksegesek.add(ny);
-     }
-    
-    public boolean Szukseges(Nyersanyag ny)
-    {
-        
+    ArrayList<Nyersanyag> szuksegesek;
+
+    public void hozzaadNyersanyag(Nyersanyag ny) {
+        szuksegesek.add(ny);
     }
-    
-    public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny)
-    {
+
+    public boolean Szukseges(Nyersanyag ny) {
+
+    }
+
+    public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
         Scanner in = new Scanner(System.in);
-        return new Szkeleton().Kerdes("Meg van nála az összes szükséges nyersanyag? (1:Igen 0:Nem)");
+        return Szkeleton().Kerdes("Meg van nï¿½la az ï¿½sszes szï¿½ksï¿½ges nyersanyag? (1:Igen 0:Nem)");
     }
-    
-    public void felulirNyersanyagok(ArrayList<Nyersanyag> ny)
-    {
+
+    public void felulirNyersanyagok(ArrayList<Nyersanyag> ny) {
         szuksegesek = ny;
     }
-     
+
 }

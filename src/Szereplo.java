@@ -3,21 +3,18 @@ package src;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Szereplo implements Leptetheto{
-	Aszteroida aszteroida;
-    
-	public Szereplo() 
-	{
-		
-	}
-	
-    public void Mozgas() 
-    {
-    	new Log("Meghívódott");
+public class Szereplo implements Leptetheto {
+    Aszteroida aszteroida;
+
+    public Szereplo() {
+
+    }
+
+    public void Mozgas() {
+        Log.info("Meghï¿½vï¿½dott");
         Scanner in = new Scanner(System.in);
 
-
-        System.out.println("Kérem a szomszéd sorszámát");
+        System.out.println("Kï¿½rem a szomszï¿½d sorszï¿½mï¿½t");
         int sorszam = in.nextInt();
         Aszteroida uj = aszteroida.getSzomszed(sorszam);
         aszteroida.torolSzereplo(this);
@@ -26,36 +23,31 @@ public class Szereplo implements Leptetheto{
 
     }
 
-    public void Furas() 
-    {
+    public void Furas() {
         aszteroida.Furas();
     }
 
-    public void Meghal() 
-    {
+    public void Meghal() {
         aszteroida.torolSzereplo(this);
         Jatek.getInstance().torolLeptetheto(this);
     }
 
-    public void Napvihar() 
-    {
+    public void Napvihar() {
         this.Meghal();
     }
 
-    public void Robbanas() 
-    {
-        
+    public void Robbanas() {
+
     }
-    
-    public ArrayList<Nyersanyag> getNyersanyagok()
-    {
+
+    public ArrayList<Nyersanyag> getNyersanyagok() {
         return null;
     }
-    
-    public void Lepes(){}
-    
-    public void beallitAszteroida (Aszteroida a)
-    {
+
+    public void Lepes() {
+    }
+
+    public void beallitAszteroida(Aszteroida a) {
         aszteroida = a;
     }
 }

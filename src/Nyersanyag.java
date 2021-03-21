@@ -4,7 +4,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 abstract public class Nyersanyag {
-    private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private String nev = "Nyersanyag";
 
     Nyersanyag(String nev) {
