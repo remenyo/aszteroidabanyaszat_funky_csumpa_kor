@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Nap implements Leptetheto{
-	private List<Aszteroida> aszteroidak = new ArrayList<Aszteroida>();
+	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>();
 	private boolean elorejelzesvan = false;
 	
 	public void Lepes() {
