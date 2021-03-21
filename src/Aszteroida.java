@@ -24,6 +24,10 @@ public class Aszteroida {
         this.nyersanyag = nyersanyag;
     }
     
+    public Hely getSzomszed(int i) {
+    	return szomszedok.get(i);
+    }
+    
     public void Robbanas(){
         nyersanyag.Robbanas();
         szomszedok.get(0).szomszedRobbant(this);
@@ -31,6 +35,7 @@ public class Aszteroida {
         szereplok.get(0).Robbanas();
         szereplok.get(1).Robbanas();
         nap.torolAszteroida(this);
+        
     }
     
     public void Napvihar(){
