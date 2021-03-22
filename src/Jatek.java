@@ -8,10 +8,6 @@ public class Jatek {
 	public static int telepesszam;
 	public static ArrayList<Leptetheto> leptethetok;
 
-	public static final boolean LOG_FUNCTION_CALLS = true;
-	public static final boolean LOG_CONSTRUCTORS = true;
-	public static final int LOG_LEVEL = 4; // -1 = semmi | 0 = ctor és call, ha engedélyezve vannak,
-											// 1 = csak error | 2 = 1+warn | 3 = 2+info | 4 = 3+debug
 	public static final int MIN_SZEN = 3;
 	public static final int MIN_URAN = 3;
 	public static final int MIN_VIZJEG = 3;
@@ -24,7 +20,7 @@ public class Jatek {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
 
-	//Nem használjuk a tesztben, kezdetleges Kör
+	// Nem használjuk a tesztben, kezdetleges Kör
 	public static void Kor() {
 		Log.call();
 		for (Leptetheto leptetheto : leptethetok) {
@@ -38,7 +34,8 @@ public class Jatek {
 		leptethetok.remove(l);
 	}
 
-	// Csökkenti a telepesszámot eggyel, és ha már nincs elég akkor meghívja a játék vége vesztett fv.t
+	// Csökkenti a telepesszámot eggyel, és ha már nincs elég akkor meghívja a játék
+	// vége vesztett fv.t
 	public static void telepesMeghal() {
 		Log.call();
 		telepesszam--;
@@ -63,7 +60,6 @@ public class Jatek {
 		System.exit(0);
 	}
 
-	
 	public static void jatekInditas() {
 		Log.call();
 	}

@@ -49,7 +49,11 @@ public class Cin {
     }
 
     public static int kerdez_tobbvalasz(String cim, String... lehetosegek) {
-        String kerdes = "-".repeat(cim.length() + 2) + "\n|" + cim + "|\n" + "-".repeat(cim.length() + 2) + "\n";
+        String border = "";
+        for (int i = 0; i < cim.length() + 2; i++) {
+            border += "-";
+        }
+        String kerdes = border + "\n|" + cim + "|\n" + border + "\n";
         for (int i = 0; i < lehetosegek.length; i++) {
             kerdes += i + 1 + " - " + lehetosegek[i] + "\n";
         }

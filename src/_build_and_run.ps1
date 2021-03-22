@@ -1,1 +1,0 @@
-javac *.java && jar cfm app.jar .\MANIFEST.MF ./*.class && rm *.class && java -jar app.jar
