@@ -2,25 +2,31 @@ package src;
 
 import java.util.ArrayList;
 
+//Aszteroidákat ismer akiken meghívja a napvihart valamilyen valószínûséggel egy kör elõrejelzéssel,
+//most tesztelés miatt egybõl napvihart hív.
 public class Nap implements Leptetheto {
-	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>();
-	private boolean elorejelzesvan = false;
-
+	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>(); //Nap körüli aszteroidákat tároló lista
+	private boolean elorejelzesvan = false; //Azt jelzi, hogy az elõrejelzés van-e, ha igaz akkor indul a napvihar ha hamis akkor nem
+											//most teszteléshez nem használjuk.
+	//Ez a függvény felel a napvihar meghívásáért a naphoz tartozó aszteroidán.
 	public void Lepes() {
 		Log.call();
 		aszteroidak.get(0).Napvihar();
 	}
 
+	//Ez a függvény törli a naptól az aszteroidát.
 	public void torolAszteroida(Aszteroida a) {
 		Log.call();
 		aszteroidak.remove(a);
 	}
-
+	//A lépés ezt hívná meg, hogy az elõrejelzés alapján napvihart generáljon
+	//de most teszteléshez nem használjuk.
 	private void Napvihar() {
 		Log.call();
-		// hat ez ugytunik nem kell de lepesbe belelehet rakni ha akarjuk
 	}
-
+	
+	//A naphoz hozzáadunk egy aszteroida listát innentöl ezeken az aszteroidákon hívhatja meg a nap
+	//a napvihar függvényt.
 	public void hozzaadAszteroidak(ArrayList<Aszteroida> a) {
 		Log.call();
 		aszteroidak = a;

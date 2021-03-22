@@ -7,6 +7,7 @@ abstract public class Szereplo implements Leptetheto {
 
     //Szereplõ létrejöttekor a léptethetõk listája is bõvül
     public Szereplo() {
+    	Log.call();
         Jatek.leptethetok.add(this);
     }
     

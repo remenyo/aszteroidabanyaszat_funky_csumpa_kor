@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Jatek {
 
 	public static final Jatek INSTANCE = new Jatek();
-	public static int telepesszam;
+	public static int telepesszam=0;
 	public static ArrayList<Leptetheto> leptethetok;
 
 	public static final int MIN_SZEN = 3;
