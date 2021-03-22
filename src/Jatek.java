@@ -24,6 +24,7 @@ public class Jatek {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
 
+	//Nem használjuk a tesztben, kezdetleges Kör
 	public static void Kor() {
 		Log.call();
 		for (Leptetheto leptetheto : leptethetok) {
@@ -31,11 +32,13 @@ public class Jatek {
 		}
 	}
 
+	// Törli a paraméterként kapott léptethetõt a listából
 	public static void torolLeptetheto(Leptetheto l) {
 		Log.call();
 		leptethetok.remove(l);
 	}
 
+	// Csökkenti a telepesszámot eggyel, és ha már nincs elég akkor meghívja a játék vége vesztett fv.t
 	public static void telepesMeghal() {
 		Log.call();
 		telepesszam--;
@@ -46,18 +49,21 @@ public class Jatek {
 
 	}
 
+	// Gratulál a gyõzelemhez és lezárja a progit
 	public static void jatekVegeNyert() {
 		Log.call();
 		System.out.println("Gratulálunk nyertél!! :)");
 		System.exit(0);
 	}
 
+	// Vereségnél lezárja a progit
 	public static void jatekVegeVesztett() {
 		Log.call();
 		System.out.println("Gratulálunk vesztettél !! :)");
 		System.exit(0);
 	}
 
+	
 	public static void jatekInditas() {
 		Log.call();
 	}
