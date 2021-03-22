@@ -8,7 +8,8 @@ public class Szen extends Nyersanyag {
         Log.ctor();
         osszesSzen++;
     }
-
+    
+    //
     @Override
     public void ellenorizVesztett() {
         Log.call();
