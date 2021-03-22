@@ -11,11 +11,6 @@ public class Szkeleton {
 
 	public void Menu() {
 
-		// while(true) {
-		// System.out.println("1. Mozgás ûrhajóval\r\n" + "2. Mozgás teleport kapun
-		// keresztül\r\n" + "3. \r\n" + "4. \r\n" + "5. \r\n" + "6. \r\n" + "7. \r\n" +
-		// "8. \r\n" + "9. \r\n" + "10. \r\n" + "11. \r\n" + "12. ");
-
 		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás ûrhajóval", "Mozgás teleport kapun keresztül", "Bányászat",
 				"Vízjég Fúrás", "Urán fúrás", "Fúrás vas", "Portálkapu építés", "Robot építés",
 				"Nyersanyag visszahelyezés", "Portál lehelyezés", "Robot Urán fúrás", "Napvihar")) {
@@ -63,12 +58,10 @@ public class Szkeleton {
 			break;
 		}
 
-		// }
+		
 	}
 
 	public void BanyaszatMenu() {
-		// System.out.println( "1. Urán Bányászat\r\n" + "2. Vízjég Bányászat\r\n" + "3.
-		// Szén Bányászat\r\n" + "4. Vas Bányászat");
 		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán Bányászat", "Vízjég Bányászat", "Szén Bányászat",
 				"Vas Bányászat")) {
 		case 1:
@@ -111,7 +104,7 @@ public class Szkeleton {
 			break;
 		}
 	}
-
+	//Az elején levõ inicializálás mindenhol a megfelelõ mûködés érdekében van.
 	public void MozgasUrhajoval() {
 		Telepes t = new Telepes();
 		Aszteroida regi = new Aszteroida(1, true, new Nap(), new Uran());
@@ -145,7 +138,7 @@ public class Szkeleton {
 
 	public void UranVisszahelyezes() {
 		Aszteroida a = new Aszteroida(1, true, new Nap(), null);
-		Aszteroida b = new Aszteroida(1, true, new Nap(), new Szen());
+		Aszteroida b = new Aszteroida(1, true, new Nap(), new Vas());
 		Uran u = new Uran();
 		Telepes t = new Telepes();
 		Telepes t2 = new Telepes();
@@ -188,8 +181,10 @@ public class Szkeleton {
 		p2.beallitPar(p);
 		p.setVegpont(a);
 		p2.setVegpont(b);
-
-		p.Utazas(t);
+		a.hozzaadSzomszed(p);
+		t.Mozgas(0); //Ha nem mozgunk akkor is megkérdezi megvan-e az összes nyersanyag.
+					// Rendes játékban ez egy automatikus ellenõrzés lesz ami nem ront el semmit
+					// és nem fogyaszt sok erõforrást így fejlesztõi döntés miatt marad.
 	}
 
 	public void uranBanyaszat() {
@@ -230,22 +225,37 @@ public class Szkeleton {
 
 	public void robotFurasUran() {
 		Robot r = new Robot();
+		Robot r2 = new Robot();
 		Aszteroida a = new Aszteroida(2, false, new Nap(), new Uran());
-		Aszteroida b = new Aszteroida(2, false, new Nap(), new Uran());
-		Portal p = new Portal();
+		Aszteroida b = new Aszteroida(2, false, new Nap(), new Vas());
+
+		b.hozzaadSzereplo(r2);
+		a.hozzaadSzereplo(r);
 		a.hozzaadSzomszed(b);
-		a.hozzaadSzomszed(p);
+		b.hozzaadSzomszed(a);
+		r.beallitAszteroida(a);
+		r2.beallitAszteroida(b);
 		a.Furas();
 
 	}
 
 	public void telepesFurasUran() {
+		
+		Aszteroida a = new Aszteroida(1, true, new Nap(), new Uran());
+		Aszteroida b = new Aszteroida(1, true, new Nap(), new Szen());
 		Telepes t = new Telepes();
-		Aszteroida a = new Aszteroida(2, false, new Nap(), new Uran());
-		Aszteroida b = new Aszteroida(2, false, new Nap(), new Uran());
-		Portal p = new Portal();
+		Telepes t2 = new Telepes();
+		t2.setPortal(new Portal());
+		t.hozzaadNyersanyag(new Szen());
+		t.setPortal(new Portal());
+		t2.hozzaadNyersanyag(new Szen());
+		b.hozzaadSzereplo(t2);
+		a.hozzaadSzereplo(t);
 		a.hozzaadSzomszed(b);
-		a.hozzaadSzomszed(p);
+		b.hozzaadSzomszed(a);
+		t.beallitAszteroida(a);
+		t2.beallitAszteroida(b);
+		
 		a.Furas();
 	}
 
