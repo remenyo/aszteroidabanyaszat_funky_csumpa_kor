@@ -3,12 +3,14 @@ package src;
 public class Uran extends Nyersanyag {
     private static int osszesUran = 0;
 
+    // Létrejöttekor növeli az összes urán számot eggyel
     Uran() {
         super("Urán");
         Log.ctor();
         osszesUran++;
     }
 
+    // Felszínre kerültekor kideríti, hogy napközelben van-e, ha igen robban
     @Override
     public void felszinreKerul(Aszteroida a) {
         Log.call();
@@ -17,6 +19,7 @@ public class Uran extends Nyersanyag {
         }
     }
 
+    //Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kideríti van-e még elég, ha nincs vesztett
     @Override
     public void ellenorizVesztett() {
         Log.call();

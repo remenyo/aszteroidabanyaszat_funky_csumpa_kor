@@ -1,17 +1,20 @@
 package src;
 
+//Mesterséges intelligencia, amely fúrhat vagy mozoghat
 public class Robot extends Szereplo {
 
 	Robot() {
-		super();
+		super(); //Beállításra kerülnek az alapértelmezések
 		Log.ctor();
 	}
 
+	//Robbanáskor a robot árvándorol egy szomszédos aszteroidára
 	public void Robbanas() {
 		Log.call();
 		mozgasIntelligencia();
 	}
 
+	//A robot lépése egy körben, ami lehet fúrás vagy mozgás
 	public void Lepes() {
 		Log.call();
 		int cselekves = RandomUtils.randomIntHatarokKozott(0, 4);
@@ -25,15 +28,11 @@ public class Robot extends Szereplo {
 
 	}
 
-	// Ne legyen kódismétlés
-	// felhasználásra kerül mindkét függvényben
+	// A robot eldönti hogy hova szeretne mozogni
 	public void mozgasIntelligencia() {
 		Log.call();
+		//Az aszteroida szomszédainak száma, a robot eldönti hogy hanyas számúra szeretne mozogni
 		int szomszedszam = aszteroida.getSzomszedok().size();
-		// Aszteroidába egy függvény, ami lekérdezi a szomszédok tömb hosszát;
-		// szükséges az Aszteroida felrobbanásához, ha az aszteroidának nem maradtak
-		// szomszédai
-		// ~~Analízis model2 - 4.4.2 szekvencia
 
 		Mozgas(0); // véletlenszerûen vándorlik egy szomszédra
 	}

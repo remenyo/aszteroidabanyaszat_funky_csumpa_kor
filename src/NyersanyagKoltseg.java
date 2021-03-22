@@ -6,6 +6,7 @@ public class NyersanyagKoltseg {
     ArrayList<Nyersanyag> koltseg;
     ArrayList<Nyersanyag> masolatTarolo;
 
+    // Hozzáadja a költséghez a paraméterül kapott nyersanyagot
     public void hozzaadNyersanyag(Nyersanyag ny) {
         Log.call();
         koltseg.add(ny);
@@ -16,6 +17,7 @@ public class NyersanyagKoltseg {
     // {
     // }
 
+    // Megkérdezi meg van-e az összes szükséges nyersanyag, majd leellenõrzi, hogy maradt-e még elég a játékban, ha nem vesztett
     public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
         Log.call();
         boolean vannyersanyag = Szkeleton.Kerdes("Meg van nála az összes szükséges nyersanyag?");
@@ -43,6 +45,7 @@ public class NyersanyagKoltseg {
     // }
     // }
 
+    //Felülírja a költésget a paraméterül kapott listával
     public void felulirNyersanyagok(ArrayList<Nyersanyag> ny) {
         Log.call();
         koltseg = ny;
