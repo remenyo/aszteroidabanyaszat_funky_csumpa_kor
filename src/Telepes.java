@@ -105,13 +105,15 @@ public class Telepes extends Szereplo {
 		Meghal();
 	}
 
-	//A Telepes meghal, kitölri a portálját és nyersanyagát és meghívja a szereplõ meghal függvényét.
+	//A Telepes meghal, felrobbantja a portáljait (itt most csak removolja), és a nyersanyagait,
+	//majd meghívja a Szereplõ meghal függvényét,ami kitörli az aszteroidáról és törli a léptethetõk listájából.
+	//Végül meghívja a játékon a telepesmeghal függvényét.
 	@Override
 	public void Meghal() {
 		Log.call();
 		Log.debug("Telepes meghal");
-		portal.remove(0);
-		nyersanyagok.remove(0);
+		portal.remove(0); //Teszt kedvéért remove mert nem azt mutatná be mint amit mutatunk a szekvencián.
+		nyersanyagok.get(0).Robbanas();;
 		super.Meghal();
 		Jatek.telepesMeghal();
 	}
