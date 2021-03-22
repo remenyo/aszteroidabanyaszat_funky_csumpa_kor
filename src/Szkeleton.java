@@ -266,12 +266,12 @@ public class Szkeleton {
 	public void Napvihar() {
 		Nap nap = new Nap();
 		Aszteroida a = new Aszteroida(1, true, nap, new Vas());
-		Telepes t = new Telepes();
+		//Telepes t = new Telepes();
 		Robot r = new Robot();
-		t.beallitAszteroida(a);
+		//t.beallitAszteroida(a);
 		r.beallitAszteroida(a);
-		a.hozzaadSzereplo(r);
-		a.hozzaadSzereplo(t);
+		//a.hozzaadSzereplo(r);
+		//a.hozzaadSzereplo(t);
 		nap.hozzaadAszteroidak(new ArrayList<Aszteroida>(Arrays.asList(a)));
 		nap.Lepes();
 	}

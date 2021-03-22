@@ -9,7 +9,7 @@ public class Szen extends Nyersanyag {
         osszesSzen++;
     }
     
-    //
+    //Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kideríti van-e még elég, ha nincs vesztett
     @Override
     public void ellenorizVesztett() {
         Log.call();
