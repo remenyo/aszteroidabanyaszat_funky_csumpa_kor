@@ -266,12 +266,14 @@ public class Szkeleton {
 	public void Napvihar() {
 		Nap nap = new Nap();
 		Aszteroida a = new Aszteroida(1, true, nap, new Vas());
-		//Telepes t = new Telepes();
+		Telepes t = new Telepes();
 		Robot r = new Robot();
-		//t.beallitAszteroida(a);
+		t.hozzaadNyersanyag(new Vas());
+		t.setPortal(new Portal());
+		t.beallitAszteroida(a);
 		r.beallitAszteroida(a);
-		//a.hozzaadSzereplo(r);
-		//a.hozzaadSzereplo(t);
+		a.hozzaadSzereplo(r);
+		a.hozzaadSzereplo(t);
 		nap.hozzaadAszteroidak(new ArrayList<Aszteroida>(Arrays.asList(a)));
 		nap.Lepes();
 	}
@@ -283,11 +285,6 @@ public class Szkeleton {
 		t.hozzaadKoltseg(nyk1);
 		t.hozzaadKoltseg(nyk2);
 
-		// ArrayList<Nyersanyag> portalkoltseg = new
-		// ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ
-		// nyersanyagok feltöltése
-		// portalkoltseg.forEach(nyersanyag -> nyk1.hozzaadNyersanyag(nyersanyag));
-
 		t.epitPortal();
 	}
 
@@ -298,25 +295,8 @@ public class Szkeleton {
 		t.hozzaadKoltseg(nyk1);
 		t.hozzaadKoltseg(nyk2);
 		t.beallitAszteroida(new Aszteroida(0, false, null, null));
-		// ArrayList<Nyersanyag> robotkoltseg = new
-		// ArrayList<Nyersanyag>(Arrays.asList(new Szen(), new Vas())); //megfelelõ
-		// nyersanyagok feltöltése
-		// robotkoltseg.forEach(nyersanyag -> nyk2.hozzaadNyersanyag(nyersanyag));
 
 		t.epitRobot();
-
-	}
-
-	public void nyersanyagVisszahelyezes() {
-		// System.out.println("A telepesnél van nyersanyag?");
-
-		// System.out.println("Az aszteroidában van már elhelyezve nyersanyag?");
-
-		// System.out.println("Az aszteroida napközelben van?");
-
-		// System.out.println("Van elegendõ nyersanyag a játék befejezéséhez?");
-
-		// System.out.println("Maradtak életben játékosok?");
 
 	}
 

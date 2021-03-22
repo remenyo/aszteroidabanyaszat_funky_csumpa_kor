@@ -55,7 +55,8 @@ public class Aszteroida extends Hely {
     public void Napvihar() {
         Log.call();
         if (!Szkeleton.Kerdes("Ures az aszteroida es ki van furva?")) {
-                szereplok.get(0).Napvihar();   
+                szereplok.get(0).Napvihar();  
+                szereplok.get(0).Napvihar();  //kétszer kell a 0áson mert amikor az elsõ elemen meghívódik akkor az kitörlõdik és az 1 es veszi át a helyét.
         }
 
     }

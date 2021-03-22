@@ -6,10 +6,18 @@ import java.util.Scanner;
 //Telepes a Szereplõ leszármazottja, ismeri a nála lévõ portálokat, nyersanyagokat és
 //a statikus építési költségek is ebbe az osztályba találhatók.
 public class Telepes extends Szereplo {
-	private ArrayList<Nyersanyag> nyersanyagok = new ArrayList<Nyersanyag>(); //A telepesnél lévõ nyersanyagokat tárolja.
-	private static ArrayList<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>(); //A portál és robot építésének a költségét tárolja.
-	private ArrayList<Portal> portal = new ArrayList<Portal>(); //A Telepesnél lévõ portálokat tárolja.
-
+	private ArrayList<Nyersanyag> nyersanyagok ; //A telepesnél lévõ nyersanyagokat tárolja.
+	private static ArrayList<NyersanyagKoltseg> epiteskoltseg ; //A portál és robot építésének a költségét tárolja.
+	private ArrayList<Portal> portal ;//A Telepesnél lévõ portálokat tárolja.
+	
+	
+	Telepes(){
+		nyersanyagok = new ArrayList<Nyersanyag>();
+		epiteskoltseg = new ArrayList<NyersanyagKoltseg>();
+		portal = new ArrayList<Portal>();
+		Jatek.telepesszam++;
+	}
+	
 	//Meghívja a szereplõ mozgás függvényét amivel egy mésik aszteroidára utazik a telepes, majd
 	//meghívja azon az aszteroidán az ellenõrizNyert fv-t hogy ellenõrizzük összegyült-e elég nyersanyag a játék megnyeréséhez.
 	public void Mozgas(int sorszam) {
