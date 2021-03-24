@@ -1,7 +1,8 @@
 package src;
 
 public class App {
-    public static final boolean COLOR_IN_TERMINAL = true;
+
+    public static boolean COLOR_IN_TERMINAL = true;
     public static final boolean LOG_FUNCTION_CALLS = true;
     public static final boolean LOG_CONSTRUCTORS = true;
     public static final int LOG_LEVEL = 4; // -1 = semmi | 0 = ctor és call, ha engedélyezve vannak,

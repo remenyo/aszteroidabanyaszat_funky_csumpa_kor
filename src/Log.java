@@ -5,29 +5,19 @@ public class Log {
     public static final Log INSTANCE = new Log();
 
     // a szinek innen vannak: https://stackoverflow.com/a/45444716
-    public static String RESET = "\033[0m";
-    public static String RED = "\033[0;31m"; // RED
-    public static String YELLOW = "\033[0;33m"; // YELLOW
-    public static String BLUE = "\033[0;34m"; // BLUE
-    public static String PURPLE = "\033[0;35m"; // PURPLE
-    public static String BLACK = "\033[0;30m"; // BLACK
-    public static String GREEN = "\033[0;32m"; // GREEN
-    public static String CYAN = "\033[0;36m"; // CYAN
-    public static String WHITE_BG = "\033[47m"; // WHITE
+    public static final String RESET = App.COLOR_IN_TERMINAL ? "\033[0m" : "";
+
+    public static final String RED = App.COLOR_IN_TERMINAL ? "\033[0;31m" : ""; // RED
+    public static final String YELLOW = App.COLOR_IN_TERMINAL ? "\033[0;33m" : ""; // YELLOW
+    public static final String BLUE = App.COLOR_IN_TERMINAL ? "\033[0;34m" : ""; // BLUE
+    public static final String PURPLE = App.COLOR_IN_TERMINAL ? "\033[0;35m" : ""; // PURPLE
+    public static final String BLACK = App.COLOR_IN_TERMINAL ? "\033[0;30m" : ""; // BLACK
+    public static final String GREEN = App.COLOR_IN_TERMINAL ? "\033[0;32m" : ""; // GREEN
+    public static final String CYAN = App.COLOR_IN_TERMINAL ? "\033[0;36m" : ""; // CYAN
+    public static final String WHITE_BG = App.COLOR_IN_TERMINAL ? "\033[47m" : ""; // WHITE
 
     private Log() {
-        if (!App.COLOR_IN_TERMINAL) {
-            // a szinek innen vannak: https://stackoverflow.com/a/45444716
-            RESET = "";
-            RED = ""; // RED
-            YELLOW = ""; // YELLOW
-            BLUE = ""; // BLUE
-            PURPLE = ""; // PURPLE
-            BLACK = ""; // BLACK
-            GREEN = ""; // GREEN
-            CYAN = ""; // CYAN
-            WHITE_BG = ""; // WHITE
-        }
+
     }
 
     private static StackTraceElement getCaller(int offset) {
