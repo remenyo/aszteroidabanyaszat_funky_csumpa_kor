@@ -15,39 +15,64 @@ public class Cin {
         System.out.print("\n" + kerdes + " ");
     }
 
+    /**
+     * Egy {@code int}-et olvas be a bemenetrõl. Ha a bemenet nem értelmezhetõ, a függvény -1-t ad
+     * viszza.
+     * 
+     * @return a beolvasott érték
+     */
     public static int getInt() {
         try {
             return scanner.nextInt();
         } catch (Exception e) {
             String s = scanner.next();
-            if (s.equals("y") || s.equals("Y")) {
-                Log.info("Válasz átalakítva " + s + "-ról 1-re. ;)");
-                return 1;
-            } else if (s.equals("n") || s.equals("N")) {
-                Log.info("Válasz átalakítva " + s + "-rõl 0-ra. ;)");
-                return 0;
-            } else {
-                Log.error("Nem értelmezett bemenet: \"" + scanner.next() + "\".");
-                return 0;
-            }
+
+            Log.error("Nem értelmezett bemenet: \"" + s + "\".");
+            return -1;
+
+            /*
+             * if (s.equals("y") || s.equals("Y")) { Log.info("Válasz átalakítva " + s +
+             * "-ról 1-re. ;)"); return 1; } else if (s.equals("n") || s.equals("N")) {
+             * Log.info("Válasz átalakítva " + s + "-rõl 0-ra. ;)"); return 0; } else {
+             * Log.error("Nem értelmezett bemenet: \"" + scanner.next() + "\"."); return 0; }
+             */
+
         }
     }
 
+    /**
+     * Feltesz egy kérdést a felhasználónak, majd egy {@code int}-et olvas be a bemenetrõl. Ha a
+     * bemenet nem értelmezhetõ, a függvény -1-t ad vissza.
+     * 
+     * @param kerdes A felhasználónak kiírandó kérdés.
+     * @return A beírt szám, vagy -1 ha nem értlemezhetõ a bemenet.
+     */
     public static int getInt(String kerdes) {
         kerdez(kerdes);
         return getInt();
     }
 
-    public static boolean getBool() {
-        return getInt() == 1;
-    }
-
+    /**
+     * Feltesz egy kérdést a felhasználónak, majd egy {@code int}-et olvas be a bemenetrõl. Ha a
+     * bemenet {@code 1}, a visszatérési érték {@code true} különben {@code false}.
+     * 
+     * @param kerdes A felhasználónak kiírandó kérdés.
+     * @return {@code true} vagy {@code false}
+     */
     public static boolean getBool(String kerdes) {
         kerdez(kerdes);
         System.out.println("[1] = igen, [0] = nem");
-        return getBool();
+        return getInt() == 1;
     }
 
+    /**
+     * Menü szerepet betöltõ függvény.
+     * 
+     * @param cim         Menü neve
+     * @param lehetosegek A választható elemek
+     * @return Egy int ami {@code 1}-tõl lehetõségek számáig terjed. {@code -1} ha nem értelmezett a
+     *         választás.
+     */
     public static int kerdez_tobbvalasz(String cim, String... lehetosegek) {
         String border = "";
         for (int i = 0; i < cim.length() + 2; i++) {
