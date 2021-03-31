@@ -5,106 +5,115 @@ import java.util.Arrays;
 
 public class Szkeleton {
 
+
+	/**
+	 * Feltesz egy kérdést
+	 * 
+	 * @param kerdes kérdés szövege
+	 * @return boolean válasz
+	 */
 	public static boolean Kerdes(String kerdes) {
 		return Cin.getBool(kerdes);
 	}
 
 	public void Menu() {
 
-		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás ûrhajóval", "Mozgás teleport kapun keresztül", "Bányászat",
-				"Vízjég Fúrás", "Urán fúrás", "Fúrás vas", "Portálkapu építés", "Robot építés",
-				"Nyersanyag visszahelyezés", "Portál lehelyezés", "Robot Urán fúrás", "Napvihar")) {
-		case 1:
-			MozgasUrhajoval();
-			break;
-		case 2:
-			mozgasTeleporttal();
-			break;
-		case 3:
-			BanyaszatMenu();
-			break;
-		case 4:
-			Vizjegfuras();
-			break;
-		case 5:
-			telepesFurasUran();
-			break;
-		case 6:
-			Vasfuras();
-			break;
-		case 7:
-			portalkapuEpites();
-			break;
-		case 8:
-			robotEpites();
-			break;
-		case 9:
-			NyersanyagVisszahelyezesMenu();
-			break;
-		case 10:
-			portalLehelyezes();
-			break;
-		case 11:
-			robotFurasUran();
-			break;
-		case 12:
-			Napvihar();
-			break;
-		case 13:
-			System.exit(0);
-			break;
+		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás ûrhajóval", "Mozgás teleport kapun keresztül",
+				"Bányászat", "Vízjég Fúrás", "Urán fúrás", "Fúrás vas", "Portálkapu építés",
+				"Robot építés", "Nyersanyag visszahelyezés", "Portál lehelyezés",
+				"Robot Urán fúrás", "Napvihar")) {
+			case 1:
+				MozgasUrhajoval();
+				break;
+			case 2:
+				mozgasTeleporttal();
+				break;
+			case 3:
+				BanyaszatMenu();
+				break;
+			case 4:
+				Vizjegfuras();
+				break;
+			case 5:
+				telepesFurasUran();
+				break;
+			case 6:
+				Vasfuras();
+				break;
+			case 7:
+				portalkapuEpites();
+				break;
+			case 8:
+				robotEpites();
+				break;
+			case 9:
+				NyersanyagVisszahelyezesMenu();
+				break;
+			case 10:
+				portalLehelyezes();
+				break;
+			case 11:
+				robotFurasUran();
+				break;
+			case 12:
+				Napvihar();
+				break;
+			case 13:
+				System.exit(0);
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 
-		
+
 	}
 
 	public void BanyaszatMenu() {
-		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán Bányászat", "Vízjég Bányászat", "Szén Bányászat",
-				"Vas Bányászat")) {
-		case 1:
-			uranBanyaszat();
-			break;
-		case 2:
-			vizjegBanyaszat();
-			break;
-		case 3:
-			szenBanyaszat();
-			break;
-		case 4:
-			vasBanyaszat();
-			break;
+		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán Bányászat", "Vízjég Bányászat",
+				"Szén Bányászat", "Vas Bányászat")) {
+			case 1:
+				uranBanyaszat();
+				break;
+			case 2:
+				vizjegBanyaszat();
+				break;
+			case 3:
+				szenBanyaszat();
+				break;
+			case 4:
+				vasBanyaszat();
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 	}
 
 	public void NyersanyagVisszahelyezesMenu() {
-		System.out.println("1. Urán visszahelyezés\r\n" + "2. Vízjég visszahelyezés\r\n" + "3. Szén visszahelyezés\r\n"
-				+ "4. Vas visszahelyezés");
+		System.out.println("1. Urán visszahelyezés\r\n" + "2. Vízjég visszahelyezés\r\n"
+				+ "3. Szén visszahelyezés\r\n" + "4. Vas visszahelyezés");
 		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán visszahelyezés", "Vízjég visszahelyezés",
 				"Szén visszahelyezés", "Vas visszahelyezés")) {
-		case 1:
-			UranVisszahelyezes();
-			break;
-		case 2:
-			VizjegVisszahelyezes();
-			break;
-		case 3:
-			VasVisszahelyez();
-			break;
-		case 4:
-			SzenVisszahelyez();
-			break;
+			case 1:
+				UranVisszahelyezes();
+				break;
+			case 2:
+				VizjegVisszahelyezes();
+				break;
+			case 3:
+				VasVisszahelyez();
+				break;
+			case 4:
+				SzenVisszahelyez();
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 	}
-	//Az elején levõ inicializálás mindenhol a megfelelõ mûködés érdekében van.
+
+	// Az elején levõ inicializálás mindenhol a megfelelõ mûködés érdekében van.
 	public void MozgasUrhajoval() {
 		Telepes t = new Telepes();
 		Aszteroida regi = new Aszteroida(1, true, new Nap(), new Uran());
@@ -182,9 +191,9 @@ public class Szkeleton {
 		p.setVegpont(a);
 		p2.setVegpont(b);
 		a.hozzaadSzomszed(p);
-		t.Mozgas(0); //Ha nem mozgunk akkor is megkérdezi megvan-e az összes nyersanyag.
-					// Rendes játékban ez egy automatikus ellenõrzés lesz ami nem ront el semmit
-					// és nem fogyaszt sok erõforrást így fejlesztõi döntés miatt marad.
+		t.Mozgas(0); // Ha nem mozgunk akkor is megkérdezi megvan-e az összes nyersanyag.
+						// Rendes játékban ez egy automatikus ellenõrzés lesz ami nem ront el semmit
+						// és nem fogyaszt sok erõforrást így fejlesztõi döntés miatt marad.
 	}
 
 	public void uranBanyaszat() {
@@ -240,7 +249,7 @@ public class Szkeleton {
 	}
 
 	public void telepesFurasUran() {
-		
+
 		Aszteroida a = new Aszteroida(1, true, new Nap(), new Uran());
 		Aszteroida b = new Aszteroida(1, true, new Nap(), new Szen());
 		Telepes t = new Telepes();
@@ -255,7 +264,7 @@ public class Szkeleton {
 		b.hozzaadSzomszed(a);
 		t.beallitAszteroida(a);
 		t2.beallitAszteroida(b);
-		
+
 		a.Furas();
 	}
 
@@ -312,7 +321,8 @@ public class Szkeleton {
 
 	public void portalLehelyezes() {
 		Telepes t = new Telepes();
-		Aszteroida a = new Aszteroida(3, false, new Nap(), new Szen()); // telepes helyezkedik el rajta
+		Aszteroida a = new Aszteroida(3, false, new Nap(), new Szen()); // telepes helyezkedik el
+																		// rajta
 		Aszteroida a2 = new Aszteroida(3, false, new Nap(), new Szen()); // p2 lesz rajta
 		t.beallitAszteroida(a);
 

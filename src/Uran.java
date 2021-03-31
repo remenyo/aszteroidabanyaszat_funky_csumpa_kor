@@ -10,7 +10,12 @@ public class Uran extends Nyersanyag {
         osszesUran++;
     }
 
-    // Felszínre kerültekor kideríti, hogy napközelben van-e, ha igen robban
+
+    /**
+     * Felszínre kerültekor kideríti, hogy napközelben van-e, ha igen robban
+     * 
+     * @param a aszteroida, amiben a nyersanyag van
+     */
     @Override
     public void felszinreKerul(Aszteroida a) {
         Log.call();
@@ -19,7 +24,10 @@ public class Uran extends Nyersanyag {
         }
     }
 
-    //Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kideríti van-e még elég, ha nincs vesztett
+    /**
+     * Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kideríti van-e még
+     * elég, ha nincs vesztett
+     */
     @Override
     public void ellenorizVesztett() {
         Log.call();

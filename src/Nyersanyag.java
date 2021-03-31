@@ -7,23 +7,38 @@ abstract public class Nyersanyag {
         Log.ctor();
         this.nev = nev;
     }
-    
-    //Ezt minden leszármazottnak kötelezõen meg kell valósítaniuk.
+
+    /**
+     * Ellenõrzi, nem-e fogyott el az összes nyersanyag. (Fügvényen belül csökken a számlálójuk).
+     */
     abstract public void ellenorizVesztett();
-    
-    //Ha felszíre kerül egy nyersanyag akkor hívódik meg. Azért üres mert a Szén és a Vassal nem történik semmi ilyenkor.
+
+
+    /**
+     * Ha felszíre kerül egy nyersanyag akkor hívódik meg ez a függvény.
+     * 
+     * @param a Az aszteroida, ahol a nyersanyag van.
+     */
     public void felszinreKerul(Aszteroida a) {
 
     }
-    
-    //Ha felrobban egy nyersanyag megnézzük nem e fogyott el az összes nyersanyag.(Fügvényen belül csökken a számlálójuk).
+
+    /**
+     * Nyersanyag robbanás kezdõpont
+     */
     public void Robbanas() {
         Log.call();
         ellenorizVesztett();
     };
 
-    //Igaz ha azonosak (név alapján). Hamis ha nem. 
-    public boolean azonos(Nyersanyag ny) {
+
+    /**
+     * Ellenõriz két nyersanyagot, hogy azonos típusúak-e
+     * 
+     * @param ny a másik nyersanyag
+     * @return boolean {@code true} ha azonosak (név alapján). {@code false} ha nem.
+     */
+    public boolean azonos(Nyersanyag ny) { // TODO ez egy equals függvény...
         Log.call();
         return this.nev.equals(ny.nev);
     }

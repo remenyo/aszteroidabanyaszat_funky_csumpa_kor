@@ -84,7 +84,6 @@ public class Aszteroida extends Hely {
                                          // meghívódik akkor az kitörlõdik és az 1 es veszi át a
                                          // helyét.
         }
-
     }
 
     /**
@@ -106,7 +105,7 @@ public class Aszteroida extends Hely {
      * Ha egy aszteroida felrobban, akkor a szomszédjain végig hívja ezt hogy töröljék ki õt a
      * szomszédjaik közül Ha egy aszteroidának nem marad szomszédja felrobban
      * 
-     * @param h
+     * @param h a törlendõ aszteroida
      */
     public void torolSzomszed(Hely h) {
         Log.call();
@@ -246,7 +245,7 @@ public class Aszteroida extends Hely {
     /**
      * Az Aszteroidába beSettelünk egy nyersanyagot. Ilyenkor nem hívódik meg a felszíre kerülés.
      * 
-     * @param ny Beállítandõ nyersanyag
+     * @param ny Beállítandó nyersanyag
      */
     public void setNyersanyag(Nyersanyag ny) {
         // TODO ez a tesztekhez kellett. DE KELL IS! lesz teszt még

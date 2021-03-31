@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Jatek {
 
 	public static final Jatek INSTANCE = new Jatek();
-	public static int telepesszam=0;
+	public static int telepesszam = 0;
 	public static ArrayList<Leptetheto> leptethetok;
 
 	public static final int MIN_SZEN = 3;
@@ -28,14 +28,21 @@ public class Jatek {
 		}
 	}
 
-	// Törli a paraméterként kapott léptethetõt a listából
+
+	/**
+	 * Törli a paraméterként kapott léptethetõt a listából
+	 * 
+	 * @param l a törlendõ léptethetõ
+	 */
 	public static void torolLeptetheto(Leptetheto l) {
 		Log.call();
 		leptethetok.remove(l);
 	}
 
-	// Csökkenti a telepesszámot eggyel, és ha már nincs elég akkor meghívja a játék
-	// vége vesztett fv.t
+	/**
+	 * Csökkenti a telepesszámot eggyel, és ha már nincs elég akkor meghívja a játék vége vesztett
+	 * fv.t
+	 */
 	public static void telepesMeghal() {
 		Log.call();
 		telepesszam--;
@@ -46,14 +53,18 @@ public class Jatek {
 
 	}
 
-	// Gratulál a gyõzelemhez és lezárja a progit
+	/**
+	 * Gratulál a gyõzelemhez és lezárja a progit
+	 */
 	public static void jatekVegeNyert() {
 		Log.call();
 		System.out.println("Gratulálunk nyertél!! :)");
 		System.exit(0);
 	}
 
-	// Vereségnél lezárja a progit
+	/**
+	 * Vereségnél lezárja a progit
+	 */
 	public static void jatekVegeVesztett() {
 		Log.call();
 		System.out.println("Gratulálunk vesztettél !! :)");
