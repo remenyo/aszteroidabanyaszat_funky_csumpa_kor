@@ -1,7 +1,7 @@
 package src;
 
 public class Vizjeg extends Nyersanyag {
-    private static int osszesVizjeg = 0;
+    private static Integer osszesVizjeg = 0;
 
     // Létrejöttekor növeli az összes vízjég számát eggyel
     Vizjeg() {
@@ -34,7 +34,7 @@ public class Vizjeg extends Nyersanyag {
     public void ellenorizVesztett() {
         Log.call();
         osszesVizjeg--;
-        if (!Szkeleton.Kerdes("Van elég vízjég még a játékban a gyõzelemhez?")) {
+        if (!Cin.getBool("Van elég vízjég még a játékban a gyõzelemhez?")) {
             Jatek.jatekVegeVesztett();
         }
 

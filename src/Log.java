@@ -95,7 +95,8 @@ public class Log {
      * Error üzenet logolása.
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás
+     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
+     *                argumentum: stack pointer offset
      */
     static void error(String message, int... options) {
         if (App.LOG_LEVEL > 0)
@@ -117,7 +118,8 @@ public class Log {
      * Warn üzenet logolása.
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás
+     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
+     *                argumentum: stack pointer offset
      */
     static void warn(String message, int... options) {
         if (App.LOG_LEVEL > 1)
@@ -139,7 +141,8 @@ public class Log {
      * Info üzenet logolása.
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás
+     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
+     *                argumentum: stack pointer offset
      */
     static void info(String message, int... options) {
         if (App.LOG_LEVEL > 2)
@@ -161,7 +164,8 @@ public class Log {
      * Debug üzenet logolása.
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás
+     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
+     *                argumentum: stack pointer offset
      */
     static void debug(String message, int... options) {
         if (App.LOG_LEVEL > 3)

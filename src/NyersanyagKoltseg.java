@@ -32,9 +32,9 @@ public class NyersanyagKoltseg {
      */
     public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
         Log.call();
-        boolean vannyersanyag = Szkeleton.Kerdes("Meg van nála az összes szükséges nyersanyag?");
+        boolean vannyersanyag = Cin.getBool("Meg van nála az összes szükséges nyersanyag?");
 
-        if (vannyersanyag && !Szkeleton.Kerdes("Van elég nyersanyag a játék megnyeréséhez?")) {
+        if (vannyersanyag && !Cin.getBool("Van elég nyersanyag a játék megnyeréséhez?")) {
             Jatek.jatekVegeVesztett();
         }
         return vannyersanyag;

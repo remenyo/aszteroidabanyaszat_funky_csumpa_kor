@@ -7,8 +7,8 @@ import java.util.ArrayList;
  * @author Danesz
  */
 public class Aszteroida extends Hely {
-    private int reteg;
-    private boolean napkozel;
+    private Integer reteg;
+    private Boolean napkozel;
     private ArrayList<Szereplo> szereplok;
     private ArrayList<Hely> szomszedok;
     private Nap nap;
@@ -23,10 +23,10 @@ public class Aszteroida extends Hely {
      * @param nap        A nap referenciája
      * @param nyersanyag Az aszteroida magjában található nyersanyag (opcoinális)
      */
-    Aszteroida(int reteg, boolean napkozel, Nap nap, Nyersanyag nyersanyag) {
+    Aszteroida(Integer reteg, Boolean napkozel, Nap nap, Nyersanyag nyersanyag) {
         Log.ctor();
         // TODO Aszteroida konstruktora végsõ verzióban nem így lesz tesztek kedvéért van jelenleg
-        // így
+        // így ni
         this.reteg = reteg;
         this.napkozel = napkozel;
         szereplok = new ArrayList<Szereplo>();
@@ -44,6 +44,11 @@ public class Aszteroida extends Hely {
     public Hely getSzomszed(int i) {
         Log.call();
         return szomszedok.get(i);
+    }
+
+    @Override
+    public String toString() {
+        return "Ez itten egy Aszteroida. rétegvastagság: " + reteg;
     }
 
     /**
@@ -78,7 +83,7 @@ public class Aszteroida extends Hely {
      */
     public void Napvihar() {
         Log.call();
-        if (!Szkeleton.Kerdes("Ures az aszteroida es ki van furva?")) {
+        if (!Cin.getBool("Ures az aszteroida es ki van furva?")) {
             szereplok.get(0).Napvihar();
             szereplok.get(0).Napvihar(); // kétszer kell a 0áson mert amikor az elsõ elemen
                                          // meghívódik akkor az kitörlõdik és az 1 es veszi át a
@@ -93,7 +98,7 @@ public class Aszteroida extends Hely {
     public void Furas() {
         Log.call();
         reteg--;
-        boolean elfogyott = Szkeleton.Kerdes("Elfogy a köpeny? (1:Igen 0:Nem)");
+        boolean elfogyott = Cin.getBool("Elfogy a köpeny? (1:Igen 0:Nem)");
         if (elfogyott)
             nyersanyag.felszinreKerul(this);
 
@@ -110,7 +115,7 @@ public class Aszteroida extends Hely {
     public void torolSzomszed(Hely h) {
         Log.call();
         szomszedok.remove(h);
-        if (!Szkeleton.Kerdes("Maradt szomszéd?")) {
+        if (!Cin.getBool("Maradt szomszéd?")) {
             szereplok.get(0).Meghal(); // Végsõ verzióban ez az összes az aszteroidán tartózkodó
                                        // szereplõn meghívódik itt csak konkrét esetre.
                                        // Robbanás elõttt azért kell mindenkin meghívni a meghalt
@@ -152,7 +157,7 @@ public class Aszteroida extends Hely {
      */
     public void ellenorizNyert() {
         Log.call();
-        if (Szkeleton.Kerdes("Megvan az összes nyersanyag?")) {
+        if (Cin.getBool("Megvan az összes nyersanyag?")) {
             Jatek.jatekVegeNyert();
         }
     }
@@ -239,7 +244,7 @@ public class Aszteroida extends Hely {
      */
     public boolean isNapkozelben() {
         Log.call();
-        return Szkeleton.Kerdes("Napközelben van az aszteroida?");
+        return Cin.getBool("Napközelben van az aszteroida?");
     }
 
     /**

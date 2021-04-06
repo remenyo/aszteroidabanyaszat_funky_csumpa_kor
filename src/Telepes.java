@@ -1,7 +1,6 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 // Telepes a Szereplõ leszármazottja, ismeri a nála lévõ portálokat, nyersanyagokat és
 // a statikus építési költségek is ebbe az osztályba találhatók.
@@ -40,7 +39,7 @@ public class Telepes extends Szereplo {
 	public void Banyaszat() {
 		Log.call();
 		Nyersanyag temp = aszteroida.Banyaszat();
-		if (Szkeleton.Kerdes("Van az aszteroidában nyersanyag?")) {
+		if (Cin.getBool("Van az aszteroidában nyersanyag?")) {
 			nyersanyagok.add(temp);
 			aszteroida.ellenorizNyert();
 		}
@@ -90,7 +89,7 @@ public class Telepes extends Szereplo {
 	 */
 	public void epitPortal() {
 		Log.call();
-		if (!Szkeleton.Kerdes("Van a telepesnél portálkapu?")) {
+		if (!Cin.getBool("Van a telepesnél portálkapu?")) {
 			boolean vaneleg = epiteskoltseg.get(0).koltsegSzamitas(nyersanyagok);
 			if (vaneleg) {
 				Portal p1 = new Portal();
@@ -136,7 +135,7 @@ public class Telepes extends Szereplo {
 	 */
 	public void visszarakNyersanyag(Nyersanyag ny) {
 		Log.call();
-		if (Szkeleton.Kerdes("Üres és kifúrt?")) {
+		if (Cin.getBool("Üres és kifúrt?")) {
 			nyersanyagok.remove(ny);
 			aszteroida.hozzaadNyersanyag(ny);
 		}

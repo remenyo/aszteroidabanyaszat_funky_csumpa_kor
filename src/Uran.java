@@ -1,7 +1,7 @@
 package src;
 
 public class Uran extends Nyersanyag {
-    private static int osszesUran = 0;
+    private static Integer osszesUran = 0;
 
     // Létrejöttekor növeli az összes urán számot eggyel
     Uran() {
@@ -32,7 +32,7 @@ public class Uran extends Nyersanyag {
     public void ellenorizVesztett() {
         Log.call();
         osszesUran--;
-        if (!Szkeleton.Kerdes("Van elég urán még a játékban a gyõzelemhez?")) {
+        if (!Cin.getBool("Van elég urán még a játékban a gyõzelemhez?")) {
             Jatek.jatekVegeVesztett();
         }
     }

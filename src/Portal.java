@@ -71,8 +71,8 @@ public class Portal extends Hely {
 	 */
 	private void mukodesbeHelyezes(Aszteroida a) {
 		Log.call();
-		if (Szkeleton.Kerdes("A portal párjának van végpontja?")) { // ha nincs, akkor nem lehet
-																	// utazni a két portál között
+		if (Cin.getBool("A portal párjának van végpontja?")) { // ha nincs, akkor nem lehet
+																// utazni a két portál között
 			// Mindkét portált utazhatóvá kell tenni
 			beallitAktiv();
 			par.beallitAktiv();
@@ -85,10 +85,10 @@ public class Portal extends Hely {
 	 */
 	private void Beszippant() {
 		Log.call();
-		if (Szkeleton.Kerdes("A portalnak van tulajdonosa?"))
+		if (Cin.getBool("A portalnak van tulajdonosa?"))
 			// Ha telepesnél van a portál, akkor eltávolítja azt az ûrhajójából
 			birtokos.torolPortal(this);
-		if (Szkeleton.Kerdes("A portal rajta van egy aszteroidán?"))
+		if (Cin.getBool("A portal rajta van egy aszteroidán?"))
 			// Ha egy aszteroidán van a portál, akkor eltávolítja azt a felszínérõl
 			vegpont.torolSzomszed(this);
 
@@ -102,7 +102,7 @@ public class Portal extends Hely {
 	 */
 	public void Utazas(Szereplo sz) {
 		Log.call();
-		if (Szkeleton.Kerdes("A portal aktív?"))
+		if (Cin.getBool("A portal aktív?"))
 			par.Teleportalas(sz);
 	}
 

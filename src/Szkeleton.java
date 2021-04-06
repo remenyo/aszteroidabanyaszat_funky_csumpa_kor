@@ -1,22 +1,165 @@
 package src;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeMap;
+import java.util.Map;
 
 public class Szkeleton {
+	// TODO ez már nem csak szkeleton, most már ez a "játék"
 
+	public static final Szkeleton INSTANCE = new Szkeleton();
 
-	/**
-	 * Feltesz egy kérdést
-	 * 
-	 * @param kerdes kérdés szövege
-	 * @return boolean válasz
-	 */
-	public static boolean Kerdes(String kerdes) {
-		return Cin.getBool(kerdes);
+	private static Map<String, Object> objektumok;
+
+	private Szkeleton() {
+		objektumok = new TreeMap<>();
+		objektumok.put("jatek", Jatek.INSTANCE);
+		objektumok.put("nap", new Nap());
+		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
 	}
 
-	public void Menu() {
+	private static Object egyParameterTipusForditas(Class<?> tipus, String argumentum)
+			throws Exception {
+		// van ilyen objektumunk tárolva véletlen?
+		if (objektumok.containsKey(argumentum.toLowerCase())) {
+			if (tipus.isInstance(objektumok.get(argumentum))) {
+				// ünnepeljünk, megtaláltuk
+				return objektumok.get(argumentum);
+			}
+		}
+		// fallback
+		if (argumentum.equals("null")) {
+			return null;
+		} else {
+			try {
+				return tipus.getMethod("valueOf", String.class).invoke(null, argumentum);
+			} catch (Exception e) {
+				Log.error(e.toString());
+				Log.debug(tipus.toString() + " " + argumentum.toString());
+				throw new Exception("Fordítás sikertelen", e);
+			}
+		}
+	}
+
+	private static Object[] tobbParameterTipusForditas(Class<?>[] tipusok, String[] argumentumok) {
+		if (tipusok.length == argumentumok.length) {
+			ArrayList<Object> parameterek = new ArrayList<>();
+			for (int i = 0; i < tipusok.length; i++) {
+				try {
+					parameterek.add(egyParameterTipusForditas(tipusok[i], argumentumok[i]));
+				} catch (Exception e) {
+					Log.error(e.toString());
+					return null;
+				}
+			}
+			return parameterek.toArray();
+		}
+		return null;
+	}
+
+	private static Field adattagKereses(Class<?> cls, String adattag_nev) {
+
+		do {
+			Field[] fields = cls.getDeclaredFields();
+			for (Field field : fields) {
+				if (field.getName().equals(adattag_nev))
+					return field;
+			}
+			cls = cls.getSuperclass();
+		} while (cls != null);
+
+		return null;
+	}
+
+	public static void letrehoz(String tipus, String id, String... argumentumok) {
+		if (objektumok.containsKey(id)) {
+			Log.error("A megadott azonos˜t˜ m˜r l˜tezik! (" + id + ")");
+			return;
+		}
+		try {
+			Class<?> cls = Class.forName("src." + tipus);
+			Constructor<?>[] constructors = cls.getDeclaredConstructors();
+			// v˜gign˜zem a konstruktorokat
+			for (Constructor<?> constructor : constructors) {
+				Object[] tipusos_parameterek =
+						tobbParameterTipusForditas(constructor.getParameterTypes(), argumentumok);
+
+				if (tipusos_parameterek != null) { // A L˜NYEG
+					try {
+						objektumok.put(id.toLowerCase(),
+								constructor.newInstance(tipusos_parameterek));
+						Log.info(id + " " + cls.getName() + " Sikeresen létrehozva");
+						break;
+					} catch (Exception e) {
+						Log.error(e.toString());
+					}
+				}
+			}
+		} catch (Exception e) {
+			Log.error(e.toString());
+		}
+	}
+
+	public static Object hiv(String id, String fuggveny_nev, String... argumentumok) {
+		if (!objektumok.containsKey(id)) {
+			Log.error("A megadott azonosító nem létezik! (" + id + ")");
+			return null;
+		}
+		Method[] fuggvenyek = objektumok.get(id).getClass().getMethods();
+		for (Method fuggveny : fuggvenyek) {
+			if (fuggveny.getName().equals(fuggveny_nev)) {
+				Object[] tipusos_parameterek =
+						tobbParameterTipusForditas(fuggveny.getParameterTypes(), argumentumok);
+				if (tipusos_parameterek != null) {
+					try {
+						return fuggveny.invoke(objektumok.get(id), tipusos_parameterek);
+					} catch (Exception e) {
+						Log.debug(e.toString());
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public static void beallit(String id, String adattag_neve, String uj_ertek) {
+		Field adattag = adattagKereses(objektumok.get(id).getClass(), adattag_neve);
+		int modifier = adattag.getModifiers();
+		boolean private_field = Modifier.isPrivate(modifier);
+		if (private_field) {
+			Log.warn(Modifier.toString(modifier) + " adattag (" + adattag.getName()
+					+ ") beállítása.");
+			adattag.setAccessible(true);
+		}
+
+		if (adattag != null) {
+			try {
+				Object beallitando_ertek = egyParameterTipusForditas(adattag.getType(), uj_ertek);
+				adattag.set(objektumok.get(id), beallitando_ertek);
+			} catch (Exception e) {
+				Log.error(e.toString());
+			}
+		}
+		if (private_field) {
+			adattag.setAccessible(private_field);
+		}
+	}
+
+	public static String info(String id) {
+		try {
+			return String.class.cast(hiv(id, "toString"));
+		} catch (Exception e) {
+			Log.error(e.toString());
+		}
+		return "";
+	}
+
+	public static void Menu() {
 
 		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás ûrhajóval", "Mozgás teleport kapun keresztül",
 				"Bányászat", "Vízjég Fúrás", "Urán fúrás", "Fúrás vas", "Portálkapu építés",
@@ -69,7 +212,7 @@ public class Szkeleton {
 
 	}
 
-	public void BanyaszatMenu() {
+	public static void BanyaszatMenu() {
 		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán Bányászat", "Vízjég Bányászat",
 				"Szén Bányászat", "Vas Bányászat")) {
 			case 1:
@@ -90,7 +233,7 @@ public class Szkeleton {
 		}
 	}
 
-	public void NyersanyagVisszahelyezesMenu() {
+	public static void NyersanyagVisszahelyezesMenu() {
 		System.out.println("1. Urán visszahelyezés\r\n" + "2. Vízjég visszahelyezés\r\n"
 				+ "3. Szén visszahelyezés\r\n" + "4. Vas visszahelyezés");
 		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán visszahelyezés", "Vízjég visszahelyezés",
@@ -113,8 +256,9 @@ public class Szkeleton {
 		}
 	}
 
+
 	// Az elején levõ inicializálás mindenhol a megfelelõ mûködés érdekében van.
-	public void MozgasUrhajoval() {
+	public static void MozgasUrhajoval() {
 		Telepes t = new Telepes();
 		Aszteroida regi = new Aszteroida(1, true, new Nap(), new Uran());
 		Aszteroida uj = new Aszteroida(1, true, new Nap(), new Uran());
@@ -125,7 +269,7 @@ public class Szkeleton {
 		t.Mozgas(0);
 	}
 
-	public void VasVisszahelyez() {
+	public static void VasVisszahelyez() {
 		Aszteroida a = new Aszteroida(1, true, new Nap(), null);
 		Vas v = new Vas();
 		Telepes t = new Telepes();
@@ -135,7 +279,7 @@ public class Szkeleton {
 		t.visszarakNyersanyag(v);
 	}
 
-	public void SzenVisszahelyez() {
+	public static void SzenVisszahelyez() {
 		Aszteroida a = new Aszteroida(1, true, new Nap(), null);
 		Szen sz = new Szen();
 		Telepes t = new Telepes();
@@ -145,7 +289,7 @@ public class Szkeleton {
 		t.visszarakNyersanyag(sz);
 	}
 
-	public void UranVisszahelyezes() {
+	public static void UranVisszahelyezes() {
 		Aszteroida a = new Aszteroida(1, true, new Nap(), null);
 		Aszteroida b = new Aszteroida(1, true, new Nap(), new Vas());
 		Uran u = new Uran();
@@ -165,7 +309,7 @@ public class Szkeleton {
 		t.visszarakNyersanyag(u);
 	}
 
-	public void VizjegVisszahelyezes() {
+	public static void VizjegVisszahelyezes() {
 		Aszteroida a = new Aszteroida(1, true, new Nap(), null);
 		Vizjeg v = new Vizjeg();
 		Telepes t = new Telepes();
@@ -175,7 +319,7 @@ public class Szkeleton {
 		t.visszarakNyersanyag(v);
 	}
 
-	public void mozgasTeleporttal() {
+	public static void mozgasTeleporttal() {
 		Nap nap = new Nap();
 		Aszteroida a = new Aszteroida(3, false, nap, new Szen());
 		Portal p2 = new Portal();
@@ -196,7 +340,7 @@ public class Szkeleton {
 						// és nem fogyaszt sok erõforrást így fejlesztõi döntés miatt marad.
 	}
 
-	public void uranBanyaszat() {
+	public static void uranBanyaszat() {
 		Nap nap = new Nap();
 		Telepes t = new Telepes();
 		Aszteroida a = new Aszteroida(3, false, nap, new Uran());
@@ -205,7 +349,7 @@ public class Szkeleton {
 		a.Banyaszat();
 	}
 
-	public void vasBanyaszat() {
+	public static void vasBanyaszat() {
 		Nap nap = new Nap();
 		Telepes t = new Telepes();
 		Aszteroida a = new Aszteroida(3, false, nap, new Vas());
@@ -214,7 +358,7 @@ public class Szkeleton {
 		a.Banyaszat();
 	}
 
-	public void vizjegBanyaszat() {
+	public static void vizjegBanyaszat() {
 		Nap nap = new Nap();
 		Telepes t = new Telepes();
 		Aszteroida a = new Aszteroida(3, false, nap, new Vizjeg());
@@ -223,7 +367,7 @@ public class Szkeleton {
 		a.Banyaszat();
 	}
 
-	public void szenBanyaszat() {
+	public static void szenBanyaszat() {
 		Nap nap = new Nap();
 		Telepes t = new Telepes();
 		Aszteroida a = new Aszteroida(3, false, nap, new Szen());
@@ -232,7 +376,7 @@ public class Szkeleton {
 		a.Banyaszat();
 	}
 
-	public void robotFurasUran() {
+	public static void robotFurasUran() {
 		Robot r = new Robot();
 		Robot r2 = new Robot();
 		Aszteroida a = new Aszteroida(2, false, new Nap(), new Uran());
@@ -248,7 +392,7 @@ public class Szkeleton {
 
 	}
 
-	public void telepesFurasUran() {
+	public static void telepesFurasUran() {
 
 		Aszteroida a = new Aszteroida(1, true, new Nap(), new Uran());
 		Aszteroida b = new Aszteroida(1, true, new Nap(), new Szen());
@@ -268,21 +412,21 @@ public class Szkeleton {
 		a.Furas();
 	}
 
-	public void Vizjegfuras() {
+	public static void Vizjegfuras() {
 		Telepes t = new Telepes();
 		Aszteroida a = new Aszteroida(1, true, new Nap(), new Vizjeg());
 		t.beallitAszteroida(a);
 		t.Furas();
 	}
 
-	public void Vasfuras() {
+	public static void Vasfuras() {
 		Telepes t = new Telepes();
 		Aszteroida a = new Aszteroida(1, true, new Nap(), new Vas());
 		t.beallitAszteroida(a);
 		t.Furas();
 	}
 
-	public void Napvihar() {
+	public static void Napvihar() {
 		Nap nap = new Nap();
 		Aszteroida a = new Aszteroida(1, true, nap, new Vas());
 		Telepes t = new Telepes();
@@ -297,7 +441,7 @@ public class Szkeleton {
 		nap.Lepes();
 	}
 
-	public void portalkapuEpites() {
+	public static void portalkapuEpites() {
 		Telepes t = new Telepes();
 		NyersanyagKoltseg nyk1 = new NyersanyagKoltseg();
 		NyersanyagKoltseg nyk2 = new NyersanyagKoltseg(); // robotéptéshez használt
@@ -307,7 +451,7 @@ public class Szkeleton {
 		t.epitPortal();
 	}
 
-	public void robotEpites() {
+	public static void robotEpites() {
 		Telepes t = new Telepes();
 		NyersanyagKoltseg nyk1 = new NyersanyagKoltseg(); // portalépítéshez használt
 		NyersanyagKoltseg nyk2 = new NyersanyagKoltseg();
@@ -319,7 +463,7 @@ public class Szkeleton {
 
 	}
 
-	public void portalLehelyezes() {
+	public static void portalLehelyezes() {
 		Telepes t = new Telepes();
 		Aszteroida a = new Aszteroida(3, false, new Nap(), new Szen()); // telepes helyezkedik el
 																		// rajta
@@ -331,7 +475,7 @@ public class Szkeleton {
 
 		p1.setBirtokos(t);
 		p2.setBirtokos(t);
-		if (Kerdes("Van a telepesnél portal?")) {
+		if (Cin.getBool("Van a telepesnél portal?")) {
 			t.setPortal(p1);
 
 			p1.beallitPar(p2);

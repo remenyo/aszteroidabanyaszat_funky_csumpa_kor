@@ -5,16 +5,19 @@ import java.util.ArrayList;
 public class Jatek {
 
 	public static final Jatek INSTANCE = new Jatek();
-	public static int telepesszam = 0;
+	public static Integer telepesszam = 0;
 	public static ArrayList<Leptetheto> leptethetok;
 
-	public static final int MIN_SZEN = 3;
-	public static final int MIN_URAN = 3;
-	public static final int MIN_VIZJEG = 3;
-	public static final int MIN_VAS = 3;
+	public static Integer MIN_SZEN = 3;
+	public static Integer MIN_URAN = 3;
+	public static Integer MIN_VIZJEG = 3;
+	public static Integer MIN_VAS = 3;
 
-	public static final float ROBOT_MOZOG_FUR_ARANY = 3;
-	public static final float MIN_TELEPES_NYERESHEZ = 1;
+	// a mozgás valószínûsége, ha nem mozog épp a robot akkor fúr
+	public static final double ROBOT_MOZGAS_VALOSZINUSEG = 0.7;
+
+	// ha ennél kevesebb telepes marad a játékban
+	public static final double MIN_TELEPES_NYERESHEZ = 1;
 
 	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();

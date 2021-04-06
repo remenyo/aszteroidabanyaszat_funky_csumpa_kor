@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * elõrejelzéssel, most tesztelés miatt egybõl napvihart hív.
  */
 public class Nap implements Leptetheto {
+	// TODO: a nap globális? akkor ez is legyen singleton
 	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>(); // Nap körüli
 																				// aszteroidákat
 																				// tároló lista
