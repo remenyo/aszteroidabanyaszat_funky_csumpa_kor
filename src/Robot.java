@@ -17,6 +17,8 @@ public class Robot extends Szereplo {
 	//A robot lépése egy körben, ami lehet fúrás vagy mozgás
 	public void Lepes() {
 		Log.call();
+		
+			
 		int cselekves = RandomUtils.randomIntHatarokKozott(0, 4);
 
 		// mekkora eséllyel fúrjon vagy mozogjon
@@ -25,6 +27,7 @@ public class Robot extends Szereplo {
 			mozgasIntelligencia();
 		else
 			Furas();
+		
 
 	}
 

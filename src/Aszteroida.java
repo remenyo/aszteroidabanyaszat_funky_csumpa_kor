@@ -11,9 +11,9 @@ public class Aszteroida extends Hely {
     private Boolean napkozel;
     private ArrayList<Szereplo> szereplok;
     private ArrayList<Hely> szomszedok;
-    private Nap nap;
+    private Nap nap; // nem iratjuk ki
     private Nyersanyag nyersanyag;
-    private static NyersanyagKoltseg urbazisKoltseg;
+    private static NyersanyagKoltseg urbazisKoltseg; // nem iratjuk ki
 
     /**
      * Aszteroida konstruktor
