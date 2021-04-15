@@ -15,7 +15,7 @@ public class Szen extends Nyersanyag {
     public void ellenorizVesztett() {
         Log.call();
         osszesSzen--;
-        if (!Cin.getBool("Van elég szén még a játékban a gyõzelemhez?")) {
+        if (osszesSzen < 3) {
             Jatek.jatekVegeVesztett();
         }
     }
