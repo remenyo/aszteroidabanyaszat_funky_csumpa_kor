@@ -214,4 +214,20 @@ public class Telepes extends Szereplo {
 		Log.call();
 		portal.add(p);
 	}
+	
+	public String toString() {
+    	String kimenet;
+    	kimenet+=Szkeleton.getID(aszteroida)+":[";
+    	for (Nyersanyag nyersanyag : nyersanyagok) {
+			kimenet+=Szkeleton.getID(nyersanyag)+":";
+		}
+    	kimenet = kimenet.substring(0, kimenet.length()-2);
+    	kimenet+="]:[";
+    	for (Portal port : portal) {
+    		kimenet+=Szkeleton.getID(port)+":";
+		}
+    	kimenet = kimenet.substring(0, kimenet.length()-2);
+    	kimenet+="]";
+		return kimenet;
+    }
 }

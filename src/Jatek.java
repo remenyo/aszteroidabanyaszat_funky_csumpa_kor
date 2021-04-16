@@ -164,5 +164,10 @@ public class Jatek {
 		}
 		
 	}
+	
+	public String toString() {
+		return telepesszam.toString()+":"+leptethetok.size();
+		
+	}
 
 }

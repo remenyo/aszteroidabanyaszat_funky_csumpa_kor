@@ -39,5 +39,9 @@ public class Vizjeg extends Nyersanyag {
         }
 
     }
+    
+    public String toString() {
+    	return osszesVizjeg.toString();
+    }
 
 }

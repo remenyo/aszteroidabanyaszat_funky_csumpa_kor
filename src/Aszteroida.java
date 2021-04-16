@@ -41,11 +41,6 @@ public class Aszteroida extends Hely {
         return szomszedok.get(i);
     }
 
-    @Override
-    public String toString() {
-        return "Ez itten egy Aszteroida. rétegvastagság: " + reteg;
-    }
-
     /**
      * Az aszteroida robbanás minden rajta tartózkodó entitást felrobbantja majd kivonva magát a
      * szomszédai közül, majd a játékból.

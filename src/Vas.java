@@ -20,4 +20,8 @@ public class Vas extends Nyersanyag {
             Jatek.jatekVegeVesztett();
         }
     }
+    
+    public String toString() {
+    	return osszesVas.toString();
+    }
 }
