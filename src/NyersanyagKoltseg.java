@@ -2,69 +2,69 @@ package src;
 
 import java.util.ArrayList;
 
+/**
+ * masolatTarolo - A koltsegSzamitas(ArrayList<Nyersanyag> ny) paramÃ©terÃ¼l
+ * kapott nyersanyagainak mÃ¡solatÃ¡t tÃ¡rolja.
+ * koltseg - Az Ã©pÃ­tendÅ‘ eszkÃ¶z kÃ¶ltsÃ©gÃ©t tÃ¡rolja.
+ */
 public class NyersanyagKoltseg {
     ArrayList<Nyersanyag> koltseg;
     ArrayList<Nyersanyag> masolatTarolo;
 
 
     /**
-     * Hozzáadja a költséghez a paraméterül kapott nyersanyagot
+     * Hozzï¿½adja a kï¿½ltsï¿½ghez a paramï¿½terï¿½l kapott nyersanyagot
      * 
-     * @param ny a költséghez hozzáadandó nyersanyag
+     * @param ny a kï¿½ltsï¿½ghez hozzï¿½adandï¿½ nyersanyag
      */
     public void hozzaadNyersanyag(Nyersanyag ny) {
         Log.call();
         koltseg.add(ny);
     }
 
-
-    // túlbonyolítanó, koltsegSzamitasban könnyebb
-    // public void Szukseges(Nyersanyag ny)
-    // {
-    // }
-
     /**
-     * Megkérdezi meg van-e az összes szükséges nyersanyag, majd leellenõrzi, hogy maradt-e még elég
-     * a játékban, ha nem vesztett.
-     * 
-     * @param ny nyersanyagok listája
-     * @return ha meg van az összes szükséges nyersanyag {@code true} különben {@code false}
+     * Megkï¿½rdezi meg van-e az ï¿½sszes szï¿½ksï¿½ges nyersanyag, majd leellenï¿½rzi, hogy maradt-e mï¿½g elï¿½g
+     * a jï¿½tï¿½kban, ha nem vesztett.
+     *
+     * @param ny nyersanyagok listï¿½ja
+     * @return ha meg van az ï¿½sszes szï¿½ksï¿½ges nyersanyag {@code true} kï¿½lï¿½nben {@code false}
      */
-    public boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
-        Log.call();
-        boolean vannyersanyag = Cin.getBool("Meg van nála az összes szükséges nyersanyag?");
+     //Majd a kï¿½sz ï¿½sszehasonlï¿½tï¿½s
+     public Boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
+         ArrayList<Nyersanyag> koltsegKlon = koltseg;
+         masolatTarolo = ny;
 
-        if (vannyersanyag && !Cin.getBool("Van elég nyersanyag a játék megnyeréséhez?")) {
-            Jatek.jatekVegeVesztett();
-        }
-        return vannyersanyag;
-    }
+         koltsegKlon.removeIf(this::Szukseges);
 
-    // Majd a kï¿½sz ï¿½sszehasonlï¿½tï¿½s
-    // public void koltsegSzamitas(ArrayList<Nyersanyag> ny) {
-    // ArrayList<Nyersanyag> koltsegKlon = koltseg;
-    // masolatTarolo = ny;
-
-    // for(int m=0; m<=masolatTarolo.size(); m++) {
-    // for(int k=0; k<=koltsegKlon.size(); k++) {
-    // if(masolatTarolo.get(m).azonos(koltsegKlon.get(k))) {
-    // masolatTarolo.remove(m);
-    // koltsegKlon.remove(k);
-    // m++;
-    // break;
-    // }
-    // }
-    // }
-    // }
+         if(koltsegKlon.size()==0){
+             felulirNyersanyagok(ny);
+             return true;
+         }
+         return false;
+     }
 
     /**
-     * Felülírja a költésget a paraméterül kapott listával.
+     * Ha a masolatTaroloban szerepel a paramÃ©terÃ¼l kapott nyersanyag, akkor igazzal tÃ©r vissza
+     * Az elem tÃ¶rlÃ©sre kerÃ¼l a masolatTarolobÃ³l
+     * @param k - A nyersanyag, ami szerepelhet a masolatTaroloban
+     * @return IgazsÃ¡gÃ©rtÃ©k, ha szerepel vagy nem szerepel benne
+     */
+     private Boolean Szukseges(Nyersanyag k){
+         for(Nyersanyag m : masolatTarolo)
+             if(m.azonos(k)) {
+                 masolatTarolo.remove(m);
+                 return true;
+             }
+         return false;
+     }
+
+    /**
+     * Felï¿½lï¿½rja a paramÃ©terÃ¼l kapott nyersanyagot a nyersanyagTaroloval
      * 
-     * @param ny a nyersanyaglista
+     * @param ny - felÃ¼lÃ­randÃ³ nyersanyagtÃ¶mb
      */
     public void felulirNyersanyagok(ArrayList<Nyersanyag> ny) {
-        Log.call();
-        koltseg = ny;
+        ny = masolatTarolo;
     }
 
 }
