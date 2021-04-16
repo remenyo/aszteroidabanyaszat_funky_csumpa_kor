@@ -1,79 +1,79 @@
 package src;
-
-// TODO argumentum kommentek
-public class Portal extends Hely {
-	private Boolean aktiv = false; // A portalon keresztül lehet e utazni
-	private Telepes birtokos; // A telepes aki a portált birtokolni
-	private Portal par; // A portál párja
-	private Aszteroida vegpont; // -az aszteroida, amin a portál elhelyezkedik
+/**
+ * aktiv - A portalon keresztï¿½l lehet e utazni
+ * birtokos - A telepes aki a portï¿½lt birtokolni
+ * par -A portï¿½l pï¿½rja
+ * vegpont -az aszteroida, amin a portï¿½l elhelyezkedik
+ * megkergult - a portÃ¡l megkergÃ¼ltsÃ©gÃ©t jellemzi
+ */
+public class Portal extends Hely implements Leptetheto{
+	private Boolean aktiv = false;
+	private Boolean megkergult = false;
+	private Telepes birtokos;
+	private Portal par;
+	private Aszteroida vegpont;
 
 	/**
-	 * Meghívja az aszteroidán és a párján a beszippantot.
+	 * Meghï¿½vja az aszteroidï¿½n ï¿½s a pï¿½rjï¿½n a beszippantot.
 	 */
 	public void Robbanas() {
-		Log.call();
 		par.Beszippant();
 		Beszippant();
 	}
 
 	/**
-	 * Utazhatóvá teszi a portalt
+	 * Utazhatï¿½vï¿½ teszi a portalt
 	 */
 	void beallitAktiv() {
-		Log.call();
 		aktiv = true;
 	}
 
 
 	/**
-	 * Visszaadja azt az aszteroidát, amin a portal elhelyezkedik
+	 * Visszaadja azt az aszteroidï¿½t, amin a portal elhelyezkedik
 	 * 
 	 * @return Aszteroida az aszteroida, amin a portal elhelyezkedik.
 	 */
 	public Aszteroida getVegpont() {
-		Log.call();
 		return vegpont;
 	}
 
 
 	/**
-	 * Beállítja a paraméterként kapott aszteroidát a portál végpontjának
+	 * Beï¿½llï¿½tja a paramï¿½terkï¿½nt kapott aszteroidï¿½t a portï¿½l vï¿½gpontjï¿½nak
 	 * 
-	 * @param a a beállítandó végpont
+	 * @param a a beï¿½llï¿½tandï¿½ vï¿½gpont
 	 */
 	public void beallitVegpont(Aszteroida a) {
-		Log.call();
-		vegpont = a; // megtörténik a beállítás
-		birtokos.torolPortal(this); // Többé nem fogja birtokolni telepes ezt a portált
-		birtokos = null; // A portál sem tárolja többé az õt birtokló telepest
-		vegpont.hozzaadSzomszed(this); // Az aszteroidán beállításra kerül a portál
+		vegpont = a; // megtï¿½rtï¿½nik a beï¿½llï¿½tï¿½s
+		birtokos.torolPortal(this); // Tï¿½bbï¿½ nem fogja birtokolni telepes ezt a portï¿½lt
+		birtokos = null; // A portï¿½l sem tï¿½rolja tï¿½bbï¿½ az ï¿½t birtoklï¿½ telepest
+		vegpont.hozzaadSzomszed(this); // Az aszteroidï¿½n beï¿½llï¿½tï¿½sra kerï¿½l a portï¿½l
 
 		mukodesbeHelyezes(a);
 	}
 
 
 	/**
-	 * A portál párjával való összerendelés
+	 * A portï¿½l pï¿½rjï¿½val valï¿½ ï¿½sszerendelï¿½s
 	 * 
-	 * @param p a másik portál
+	 * @param p a mï¿½sik portï¿½l
 	 */
 	public void beallitPar(Portal p) {
-		Log.call();
 		par = p;
 	}
 
 
 	/**
-	 * Ha a portálnak és a párjának is van végpontja, akkor engedélyezi az utazást két portálpár
-	 * között
+	 * Ha a portï¿½lnak ï¿½s a pï¿½rjï¿½nak is van vï¿½gpontja, akkor engedï¿½lyezi az utazï¿½st kï¿½t portï¿½lpï¿½r
+	 * kï¿½zï¿½tt
 	 * 
 	 * @param a
 	 */
 	private void mukodesbeHelyezes(Aszteroida a) {
-		Log.call();
-		if (Cin.getBool("A portal párjának van végpontja?")) { // ha nincs, akkor nem lehet
-																// utazni a két portál között
-			// Mindkét portált utazhatóvá kell tenni
+		if (par.getVegpont()!=null) { // ha nincs, akkor nem lehet
+																// utazni a kï¿½t portï¿½l kï¿½zï¿½tt
+			// Mindkï¿½t portï¿½lt utazhatï¿½vï¿½ kell tenni
 			beallitAktiv();
 			par.beallitAktiv();
 		}
@@ -81,61 +81,92 @@ public class Portal extends Hely {
 	}
 
 	/**
-	 * Megsemmisíti a portált
+	 * Megsemmisï¿½ti a portï¿½lt
 	 */
 	private void Beszippant() {
-		Log.call();
-		if (Cin.getBool("A portalnak van tulajdonosa?"))
-			// Ha telepesnél van a portál, akkor eltávolítja azt az ûrhajójából
+		if (birtokos!=null)
+			// Ha telepesnï¿½l van a portï¿½l, akkor eltï¿½volï¿½tja azt az ï¿½rhajï¿½jï¿½bï¿½l
 			birtokos.torolPortal(this);
-		if (Cin.getBool("A portal rajta van egy aszteroidán?"))
-			// Ha egy aszteroidán van a portál, akkor eltávolítja azt a felszínérõl
+		if (vegpont!=null)
+			// Ha egy aszteroidï¿½n van a portï¿½l, akkor eltï¿½volï¿½tja azt a felszï¿½nï¿½rï¿½l
 			vegpont.torolSzomszed(this);
 
 	}
 
+	/**
+	 * Ha a portÃ¡l meg van kergÃ¼lve, akkor minden kÃ¶rben mozog egyet a vÃ©gpontja valamelyik szomszÃ©djÃ¡ra
+	 */
+	public void Lepes(){
+		if(megkergult){
+			int szomszedhossz = vegpont.getSzomszedok().size();
+			Mozgas(RandomUtils.randomIntHatarokKozott(0, szomszedhossz));
+		}
+
+	}
 
 	/**
-	 * Meghívja a párján a teleportálás függvényét a megadott paraméterrel
-	 * 
-	 * @param sz
+	 * A portÃ¡l mozgÃ¡sa aszteroidÃ¡k kÃ¶zÃ¶tt
+	 * @param sorszam - a vÃ©gpontjÃ¡nak erre a sorszÃ¡mÃº szomszÃ©djÃ¡ra mozog
+	 */
+	public void Mozgas(int sorszam){
+		Hely uj= vegpont.getSzomszed(sorszam);
+		vegpont.torolSzomszed(this);
+		uj.utazasHely(this);
+
+	}
+
+	/**
+	 * Meghï¿½vja a pï¿½rjï¿½n a teleportï¿½lï¿½s fï¿½ggvï¿½nyï¿½t a megadott paramï¿½terrel
+	 *
+	 * @param sz - Szereplo, akit utaztat
 	 */
 	public void Utazas(Szereplo sz) {
-		Log.call();
-		if (Cin.getBool("A portal aktív?"))
-			par.Teleportalas(sz);
+		if (aktiv)
+			par.teleportalas(sz);
 	}
 
 
 	/**
-	 * A paraméterként kapott szereplõt utaztatja a végpontjára
-	 * 
-	 * @param sz
+	 * A paramï¿½terkï¿½nt kapott szereplï¿½t utaztatja a vï¿½gpontjï¿½ra
+	 *
+	 * @param sz - Szereplo, akit elteleportÃ¡l a vÃ©gpon
 	 */
-	public void Teleportalas(Szereplo sz) {
-		Log.call();
+	public void teleportalas(Szereplo sz) {
 		vegpont.Utazas(sz);
 	}
 
+	/**
+	 * Elhelyezi a pÃ¡rjÃ¡n a paramÃ©terÃ¼l kapott Hely-et
+	 *
+	 * @param hely - Hely, akit utaztat
+	 */
+	public void utazasHely(Hely hely){
+		if (aktiv)
+			par.getVegpont().hozzaadSzomszed(hely);
+	}
+
+	public void szomszedNapvihar(){
+		megkergult=true;
+		Jatek.hozzaadLeptetheto(this);
+	}
+
 
 	/**
-	 * Õt birtokló telepes beállítása (teszthez)
+	 * ï¿½t birtoklï¿½ telepes beï¿½llï¿½tï¿½sa (teszthez)
 	 * 
-	 * @param t
+	 * @param t - portÃ¡l birtokosa
 	 */
 	public void setBirtokos(Telepes t) {
-		Log.call();
 		birtokos = t;
 	}
 
 
 	/**
-	 * Annak az aszteroidának a beállítása, amin a portál el fog helyezkedni (teszt)
+	 * Annak az aszteroidï¿½nak a beï¿½llï¿½tï¿½sa, amin a portï¿½l el fog helyezkedni (teszt)
 	 * 
-	 * @param a
+	 * @param a - az aszteroida, amin a portÃ¡l el fog helyezkedni
 	 */
 	public void setVegpont(Aszteroida a) {
-		Log.call();
 		vegpont = a;
 	}
 

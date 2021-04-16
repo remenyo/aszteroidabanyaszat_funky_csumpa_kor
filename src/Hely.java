@@ -1,15 +1,22 @@
 package src;
 
-//Az utazás az ezt az osztályt megvalósítókon keresztül létrejöhet
+//Az utazï¿½s az ezt az osztï¿½lyt megvalï¿½sï¿½tï¿½kon keresztï¿½l lï¿½trejï¿½het
 public abstract class Hely {
-	//Robbanás, melyet a leszármazottak megvalósítanak
+	//Robbanï¿½s, melyet a leszï¿½rmazottak megvalï¿½sï¿½tanak
 	public abstract void Robbanas();
 
-	//Utazás, melyet a leszármazottak megvalósítanak
+	//Szereplo utaztatÃ¡sa, melyet a leszï¿½rmazottak megvalï¿½sï¿½tanak
 	public abstract void Utazas(Szereplo sz);
 
-	public void szomszedRobbant(Aszteroida a) { // portal esetén nem kell megvalósítani
-		Log.call();
-		Robbanas(); // meghívja a leszármazottak robbanását
+	public void szomszedRobbant(Aszteroida a) { // portal esetï¿½n nem kell megvalï¿½sï¿½tani
+		Robbanas(); // meghï¿½vja a leszï¿½rmazottak robbanï¿½sï¿½t
+	}
+
+	//Hely utaztatÃ¡sa, melyet a leszï¿½rmazottak megvalï¿½sï¿½tanak
+	public abstract void utazasHely(Hely hely);
+
+	//LeszÃ¡rmazottak megvalÃ³sÃ­thatjÃ¡k, nem csinÃ¡l alapbÃ³l semmit
+	public void szomszedNapvihar(){
+
 	}
 }
