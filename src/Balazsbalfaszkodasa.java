@@ -1,5 +1,7 @@
 package src;
 
+import java.util.ArrayList;
+
 public class Balazsbalfaszkodasa {
 	static void teszt_letrehozRobot(String... argumentumok){
 		letrehoz("Robot",argumentumok[0]);
