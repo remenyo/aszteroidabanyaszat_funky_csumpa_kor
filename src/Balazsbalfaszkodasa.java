@@ -32,4 +32,23 @@ public class Balazsbalfaszkodasa {
 		}
 	}
 	
+	static void teszt_furas(String... argumentumok){
+		hiv(argumentumok[0],"furas",argumentumok[1]);
+	}
+	
+	static void teszt_napviharOkozasa(String... argumentumok){
+		for(int i = 0; i<argumentumok.length(); i++) {
+			hiv(argumentumok[i],"Napvihar",null);
+		}
+	}
+	
+	static void teszt_info(String... argumentumok){
+		hiv(argumentumok[0],"toString",null);
+	}
+	
 }
+
+
+
+
+
