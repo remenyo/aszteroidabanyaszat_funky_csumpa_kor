@@ -133,7 +133,13 @@ public class Aszteroida extends Hely {
         Log.call();
         szomszedok.add(h);
     }
-
+    
+    
+    //Nap mozgása miatt kerül be az õs függvényének megvalósítása
+    public void utazasHely(Hely hely){
+    	   hozzaadSzomszed(hely);
+    }
+    
     /**
      * Bányászáskor hívódik meg a benne lévõ nyersanyagot adja vissza és üressé teszi magát
      * 
