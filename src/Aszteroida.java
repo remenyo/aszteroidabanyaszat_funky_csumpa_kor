@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Aszteroida extends Hely {
     private Integer reteg;
     private Boolean napkozel;
+    private Boolean elorejelzesvan;
     private ArrayList<Szereplo> szereplok;
     private ArrayList<Hely> szomszedok;
     private Nap nap; 
@@ -79,7 +80,11 @@ public class Aszteroida extends Hely {
      * @see Nap
      */
     public void Napvihar() {
-        Log.call();
+       Log.call();
+       elorejelzesvan = false;
+       for(Hely h:szomszedok) {
+        	h.szomszedNapvihar();
+       }
        if(reteg!= 0 || nyersanyag != null ) {
     	   for(Szereplo sz: szereplok) {
     		   sz.Napvihar();
@@ -133,7 +138,9 @@ public class Aszteroida extends Hely {
         Log.call();
         szomszedok.add(h);
     }
-    
+    public void setElorejelzesvan() {
+    	elorejelzesvan = true;
+    }
     
     //Nap mozgása miatt kerül be az õs függvényének megvalósítása
     public void utazasHely(Hely hely){
