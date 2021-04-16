@@ -528,6 +528,20 @@ public class Szkeleton {
     	hiv(argumentumok[0],"beallitPar",argumentumok[1]);
     	hiv(argumentumok[1],"beallitPar",argumentumok[0]);
     }
+    
+    static void teszt_epitRobot(String... argumentumok) {
+    	Robot r = (Robot)hiv(argumentumok[0],"epitRobot");
+    	if(r!=null)
+    	objektumok.put(argumentumok[1],r );
+    }
+    
+    static void teszt_banyaszas(String... argumentumok) {
+    	hiv(argumentumok[0],"Banyaszat");
+    }
+    
+    static void teszt_mozgas(String... argumentumok) {
+    	hiv(argumentumok[0],"Mozgas",);
+    }
 
 	public static void portalLehelyezes() {
 		Telepes t = new Telepes();
