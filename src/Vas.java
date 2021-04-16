@@ -16,12 +16,12 @@ public class Vas extends Nyersanyag {
     public void ellenorizVesztett() {
         Log.call();
         osszesVas--;
-        if (osszesVas<3) {
+        if (osszesVas < 3) {
             Jatek.jatekVegeVesztett();
         }
     }
-    
+
     public String toString() {
-    	return osszesVas.toString()+ (char) 13 + (char) 10;
+        return osszesVas.toString() /* + (char) 13 + (char) 10 */;
     }
 }

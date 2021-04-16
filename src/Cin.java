@@ -21,13 +21,13 @@ public class Cin {
      * 
      * @return a beolvasott érték
      */
-    public static int getInt() {
+    public static Integer getInt() {
+        String input = "";
         try {
-            return scanner.nextInt();
+            input = getString();
+            return Integer.parseInt(input);
         } catch (Exception e) {
-            String s = scanner.next();
-
-            Log.error("Nem értelmezett bemenet: \"" + s + "\".");
+            Log.error("Nem értelmezett bemenet: \"" + input + "\".");
             return -1;
 
             /*
@@ -49,9 +49,7 @@ public class Cin {
         try {
             return scanner.nextLine();
         } catch (Exception e) {
-            String s = scanner.next();
-
-            Log.error("Nem értelmezett bemenet: \"" + s + "\".");
+            Log.error(e.toString());
             return "";
         }
     }
@@ -63,7 +61,7 @@ public class Cin {
      * @param kerdes A felhasználónak kiírandó kérdés.
      * @return A beírt szám, vagy -1 ha nem értlemezhetõ a bemenet.
      */
-    public static int getInt(String kerdes) {
+    public static Integer getInt(String kerdes) {
         kerdez(kerdes);
         return getInt();
     }
@@ -86,7 +84,7 @@ public class Cin {
      * @param kerdes A felhasználónak kiírandó kérdés.
      * @return {@code true} vagy {@code false}
      */
-    public static boolean getBool(String kerdes) {
+    public static Boolean getBool(String kerdes) {
         kerdez(kerdes);
         System.out.println("[1] = igen, [0] = nem");
         return getInt() == 1;
@@ -100,7 +98,7 @@ public class Cin {
      * @return Egy int ami {@code 1}-tõl lehetõségek számáig terjed. {@code -1} ha nem értelmezett a
      *         választás.
      */
-    public static int kerdez_tobbvalasz(String cim, String... lehetosegek) {
+    public static Integer kerdez_tobbvalasz(String cim, String... lehetosegek) {
         String border = "";
         for (int i = 0; i < cim.length() + 2; i++) {
             border += "-";

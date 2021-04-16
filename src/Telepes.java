@@ -1,7 +1,6 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 // Telepes a Szereplõ leszármazottja, ismeri a nála lévõ portálokat, nyersanyagokat és
 // a statikus építési költségek is ebbe az osztályba találhatók.
@@ -65,10 +64,8 @@ public class Telepes extends Szereplo {
 		Log.call();
 		Boolean elorejelzes = aszteroida.getElorejelzesvan();
 		if (elorejelzes) {
-			System.out.println("Kovetkezo korbe napvihar lesz\n");
+			Log.userInfo("A kovetkezo korben napvihar lesz\n");
 		}
-
-		// Scanner sc = new Scanner(System.in);
 		// TODO 7 opciobol választás bemenet alapján
 	}
 
@@ -235,7 +232,7 @@ public class Telepes extends Szereplo {
 		}
 		kimenet = kimenet.substring(0, kimenet.length() - 2);
 		kimenet += "]";
-		kimenet += (char) 13 + (char) 10;
+		// kimenet += (char) 13 + (char) 10;
 		return kimenet;
 	}
 }

@@ -23,8 +23,8 @@ public class Uran extends Nyersanyag {
         Log.call();
         if (a.isNapkozelben()) {
             napfenyErte++;
-            if(napfenyErte == 3) {
-            	a.Robbanas();
+            if (napfenyErte == 3) {
+                a.Robbanas();
             }
         }
     }
@@ -41,9 +41,9 @@ public class Uran extends Nyersanyag {
             Jatek.jatekVegeVesztett();
         }
     }
-    
+
     public String toString() {
-    	return osszesUran.toString()+":"+napfenyErte.toString()+ (char) 13 + (char) 10;
+        return osszesUran.toString() + ":" + napfenyErte.toString() /* + (char) 13 + (char) 10 */;
     }
 
 }

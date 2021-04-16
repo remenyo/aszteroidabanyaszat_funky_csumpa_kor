@@ -19,9 +19,9 @@ public class Szen extends Nyersanyag {
             Jatek.jatekVegeVesztett();
         }
     }
-    
+
     public String toString() {
-    	return osszesSzen.toString()+ (char) 13 + (char) 10;
+        return osszesSzen.toString() /* + (char) 13 + (char) 10 */;
     }
 
 }

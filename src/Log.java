@@ -9,16 +9,16 @@ public class Log {
     public static final Log INSTANCE = new Log();
 
     // a színek innen vannak: https://stackoverflow.com/a/45444716
-    public static final String RESET = App.COLOR_IN_TERMINAL ? "\033[0m" : "";
+    public static final String RESET = Jatek.COLOR_IN_TERMINAL ? "\033[0m" : "";
 
-    public static final String RED = App.COLOR_IN_TERMINAL ? "\033[0;31m" : ""; // RED
-    public static final String YELLOW = App.COLOR_IN_TERMINAL ? "\033[0;33m" : ""; // YELLOW
-    public static final String BLUE = App.COLOR_IN_TERMINAL ? "\033[0;34m" : ""; // BLUE
-    public static final String PURPLE = App.COLOR_IN_TERMINAL ? "\033[0;35m" : ""; // PURPLE
-    public static final String BLACK = App.COLOR_IN_TERMINAL ? "\033[0;30m" : ""; // BLACK
-    public static final String GREEN = App.COLOR_IN_TERMINAL ? "\033[0;32m" : ""; // GREEN
-    public static final String CYAN = App.COLOR_IN_TERMINAL ? "\033[0;36m" : ""; // CYAN
-    public static final String WHITE_BG = App.COLOR_IN_TERMINAL ? "\033[47m" : ""; // WHITE
+    public static final String RED = Jatek.COLOR_IN_TERMINAL ? "\033[0;31m" : ""; // RED
+    public static final String YELLOW = Jatek.COLOR_IN_TERMINAL ? "\033[0;33m" : ""; // YELLOW
+    public static final String BLUE = Jatek.COLOR_IN_TERMINAL ? "\033[0;34m" : ""; // BLUE
+    public static final String PURPLE = Jatek.COLOR_IN_TERMINAL ? "\033[0;35m" : ""; // PURPLE
+    public static final String BLACK = Jatek.COLOR_IN_TERMINAL ? "\033[0;30m" : ""; // BLACK
+    public static final String GREEN = Jatek.COLOR_IN_TERMINAL ? "\033[0;32m" : ""; // GREEN
+    public static final String CYAN = Jatek.COLOR_IN_TERMINAL ? "\033[0;36m" : ""; // CYAN
+    public static final String WHITE_BG = Jatek.COLOR_IN_TERMINAL ? "\033[47m" : ""; // WHITE
 
     private Log() {
 
@@ -41,7 +41,7 @@ public class Log {
      * Részletes log stringet építõ függvény. Az átadott hívó objektum részletesen lesz kiírva.
      * 
      * @param level A sor elején olvasható címke pl. INFO vagy WARN
-     * @param e     A logot küldõ objektum
+     * @param e A logot küldõ objektum
      * @return teljes log string
      */
     private static String verboseLogBuilder(String level, StackTraceElement e) {
@@ -54,20 +54,20 @@ public class Log {
      * leírva.
      * 
      * @param level A sor elején olvasható címke pl. INFO vagy WARN
-     * @param e     A logot küldõ objektum
+     * @param e A logot küldõ objektum
      * @return teljes log string
      */
     private static String simpleLogBuilder(String level, StackTraceElement e) {
-        return "[" + level + RESET + "] " + e.getClassName() + "." + e.getMethodName();
+        return "[" + level + RESET + "] " /* + e.getClassName() + "." + e.getMethodName() */;
     }
 
 
     /**
      * Log fõ függvény
      * 
-     * @param level               A sor elején olvasható címke pl. INFO vagy WARN
-     * @param message             A loghoz tartozó üzenet (opcionális)
-     * @param verbose             A log részletessége (true = hívó részletes leírása)
+     * @param level A sor elején olvasható címke pl. INFO vagy WARN
+     * @param message A loghoz tartozó üzenet (opcionális)
+     * @param verbose A log részletessége (true = hívó részletes leírása)
      * @param magic_stack_pointer A hívó stackban található helye
      */
     private static void log(String level, String message, boolean verbose,
@@ -96,10 +96,10 @@ public class Log {
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
      * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
-     *                argumentum: stack pointer offset
+     *        argumentum: stack pointer offset
      */
-    static void error(String message, int... options) {
-        if (App.LOG_LEVEL > 0)
+    static void error(String message, Integer... options) {
+        if (Jatek.LOG_LEVEL > 0)
             log(RED + "ERROR", message, options[0] == 1, options[1]);
     }
 
@@ -119,10 +119,10 @@ public class Log {
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
      * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
-     *                argumentum: stack pointer offset
+     *        argumentum: stack pointer offset
      */
-    static void warn(String message, int... options) {
-        if (App.LOG_LEVEL > 1)
+    static void warn(String message, Integer... options) {
+        if (Jatek.LOG_LEVEL > 1)
             log(YELLOW + "WARN", message, options[0] == 1, options[1]);
     }
 
@@ -142,10 +142,10 @@ public class Log {
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
      * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
-     *                argumentum: stack pointer offset
+     *        argumentum: stack pointer offset
      */
-    static void info(String message, int... options) {
-        if (App.LOG_LEVEL > 2)
+    static void info(String message, Integer... options) {
+        if (Jatek.LOG_LEVEL > 2)
             log(BLUE + "INFO", message, options[0] == 1, options[1]);
     }
 
@@ -165,34 +165,45 @@ public class Log {
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
      * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
-     *                argumentum: stack pointer offset
+     *        argumentum: stack pointer offset
      */
-    static void debug(String message, int... options) {
-        if (App.LOG_LEVEL > 3)
+    static void debug(String message, Integer... options) {
+        if (Jatek.LOG_LEVEL > 3)
             log(PURPLE + "DEBUG", message, options[0] == 1, options[1]);
     }
 
     /**
      * Függvényhívás logoló függvény.
      * 
-     * A kiírás be/ki kapcsolható az App.LOG_FUNCTION_CALLS beállítással.
+     * A kiírás be/ki kapcsolható az Jatek.LOG_FUNCTION_CALLS beállítással.
      * 
-     * @see App
+     * @see Jatek
      */
     static void call() {
-        if (App.LOG_FUNCTION_CALLS)
-            log(GREEN + "CALL", "", false, 0);
+        if (Jatek.LOG_FUNCTION_CALLS)
+            log(GREEN + "CALL", "", true, 0);
+    }
+
+
+    /**
+     * A játékosnak lehet üzenni ezzel a függvénnyel
+     * 
+     * @param message Az üzenet
+     */
+    static void userInfo(String message) {
+        if (Jatek.LOG_GAME_INFO)
+            log(GREEN + "JATEK", message, false, 0);
     }
 
     /**
      * Konstruktorhívást logoló függvény.
      * 
-     * A kiírás ki/be - kapcsolható az App.LOG_CONSTRUCTORS beállítással.
+     * A kiírás ki/be - kapcsolható az Jatek.LOG_CONSTRUCTORS beállítással.
      * 
-     * @see App
+     * @see Jatek
      */
     static void ctor() {
-        if (App.LOG_CONSTRUCTORS)
-            log(CYAN + "CTOR", "", false, 0);
+        if (Jatek.LOG_CONSTRUCTORS)
+            log(CYAN + "CTOR", "", true, 0);
     }
 }

@@ -13,51 +13,53 @@ import java.util.Map;
 public class Szkeleton {
 	// TODO ez már nem csak szkeleton, most már ez a "játék"
 
-	public static final Szkeleton INSTANCE = new Szkeleton();
+	private static final Szkeleton INSTANCE = new Szkeleton();
+
+	public static Szkeleton getInstance() {
+		return INSTANCE;
+	}
 
 	private static Map<String, Object> objektumok;
-
-	private static Map<String, Boolean> jatekosLepett;
+	private static Map<Field, Object> jatek_alapertelmezes;
 
 	private Szkeleton() {
 		objektumok = new TreeMap<>();
-		objektumok.put("_this", INSTANCE);
-		objektumok.put("jatek", Jatek.INSTANCE);
-		objektumok.put("nap", new Nap());
-		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
+		// TODO get alapertelmezett values for fields
 	}
 
 	public static void Fomenu() {
-		int valasz = Cin.kerdez_tobbvalasz("Fõmenü", "Játék indítás", "Parancssor",
-				"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
-		switch (valasz) {
-			case 1:
-				Jatek.jatekInditas();
-				break;
-			case 2:
-				teszt_parancssor();
-			case 3:
-				Log.info("tinglitangli");
-			case 4:
-				if (Cin.getBool("Tuti?")) {
-					Log.info("igazi rosszfiúval van dolgunk");
-				}
-			case 5:
-				return;
-			default:
-				break;
+		while (true) {
+			int valasz = Cin.kerdez_tobbvalasz("Fõmenü", "Játék indítás", "Parancssor",
+					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
+			switch (valasz) {
+				case 1:
+					Jatek.jatekInditas();
+					break;
+				case 2:
+					teszt_parancssor();
+				case 3:
+					// TODO
+					Log.info("Tinglitangli");
+				case 4:
+					teszt_reset();
+				case 5:
+					if (Cin.getBool("Ez törli a játék állapotát, biztos vagy benne?"))
+						return;
+				default:
+					break;
+			}
 		}
 	};
 
 	public static void teszt_parancssor() {
 		while (true) {
-			String parancs = Cin.getString("> ");
+			System.out.print("> ");
+			String parancs = Cin.getString();
 			parancs = parancs.replaceAll("\\s+", "");
 			if (parancs.equals(""))
 				continue;
 			if (parancs.toLowerCase().equals("kilepes")) {
 				return;
-
 			} else if (parancs.toLowerCase().equals("parancssor")) {
 				Log.info("Már a parancssorban vagy.");
 			} else {
@@ -72,17 +74,26 @@ public class Szkeleton {
 		}
 	}
 
-	private static void parancs(String parancs, String... argumentumok) {
-		try {
-			Boolean eredmeny = Boolean.class.cast(hiv("_this", "teszt_" + parancs, argumentumok));
-			if (!eredmeny) {
-				Log.warn(
-						"A parancs nem sikerült. A program lehet hogy inkonzisztens állapotba került.");
-			}
-		} catch (Exception e) {
-			Log.error("Sikertelen parancshívás!");
-			Log.error(e.toString());
+	protected static void reset() {
+		objektumok.clear();
+		objektumok.put("_this", getInstance());
+		// TODO resetJatek();
+		objektumok.put("jatek", Jatek.getInstance());
+		objektumok.put("nap", new Nap());
+		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
+
+		Log.info("RESET");
+	}
+
+	public static void teszt_reset() {
+		if (Cin.getBool(
+				"A program minden beállítása alapértelmezett értékre áll vissza, és minden létrehozott objektum törlõdik. Biztos vagy benne?")) {
+			reset();
 		}
+	}
+
+	private static void parancs(String parancs, String... argumentumok) {
+		hiv("_this", "teszt_" + parancs, argumentumok);
 	}
 
 	/**
@@ -158,7 +169,6 @@ public class Szkeleton {
 			}
 			cls = cls.getSuperclass();
 		} while (cls != null);
-
 		return null;
 	}
 
@@ -225,6 +235,8 @@ public class Szkeleton {
 					try {
 						return fuggveny.invoke(objektumok.get(id), tipusos_parameterek);
 					} catch (Exception e) {
+						Log.warn(
+								"A függvényhívás hívás nem sikerült. A program inkonzisztens állapotba kerülhetett.");
 						Log.debug(e.toString());
 					}
 				}

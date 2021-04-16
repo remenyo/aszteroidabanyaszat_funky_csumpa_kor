@@ -17,7 +17,7 @@ public class Robot extends Szereplo {
 	// A robot lépése egy körben, ami lehet fúrás vagy mozgás
 	public void Lepes() {
 		Log.call();
-		int cselekves = RandomUtils.randomIntHatarokKozott(0, 4);
+		// TODO ez kell? int cselekves = RandomUtils.randomIntHatarokKozott(0, 4);
 		// mekkora eséllyel fúrjon vagy mozogjon
 		// (fúrás gyakrabb mint a mozgás)
 		if (RandomUtils.randomBooleanValoszinuseggel(Jatek.ROBOT_MOZGAS_VALOSZINUSEG))
@@ -30,20 +30,20 @@ public class Robot extends Szereplo {
 	public void mozgasIntelligencia() {
 		Log.call();
 		// Az aszteroida szomszédainak száma, a robot eldönti hogy hanyas számúra szeretne mozogni
-		int szomszedszam = aszteroida.getSzomszedok().size()-1;
+		int szomszedszam = aszteroida.getSzomszedok().size() - 1;
 		Integer sorszam = RandomUtils.randomIntHatarokKozott(0, szomszedszam);
 		Mozgas(sorszam); // véletlenszerûen vándorlik egy szomszédra
 	}
 
 	/**
-     * Fúrja az aszteroidát, amin áll
-     */
-    public void Furas() {
-        Log.call();
-        aszteroida.Furas();
-    }
-	
-    public String toString() {
-    	return Szkeleton.getID(aszteroida)+"" + (char) 13 + (char) 10;
-    }
+	 * Fúrja az aszteroidát, amin áll
+	 */
+	public void Furas() {
+		Log.call();
+		aszteroida.Furas();
+	}
+
+	public String toString() {
+		return Szkeleton.getID(aszteroida) /* + "" + (char) 13 + (char) 10 */;
+	}
 }
