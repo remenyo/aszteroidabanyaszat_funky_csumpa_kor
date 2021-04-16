@@ -2,12 +2,14 @@ package src;
 
 public class Uran extends Nyersanyag {
     private static Integer osszesUran = 0;
+    private Integer napfenyErte;
 
     // Létrejöttekor növeli az összes urán számot eggyel
     Uran() {
         super("Urán");
         Log.ctor();
         osszesUran++;
+        napfenyErte = 0;
     }
 
 
@@ -20,7 +22,10 @@ public class Uran extends Nyersanyag {
     public void felszinreKerul(Aszteroida a) {
         Log.call();
         if (a.isNapkozelben()) {
-            a.Robbanas();
+            napfenyErte++;
+            if(napfenyErte == 3) {
+            	a.Robbanas();
+            }
         }
     }
 
@@ -32,7 +37,7 @@ public class Uran extends Nyersanyag {
     public void ellenorizVesztett() {
         Log.call();
         osszesUran--;
-        if (!Cin.getBool("Van elég urán még a játékban a gyõzelemhez?")) {
+        if (osszesUran < 3) {
             Jatek.jatekVegeVesztett();
         }
     }

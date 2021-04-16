@@ -16,7 +16,7 @@ public class Vas extends Nyersanyag {
     public void ellenorizVesztett() {
         Log.call();
         osszesVas--;
-        if (!Cin.getBool("Van elég vas még a játékban a gyõzelemhez?")) {
+        if (osszesVas<3) {
             Jatek.jatekVegeVesztett();
         }
     }

@@ -42,4 +42,8 @@ abstract public class Nyersanyag {
         Log.call();
         return this.nev.equals(ny.nev);
     }
+    
+    public String getNev() {
+    	return nev;
+    }
 }

@@ -1,11 +1,13 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Jatek {
 
 	public static final Jatek INSTANCE = new Jatek();
 	public static Integer telepesszam = 0;
+	public static Integer allapot = 0;
 	public static ArrayList<Leptetheto> leptethetok;
 
 	public static Integer MIN_SZEN = 3;
@@ -49,7 +51,6 @@ public class Jatek {
 	public static void telepesMeghal() {
 		Log.call();
 		telepesszam--;
-		Log.info(telepesszam + " telepes maradt.");
 		if (telepesszam < MIN_TELEPES_NYERESHEZ) {
 			jatekVegeVesztett();
 		}
@@ -62,7 +63,7 @@ public class Jatek {
 	public static void jatekVegeNyert() {
 		Log.call();
 		System.out.println("Gratulálunk nyertél!! :)");
-		System.exit(0);
+		allapot = 1;
 	}
 
 	/**
@@ -71,11 +72,50 @@ public class Jatek {
 	public static void jatekVegeVesztett() {
 		Log.call();
 		System.out.println("Gratulálunk vesztettél !! :)");
-		System.exit(0);
+		allapot = -1;
 	}
-
+	
+	public static void hozzaadLeptetheto(Leptetheto l){
+		Log.call();
+		leptethetok.add(l);
+	}
+	
+	//TODO kivonni a nyersanyagokat, Aszteroida konstruktora
 	public static void jatekInditas() {
 		Log.call();
+		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
+		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
+		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
+		RobothozNyersanyag.hozzaadNyersanyag(new Szen());
+		RobothozNyersanyag.hozzaadNyersanyag(new Vas());
+		RobothozNyersanyag.hozzaadNyersanyag(new Uran());
+		
+		PortalhozNyersanyag.hozzaadNyersanyag(new Uran());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg());
+		
+		for(int i = 0; i<3;i++) {
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran());
+		}
+		
+		Telepes.hozzaadKoltseg(RobothozNyersanyag);
+		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
+		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
+		
+		Nap n = new Nap();
+		leptethetok.add(n);
+		for (int i = 0; i < 50; i++) {
+			Aszteroida a = new Aszteroida();
+			//itt ezt majd 5 kor
+		}
+		allapot = 0;
+		while(allapot == 0) {
+			Kor();
+		}
 	}
 
 }

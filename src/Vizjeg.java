@@ -34,7 +34,7 @@ public class Vizjeg extends Nyersanyag {
     public void ellenorizVesztett() {
         Log.call();
         osszesVizjeg--;
-        if (!Cin.getBool("Van elég vízjég még a játékban a gyõzelemhez?")) {
+        if (osszesVizjeg < 3) {
             Jatek.jatekVegeVesztett();
         }
 

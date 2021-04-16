@@ -1,15 +1,14 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 // Telepes a Szereplõ leszármazottja, ismeri a nála lévõ portálokat, nyersanyagokat és
 // a statikus építési költségek is ebbe az osztályba találhatók.
 public class Telepes extends Szereplo {
 	private ArrayList<Nyersanyag> nyersanyagok; // A telepesnél lévõ nyersanyagokat tárolja.
-	private static ArrayList<NyersanyagKoltseg> epiteskoltseg; // A portál és robot építésének a
-																// költségét tárolja.
+	private static ArrayList<NyersanyagKoltseg> epiteskoltseg; // A portál és robot építésének a költségét tárolja.
 	private ArrayList<Portal> portal;// A Telepesnél lévõ portálokat tárolja.
-
 
 	Telepes() {
 		nyersanyagok = new ArrayList<Nyersanyag>();
@@ -17,7 +16,6 @@ public class Telepes extends Szereplo {
 		portal = new ArrayList<Portal>();
 		Jatek.telepesszam++;
 	}
-
 
 	/**
 	 * Meghívja a szereplõ mozgás függvényét amivel egy mésik aszteroidára utazik a telepes, majd
@@ -39,7 +37,7 @@ public class Telepes extends Szereplo {
 	public void Banyaszat() {
 		Log.call();
 		Nyersanyag temp = aszteroida.Banyaszat();
-		if (Cin.getBool("Van az aszteroidában nyersanyag?")) {
+		if(temp != null){
 			nyersanyagok.add(temp);
 			aszteroida.ellenorizNyert();
 		}
@@ -64,6 +62,12 @@ public class Telepes extends Szereplo {
 	@Override
 	public void Lepes() {
 		Log.call();
+		Boolean elorejelzes = aszteroida.getElorejelzesvan();
+		if(elorejelzes){
+			System.out.println("Kovetkezo korbe napvihar lesz\n");
+		}
+		Scanner sc = new Scanner(System.in);
+		//TODO 7 opciobol választás bemenet alapján
 	}
 
 	/**
@@ -73,7 +77,7 @@ public class Telepes extends Szereplo {
 	 */
 	public void epitRobot() {
 		Log.call();
-		boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
+		Boolean vaneleg = epiteskoltseg.get(0).koltsegSzamitas(nyersanyagok);
 		if (vaneleg) {
 			Robot r = new Robot();
 			aszteroida.Utazas(r);
@@ -89,8 +93,8 @@ public class Telepes extends Szereplo {
 	 */
 	public void epitPortal() {
 		Log.call();
-		if (!Cin.getBool("Van a telepesnél portálkapu?")) {
-			boolean vaneleg = epiteskoltseg.get(0).koltsegSzamitas(nyersanyagok);
+		if(portal.size()<=1){
+			Boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
 			if (vaneleg) {
 				Portal p1 = new Portal();
 				Portal p2 = new Portal();
@@ -159,11 +163,16 @@ public class Telepes extends Szereplo {
 	public void Meghal() {
 		Log.call();
 		Log.debug("Telepes meghal");
-		portal.remove(0); // Teszt kedvéért remove mert nem azt mutatná be mint amit mutatunk a
-							// szekvencián.
-		nyersanyagok.get(0).Robbanas();;
-		super.Meghal();
+		aszteroida.torolSzereplo(this);
+		for(int i = 0; i< portal.size(); i++){
+			portal.get(i).Robbanas();
+		}
+		for(int i = 0; i< nyersanyagok.size(); i++){
+			nyersanyagok.get(i).Robbanas();
+		}
+		Jatek.torolLeptetheto(this);
 		Jatek.telepesMeghal();
+		//super.meghal??
 	}
 
 
@@ -174,7 +183,9 @@ public class Telepes extends Szereplo {
 	 */
 	public void hozzaadNyersanyag(Nyersanyag ny) {
 		Log.call();
-		nyersanyagok.add(ny);
+		if(nyersanyagok.size()<10){
+			nyersanyagok.add(ny);
+		}
 	}
 
 

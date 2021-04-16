@@ -10,25 +10,16 @@ abstract public class Szereplo implements Leptetheto {
         Jatek.leptethetok.add(this); // Szereplõ létrejöttekor a léptethetõk listája is bõvül
     }
 
-
     /**
      * Az aszteroida paraméterül kapott sorszámú szomszédjára utazik és a jelenlegirõl törli magát
      * 
      * @param sorszam Az aszteroida azonosítója
      */
-    public void Mozgas(int sorszam) {
+    public void Mozgas(Integer sorszam) {
         Log.call();
         Hely uj = aszteroida.getSzomszed(sorszam);
         aszteroida.torolSzereplo(this);
         uj.Utazas(this);
-    }
-
-    /**
-     * Fúrja az aszteroidát, amin áll
-     */
-    public void Furas() {
-        Log.call();
-        aszteroida.Furas();
     }
 
     /**
@@ -53,9 +44,9 @@ abstract public class Szereplo implements Leptetheto {
      */
     public void Robbanas() {
         Log.call();
+        Meghal();
         // TODO a leszármazottak valósítják meg
     }
-
 
     /**
      * Telepes leszármazott visszaadja a szereplõ nyersanyagjait
@@ -74,7 +65,6 @@ abstract public class Szereplo implements Leptetheto {
         Log.call();
     }
 
-
     /**
      * Beállítja a paraméterül kapott aszteroidát jelenleginek
      * 
@@ -83,5 +73,6 @@ abstract public class Szereplo implements Leptetheto {
     public void beallitAszteroida(Aszteroida a) {
         Log.call();
         aszteroida = a;
+        a.hozzaadSzereplo(this);
     }
 }
