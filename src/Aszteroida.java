@@ -281,7 +281,7 @@ public class Aszteroida extends Hely {
     }
     
     public String toString() {
-    	String kimenet;
+    	String kimenet="";
     	kimenet+=reteg.toString()+":"+napkozel.toString();
     	
     	Szkeleton sz = Szkeleton.INSTANCE;
