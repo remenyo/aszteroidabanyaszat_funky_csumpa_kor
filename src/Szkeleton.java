@@ -23,35 +23,52 @@ public class Szkeleton {
 		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
 	}
 
-	private static Object egyParameterTipusForditas(Class<?> tipus, String argumentum)
-			throws Exception {
-		// van ilyen objektumunk tárolva véletlen?
-		if (objektumok.containsKey(argumentum.toLowerCase())) {
-			if (tipus.isInstance(objektumok.get(argumentum))) {
-				// ünnepeljünk, megtaláltuk
-				return objektumok.get(argumentum);
+	/**
+	 * Visszaad egy tipus típusú objektumot, aminek az értéke az ertek. Ha létezik ertek
+	 * azonosítóval tipus típusú objektum az objektumok tömbben, akkor azt az objektumot adja
+	 * vissza. Ha nem sikeres az átalakítás, a függvény kivételt generál.
+	 * 
+	 * @param tipus A visszaadandó objektum típusa
+	 * @param ertek Az objektum értéke
+	 * @return {@code tipus} típusú, {@code ertek} értékû objektum
+	 * @throws Exception Ha nem sikerül az átlakítás, kivételt generál a függvény.
+	 */
+	private static Object egyParameterTipusForditas(Class<?> tipus, String ertek) throws Exception {
+		// van ilyen objektumunk t˜rolva v˜letlen?
+		if (objektumok.containsKey(ertek.toLowerCase())) {
+			if (tipus.isInstance(objektumok.get(ertek))) {
+				// ˜nnepelj˜nk, megtal˜ltuk
+				return objektumok.get(ertek);
 			}
 		}
 		// fallback
-		if (argumentum.equals("null")) {
+		if (ertek.equals("null")) {
 			return null;
 		} else {
 			try {
-				return tipus.getMethod("valueOf", String.class).invoke(null, argumentum);
+				return tipus.getMethod("valueOf", String.class).invoke(null, ertek);
 			} catch (Exception e) {
 				Log.error(e.toString());
-				Log.debug(tipus.toString() + " " + argumentum.toString());
+				Log.debug(tipus.toString() + " " + ertek.toString());
 				throw new Exception("Fordítás sikertelen", e);
 			}
 		}
 	}
 
-	private static Object[] tobbParameterTipusForditas(Class<?>[] tipusok, String[] argumentumok) {
-		if (tipusok.length == argumentumok.length) {
+	/**
+	 * Az ertekek tömb érékeit a tipus tömb szerinti típusú objektumokká alakítja, majd visszaadja
+	 * õket egy tömbben. Hiba esetén null-al tér vissza.
+	 * 
+	 * @param tipusok kívánt típusok
+	 * @param ertekek kívánt értékek
+	 * @return {@code tipus} típusú, {@code ertek} értékû objektum tömb
+	 */
+	private static Object[] tobbParameterTipusForditas(Class<?>[] tipusok, String[] ertekek) {
+		if (tipusok.length == ertekek.length) {
 			ArrayList<Object> parameterek = new ArrayList<>();
 			for (int i = 0; i < tipusok.length; i++) {
 				try {
-					parameterek.add(egyParameterTipusForditas(tipusok[i], argumentumok[i]));
+					parameterek.add(egyParameterTipusForditas(tipusok[i], ertekek[i]));
 				} catch (Exception e) {
 					Log.error(e.toString());
 					return null;
@@ -62,6 +79,13 @@ public class Szkeleton {
 		return null;
 	}
 
+	/**
+	 * Megkeres és visszaadja a cls osztály vagy annak õsében található adattag_nev nevû adattagot.
+	 * 
+	 * @param cls A keresendõ osztály
+	 * @param adattag_nev A keresendõ adattag név
+	 * @return A megtalált adattag. Ha nem létezik, nullal tér vissza.
+	 */
 	private static Field adattagKereses(Class<?> cls, String adattag_nev) {
 
 		do {
@@ -76,6 +100,16 @@ public class Szkeleton {
 		return null;
 	}
 
+	/**
+	 * Létrehoz egy tipus típusú objektumot az argumentumok felhasználásával, majd elmenti az
+	 * objektumok tömbbe, id azonosítóval. Ha nem talál megfelelõ konstruktort, vagy nem tudja
+	 * átalakítani az argumentumokat megfelelõ típusra vagy az id azonosító foglalt, nem hoz létre
+	 * semmit.
+	 * 
+	 * @param tipus
+	 * @param id
+	 * @param argumentumok
+	 */
 	public static void letrehoz(String tipus, String id, String... argumentumok) {
 		if (objektumok.containsKey(id)) {
 			Log.error("A megadott azonos˜t˜ m˜r l˜tezik! (" + id + ")");
@@ -84,12 +118,12 @@ public class Szkeleton {
 		try {
 			Class<?> cls = Class.forName("src." + tipus);
 			Constructor<?>[] constructors = cls.getDeclaredConstructors();
-			// v˜gign˜zem a konstruktorokat
+			// végignézem a konstruktorokat
 			for (Constructor<?> constructor : constructors) {
 				Object[] tipusos_parameterek =
 						tobbParameterTipusForditas(constructor.getParameterTypes(), argumentumok);
 
-				if (tipusos_parameterek != null) { // A L˜NYEG
+				if (tipusos_parameterek != null) { // A LÉNYEG
 					try {
 						objektumok.put(id.toLowerCase(),
 								constructor.newInstance(tipusos_parameterek));
@@ -105,6 +139,15 @@ public class Szkeleton {
 		}
 	}
 
+	/**
+	 * Az id azonosítójú objektumon meghívja a fuggveny_nev nevû függvényt az argumentumok
+	 * argumentumokkal. A visszatérési érték a hívott függvény eredménye
+	 * 
+	 * @param id
+	 * @param fuggveny_nev
+	 * @param argumentumok
+	 * @return
+	 */
 	public static Object hiv(String id, String fuggveny_nev, String... argumentumok) {
 		if (!objektumok.containsKey(id)) {
 			Log.error("A megadott azonosító nem létezik! (" + id + ")");
@@ -127,6 +170,14 @@ public class Szkeleton {
 		return null;
 	}
 
+	/**
+	 * Az id azonosítójú objektum adattag_neve nevû adattagját uj_ertek értékre állítja be, ha
+	 * létezik az adattag, és átalakítható az uj_ertek az adattag típusára.
+	 * 
+	 * @param id
+	 * @param adattag_neve
+	 * @param uj_ertek
+	 */
 	public static void beallit(String id, String adattag_neve, String uj_ertek) {
 		Field adattag = adattagKereses(objektumok.get(id).getClass(), adattag_neve);
 		int modifier = adattag.getModifiers();

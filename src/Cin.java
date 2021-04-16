@@ -41,6 +41,22 @@ public class Cin {
     }
 
     /**
+     * Egy {@code String}-et olvas be a bemenetrõl. (egy sort.)
+     * 
+     * @return a beolvasott érték
+     */
+    public static String getString() {
+        try {
+            return scanner.nextLine();
+        } catch (Exception e) {
+            String s = scanner.next();
+
+            Log.error("Nem értelmezett bemenet: \"" + s + "\".");
+            return "";
+        }
+    }
+
+    /**
      * Feltesz egy kérdést a felhasználónak, majd egy {@code int}-et olvas be a bemenetrõl. Ha a
      * bemenet nem értelmezhetõ, a függvény -1-t ad vissza.
      * 
@@ -50,6 +66,17 @@ public class Cin {
     public static int getInt(String kerdes) {
         kerdez(kerdes);
         return getInt();
+    }
+
+    /**
+     * Feltesz egy kérdést a felhasználónak, majd egy {@code String}-et olvas be a bemenetrõl.
+     * 
+     * @param kerdes A felhasználónak kiírandó kérdés.
+     * @return A beírt szöveg.
+     */
+    public static String getString(String kerdes) {
+        kerdez(kerdes);
+        return getString();
     }
 
     /**
@@ -68,7 +95,7 @@ public class Cin {
     /**
      * Menü szerepet betöltõ függvény.
      * 
-     * @param cim         Menü neve
+     * @param cim Menü neve
      * @param lehetosegek A választható elemek
      * @return Egy int ami {@code 1}-tõl lehetõségek számáig terjed. {@code -1} ha nem értelmezett a
      *         választás.
