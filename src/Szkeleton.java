@@ -34,10 +34,10 @@ public class Szkeleton {
 	 * @throws Exception Ha nem sikerül az átlakítás, kivételt generál a függvény.
 	 */
 	private static Object egyParameterTipusForditas(Class<?> tipus, String ertek) throws Exception {
-		// van ilyen objektumunk t˜rolva v˜letlen?
+		// van ilyen objektumunk tárolva véletlen?
 		if (objektumok.containsKey(ertek.toLowerCase())) {
 			if (tipus.isInstance(objektumok.get(ertek))) {
-				// ˜nnepelj˜nk, megtal˜ltuk
+				
 				return objektumok.get(ertek);
 			}
 		}
@@ -112,7 +112,7 @@ public class Szkeleton {
 	 */
 	public static void letrehoz(String tipus, String id, String... argumentumok) {
 		if (objektumok.containsKey(id)) {
-			Log.error("A megadott azonos˜t˜ m˜r l˜tezik! (" + id + ")");
+			Log.error("A megadott azonosító már létezik! (" + id + ")");
 			return;
 		}
 		try {
@@ -513,6 +513,21 @@ public class Szkeleton {
 		t.epitRobot();
 
 	}
+	
+	static void teszt_letrehozPortalAszteroida(String... argumentumok){
+		letrehoz("Portal",argumentumok[0]);
+        beallit(argumentumok[0],"aszteroida",argumentumok[1]);
+    }
+
+    static void teszt_osszekotAszteroida(String... argumentumok){
+        hiv(argumentumok[0],"hozzaadSzomszed",argumentumok[1]);
+        hiv(argumentumok[1],"hozzaadSzomszed",argumentumok[0]);
+    }
+
+    static void teszt_osszekotPortal(String... argumentumok){
+    	hiv(argumentumok[0],"beallitPar",argumentumok[1]);
+    	hiv(argumentumok[1],"beallitPar",argumentumok[0]);
+    }
 
 	public static void portalLehelyezes() {
 		Telepes t = new Telepes();
