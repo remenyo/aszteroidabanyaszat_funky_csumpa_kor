@@ -67,6 +67,7 @@ public class Telepes extends Szereplo {
 		if (elorejelzes) {
 			System.out.println("Kovetkezo korbe napvihar lesz\n");
 		}
+		
 		// Scanner sc = new Scanner(System.in);
 		// TODO 7 opciobol választás bemenet alapján
 	}
@@ -96,18 +97,20 @@ public class Telepes extends Szereplo {
 	 */
 	public ArrayList<Portal> epitPortal() {
 		Log.call();
+		Portal p1;
+		Portal p2;
+		ArrayList<Portal> temp = new ArrayList<Portal>();
 		if (portal.size() <= 1) {
 			Boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
 			if (vaneleg) {
-				Portal p1 = new Portal();
-				Portal p2 = new Portal();
+				p1 = new Portal();
+				p2 = new Portal();
 				p1.beallitPar(p2);
 				p2.beallitPar(p1);
+				temp.add(p1);
+				temp.add(p2);
 			}
 		}
-		ArrayList<Portal> temp = new ArrayList<Portal>();
-		temp.add(p1);
-		temp.add(p2);
 		return temp;
 	}
 
@@ -213,6 +216,11 @@ public class Telepes extends Szereplo {
 	public void setPortal(Portal p) {
 		Log.call();
 		portal.add(p);
+	}
+	
+
+	public ArrayList<Portal> getPortal(){
+		return portal;
 	}
 	
 	public String toString() {
