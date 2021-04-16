@@ -67,4 +67,8 @@ public class Nap implements Leptetheto {
 		Log.call();
 		aszteroidak = a;
 	}
+	
+	public String toString() {
+		return Integer.toString(aszteroidak.size())+"" + (char) 13 + (char) 10;
+	}
 }

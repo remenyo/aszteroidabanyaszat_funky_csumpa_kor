@@ -170,4 +170,8 @@ public class Portal extends Hely implements Leptetheto{
 		vegpont = a;
 	}
 
+	public String toString() {
+		Szkeleton sz = Szkeleton.INSTANCE;
+		return aktiv.toString()+":"+sz.getID(birtokos)+":"+sz.getID(par)+":"sz.getID(vegpont)+":"+megkergult.toString()+"" + (char) 13 + (char) 10;
+	}
 }

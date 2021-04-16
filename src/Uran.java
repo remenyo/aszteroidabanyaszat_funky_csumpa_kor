@@ -41,5 +41,9 @@ public class Uran extends Nyersanyag {
             Jatek.jatekVegeVesztett();
         }
     }
+    
+    public String toString() {
+    	return osszesUran.toString()+":"+napfenyErte.toString()+ (char) 13 + (char) 10;
+    }
 
 }

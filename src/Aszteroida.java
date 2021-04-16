@@ -41,11 +41,6 @@ public class Aszteroida extends Hely {
         return szomszedok.get(i);
     }
 
-    @Override
-    public String toString() {
-        return "Ez itten egy Aszteroida. rétegvastagság: " + reteg;
-    }
-
     /**
      * Az aszteroida robbanás minden rajta tartózkodó entitást felrobbantja majd kivonva magát a
      * szomszédai közül, majd a játékból.
@@ -283,6 +278,27 @@ public class Aszteroida extends Hely {
     public ArrayList<Hely> getSzomszedok() {
         Log.call();
         return szomszedok;
+    }
+    
+    public String toString() {
+    	String kimenet;
+    	kimenet+=reteg.toString()+":"+napkozel.toString();
+    	
+    	Szkeleton sz = Szkeleton.INSTANCE;
+    	kimenet+=":[";
+    	for (Szereplo szereplo : szereplok) {
+    		kimenet+=sz.getID(szereplo)+":";
+		}
+    	kimenet = kimenet.substring(0, kimenet.length()-2);
+    	kimenet+="]:[";
+    	for (Hely szomszed : szomszedok) {
+			kimenet+=sz.getID(szomszed)+":";
+		}
+    	kimenet = kimenet.substring(0, kimenet.length()-2);
+    	kimenet += "]:"+sz.getID(nyersanyag).toString();
+    	kimenet += "" + (char) 13 + (char) 10;
+    	return kimenet;
+    	
     }
 
 }

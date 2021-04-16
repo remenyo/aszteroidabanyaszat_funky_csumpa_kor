@@ -43,4 +43,7 @@ public class Robot extends Szereplo {
         aszteroida.Furas();
     }
 	
+    public String toString() {
+    	return Szkeleton.getID(aszteroida)+"" + (char) 13 + (char) 10;
+    }
 }
