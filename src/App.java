@@ -11,16 +11,11 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         Log.info("Program elindult");
-        Szkeleton.letrehoz("Aszteroida", "aszteroida_1", "3", "false", "nap", "null");
-        Szkeleton.letrehoz("Aszteroida", "aszteroida_2", "3", "false", "nap", "null");
-        Szkeleton.beallit("aszteroida_1", "reteg", "0");
-        System.out.println(Szkeleton.info("aszteroida_1"));
-        System.out.println(Szkeleton.info("aszteroida_2"));
 
         do {
             // Szkeleton szkeleton = new Szkeleton();
             // info
-            Szkeleton.Menu();
+            Szkeleton.Fomenu();
         } while (Cin.getBool("Kezdjük újra?"));
 
         Log.info("A játék leállt.");

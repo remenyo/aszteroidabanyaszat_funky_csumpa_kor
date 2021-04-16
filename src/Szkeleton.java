@@ -26,17 +26,19 @@ public class Szkeleton {
 		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
 	}
 
-	public void run() {
+	public static void Fomenu() {
 		int valasz = Cin.kerdez_tobbvalasz("Fõmenü", "Játék indítás", "Parancssor",
 				"Teszt betöltés", "Kilépés");
 		switch (valasz) {
-			case 0:
+			case 1:
 				Jatek.jatekInditas();
 				break;
-			case 1:
-				// parancssor
+			case 2:
 				teszt_parancssor();
-
+			case 3:
+				Log.info("tinglitangli");
+			case 4:
+				return;
 			default:
 				break;
 		}
@@ -45,6 +47,9 @@ public class Szkeleton {
 	public static void teszt_parancssor() {
 		while (true) {
 			String parancs = Cin.getString("> ");
+			parancs = parancs.replaceAll("\\s+", "");
+			if (parancs.equals(""))
+				continue;
 			if (parancs.toLowerCase().equals("kilepes")) {
 				return;
 
@@ -52,21 +57,26 @@ public class Szkeleton {
 				Log.info("Már a parancssorban vagy.");
 			} else {
 				String[] argumentumok = parancs.split(":");
-				if (argumentumok.length > 2)
+				if (argumentumok.length == 1) {
+					parancs(argumentumok[0]);
+				} else if (argumentumok.length >= 2) {
 					parancs(argumentumok[0],
 							Arrays.copyOfRange(argumentumok, 1, argumentumok.length));
+				}
 			}
 		}
 	}
 
 	private static void parancs(String parancs, String... argumentumok) {
 		try {
-			if (Boolean.class.cast(hiv("_this", "teszt_" + parancs, argumentumok))) {
+			Boolean eredmeny = Boolean.class.cast(hiv("_this", "teszt_" + parancs, argumentumok));
+			if (!eredmeny) {
 				Log.warn(
 						"A parancs nem sikerült. A program lehet hogy inkonzisztens állapotba került.");
 			}
 		} catch (Exception e) {
 			Log.error("Sikertelen parancshívás!");
+			Log.error(e.toString());
 		}
 	}
 
@@ -197,10 +207,11 @@ public class Szkeleton {
 	 */
 	public static Object hiv(String id, String fuggveny_nev, String... argumentumok) {
 		if (!objektumok.containsKey(id)) {
-			Log.error("A megadott azonosító nem létezik! (" + id + ")");
+			Log.error("Az azonosító nem létezik! (" + id + ")");
 			return null;
 		}
-		Method[] fuggvenyek = objektumok.get(id).getClass().getMethods();
+		Class<?> cls = objektumok.get(id).getClass();
+		Method[] fuggvenyek = cls.getMethods();
 		for (Method fuggveny : fuggvenyek) {
 			if (fuggveny.getName().equals(fuggveny_nev)) {
 				Object[] tipusos_parameterek =
@@ -214,6 +225,8 @@ public class Szkeleton {
 				}
 			}
 		}
+		Log.warn(fuggveny_nev + " nem található, vagy a megadott paraméterek nem megfelelõek. ("
+				+ cls.getName() + " osztályon hívva).");
 		return null;
 	}
 
@@ -257,7 +270,7 @@ public class Szkeleton {
 		return "";
 	}
 
-	public static void Menu() {
+	public static void JatekMenu() {
 		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás ûrhajóval", "Mozgás teleport kapun keresztül",
 				"Bányászat", "Vízjég Fúrás", "Urán fúrás", "Fúrás vas", "Portálkapu építés",
 				"Robot építés", "Nyersanyag visszahelyezés", "Portál lehelyezés",
