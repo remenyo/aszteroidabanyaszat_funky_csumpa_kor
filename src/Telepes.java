@@ -56,6 +56,41 @@ public class Telepes extends Szereplo {
 		return nyersanyagok;
 	}
 
+	
+	private void mozgasMenu() {
+		Integer szomszeddb = aszteroida.getSzomszedok().size() + 1;
+		Integer valasztas = Cin.getInt("Melyik helyre szeretne utazni az aszteroida " + szomszeddb + " db szomszédja közül? (1-" + szomszeddb);
+		if((valasztas > szomszeddb) && (valasztas <= 0)) {
+			System.out.println("Nem jót adott meg!");
+		}else {
+			Mozgas(valasztas-1);
+		}
+	}
+	
+	private void nyersanyagvisszarakMenu() {
+		if(!nyersanyagok.isEmpty()) {
+			System.out.println("Melyik nyersanyagot szeretné visszarakni?(sorszámával válaszoljon)");
+			Integer db = 0;
+			for(int i = 0; i < nyersanyagok.size(); i++) {
+				if(nyersanyagok.get(i).getNev().equals("Urán")) {
+					System.out.println(i+1 + ". " + nyersanyagok.get(i).getNev() + " napközelben felszínre kerülések száma: " + ((Uran)nyersanyagok.get(i)).getnapFenyerte());	
+				}else {
+					System.out.print(i+1 + ". " + nyersanyagok.get(i).getNev());
+				}	
+				db = i+1;
+			}
+			Integer valasztas = Cin.getInt();
+			if((valasztas > db) && (valasztas <= 0)) {
+				System.out.println("Nem jót adott meg!");
+			}else {
+				visszarakNyersanyag(nyersanyagok.get(valasztas-1));
+			}
+		}else {
+			System.out.println("Nincs nyersanyaga!");
+		}
+	}
+	
+	
 	/**
 	 * Teszt alatt egyszer se hívódik meg de majd rendes mûködés alatt itt választhat a felhasználó,
 	 * hogy mit szeretne csinálni a telepessel, és a választásnak megfelelõ függvény fog meghívódni.
@@ -65,9 +100,38 @@ public class Telepes extends Szereplo {
 		Log.call();
 		Boolean elorejelzes = aszteroida.getElorejelzesvan();
 		if (elorejelzes) {
-			System.out.println("Kovetkezo korbe napvihar lesz\n");
+			System.out.println("Kovetkezo korbe napvihar lesz");
 		}
-		
+		int valasz = Cin.kerdez_tobbvalasz("Képességek", "Mozgás", "Fúrás",
+				"Bányászat", "Robotépítés és lehelyezés", "Teleportkapupár-építés",
+				"Teleportkapu-lehelyezés", "Nyersanyag visszahelyezés");
+		switch (valasz) {
+			case 1:
+				mozgasMenu();
+				break;
+			case 2:
+				Furas();
+				break;
+			case 3:
+				Banyaszat();
+				break;
+			case 4:
+				epitRobot();
+				break;
+			case 5:
+				epitPortal();
+				break;
+			case 6:
+				if(!portal.isEmpty()) {
+					lehelyezPortal(portal.get(0));
+				}
+				break;
+			case 7:
+				nyersanyagvisszarakMenu();
+				return;
+			default:
+				break;
+		}
 		// Scanner sc = new Scanner(System.in);
 		// TODO 7 opciobol választás bemenet alapján
 	}
@@ -182,6 +246,11 @@ public class Telepes extends Szereplo {
 		Jatek.telepesMeghal();
 		// super.meghal??
 	}
+	
+	public void Furas() {
+        Log.call();
+        aszteroida.Furas();
+    }
 
 
 	/**
@@ -224,7 +293,7 @@ public class Telepes extends Szereplo {
 	}
 	
 	public String toString() {
-    	String kimenet;
+    	String kimenet = new String();
     	kimenet+=Szkeleton.getID(aszteroida)+":[";
     	for (Nyersanyag nyersanyag : nyersanyagok) {
 			kimenet+=Szkeleton.getID(nyersanyag)+":";
