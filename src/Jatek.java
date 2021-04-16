@@ -25,6 +25,8 @@ public class Jatek {
 	
 	public static final Integer SZOMSZED_SZAM = 8;
 	
+	public static Boolean robot_robbanas_elso_szomszed = false;
+	
 	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
@@ -84,7 +86,7 @@ public class Jatek {
 		leptethetok.add(l);
 	}
 	
-	//TODO kivonni a nyersanyagokat, Aszteroida konstruktora
+	//TODO kivonni a nyersanyagokat
 	public static void jatekInditas() {
 		Log.call();
 		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
@@ -127,6 +129,9 @@ public class Jatek {
 				a.setNyersanyag(null);
 			}
 			
+			a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
+			a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
+			
 			if(i == 0) {
 				for (int j = 0; j < JATEKOS_SZAM; j++) {
 					Telepes t = new Telepes();
@@ -157,6 +162,7 @@ public class Jatek {
 				}
 			}
 		}
+		
 	}
 
 }
