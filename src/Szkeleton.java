@@ -16,11 +16,68 @@ public class Szkeleton {
 
 	private static Map<String, Object> objektumok;
 
+	private static Map<String, Boolean> jatekosLepett;
+
 	private Szkeleton() {
 		objektumok = new TreeMap<>();
+		objektumok.put("_this", INSTANCE);
 		objektumok.put("jatek", Jatek.INSTANCE);
 		objektumok.put("nap", new Nap());
 		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
+	}
+
+	public static void Fomenu() {
+		int valasz = Cin.kerdez_tobbvalasz("Fõmenü", "Játék indítás", "Parancssor",
+				"Teszt betöltés", "Kilépés");
+		switch (valasz) {
+			case 1:
+				Jatek.jatekInditas();
+				break;
+			case 2:
+				teszt_parancssor();
+			case 3:
+				Log.info("tinglitangli");
+			case 4:
+				return;
+			default:
+				break;
+		}
+	};
+
+	public static void teszt_parancssor() {
+		while (true) {
+			String parancs = Cin.getString("> ");
+			parancs = parancs.replaceAll("\\s+", "");
+			if (parancs.equals(""))
+				continue;
+			if (parancs.toLowerCase().equals("kilepes")) {
+				return;
+
+			} else if (parancs.toLowerCase().equals("parancssor")) {
+				Log.info("Már a parancssorban vagy.");
+			} else {
+				String[] argumentumok = parancs.split(":");
+				if (argumentumok.length == 1) {
+					parancs(argumentumok[0]);
+				} else if (argumentumok.length >= 2) {
+					parancs(argumentumok[0],
+							Arrays.copyOfRange(argumentumok, 1, argumentumok.length));
+				}
+			}
+		}
+	}
+
+	private static void parancs(String parancs, String... argumentumok) {
+		try {
+			Boolean eredmeny = Boolean.class.cast(hiv("_this", "teszt_" + parancs, argumentumok));
+			if (!eredmeny) {
+				Log.warn(
+						"A parancs nem sikerült. A program lehet hogy inkonzisztens állapotba került.");
+			}
+		} catch (Exception e) {
+			Log.error("Sikertelen parancshívás!");
+			Log.error(e.toString());
+		}
 	}
 
 	/**
@@ -150,10 +207,11 @@ public class Szkeleton {
 	 */
 	public static Object hiv(String id, String fuggveny_nev, String... argumentumok) {
 		if (!objektumok.containsKey(id)) {
-			Log.error("A megadott azonosító nem létezik! (" + id + ")");
+			Log.error("Az azonosító nem létezik! (" + id + ")");
 			return null;
 		}
-		Method[] fuggvenyek = objektumok.get(id).getClass().getMethods();
+		Class<?> cls = objektumok.get(id).getClass();
+		Method[] fuggvenyek = cls.getMethods();
 		for (Method fuggveny : fuggvenyek) {
 			if (fuggveny.getName().equals(fuggveny_nev)) {
 				Object[] tipusos_parameterek =
@@ -167,6 +225,8 @@ public class Szkeleton {
 				}
 			}
 		}
+		Log.warn(fuggveny_nev + " nem található, vagy a megadott paraméterek nem megfelelõek. ("
+				+ cls.getName() + " osztályon hívva).");
 		return null;
 	}
 
@@ -210,74 +270,22 @@ public class Szkeleton {
 		return "";
 	}
 
-	public static void Menu() {
-
+	public static void JatekMenu() {
 		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás ûrhajóval", "Mozgás teleport kapun keresztül",
 				"Bányászat", "Vízjég Fúrás", "Urán fúrás", "Fúrás vas", "Portálkapu építés",
 				"Robot építés", "Nyersanyag visszahelyezés", "Portál lehelyezés",
 				"Robot Urán fúrás", "Napvihar")) {
-			case 1:
-				MozgasUrhajoval();
-				break;
-			case 2:
-				mozgasTeleporttal();
-				break;
-			case 3:
-				BanyaszatMenu();
-				break;
-			case 4:
-				Vizjegfuras();
-				break;
-			case 5:
-				telepesFurasUran();
-				break;
-			case 6:
-				Vasfuras();
-				break;
-			case 7:
-				portalkapuEpites();
-				break;
-			case 8:
-				robotEpites();
-				break;
-			case 9:
-				NyersanyagVisszahelyezesMenu();
-				break;
-			case 10:
-				portalLehelyezes();
-				break;
-			case 11:
-				robotFurasUran();
-				break;
-			case 12:
-				Napvihar();
-				break;
-			case 13:
-				System.exit(0);
-				break;
+			// TODO
 
 			default:
 				break;
 		}
-
-
 	}
 
 	public static void BanyaszatMenu() {
 		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán Bányászat", "Vízjég Bányászat",
 				"Szén Bányászat", "Vas Bányászat")) {
-			case 1:
-				uranBanyaszat();
-				break;
-			case 2:
-				vizjegBanyaszat();
-				break;
-			case 3:
-				szenBanyaszat();
-				break;
-			case 4:
-				vasBanyaszat();
-				break;
+			// TODO
 
 			default:
 				break;
@@ -289,25 +297,12 @@ public class Szkeleton {
 				+ "3. Szén visszahelyezés\r\n" + "4. Vas visszahelyezés");
 		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán visszahelyezés", "Vízjég visszahelyezés",
 				"Szén visszahelyezés", "Vas visszahelyezés")) {
-			case 1:
-				UranVisszahelyezes();
-				break;
-			case 2:
-				VizjegVisszahelyezes();
-				break;
-			case 3:
-				VasVisszahelyez();
-				break;
-			case 4:
-				SzenVisszahelyez();
-				break;
+			// TODO
 
 			default:
 				break;
 		}
 	}
-
-
 	// Az elején levõ inicializálás mindenhol a megfelelõ mûködés érdekében van.
 	public static void MozgasUrhajoval() {
 		Telepes t = new Telepes();
@@ -561,5 +556,23 @@ public class Szkeleton {
 
 			t.lehelyezPortal(p1);
 		}
+	}
+	static void teszt_letrehozNyersanyag(String... argumentumok){
+		  letrehoz(argumentumok[1],argumentumok[0]); //TODO kell-e null mert konsruktor ures
+	}
+	
+	static void teszt_letrehozAszteroida(String... argumentumok){
+		  letrehoz("Aszteroida",argumentumok[0],"nap");
+		  hiv(argumentumok[0],"setReteg",argumentumok[1]);
+		  hiv(argumentumok[0],"setNapkozel",argumentumok[2]);
+		  hiv(argumentumok[0],"setNyersanyag",argumentumok[3]);
+	}
+	static void teszt_letrehozTelepes(String... argumentumok){
+		  letrehoz("Telepes",argumentumok[0]); //TODO kell-e null mert konstruktor ures
+		  hiv(argumentumok[0],"beallitAszteroida",argumentumok[1]); //aszteroidan is rajta lesz a telepes
+		  String[] nyersanyagok = Arrays.copyOfRange(argumentumok, 2, argumentumok.length);
+		  for(int i = 0; i<nyersanyagok.length;i++) {
+			  hiv(argumentumok[0],"hozzaadNyersanyag",nyersanyagok[i]); 
+		  }
 	}
 }
