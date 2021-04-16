@@ -13,7 +13,7 @@ public class Ufo extends Szereplo {
 		Log.call();
 		Boolean sikeres = nyersanyagFelvetel();
 		if(sikeres) {
-			Integer sorszam = RandomUtils.randomIntHatarokKozott(0, aszteroida.getSzomszedok().size());
+			Integer sorszam = RandomUtils.randomIntHatarokKozott(0, aszteroida.getSzomszedok().size()-1);
 			Mozgas(sorszam);
 		}
 	}

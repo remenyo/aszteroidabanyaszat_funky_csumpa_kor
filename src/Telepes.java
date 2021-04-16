@@ -98,8 +98,6 @@ public class Telepes extends Szereplo {
 			if (vaneleg) {
 				Portal p1 = new Portal();
 				Portal p2 = new Portal();
-				portal.add(p1);
-				portal.add(p2);
 				p1.beallitPar(p2);
 				p2.beallitPar(p1);
 			}
