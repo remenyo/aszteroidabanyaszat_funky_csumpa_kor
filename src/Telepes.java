@@ -7,10 +7,8 @@ import java.util.Scanner;
 // a statikus építési költségek is ebbe az osztályba találhatók.
 public class Telepes extends Szereplo {
 	private ArrayList<Nyersanyag> nyersanyagok; // A telepesnél lévõ nyersanyagokat tárolja.
-	private static ArrayList<NyersanyagKoltseg> epiteskoltseg; // A portál és robot építésének a
-																// költségét tárolja.
+	private static ArrayList<NyersanyagKoltseg> epiteskoltseg; // A portál és robot építésének a költségét tárolja.
 	private ArrayList<Portal> portal;// A Telepesnél lévõ portálokat tárolja.
-
 
 	Telepes() {
 		nyersanyagok = new ArrayList<Nyersanyag>();
@@ -18,7 +16,6 @@ public class Telepes extends Szereplo {
 		portal = new ArrayList<Portal>();
 		Jatek.telepesszam++;
 	}
-
 
 	/**
 	 * Meghívja a szereplõ mozgás függvényét amivel egy mésik aszteroidára utazik a telepes, majd
