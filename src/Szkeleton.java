@@ -566,4 +566,22 @@ public class Szkeleton {
 			t.lehelyezPortal(p1);
 		}
 	}
+	static void teszt_letrehozNyersanyag(String... argumentumok){
+		  letrehoz(argumentumok[1],argumentumok[0]); //TODO kell-e null mert konsruktor ures
+	}
+	
+	static void teszt_letrehozAszteroida(String... argumentumok){
+		  letrehoz("Aszteroida",argumentumok[0],"nap");
+		  hiv(argumentumok[0],"setReteg",argumentumok[1]);
+		  hiv(argumentumok[0],"setNapkozel",argumentumok[2]);
+		  hiv(argumentumok[0],"setNyersanyag",argumentumok[3]);
+	}
+	static void teszt_letrehozTelepes(String... argumentumok){
+		  letrehoz("Telepes",argumentumok[0]); //TODO kell-e null mert konstruktor ures
+		  hiv(argumentumok[0],"beallitAszteroida",argumentumok[1]); //aszteroidan is rajta lesz a telepes
+		  String[] nyersanyagok = Arrays.copyOfRange(argumentumok, 2, argumentumok.length);
+		  for(int i = 0; i<nyersanyagok.length;i++) {
+			  hiv(argumentumok[0],"hozzaadNyersanyag",nyersanyagok[i]); 
+		  }
+	}
 }
