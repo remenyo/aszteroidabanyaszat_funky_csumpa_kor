@@ -70,7 +70,7 @@ public class Telepes extends Szereplo {
 			System.out.println("Kovetkezo korbe napvihar lesz\n");
 		}
 		Scanner sc = new Scanner(System.in);
-		//7 opciobol választás bemenet alapján
+		//TODO 7 opciobol választás bemenet alapján
 	}
 
 	/**

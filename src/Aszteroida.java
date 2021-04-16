@@ -141,6 +141,9 @@ public class Aszteroida extends Hely {
     public void setElorejelzesvan() {
     	elorejelzesvan = true;
     }
+    public Boolean getElorejelzesvan() {
+    	return elorejelzesvan;
+    }
     
     //Nap mozgása miatt kerül be az õs függvényének megvalósítása
     public void utazasHely(Hely hely){

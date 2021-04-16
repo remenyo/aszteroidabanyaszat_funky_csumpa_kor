@@ -18,11 +18,24 @@ public class Nap implements Leptetheto {
 
 	public void Lepes() {
 		Log.call();
-		if(napviharfolyamatban) {
+		if(!napviharfolyamatban) {
 			if(RandomUtils.randomIntHatarokKozott(0, 100)<=5) {
 				napviharravarok.clear();
-				
+				for(int i = 0; i<aszteroidak.size()/2;i++) {
+					Aszteroida randomNapviharravaro = aszteroidak.get(RandomUtils.randomIntHatarokKozott(0, aszteroidak.size()-1));
+					if(!napviharravarok.contains(randomNapviharravaro)) {
+						napviharravarok.add(randomNapviharravaro);
+					}
+				}
+				for(Aszteroida a: napviharravarok) {
+					a.setElorejelzesvan();
+				}
 			}
+		}else {
+			for(Aszteroida a: napviharravarok) {
+				a.Napvihar();
+			}
+			napviharfolyamatban = false;
 		}
 	}
 
@@ -41,7 +54,7 @@ public class Nap implements Leptetheto {
 	// de most teszteléshez nem használjuk.
 	// TODO napvihar
 	private void Napvihar() {
-		Log.call();
+		Log.call(); // kell-e?
 	}
 
 
