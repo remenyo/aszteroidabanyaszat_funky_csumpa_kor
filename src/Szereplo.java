@@ -16,7 +16,7 @@ abstract public class Szereplo implements Leptetheto {
      * 
      * @param sorszam Az aszteroida azonosítója
      */
-    public void Mozgas(int sorszam) {
+    public void Mozgas(Integer sorszam) {
         Log.call();
         Hely uj = aszteroida.getSzomszed(sorszam);
         aszteroida.torolSzereplo(this);
@@ -53,6 +53,7 @@ abstract public class Szereplo implements Leptetheto {
      */
     public void Robbanas() {
         Log.call();
+        Meghal();
         // TODO a leszármazottak valósítják meg
     }
 
