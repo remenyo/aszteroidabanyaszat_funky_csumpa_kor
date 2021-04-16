@@ -216,10 +216,12 @@ public class Telepes extends Szereplo {
 		portal.add(p);
 	}
 	
+<<<<<<< HEAD
 	public ArrayList<Portal> getPortal(){
 		return portal;
 	}
 	
+=======
 	public String toString() {
     	String kimenet;
     	kimenet+=Szkeleton.getID(aszteroida)+":[";
