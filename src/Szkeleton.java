@@ -534,9 +534,7 @@ public class Szkeleton {
     	hiv(argumentumok[0],"Banyaszat");
     }
     
-    static void teszt_mozgas(String... argumentumok) {
-    	hiv(argumentumok[0],"Mozgas",);
-    }
+  
 
 	public static void portalLehelyezes() {
 		Telepes t = new Telepes();
@@ -579,4 +577,9 @@ public class Szkeleton {
 			  hiv(argumentumok[0],"hozzaadNyersanyag",nyersanyagok[i]); 
 		  }
 	}
+	
+	static void teszt_mozgas(String... argumentumok) {
+    	hiv(argumentumok[0],"Mozgas",); //TODO daninak majd ejfelkor
+	}
+	
 }
