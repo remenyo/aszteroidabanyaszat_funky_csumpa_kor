@@ -1,12 +1,11 @@
 package src;
+
 /**
- * aktiv - A portalon kereszt�l lehet e utazni
- * birtokos - A telepes aki a port�lt birtokolni
- * par -A port�l p�rja
- * vegpont -az aszteroida, amin a port�l elhelyezkedik
- * megkergult - a portál megkergültségét jellemzi
+ * aktiv - A portalon kereszt�l lehet e utazni birtokos - A telepes aki a port�lt birtokolni par
+ * -A port�l p�rja vegpont -az aszteroida, amin a port�l elhelyezkedik megkergult - a portál
+ * megkergültségét jellemzi
  */
-public class Portal extends Hely implements Leptetheto{
+public class Portal extends Hely implements Leptetheto {
 	private Boolean aktiv = false;
 	private Boolean megkergult = false;
 	private Telepes birtokos;
@@ -65,14 +64,14 @@ public class Portal extends Hely implements Leptetheto{
 
 
 	/**
-	 * Ha a port�lnak �s a p�rj�nak is van v�gpontja, akkor enged�lyezi az utaz�st k�t port�lp�r
-	 * k�z�tt
+	 * Ha a port�lnak �s a p�rj�nak is van v�gpontja, akkor enged�lyezi az utaz�st
+	 * k�t port�lp�r k�z�tt
 	 * 
 	 * @param a
 	 */
 	private void mukodesbeHelyezes(Aszteroida a) {
-		if (par.getVegpont()!=null) { // ha nincs, akkor nem lehet
-																// utazni a k�t port�l k�z�tt
+		if (par.getVegpont() != null) { // ha nincs, akkor nem lehet
+										// utazni a k�t port�l k�z�tt
 			// Mindk�t port�lt utazhat�v� kell tenni
 			beallitAktiv();
 			par.beallitAktiv();
@@ -84,20 +83,21 @@ public class Portal extends Hely implements Leptetheto{
 	 * Megsemmis�ti a port�lt
 	 */
 	private void Beszippant() {
-		if (birtokos!=null)
+		if (birtokos != null)
 			// Ha telepesn�l van a port�l, akkor elt�vol�tja azt az �rhaj�j�b�l
 			birtokos.torolPortal(this);
-		if (vegpont!=null)
+		if (vegpont != null)
 			// Ha egy aszteroid�n van a port�l, akkor elt�vol�tja azt a felsz�n�r�l
 			vegpont.torolSzomszed(this);
 
 	}
 
 	/**
-	 * Ha a portál meg van kergülve, akkor minden körben mozog egyet a végpontja valamelyik szomszédjára
+	 * Ha a portál meg van kergülve, akkor minden körben mozog egyet a végpontja valamelyik
+	 * szomszédjára
 	 */
-	public void Lepes(){
-		if(megkergult){
+	public void Lepes() {
+		if (megkergult) {
 			int szomszedhossz = vegpont.getSzomszedok().size();
 			Mozgas(RandomUtils.randomIntHatarokKozott(0, szomszedhossz));
 		}
@@ -106,10 +106,11 @@ public class Portal extends Hely implements Leptetheto{
 
 	/**
 	 * A portál mozgása aszteroidák között
+	 * 
 	 * @param sorszam - a végpontjának erre a sorszámú szomszédjára mozog
 	 */
-	public void Mozgas(int sorszam){
-		Hely uj= vegpont.getSzomszed(sorszam);
+	public void Mozgas(int sorszam) {
+		Hely uj = vegpont.getSzomszed(sorszam);
 		vegpont.torolSzomszed(this);
 		uj.utazasHely(this);
 
@@ -140,13 +141,13 @@ public class Portal extends Hely implements Leptetheto{
 	 *
 	 * @param hely - Hely, akit utaztat
 	 */
-	public void utazasHely(Hely hely){
+	public void utazasHely(Hely hely) {
 		if (aktiv)
 			par.getVegpont().hozzaadSzomszed(hely);
 	}
 
-	public void szomszedNapvihar(){
-		megkergult=true;
+	public void szomszedNapvihar() {
+		megkergult = true;
 		Jatek.hozzaadLeptetheto(this);
 	}
 
@@ -171,7 +172,8 @@ public class Portal extends Hely implements Leptetheto{
 	}
 
 	public String toString() {
-		Szkeleton sz = Szkeleton.INSTANCE;
-		return aktiv.toString()+":"+sz.getID(birtokos)+":"+sz.getID(par)+":"sz.getID(vegpont)+":"+megkergult.toString()+"" + (char) 13 + (char) 10;
+		return aktiv.toString() + ":" + Szkeleton.getID(birtokos) + ":" + Szkeleton.getID(par) + ":"
+				+ Szkeleton.getID(vegpont) + ":" + megkergult.toString() + "" + (char) 13
+				+ (char) 10; // TODO nem kell ujsor
 	}
 }

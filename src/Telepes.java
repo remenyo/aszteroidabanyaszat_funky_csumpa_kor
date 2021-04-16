@@ -67,7 +67,7 @@ public class Telepes extends Szereplo {
 		if (elorejelzes) {
 			System.out.println("Kovetkezo korbe napvihar lesz\n");
 		}
-		
+
 		// Scanner sc = new Scanner(System.in);
 		// TODO 7 opciobol választás bemenet alapján
 	}
@@ -217,26 +217,25 @@ public class Telepes extends Szereplo {
 		Log.call();
 		portal.add(p);
 	}
-	
 
-	public ArrayList<Portal> getPortal(){
+
+	public ArrayList<Portal> getPortal() {
 		return portal;
 	}
-	
+
 	public String toString() {
-    	String kimenet;
-    	kimenet+=Szkeleton.getID(aszteroida)+":[";
-    	for (Nyersanyag nyersanyag : nyersanyagok) {
-			kimenet+=Szkeleton.getID(nyersanyag)+":";
+		String kimenet = Szkeleton.getID(aszteroida) + ":[";
+		for (Nyersanyag nyersanyag : nyersanyagok) {
+			kimenet += Szkeleton.getID(nyersanyag) + ":";
 		}
-    	kimenet = kimenet.substring(0, kimenet.length()-2);
-    	kimenet+="]:[";
-    	for (Portal port : portal) {
-    		kimenet+=Szkeleton.getID(port)+":";
+		kimenet = kimenet.substring(0, kimenet.length() - 2);
+		kimenet += "]:[";
+		for (Portal port : portal) {
+			kimenet += Szkeleton.getID(port) + ":";
 		}
-    	kimenet = kimenet.substring(0, kimenet.length()-2);
-    	kimenet+="]";
-    	kimenet+= (char) 13 + (char) 10;
+		kimenet = kimenet.substring(0, kimenet.length() - 2);
+		kimenet += "]";
+		kimenet += (char) 13 + (char) 10;
 		return kimenet;
-    }
+	}
 }

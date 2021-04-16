@@ -281,7 +281,7 @@ public class Szkeleton {
 				return e.getKey();
 			}
 		}
-		return "<ismeretlen_objektum>";
+		return "<ismeretlen " + object.getClass().getName() + ">";
 	}
 
 	public static void JatekMenu() {

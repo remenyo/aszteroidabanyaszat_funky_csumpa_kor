@@ -12,20 +12,20 @@ public class Aszteroida extends Hely {
     private Boolean elorejelzesvan;
     private ArrayList<Szereplo> szereplok;
     private ArrayList<Hely> szomszedok;
-    private Nap nap; 
+    private Nap nap;
     private Nyersanyag nyersanyag;
-    private static NyersanyagKoltseg urbazisKoltseg; 
+    private static NyersanyagKoltseg urbazisKoltseg;
 
     /**
      * Aszteroida konstruktor
      * 
-     * @param reteg      Az aszteroidán lévõ kõréteg kezdeti vastagsága (0-sok)
-     * @param napkozel   Napközelben van-e az aszteroida
-     * @param nap        A nap referenciája
+     * @param reteg Az aszteroidán lévõ kõréteg kezdeti vastagsága (0-sok)
+     * @param napkozel Napközelben van-e az aszteroida
+     * @param nap A nap referenciája
      * @param nyersanyag Az aszteroida magjában található nyersanyag (opcoinális)
      */
     Aszteroida(Nap nap) {
-    	this.nap = nap;
+        this.nap = nap;
         szereplok = new ArrayList<Szereplo>();
         szomszedok = new ArrayList<Hely>();
     }
@@ -45,21 +45,21 @@ public class Aszteroida extends Hely {
      * Az aszteroida robbanás minden rajta tartózkodó entitást felrobbantja majd kivonva magát a
      * szomszédai közül, majd a játékból.
      */
-    public void Robbanas() { 
+    public void Robbanas() {
         Log.call();
         // TODO rossz a sorrend, elõbb robbantjuk a robotokat, aztán töröljük a szomszédokat
         // TODO az ifek csak a tesztek miatt kellettek ne fussunk indexOutOfBounds hibába.
-        if(nyersanyag != null) {
-        	nyersanyag.Robbanas();
+        if (nyersanyag != null) {
+            nyersanyag.Robbanas();
         }
-        for(Hely h: szomszedok) {
-        	h.szomszedRobbant(this); 
+        for (Hely h : szomszedok) {
+            h.szomszedRobbant(this);
         }
-        for(Szereplo sz: szereplok) {
-        	sz.Robbanas();
+        for (Szereplo sz : szereplok) {
+            sz.Robbanas();
         }
         nap.torolAszteroida(this);
-  
+
     }
 
     /**
@@ -69,16 +69,16 @@ public class Aszteroida extends Hely {
      * @see Nap
      */
     public void Napvihar() {
-       Log.call();
-       elorejelzesvan = false;
-       for(Hely h:szomszedok) {
-        	h.szomszedNapvihar();
-       }
-       if(reteg!= 0 || nyersanyag != null ) {
-    	   for(Szereplo sz: szereplok) {
-    		   sz.Napvihar();
-    	   }
-       }
+        Log.call();
+        elorejelzesvan = false;
+        for (Hely h : szomszedok) {
+            h.szomszedNapvihar();
+        }
+        if (reteg != 0 || nyersanyag != null) {
+            for (Szereplo sz : szereplok) {
+                sz.Napvihar();
+            }
+        }
     }
 
     /**
@@ -87,10 +87,10 @@ public class Aszteroida extends Hely {
      */
     public void Furas() {
         Log.call();
-        if(reteg>0) {
-        	reteg--;
+        if (reteg > 0) {
+            reteg--;
             if (reteg == 0) {
-            	nyersanyag.felszinreKerul(this);
+                nyersanyag.felszinreKerul(this);
             }
         }
     }
@@ -106,15 +106,15 @@ public class Aszteroida extends Hely {
     public void torolSzomszed(Hely h) {
         Log.call();
         szomszedok.remove(h);
-        if (szomszedok.size()==0) {
-            for(Szereplo sz: szereplok) {
-            	sz.Meghal();
-            }                         
-            Robbanas();                // Robbanás elõttt azért kell mindenkin meghívni a meghalt
-                                       // mert a robbanásban a robot nem halna meg
-                                       // hanem csak másik szomszédos aszteroidára kerülne de mivel
-                                       // nincs szomszéd ezért õ is meghal.
-            
+        if (szomszedok.size() == 0) {
+            for (Szereplo sz : szereplok) {
+                sz.Meghal();
+            }
+            Robbanas(); // Robbanás elõttt azért kell mindenkin meghívni a meghalt
+                        // mert a robbanásban a robot nem halna meg
+                        // hanem csak másik szomszédos aszteroidára kerülne de mivel
+                        // nincs szomszéd ezért õ is meghal.
+
         }
     }
 
@@ -123,25 +123,28 @@ public class Aszteroida extends Hely {
      * 
      * @param h A hozzáadadndó hely.
      */
-    public void hozzaadSzomszed(Hely h) { 
+    public void hozzaadSzomszed(Hely h) {
         Log.call();
         szomszedok.add(h);
     }
+
     public void setElorejelzesvan() {
-    	elorejelzesvan = true;
+        elorejelzesvan = true;
     }
+
     public Boolean getElorejelzesvan() {
-    	return elorejelzesvan;
+        return elorejelzesvan;
     }
+
     public void setReteg(Integer ujReteg) {
-    	reteg = ujReteg;
+        reteg = ujReteg;
     }
-    
-    //Nap mozgása miatt kerül be az õs függvényének megvalósítása
-    public void utazasHely(Hely hely){
-    	   hozzaadSzomszed(hely);
+
+    // Nap mozgása miatt kerül be az õs függvényének megvalósítása
+    public void utazasHely(Hely hely) {
+        hozzaadSzomszed(hely);
     }
-    
+
     /**
      * Bányászáskor hívódik meg a benne lévõ nyersanyagot adja vissza és üressé teszi magát
      * 
@@ -163,9 +166,9 @@ public class Aszteroida extends Hely {
     public void ellenorizNyert() {
         Log.call();
         ArrayList<Nyersanyag> nyLista = new ArrayList<Nyersanyag>();
-        for(Szereplo sz: szereplok) {
-        	nyLista.addAll(sz.getNyersanyagok());
-        }  
+        for (Szereplo sz : szereplok) {
+            nyLista.addAll(sz.getNyersanyagok());
+        }
         if (urbazisKoltseg.koltsegSzamitas(nyLista)) {
             Jatek.jatekVegeNyert();
         }
@@ -254,9 +257,9 @@ public class Aszteroida extends Hely {
         Log.call();
         return napkozel;
     }
-    
+
     public void setNapkozel(Boolean ujNapkozel) {
-    	napkozel = ujNapkozel;
+        napkozel = ujNapkozel;
     }
 
     /**
@@ -279,26 +282,24 @@ public class Aszteroida extends Hely {
         Log.call();
         return szomszedok;
     }
-    
+
     public String toString() {
-    	String kimenet;
-    	kimenet+=reteg.toString()+":"+napkozel.toString();
-    	
-    	Szkeleton sz = Szkeleton.INSTANCE;
-    	kimenet+=":[";
-    	for (Szereplo szereplo : szereplok) {
-    		kimenet+=sz.getID(szereplo)+":";
-		}
-    	kimenet = kimenet.substring(0, kimenet.length()-2);
-    	kimenet+="]:[";
-    	for (Hely szomszed : szomszedok) {
-			kimenet+=sz.getID(szomszed)+":";
-		}
-    	kimenet = kimenet.substring(0, kimenet.length()-2);
-    	kimenet += "]:"+sz.getID(nyersanyag).toString();
-    	kimenet += "" + (char) 13 + (char) 10;
-    	return kimenet;
-    	
+        String kimenet = reteg.toString() + ":" + napkozel.toString();
+
+        kimenet += ":[";
+        for (Szereplo szereplo : szereplok) {
+            kimenet += Szkeleton.getID(szereplo) + ":";
+        }
+        kimenet = kimenet.substring(0, kimenet.length() - 2);
+        kimenet += "]:[";
+        for (Hely szomszed : szomszedok) {
+            kimenet += Szkeleton.getID(szomszed) + ":";
+        }
+        kimenet = kimenet.substring(0, kimenet.length() - 2);
+        kimenet += "]:" + Szkeleton.getID(nyersanyag).toString();
+        kimenet += "" + (char) 13 + (char) 10;
+        return kimenet;
+
     }
 
 }
