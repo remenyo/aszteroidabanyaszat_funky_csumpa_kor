@@ -21,6 +21,10 @@ public class Jatek {
 	// ha ennél kevesebb telepes marad a játékban
 	public static final double MIN_TELEPES_NYERESHEZ = 1;
 
+	public static final Integer JATEKOS_SZAM = 5;
+	
+	public static final Integer SZOMSZED_SZAM = 8;
+	
 	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
@@ -108,13 +112,50 @@ public class Jatek {
 		
 		Nap n = new Nap();
 		leptethetok.add(n);
+		ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
 		for (int i = 0; i < 50; i++) {
-			Aszteroida a = new Aszteroida();
-			//itt ezt majd 5 kor
+			Aszteroida a = new Aszteroida(n); //0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
+			if(i%5==0) {
+				a.setNyersanyag(new Vas());
+			}else if(i%5 == 1) {
+				a.setNyersanyag(new Szen());
+			}else if(i%5 == 2) {
+				a.setNyersanyag(new Vizjeg());
+			}else if(i%5 == 3) {
+				a.setNyersanyag(new Uran());
+			}else if(i%5 == 4) {
+				a.setNyersanyag(null);
+			}
+			
+			if(i == 0) {
+				for (int j = 0; j < JATEKOS_SZAM; j++) {
+					Telepes t = new Telepes();
+					a.hozzaadSzereplo(t);
+					telepesszam++;
+					leptethetok.add(t);
+				}
+			}
+			atmenetiAszteroidatar.add(a);
 		}
+		atmenetiAszteroidatar.get(0).hozzaadSzomszed(atmenetiAszteroidatar.get(atmenetiAszteroidatar.size()-1));
+		for(int i =0; i<atmenetiAszteroidatar.size()-1;i++) {
+			atmenetiAszteroidatar.get(i).hozzaadSzomszed(atmenetiAszteroidatar.get(i+1));
+			atmenetiAszteroidatar.get(i+1).hozzaadSzomszed(atmenetiAszteroidatar.get(i));
+			for(int j = 0; j<SZOMSZED_SZAM-2; j++) {
+				atmenetiAszteroidatar.get(i).hozzaadSzomszed(atmenetiAszteroidatar.get(RandomUtils.randomIntHatarokKozott(0,atmenetiAszteroidatar.size()-1 )));
+			}
+		}
+		
+		n.hozzaadAszteroidak(atmenetiAszteroidatar);
+		
 		allapot = 0;
 		while(allapot == 0) {
-			Kor();
+			for (Leptetheto leptetheto : leptethetok) {
+				leptetheto.Lepes();
+				if (allapot!=0) {
+					break;
+				}
+			}
 		}
 	}
 

@@ -24,16 +24,10 @@ public class Aszteroida extends Hely {
      * @param nap        A nap referenciája
      * @param nyersanyag Az aszteroida magjában található nyersanyag (opcoinális)
      */
-    Aszteroida(Integer reteg, Boolean napkozel, Nap nap, Nyersanyag nyersanyag) {
-        Log.ctor();
-        // TODO Aszteroida konstruktora végsõ verzióban nem így lesz tesztek kedvéért van jelenleg
-        // így ni
-        this.reteg = reteg;
-        this.napkozel = napkozel;
+    Aszteroida(Nap nap) {
+    	this.nap = nap;
         szereplok = new ArrayList<Szereplo>();
         szomszedok = new ArrayList<Hely>();
-        this.nap = nap;
-        this.nyersanyag = nyersanyag;
     }
 
     /**
@@ -143,6 +137,9 @@ public class Aszteroida extends Hely {
     }
     public Boolean getElorejelzesvan() {
     	return elorejelzesvan;
+    }
+    public void setReteg(Integer ujReteg) {
+    	reteg = ujReteg;
     }
     
     //Nap mozgása miatt kerül be az õs függvényének megvalósítása
@@ -261,6 +258,10 @@ public class Aszteroida extends Hely {
     public boolean isNapkozelben() {
         Log.call();
         return napkozel;
+    }
+    
+    public void setNapkozel(Boolean ujNapkozel) {
+    	napkozel = ujNapkozel;
     }
 
     /**
