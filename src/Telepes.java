@@ -91,7 +91,7 @@ public class Telepes extends Szereplo {
 	 * magának, ha nincs elég nyersanyag akkor nem csinál semmmit, ha van néla portál akkor se
 	 * csinál semmit.
 	 */
-	public void epitPortal() {
+	public ArrayList<Portal> epitPortal() {
 		Log.call();
 		if(portal.size()<=1){
 			Boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
@@ -102,6 +102,10 @@ public class Telepes extends Szereplo {
 				p2.beallitPar(p1);
 			}
 		}
+		ArrayList<Portal> temp = new ArrayList<Portal>();
+		temp.add(p1);
+		temp.add(p2);
+		return temp;
 	}
 
 
