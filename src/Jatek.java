@@ -166,7 +166,7 @@ public class Jatek {
 	}
 	
 	public String toString() {
-		return telepesszam.toString()+":"+leptethetok.size();
+		return telepesszam.toString()+":"+leptethetok.size() + "" + (char) 13 + (char) 10;
 		
 	}
 

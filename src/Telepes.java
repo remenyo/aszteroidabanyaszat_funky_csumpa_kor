@@ -228,6 +228,7 @@ public class Telepes extends Szereplo {
 		}
     	kimenet = kimenet.substring(0, kimenet.length()-2);
     	kimenet+="]";
+    	kimenet+= (char) 13 + (char) 10;
 		return kimenet;
     }
 }
