@@ -91,19 +91,21 @@ public class Telepes extends Szereplo {
 	 * magának, ha nincs elég nyersanyag akkor nem csinál semmmit, ha van néla portál akkor se
 	 * csinál semmit.
 	 */
-	public void epitPortal() {
+	public ArrayList<Portal> epitPortal() {
 		Log.call();
 		if(portal.size()<=1){
 			Boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
 			if (vaneleg) {
 				Portal p1 = new Portal();
 				Portal p2 = new Portal();
-				portal.add(p1);
-				portal.add(p2);
 				p1.beallitPar(p2);
 				p2.beallitPar(p1);
 			}
 		}
+		ArrayList<Portal> temp = new ArrayList<Portal>();
+		temp.add(p1);
+		temp.add(p2);
+		return temp;
 	}
 
 
