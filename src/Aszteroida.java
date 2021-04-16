@@ -284,5 +284,25 @@ public class Aszteroida extends Hely {
         Log.call();
         return szomszedok;
     }
+    
+    public String toString() {
+    	String kimenet;
+    	kimenet+=reteg.toString()+":"+napkozel.toString();
+    	
+    	Szkeleton sz = Szkeleton.INSTANCE;
+    	kimenet+=":[";
+    	for (Szereplo szereplo : szereplok) {
+    		kimenet+=sz.getID(szereplo)+":";
+		}
+    	kimenet = kimenet.substring(0, kimenet.length()-2);
+    	kimenet+="]:[";
+    	for (Hely szomszed : szomszedok) {
+			kimenet+=sz.getID(szomszed)+":";
+		}
+    	kimenet = kimenet.substring(0, kimenet.length()-2);
+    	kimenet += "]:"+sz.getID(nyersanyag).toString();
+    	return kimenet;
+    	
+    }
 
 }
