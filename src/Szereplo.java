@@ -83,5 +83,6 @@ abstract public class Szereplo implements Leptetheto {
     public void beallitAszteroida(Aszteroida a) {
         Log.call();
         aszteroida = a;
+        a.hozzaadSzereplo(this);
     }
 }

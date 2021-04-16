@@ -11,9 +11,9 @@ public class Aszteroida extends Hely {
     private Boolean napkozel;
     private ArrayList<Szereplo> szereplok;
     private ArrayList<Hely> szomszedok;
-    private Nap nap; // nem iratjuk ki
+    private Nap nap; 
     private Nyersanyag nyersanyag;
-    private static NyersanyagKoltseg urbazisKoltseg; // nem iratjuk ki
+    private static NyersanyagKoltseg urbazisKoltseg; 
 
     /**
      * Aszteroida konstruktor
@@ -55,24 +55,21 @@ public class Aszteroida extends Hely {
      * Az aszteroida robbanás minden rajta tartózkodó entitást felrobbantja majd kivonva magát a
      * szomszédai közül, majd a játékból.
      */
-    public void Robbanas() {
+    public void Robbanas() { 
         Log.call();
         // TODO rossz a sorrend, elõbb robbantjuk a robotokat, aztán töröljük a szomszédokat
         // TODO az ifek csak a tesztek miatt kellettek ne fussunk indexOutOfBounds hibába.
-        nyersanyag.Robbanas();// nem e null
-        if (szomszedok.size() != 0) {
-
-            szomszedok.get(0).szomszedRobbant(this);
-            if (szomszedok.size() == 2) {
-
-                szomszedok.get(1).szomszedRobbant(this);
-            }
+        if(nyersanyag != null) {
+        	nyersanyag.Robbanas();
         }
-        if (szereplok.size() != 0) {
-            szereplok.get(0).Robbanas();
+        for(Hely h: szomszedok) {
+        	h.szomszedRobbant(this); 
+        }
+        for(Szereplo sz: szereplok) {
+        	sz.Robbanas();
         }
         nap.torolAszteroida(this);
-
+  
     }
 
     /**
@@ -83,12 +80,11 @@ public class Aszteroida extends Hely {
      */
     public void Napvihar() {
         Log.call();
-        if (!Cin.getBool("Ures az aszteroida es ki van furva?")) {
-            szereplok.get(0).Napvihar();
-            szereplok.get(0).Napvihar(); // kétszer kell a 0áson mert amikor az elsõ elemen
-                                         // meghívódik akkor az kitörlõdik és az 1 es veszi át a
-                                         // helyét.
-        }
+       if(reteg!= 0 || nyersanyag != null ) {
+    	   for(Szereplo sz: szereplok) {
+    		   sz.Napvihar();
+    	   }
+       }
     }
 
     /**
@@ -97,11 +93,12 @@ public class Aszteroida extends Hely {
      */
     public void Furas() {
         Log.call();
-        reteg--;
-        boolean elfogyott = Cin.getBool("Elfogy a köpeny? (1:Igen 0:Nem)");
-        if (elfogyott)
-            nyersanyag.felszinreKerul(this);
-
+        if(reteg>0) {
+        	reteg--;
+            if (reteg == 0) {
+            	nyersanyag.felszinreKerul(this);
+            }
+        }
     }
 
     /**
@@ -115,14 +112,15 @@ public class Aszteroida extends Hely {
     public void torolSzomszed(Hely h) {
         Log.call();
         szomszedok.remove(h);
-        if (!Cin.getBool("Maradt szomszéd?")) {
-            szereplok.get(0).Meghal(); // Végsõ verzióban ez az összes az aszteroidán tartózkodó
-                                       // szereplõn meghívódik itt csak konkrét esetre.
-                                       // Robbanás elõttt azért kell mindenkin meghívni a meghalt
+        if (szomszedok.size()==0) {
+            for(Szereplo sz: szereplok) {
+            	sz.Meghal();
+            }                         
+            Robbanas();                // Robbanás elõttt azért kell mindenkin meghívni a meghalt
                                        // mert a robbanásban a robot nem halna meg
                                        // hanem csak másik szomszédos aszteroidára kerülne de mivel
                                        // nincs szomszéd ezért õ is meghal.
-            Robbanas();
+            
         }
     }
 
@@ -131,8 +129,7 @@ public class Aszteroida extends Hely {
      * 
      * @param h A hozzáadadndó hely.
      */
-    public void hozzaadSzomszed(Hely h) { // TODO miért hely? nem csak aszteroidát tárolunk a
-                                          // szomszédokban?
+    public void hozzaadSzomszed(Hely h) { 
         Log.call();
         szomszedok.add(h);
     }
@@ -145,7 +142,7 @@ public class Aszteroida extends Hely {
     public Nyersanyag Banyaszat() {
         Log.call();
         Nyersanyag visszaAdando = nyersanyag; // kimentjük az értéket
-        nyersanyag = null; // üressé tesszük az aszteroidát
+        torolNyersanyag(); // üressé tesszük az aszteroidát
         return visszaAdando; // nem null értéket visszaadjuk.
     }
 
@@ -157,7 +154,11 @@ public class Aszteroida extends Hely {
      */
     public void ellenorizNyert() {
         Log.call();
-        if (Cin.getBool("Megvan az összes nyersanyag?")) {
+        ArrayList<Nyersanyag> nyLista = new ArrayList<Nyersanyag>();
+        for(Szereplo sz: szereplok) {
+        	nyLista.addAll(sz.getNyersanyagok());
+        }  
+        if (urbazisKoltseg.koltsegSzamitas(nyLista)) {
             Jatek.jatekVegeNyert();
         }
     }
@@ -214,7 +215,6 @@ public class Aszteroida extends Hely {
     public void Utazas(Szereplo sz) {
         Log.call();
         sz.beallitAszteroida(this);
-        // TODO furi ez a függvény TBH
     }
 
     /**
@@ -244,7 +244,7 @@ public class Aszteroida extends Hely {
      */
     public boolean isNapkozelben() {
         Log.call();
-        return Cin.getBool("Napközelben van az aszteroida?");
+        return napkozel;
     }
 
     /**
