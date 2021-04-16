@@ -97,18 +97,20 @@ public class Telepes extends Szereplo {
 	 */
 	public ArrayList<Portal> epitPortal() {
 		Log.call();
+		Portal p1;
+		Portal p2;
+		ArrayList<Portal> temp = new ArrayList<Portal>();
 		if (portal.size() <= 1) {
 			Boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
 			if (vaneleg) {
-				Portal p1 = new Portal();
-				Portal p2 = new Portal();
+				p1 = new Portal();
+				p2 = new Portal();
 				p1.beallitPar(p2);
 				p2.beallitPar(p1);
+				temp.add(p1);
+				temp.add(p2);
 			}
 		}
-		ArrayList<Portal> temp = new ArrayList<Portal>();
-		temp.add(p1);
-		temp.add(p2);
 		return temp;
 	}
 
@@ -216,12 +218,11 @@ public class Telepes extends Szereplo {
 		portal.add(p);
 	}
 	
-<<<<<<< HEAD
+
 	public ArrayList<Portal> getPortal(){
 		return portal;
 	}
 	
-=======
 	public String toString() {
     	String kimenet;
     	kimenet+=Szkeleton.getID(aszteroida)+":[";
@@ -238,5 +239,4 @@ public class Telepes extends Szereplo {
     	kimenet+= (char) 13 + (char) 10;
 		return kimenet;
     }
->>>>>>> 397039e4025063b579f70a34ea21d7b440281c23
 }
