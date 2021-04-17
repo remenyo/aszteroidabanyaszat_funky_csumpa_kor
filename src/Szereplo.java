@@ -83,12 +83,7 @@ abstract public class Szereplo implements Leptetheto {
     
     @Override
 	public Boolean lepette() {
-		if(lepett) {
-			return true;
-		}else {
-			lepett = true;
-			return false;
-		}
+		return lepett;
 	}
     @Override
 	public void resetLepett() {

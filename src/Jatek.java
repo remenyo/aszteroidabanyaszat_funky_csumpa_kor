@@ -16,7 +16,7 @@ public class Jatek {
 		return INSTANCE;
 	}
 
-	// PROGRAM BE�LL�T�SOK
+	// PROGRAM BEÁLLÍTÁSOK
 	public static Boolean COLOR_IN_TERMINAL = true;
 	public static Boolean LOG_FUNCTION_CALLS = true;
 	public static Boolean LOG_CONSTRUCTORS = true;
@@ -25,16 +25,16 @@ public class Jatek {
 	// 2+info | 4 = 3+debug
 	public static Integer LOG_LEVEL = 4;
 
-	// J�T�K BE�LL�T�SOK
+	// JÁTÉK BEÁLLÍTÁSOK
 	public static Integer MIN_SZEN = 3;
 	public static Integer MIN_URAN = 3;
 	public static Integer MIN_VIZJEG = 3;
 	public static Integer MIN_VAS = 3;
 
-	// a mozg�s val�sz�n�s�ge, ha nem mozog �pp a robot akkor f�r
+	// a mozgás valószínűsége, ha nem mozog épp a robot akkor fúr
 	public static Double ROBOT_MOZGAS_VALOSZINUSEG = 0.7;
 
-	// ha enn�l kevesebb telepes marad a j�t�kban, a j�t�knak v�ge
+	// ha enn�l kevesebb telepes marad a játékban, a játéknak vége
 	public static Integer MIN_TELEPES_NYERESHEZ = 1;
 
 	public static Integer JATEKOS_SZAM = 5;
@@ -59,7 +59,7 @@ public class Jatek {
 	private static void beallitas_kezeles(Boolean mentes) {
 		if (mentes) {
 			if (beallitasok_backup != null)
-				Log.warn("Alap�rtelmez�sek fel�l�rva.");
+				Log.warn("Alapértelmezések felülírva.");
 			beallitasok_backup = new TreeMap<String, Object>();
 		}
 		Field[] fields = getInstance().getClass().getDeclaredFields();
@@ -92,9 +92,11 @@ public class Jatek {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
 
-	public static void init() {
+	public static void reset() {
 		Jatek.LOG_CONSTRUCTORS = false;
 		Jatek.LOG_FUNCTION_CALLS = false;
+
+		resetLepett();
 
 		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
 		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
@@ -133,7 +135,7 @@ public class Jatek {
 	/**
 	 * T�rli a param�terk�nt kapott l�ptethet�t a list�b�l
 	 * 
-	 * @param l a t�rlend� l�ptethet�
+	 * @param l a törlendő l�ptethet�
 	 */
 	public static void torolLeptetheto(Leptetheto l) {
 		Log.call();
@@ -141,7 +143,7 @@ public class Jatek {
 	}
 
 	/**
-	 * Cs�kkenti a telepessz�mot eggyel, �s ha m�r nincs el�g akkor megh�vja a j�t�k v�ge vesztett
+	 * Csökkenti a telepesszémot eggyel, és ha már nincs elég akkor meghívja a játék vége vesztett
 	 * fv.t
 	 */
 	public static void telepesMeghal() {
@@ -153,20 +155,20 @@ public class Jatek {
 	}
 
 	/**
-	 * Gratul�l a gy�zelemhez �s lez�rja a progit
+	 * Gratulál a győzelemhez és megállítja a játékot.
 	 */
 	public static void jatekVegeNyert() {
 		Log.call();
-		System.out.println("Gratul�lunk nyert�l!! :)");
+		System.out.println("Gratulálunk nyertél!! :)");
 		allapot = 1;
 	}
 
 	/**
-	 * Veres�gn�l lez�rja a progit
+	 * Vereségnél megállítja a játékot.
 	 */
 	public static void jatekVegeVesztett() {
 		Log.call();
-		System.out.println("Gratul�lunk vesztett�l !! :)");
+		System.out.println("Gratulálunk vesztettél !! :)");
 		allapot = -1;
 	}
 
@@ -227,7 +229,6 @@ public class Jatek {
 			}
 		}
 
-		n.hozzaadAszteroidak(atmenetiAszteroidatar);
 
 		allapot = 0;
 		ArrayList<Leptetheto> temp = leptethetok;
@@ -253,11 +254,11 @@ public class Jatek {
 
 	}
 
-	public static Integer getAllapot() { // TODO static?
+	public Integer getAllapot() { // TODO static?
 		return allapot;
 	}
 
-	public static Boolean mindenkiLepett() {
+	public Boolean mindenkiLepett() {
 		for (Leptetheto l : leptethetok) {
 			if (l.lepette() == false) {
 				return false;

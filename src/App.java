@@ -4,7 +4,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         Jatek.beallitas_mentes();
-        Jatek.init();
+        Jatek.reset();
         Szkeleton.reset();
         Log.info("Program elindult");
 
