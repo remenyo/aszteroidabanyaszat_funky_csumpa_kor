@@ -1,14 +1,14 @@
 package src;
 
 /**
- * Log osztály.
+ * Log osztÃ¡ly.
  * 
  */
 public class Log {
 
     public static final Log INSTANCE = new Log();
 
-    // a színek innen vannak: https://stackoverflow.com/a/45444716
+    // a szÃ­nek innen vannak: https://stackoverflow.com/a/45444716
     public static final String RESET = Jatek.COLOR_IN_TERMINAL ? "\033[0m" : "";
 
     public static final String RED = Jatek.COLOR_IN_TERMINAL ? "\033[0;31m" : ""; // RED
@@ -26,22 +26,22 @@ public class Log {
 
 
     /**
-     * Visszaadja a stack {@code top-offset}-edik elemét.
+     * Visszaadja a stack {@code top-offset}-edik elemÃ©t.
      * 
-     * @param offset Hívási sorban visszatekintés mélysége
+     * @param offset HÃ­vÃ¡si sorban visszatekintÃ©s mÃ©lysÃ©ge
      * @return StackTraceElement A stack {@code top-offset}-edik eleme.
      */
     private static StackTraceElement getCaller(int offset) {
-        // https://stackoverflow.com/a/4065546 az alap innen jött
+        // https://stackoverflow.com/a/4065546 az alap innen jÃ¶tt
         return Thread.currentThread().getStackTrace()[4 + offset]; // ?? magic
     }
 
 
     /**
-     * Részletes log stringet építõ függvény. Az átadott hívó objektum részletesen lesz kiírva.
+     * RÃ©szletes log stringet Ã©pÃ­tÅ‘ fÃ¼ggvÃ©ny. Az Ã¡tadott hÃ­vÃ³ objektum rÃ©szletesen lesz kiÃ­rva.
      * 
-     * @param level A sor elején olvasható címke pl. INFO vagy WARN
-     * @param e A logot küldõ objektum
+     * @param level A sor elejÃ©n olvashatÃ³ cÃ­mke pl. INFO vagy WARN
+     * @param e A logot kÃ¼ldÅ‘ objektum
      * @return teljes log string
      */
     private static String verboseLogBuilder(String level, StackTraceElement e) {
@@ -50,11 +50,11 @@ public class Log {
 
 
     /**
-     * Egyszerû log stringet építõ függvény. Az átadott hívó objektum pár információja lesz csak
-     * leírva.
+     * EgyszerÅ± log stringet Ã©pÃ­tÅ‘ fÃ¼ggvÃ©ny. Az Ã¡tadott hÃ­vÃ³ objektum pÃ¡r informÃ¡ciÃ³ja lesz csak
+     * leÃ­rva.
      * 
-     * @param level A sor elején olvasható címke pl. INFO vagy WARN
-     * @param e A logot küldõ objektum
+     * @param level A sor elejÃ©n olvashatÃ³ cÃ­mke pl. INFO vagy WARN
+     * @param e A logot kÃ¼ldÅ‘ objektum
      * @return teljes log string
      */
     private static String simpleLogBuilder(String level, StackTraceElement e) {
@@ -63,12 +63,12 @@ public class Log {
 
 
     /**
-     * Log fõ függvény
+     * Log fÅ‘ fÃ¼ggvÃ©ny
      * 
-     * @param level A sor elején olvasható címke pl. INFO vagy WARN
-     * @param message A loghoz tartozó üzenet (opcionális)
-     * @param verbose A log részletessége (true = hívó részletes leírása)
-     * @param magic_stack_pointer A hívó stackban található helye
+     * @param level A sor elejÃ©n olvashatÃ³ cÃ­mke pl. INFO vagy WARN
+     * @param message A loghoz tartozÃ³ Ã¼zenet (opcionÃ¡lis)
+     * @param verbose A log rÃ©szletessÃ©ge (true = hÃ­vÃ³ rÃ©szletes leÃ­rÃ¡sa)
+     * @param magic_stack_pointer A hÃ­vÃ³ stackban talÃ¡lhatÃ³ helye
      */
     private static void log(String level, String message, boolean verbose,
             int magic_stack_pointer) {
@@ -82,9 +82,9 @@ public class Log {
 
 
     /**
-     * Error üzenet logolása.
+     * Error Ã¼zenet logolÃ¡sa.
      * 
-     * @param message A loghoz tartozó üzenet (opcionális)
+     * @param message A loghoz tartozÃ³ Ã¼zenet (opcionÃ¡lis)
      */
     static void error(String message) {
         error(message, 0, 1);
@@ -92,10 +92,10 @@ public class Log {
 
 
     /**
-     * Error üzenet logolása.
+     * Error Ã¼zenet logolÃ¡sa.
      * 
-     * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
+     * @param message A loghoz tartozÃ³ Ã¼zenet (opcionÃ¡lis)
+     * @param options elsÅ‘ argumentum: 1 = rÃ©szletes hÃ­vÃ³ leÃ­rÃ¡s, 0 = egyszerÅ± hÃ­vÃ³ leÃ­rÃ¡s ; mÃ¡sodik
      *        argumentum: stack pointer offset
      */
     static void error(String message, Integer... options) {
@@ -105,9 +105,9 @@ public class Log {
 
 
     /**
-     * Warn üzenet logolása.
+     * Warn Ã¼zenet logolÃ¡sa.
      * 
-     * @param message A loghoz tartozó üzenet (opcionális)
+     * @param message A loghoz tartozÃ³ Ã¼zenet (opcionÃ¡lis)
      */
     static void warn(String message) {
         warn(message, 0, 1);
@@ -115,10 +115,10 @@ public class Log {
 
 
     /**
-     * Warn üzenet logolása.
+     * Warn Ã¼zenet logolÃ¡sa.
      * 
-     * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
+     * @param message A loghoz tartozÃ³ Ã¼zenet (opcionÃ¡lis)
+     * @param options elsÅ‘ argumentum: 1 = rÃ©szletes hÃ­vÃ³ leÃ­rÃ¡s, 0 = egyszerÅ± hÃ­vÃ³ leÃ­rÃ¡s ; mÃ¡sodik
      *        argumentum: stack pointer offset
      */
     static void warn(String message, Integer... options) {
@@ -128,9 +128,9 @@ public class Log {
 
 
     /**
-     * Info üzenet logolása.
+     * Info Ã¼zenet logolÃ¡sa.
      * 
-     * @param message A loghoz tartozó üzenet (opcionális)
+     * @param message A loghoz tartozÃ³ Ã¼zenet (opcionÃ¡lis)
      */
     static void info(String message) {
         info(message, 0, 1);
@@ -138,10 +138,10 @@ public class Log {
 
 
     /**
-     * Info üzenet logolása.
+     * Info Ã¼zenet logolÃ¡sa.
      * 
-     * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
+     * @param message A loghoz tartozÃ³ Ã¼zenet (opcionÃ¡lis)
+     * @param options elsÅ‘ argumentum: 1 = rÃ©szletes hÃ­vÃ³ leÃ­rÃ¡s, 0 = egyszerÅ± hÃ­vÃ³ leÃ­rÃ¡s ; mÃ¡sodik
      *        argumentum: stack pointer offset
      */
     static void info(String message, Integer... options) {
@@ -151,9 +151,9 @@ public class Log {
 
 
     /**
-     * Debug üzenet logolása.
+     * Debug Ã¼zenet logolÃ¡sa.
      * 
-     * @param message A loghoz tartozó üzenet (opcionális)
+     * @param message A loghoz tartozÃ³ Ã¼zenet (opcionÃ¡lis)
      */
     static void debug(String message) {
         debug(message, 0, 1);
@@ -161,10 +161,10 @@ public class Log {
 
 
     /**
-     * Debug üzenet logolása.
+     * Debug Ã¼zenet logolÃ¡sa.
      * 
-     * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
+     * @param message A loghoz tartozÃ³ Ã¼zenet (opcionÃ¡lis)
+     * @param options elsÅ‘ argumentum: 1 = rÃ©szletes hÃ­vÃ³ leÃ­rÃ¡s, 0 = egyszerÅ± hÃ­vÃ³ leÃ­rÃ¡s ; mÃ¡sodik
      *        argumentum: stack pointer offset
      */
     static void debug(String message, Integer... options) {
@@ -173,9 +173,9 @@ public class Log {
     }
 
     /**
-     * Függvényhívás logoló függvény.
+     * FÃ¼ggvÃ©nyhÃ­vÃ¡s logolÃ³ fÃ¼ggvÃ©ny.
      * 
-     * A kiírás be/ki kapcsolható az Jatek.LOG_FUNCTION_CALLS beállítással.
+     * A kiÃ­rÃ¡s be/ki kapcsolhatÃ³ az Jatek.LOG_FUNCTION_CALLS beÃ¡llÃ­tÃ¡ssal.
      * 
      * @see Jatek
      */
@@ -186,9 +186,9 @@ public class Log {
 
 
     /**
-     * A játékosnak lehet üzenni ezzel a függvénnyel
+     * A jÃ¡tÃ©kosnak lehet Ã¼zenni ezzel a fÃ¼ggvÃ©nnyel
      * 
-     * @param message Az üzenet
+     * @param message Az Ã¼zenet
      */
     static void userInfo(String message) {
         if (Jatek.LOG_GAME_INFO)
@@ -196,9 +196,9 @@ public class Log {
     }
 
     /**
-     * Konstruktorhívást logoló függvény.
+     * KonstruktorhÃ­vÃ¡st logolÃ³ fÃ¼ggvÃ©ny.
      * 
-     * A kiírás ki/be - kapcsolható az Jatek.LOG_CONSTRUCTORS beállítással.
+     * A kiÃ­rÃ¡s ki/be - kapcsolhatÃ³ az Jatek.LOG_CONSTRUCTORS beÃ¡llÃ­tÃ¡ssal.
      * 
      * @see Jatek
      */

@@ -21,7 +21,6 @@ import java.util.stream.Stream;
 import java.util.Map;
 
 public class Szkeleton {
-	// TODO ez már nem csak szkeleton, most már ez a "játék"
 
 	private static final Szkeleton INSTANCE = new Szkeleton();
 
@@ -39,8 +38,8 @@ public class Szkeleton {
 
 	public static void Fomenu() {
 		while (true) {
-			int valasz = Cin.kerdez_tobbvalasz("F�men�", "J�t�k ind�t�s", "Parancssor",
-					"Teszt bet�lt�s", "J�t�k alaphelyzetbe �ll�t�sa", "Kil�p�s");
+			int valasz = Cin.kerdez_tobbvalasz("F?menü", "Játék indítás", "Parancssor",
+					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
 			switch (valasz) {
 				case 1:
 					Jatek.jatekInditas();
@@ -49,13 +48,13 @@ public class Szkeleton {
 					teszt_parancssor();
 					break;
 				case 3:
-					teszt_betoltes(Cin.getString("A f�jl neve/c�me:"));
+					teszt_betoltes(Cin.getString("A fájl neve/címe:"));
 					break;
 				case 4:
 					teszt_reset();
 					break;
 				case 5:
-					if (Cin.getBool("Ez t�rli a j�t�k �llapot�t, biztos vagy benne?"))
+					if (Cin.getBool("Ez törli a játék állapotát, biztos vagy benne?"))
 						return;
 				default:
 					break;
@@ -140,7 +139,7 @@ public class Szkeleton {
 			if (parancs.toLowerCase().equals("kilepes")) {
 				return;
 			} else if (parancs.toLowerCase().equals("parancssor")) {
-				Log.info("M�r a parancssorban vagy.");
+				Log.info("M???r a parancssorban vagy.");
 			} else {
 				String[] argumentumok = parancs.split(":");
 				if (argumentumok.length == 1) {
@@ -167,7 +166,7 @@ public class Szkeleton {
 
 	public static void teszt_reset() {
 		if (Cin.getBool(
-				"A program minden beállítása alapértelmezett értékre áll vissza, és minden létrehozott objektum törlődik. Biztos vagy benne?")) {
+				"A program minden beállí­tása alapértelmezett értékre áll vissza, és minden létrehozott objektum törlődik. Biztos vagy benne?")) {
 			reset();
 		}
 	}
@@ -177,14 +176,14 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Visszaad egy tipus típusú objektumot, aminek az értéke az ertek. Ha létezik ertek
-	 * azonosítóval tipus típusú objektum az objektumok tömbben, akkor azt az objektumot adja
-	 * vissza. Ha nem sikeres az átalakítás, a függvény kivételt generál.
+	 * Visszaad egy tipus tí­pusú objektumot, aminek az értéke az ertek. Ha létezik ertek
+	 * azonosí­tóval tipus tí­pusú objektum az objektumok tömbben, akkor azt az objektumot adja
+	 * vissza. Ha nem sikeres az átalakí­tás, a függvény kivételt generál.
 	 * 
-	 * @param tipus A visszaadandó objektum típusa
+	 * @param tipus A visszaadandó objektum tí­pusa
 	 * @param ertek Az objektum értéke
-	 * @return {@code tipus} típusú, {@code ertek} értékű objektum
-	 * @throws Exception Ha nem sikerül az átlakítás, kivételt generál a függvény.
+	 * @return {@code tipus} tí­pusú, {@code ertek} értékű objektum
+	 * @throws Exception Ha nem sikerül az átlakí­tás, kivételt generál a függvény.
 	 */
 	private static Object egyParameterTipusForditas(Class<?> tipus, String ertek) throws Exception {
 		// van ilyen objektumunk tárolva véletlen?
@@ -205,18 +204,18 @@ public class Szkeleton {
 			} catch (Exception e) {
 				Log.error(e.toString());
 				Log.debug(tipus.toString() + " " + ertek.toString());
-				throw new Exception("Fordítás sikertelen", e);
+				throw new Exception("Fordí­tás sikertelen", e);
 			}
 		}
 	}
 
 	/**
-	 * Az ertekek tömb érékeit a tipus tömb szerinti típusú objektumokká alakítja, majd
-	 * visszaadja őket egy tömbben. Hiba esetén null-al tér vissza.
+	 * Az ertekek tömb érékeit a tipus tömb szerinti tí­pusú objektumokká alakí­tja, majd visszaadja
+	 * őket egy tömbben. Hiba esetén null-al tér vissza.
 	 * 
-	 * @param tipusok kívánt típusok
-	 * @param ertekek kívánt értékek
-	 * @return {@code tipus} típusú, {@code ertek} értékű objektum tömb
+	 * @param tipusok kí­vánt tí­pusok
+	 * @param ertekek kí­vánt értékek
+	 * @return {@code tipus} tí­pusú, {@code ertek} értékű objektum tömb
 	 */
 	private static Object[] tobbParameterTipusForditas(Class<?>[] tipusok, String[] ertekek) {
 		if (tipusok.length == ertekek.length) {
@@ -235,8 +234,7 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Megkeres és visszaadja a cls osztály vagy annak ősében található adattag_nev nevű
-	 * adattagot.
+	 * Megkeres és visszaadja a cls osztály vagy annak ősében található adattag_nev nevű adattagot.
 	 * 
 	 * @param cls A keresendő osztály
 	 * @param adattag_nev A keresendő adattag név
@@ -255,9 +253,9 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Létrehoz egy tipus típusú objektumot az argumentumok felhasználásával, majd elmenti az
-	 * objektumok tömbbe, id azonosítóval. Ha nem talál megfelelő konstruktort, vagy nem tudja
-	 * átalakítani az argumentumokat megfelelő típusra vagy az id azonosító foglalt, nem hoz
+	 * Létrehoz egy tipus tí­pusú objektumot az argumentumok felhasználásával, majd elmenti az
+	 * objektumok tömbbe, id azonosí­tóval. Ha nem talál megfelelő konstruktort, vagy nem tudja
+	 * átalakí­tani az argumentumokat megfelelő tí­pusra vagy az id azonosí­tó foglalt, nem hoz
 	 * létre semmit.
 	 * 
 	 * @param tipus
@@ -266,7 +264,7 @@ public class Szkeleton {
 	 */
 	public static void letrehoz(String tipus, String id, String... argumentumok) {
 		if (objektumok.containsKey(id)) {
-			Log.error("A megadott azonosító már létezik! (" + id + ")");
+			Log.error("A megadott azonosí­tó már létezik! (" + id + ")");
 			return;
 		}
 		try {
@@ -277,7 +275,7 @@ public class Szkeleton {
 				Object[] tipusos_parameterek =
 						tobbParameterTipusForditas(constructor.getParameterTypes(), argumentumok);
 
-				if (tipusos_parameterek != null) { // A LÉNYEG
+				if (tipusos_parameterek != null) { // A Lí‰NYEG
 					try {
 						objektumok.put(id.toLowerCase(),
 								constructor.newInstance(tipusos_parameterek));
@@ -294,8 +292,8 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Az id azonosítójú objektumon meghívja a fuggveny_nev nevű függvényt az argumentumok
-	 * argumentumokkal. A visszatérési érték a hívott függvény eredménye
+	 * Az id azonosí­tójú objektumon meghí­vja a fuggveny_nev nevű függvényt az argumentumok
+	 * argumentumokkal. A visszatérési érték a hí­vott függvény eredménye
 	 * 
 	 * @param id
 	 * @param fuggveny_nev
@@ -304,7 +302,7 @@ public class Szkeleton {
 	 */
 	public static Object hiv(String id, String fuggveny_nev, String... argumentumok) {
 		if (!objektumok.containsKey(id)) {
-			Log.error("Az azonosító nem létezik! (" + id + ")");
+			Log.error("Az azonosí­tó nem létezik! (" + id + ")");
 			return null;
 		}
 		Class<?> cls = objektumok.get(id).getClass();
@@ -318,20 +316,20 @@ public class Szkeleton {
 						return fuggveny.invoke(objektumok.get(id), tipusos_parameterek);
 					} catch (Exception e) {
 						Log.warn(
-								"A függvényhívás hívás nem sikerült. A program inkonzisztens állapotba kerülhetett.");
+								"A függvényhí­vás hí­vás nem sikerült. A program inkonzisztens állapotba kerülhetett.");
 						Log.debug(e.toString());
 					}
 				}
 			}
 		}
 		Log.warn(fuggveny_nev + " nem található, vagy a megadott paraméterek nem megfelelőek. ("
-				+ cls.getName() + " osztályon hívva).");
+				+ cls.getName() + " osztályon hí­vva).");
 		return null;
 	}
 
 	/**
-	 * Az id azonosítójú objektum adattag_neve nevű adattagját uj_ertek értékre állítja be,
-	 * ha létezik az adattag, és átalakítható az uj_ertek az adattag típusára.
+	 * Az id azonosí­tójú objektum adattag_neve nevű adattagját uj_ertek értékre állí­tja be, ha
+	 * létezik az adattag, és átalakí­tható az uj_ertek az adattag tí­pusára.
 	 * 
 	 * @param id
 	 * @param adattag_neve
@@ -343,7 +341,7 @@ public class Szkeleton {
 		boolean private_field = Modifier.isPrivate(modifier);
 		if (private_field) {
 			Log.warn(Modifier.toString(modifier) + " adattag (" + adattag.getName()
-					+ ") beállítása.");
+					+ ") beállí­tása.");
 			adattag.setAccessible(true);
 		}
 
@@ -379,11 +377,10 @@ public class Szkeleton {
 	}
 
 	public static void JatekMenu() {
-		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás űrhajóval",
-				"Mozgás teleport kapun keresztül", "Bányászat", "Vízjég Fúrás",
-				"Urán fúrás", "Fúrás vas", "Portálkapu építés", "Robot építés",
-				"Nyersanyag visszahelyezés", "Portál lehelyezés", "Robot Urán fúrás",
-				"Napvihar")) {
+		switch (Cin.kerdez_tobbvalasz("MENí?", "Mozgás űrhajóval",
+				"Mozgás teleport kapun keresztül", "Bányászat", "Ví­zjég Fúrás", "Urán fúrás",
+				"Fúrás vas", "Portálkapu épí­tés", "Robot épí­tés", "Nyersanyag visszahelyezés",
+				"Portál lehelyezés", "Robot Urán fúrás", "Napvihar")) {
 			// TODO
 
 			default:
@@ -392,7 +389,7 @@ public class Szkeleton {
 	}
 
 	public static void BanyaszatMenu() {
-		switch (Cin.kerdez_tobbvalasz("BØNYØSZAT", "Urán Bányászat", "Vízjég Bányászat",
+		switch (Cin.kerdez_tobbvalasz("Bí?NYí?SZAT", "Urán Bányászat", "Ví­zjég Bányászat",
 				"Szén Bányászat", "Vas Bányászat")) {
 			// TODO
 
@@ -402,10 +399,10 @@ public class Szkeleton {
 	}
 
 	public static void NyersanyagVisszahelyezesMenu() {
-		System.out.println("1. Urán visszahelyezés\r\n" + "2. Vízjég visszahelyezés\r\n"
+		System.out.println("1. Urán visszahelyezés\r\n" + "2. Ví­zjég visszahelyezés\r\n"
 				+ "3. Szén visszahelyezés\r\n" + "4. Vas visszahelyezés");
-		switch (Cin.kerdez_tobbvalasz("BØNYØSZAT", "Urán visszahelyezés",
-				"Vízjég visszahelyezés", "Szén visszahelyezés", "Vas visszahelyezés")) {
+		switch (Cin.kerdez_tobbvalasz("Bí?NYí?SZAT", "Urán visszahelyezés",
+				"Ví­zjég visszahelyezés", "Szén visszahelyezés", "Vas visszahelyezés")) {
 			// TODO
 
 			default:

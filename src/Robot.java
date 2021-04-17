@@ -1,42 +1,42 @@
 package src;
 
-// Mesterséges intelligencia, amely fúrhat vagy mozoghat
+// MestersÃ©ges intelligencia, amely fÃºrhat vagy mozoghat
 public class Robot extends Szereplo {
 
 	Robot() {
-		super(); // Beállításra kerülnek az alapértelmezések
+		super(); // BeÃ¡llÃ­tÃ¡sra kerÃ¼lnek az alapÃ©rtelmezÃ©sek
 		Log.ctor();
 	}
 
-	// Robbanáskor a robot árvándorol egy szomszédos aszteroidára
+	// RobbanÃ¡skor a robot Ã¡rvÃ¡ndorol egy szomszÃ©dos aszteroidÃ¡ra
 	public void Robbanas() {
 		Log.call();
 		mozgasIntelligencia();
 	}
 
-	// A robot lépése egy körben, ami lehet fúrás vagy mozgás
+	// A robot lÃ©pÃ©se egy kÃ¶rben, ami lehet fÃºrÃ¡s vagy mozgÃ¡s
 	public void Lepes() {
 		Log.call();
 		// TODO ez kell? int cselekves = RandomUtils.randomIntHatarokKozott(0, 4);
-		// mekkora eséllyel fúrjon vagy mozogjon
-		// (fúrás gyakrabb mint a mozgás)
+		// mekkora esÃ©llyel fÃºrjon vagy mozogjon
+		// (fÃºrÃ¡s gyakrabb mint a mozgÃ¡s)
 		if (RandomUtils.randomBooleanValoszinuseggel(Jatek.ROBOT_MOZGAS_VALOSZINUSEG))
 			mozgasIntelligencia();
 		else
 			Furas();
 	}
 
-	// A robot eldönti hogy hova szeretne mozogni
+	// A robot eldÃ¶nti hogy hova szeretne mozogni
 	public void mozgasIntelligencia() {
 		Log.call();
-		// Az aszteroida szomszédainak száma, a robot eldönti hogy hanyas számúra szeretne mozogni
+		// Az aszteroida szomszÃ©dainak szÃ¡ma, a robot eldÃ¶nti hogy hanyas szÃ¡mÃºra szeretne mozogni
 		int szomszedszam = aszteroida.getSzomszedok().size() - 1;
 		Integer sorszam = RandomUtils.randomIntHatarokKozott(0, szomszedszam);
-		Mozgas(sorszam); // véletlenszerûen vándorlik egy szomszédra
+		Mozgas(sorszam); // vÃ©letlenszerÅ±en vÃ¡ndorlik egy szomszÃ©dra
 	}
 
 	/**
-	 * Fúrja az aszteroidát, amin áll
+	 * FÃºrja az aszteroidÃ¡t, amin Ã¡ll
 	 */
 	public void Furas() {
 		Log.call();
@@ -44,13 +44,15 @@ public class Robot extends Szereplo {
 	}
 
 	public String toString() {
-		return Szkeleton.getID(aszteroida) +":"+String.valueOf(lepett); /* + "" + (char) 13 + (char) 10 */
+		return Szkeleton.getID(aszteroida) + ":"
+				+ String.valueOf(lepett); /* + "" + (char) 13 + (char) 10 */
 	}
 
 	@Override
 	public Boolean lepette() {
 		return lepett;
 	}
+
 	@Override
 	public void resetLepett() {
 		lepett = false;

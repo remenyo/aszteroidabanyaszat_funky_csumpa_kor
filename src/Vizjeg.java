@@ -3,17 +3,17 @@ package src;
 public class Vizjeg extends Nyersanyag {
     private static Integer osszesVizjeg = 0;
 
-    // Létrejöttekor növeli az összes vízjég számát eggyel
+    // LÃ©trejÃ¶ttekor nÃ¶veli az Ã¶sszes vÃ­zjÃ©g szÃ¡mÃ¡t eggyel
     Vizjeg() {
-        super("Vízjég");
+        super("VÃ­zjÃ©g");
         Log.ctor();
         osszesVizjeg++;
     }
 
 
     /**
-     * Amikor felszínre kerül kideríti, hogy napközelben van-e, ha igen törli magát az aszteroidáról
-     * és megnézi maradt-e még elég
+     * Amikor felszÃ­nre kerÃ¼l kiderÃ­ti, hogy napkÃ¶zelben van-e, ha igen tÃ¶rli magÃ¡t az aszteroidÃ¡rÃ³l
+     * Ã©s megnÃ©zi maradt-e mÃ©g elÃ©g
      * 
      * @param a az aszteroida ahol a nyersanyag van
      */
@@ -27,8 +27,8 @@ public class Vizjeg extends Nyersanyag {
     }
 
     /**
-     * Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kideríti van-e még
-     * elég, ha nincs vesztett
+     * Amikor megsemmisÃ¼l a nyersanyag csÃ¶kkenti az Ã¶sszes szÃ¡mÃ¡t eggyel, majd kiderÃ­ti van-e mÃ©g
+     * elÃ©g, ha nincs vesztett
      */
     @Override
     public void ellenorizVesztett() {

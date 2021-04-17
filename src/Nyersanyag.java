@@ -9,22 +9,22 @@ abstract public class Nyersanyag {
     }
 
     /**
-     * Ellenõrzi, nem-e fogyott el az összes nyersanyag. (Fügvényen belül csökken a számlálójuk).
+     * EllenÅ‘rzi, nem-e fogyott el az Ã¶sszes nyersanyag. (FÃ¼gvÃ©nyen belÃ¼l csÃ¶kken a szÃ¡mlÃ¡lÃ³juk).
      */
     abstract public void ellenorizVesztett();
 
 
     /**
-     * Ha felszíre kerül egy nyersanyag akkor hívódik meg ez a függvény.
+     * Ha felszÃ­re kerÃ¼l egy nyersanyag akkor hÃ­vÃ³dik meg ez a fÃ¼ggvÃ©ny.
      * 
      * @param a Az aszteroida, ahol a nyersanyag van.
      */
     public void felszinreKerul(Aszteroida a) {
-    	//TODO Öszses nyersnyagnal felszinrekerul null check
+        // TODO Ã–szses nyersnyagnal felszinrekerul null check
     }
 
     /**
-     * Nyersanyag robbanás kezdõpont
+     * Nyersanyag robbanÃ¡s kezdÅ‘pont
      */
     public void Robbanas() {
         Log.call();
@@ -33,17 +33,17 @@ abstract public class Nyersanyag {
 
 
     /**
-     * Ellenõriz két nyersanyagot, hogy azonos típusúak-e
+     * EllenÅ‘riz kÃ©t nyersanyagot, hogy azonos tÃ­pusÃºak-e
      * 
-     * @param ny a másik nyersanyag
-     * @return boolean {@code true} ha azonosak (név alapján). {@code false} ha nem.
+     * @param ny a mÃ¡sik nyersanyag
+     * @return boolean {@code true} ha azonosak (nÃ©v alapjÃ¡n). {@code false} ha nem.
      */
-    public boolean azonos(Nyersanyag ny) { // TODO ez egy equals függvény...
+    public boolean azonos(Nyersanyag ny) { // TODO ez egy equals fÃ¼ggvÃ©ny...
         Log.call();
         return this.nev.equals(ny.nev);
     }
-    
+
     public String getNev() {
-    	return nev;
+        return nev;
     }
 }

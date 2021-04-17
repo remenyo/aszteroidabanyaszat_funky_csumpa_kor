@@ -15,25 +15,25 @@ public class Jatek {
 		return INSTANCE;
 	}
 
-	// PROGRAM BEÁLLíTÁSOK
+	// PROGRAM BEÃLLÃ­TÃSOK
 	public static Boolean COLOR_IN_TERMINAL = true;
 	public static Boolean LOG_FUNCTION_CALLS = true;
 	public static Boolean LOG_CONSTRUCTORS = true;
 	public static Boolean LOG_GAME_INFO = true;
-	// -1 = semmi | 0 = ctor és call, ha engedélyezve vannak, 1 = csak error | 2 = 1+warn | 3 =
+	// -1 = semmi | 0 = ctor Ã©s call, ha engedÃ©lyezve vannak, 1 = csak error | 2 = 1+warn | 3 =
 	// 2+info | 4 = 3+debug
 	public static Integer LOG_LEVEL = 4;
 
-	// JÁTÉK BEÁLLíTÁSOK
+	// JÃTÃ‰K BEÃLLÃ­TÃSOK
 	public static Integer MIN_SZEN = 3;
 	public static Integer MIN_URAN = 3;
 	public static Integer MIN_VIZJEG = 3;
 	public static Integer MIN_VAS = 3;
 
-	// a mozgás valószínûsége, ha nem mozog épp a robot akkor fúr
+	// a mozgÃ¡s valÃ³szÃ­nÅ±sÃ©ge, ha nem mozog Ã©pp a robot akkor fÃºr
 	public static Double ROBOT_MOZGAS_VALOSZINUSEG = 0.7;
 
-	// ha ennél kevesebb telepes marad a játékban, a játéknak vége
+	// ha ennÃ©l kevesebb telepes marad a jÃ¡tÃ©kban, a jÃ¡tÃ©knak vÃ©ge
 	public static Integer MIN_TELEPES_NYERESHEZ = 1;
 
 	public static Integer JATEKOS_SZAM = 5;
@@ -44,7 +44,7 @@ public class Jatek {
 	public static Integer allapot = 0;
 	public static ArrayList<Leptetheto> leptethetok;
 
-	// lépés determinisztikussá tételéhez
+	// lÃ©pÃ©s determinisztikussÃ¡ tÃ©telÃ©hez
 	public static Boolean robot_robbanas_elso_szomszed = false;
 
 	public static void beallitas_mentes() {
@@ -58,7 +58,7 @@ public class Jatek {
 	private static void beallitas_kezeles(Boolean mentes) {
 		if (mentes) {
 			if (beallitasok_backup != null)
-				Log.warn("Alapértelmezések felülírva.");
+				Log.warn("AlapÃ©rtelmezÃ©sek felÃ¼lÃ­rva.");
 			beallitasok_backup = new TreeMap<String, Object>();
 		}
 		Field[] fields = getInstance().getClass().getDeclaredFields();
@@ -91,7 +91,7 @@ public class Jatek {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
 
-	// Nem használjuk a tesztben, kezdetleges Kör
+	// Nem hasznÃ¡ljuk a tesztben, kezdetleges KÃ¶r
 	public static void Kor() {
 		Log.call();
 		for (Leptetheto leptetheto : leptethetok) {
@@ -100,9 +100,9 @@ public class Jatek {
 	}
 
 	/**
-	 * Törli a paraméterként kapott léptethetõt a listából
+	 * TÃ¶rli a paramÃ©terkÃ©nt kapott lÃ©ptethetÅ‘t a listÃ¡bÃ³l
 	 * 
-	 * @param l a törlendõ léptethetõ
+	 * @param l a tÃ¶rlendÅ‘ lÃ©ptethetÅ‘
 	 */
 	public static void torolLeptetheto(Leptetheto l) {
 		Log.call();
@@ -110,7 +110,7 @@ public class Jatek {
 	}
 
 	/**
-	 * Csökkenti a telepesszámot eggyel, és ha már nincs elég akkor meghívja a játék vége vesztett
+	 * CsÃ¶kkenti a telepesszÃ¡mot eggyel, Ã©s ha mÃ¡r nincs elÃ©g akkor meghÃ­vja a jÃ¡tÃ©k vÃ©ge vesztett
 	 * fv.t
 	 */
 	public static void telepesMeghal() {
@@ -122,20 +122,20 @@ public class Jatek {
 	}
 
 	/**
-	 * Gratulál a gyõzelemhez és lezárja a progit
+	 * GratulÃ¡l a gyÅ‘zelemhez Ã©s lezÃ¡rja a progit
 	 */
 	public static void jatekVegeNyert() {
 		Log.call();
-		System.out.println("Gratulálunk nyertél!! :)");
+		System.out.println("GratulÃ¡lunk nyertÃ©l!! :)");
 		allapot = 1;
 	}
 
 	/**
-	 * Vereségnél lezárja a progit
+	 * VeresÃ©gnÃ©l lezÃ¡rja a progit
 	 */
 	public static void jatekVegeVesztett() {
 		Log.call();
-		System.out.println("Gratulálunk vesztettél !! :)");
+		System.out.println("GratulÃ¡lunk vesztettÃ©l !! :)");
 		allapot = -1;
 	}
 
@@ -174,7 +174,7 @@ public class Jatek {
 		leptethetok.add(n);
 		ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
 		for (int i = 0; i < 50; i++) {
-			Aszteroida a = new Aszteroida(n); // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
+			Aszteroida a = new Aszteroida(n); // 0 Vas 1 SzÃ©n 2 Vizjeg 3 Uran 4 Ã¼res
 			if (i % 5 == 0) {
 				a.setNyersanyag(new Vas());
 			} else if (i % 5 == 1) {

@@ -1,22 +1,22 @@
 package src;
 
-//Az utaz�s az ezt az oszt�lyt megval�s�t�kon kereszt�l l�trej�het
+// Az utazďż˝s az ezt az osztďż˝lyt megvalďż˝sďż˝tďż˝kon keresztďż˝l lďż˝trejďż˝het
 public abstract class Hely {
-	//Robban�s, melyet a lesz�rmazottak megval�s�tanak
+	// Robbanďż˝s, melyet a leszďż˝rmazottak megvalďż˝sďż˝tanak
 	public abstract void Robbanas();
 
-	//Szereplo utaztatása, melyet a lesz�rmazottak megval�s�tanak
+	// Szereplo utaztatĂˇsa, melyet a leszďż˝rmazottak megvalďż˝sďż˝tanak
 	public abstract void Utazas(Szereplo sz);
 
-	public void szomszedRobbant(Aszteroida a) { // portal eset�n nem kell megval�s�tani
-		Robbanas(); // megh�vja a lesz�rmazottak robban�s�t
+	public void szomszedRobbant(Aszteroida a) { // portal esetďż˝n nem kell megvalďż˝sďż˝tani
+		Robbanas(); // meghďż˝vja a leszďż˝rmazottak robbanďż˝sďż˝t
 	}
 
-	//Hely utaztatása, melyet a lesz�rmazottak megval�s�tanak
+	// Hely utaztatĂˇsa, melyet a leszďż˝rmazottak megvalďż˝sďż˝tanak
 	public abstract void utazasHely(Hely hely);
 
-	//Leszármazottak megvalósíthatják, nem csinál alapból semmit
-	public void szomszedNapvihar(){
+	// LeszĂˇrmazottak megvalĂłsĂ­thatjĂˇk, nem csinĂˇl alapbĂłl semmit
+	public void szomszedNapvihar() {
 
 	}
 }

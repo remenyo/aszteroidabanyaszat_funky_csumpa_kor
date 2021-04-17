@@ -2,13 +2,18 @@ package src;
 
 import java.util.ArrayList;
 
-// Telepes a Szereplõ leszármazottja, ismeri a nála lévõ portálokat, nyersanyagokat és
-// a statikus építési költségek is ebbe az osztályba találhatók.
+// Telepes a SzereplÅ‘ leszÃ¡rmazottja, ismeri a nÃ¡la lÃ©vÅ‘ portÃ¡lokat, nyersanyagokat Ã©s
+// a statikus Ã©pÃ­tÃ©si kÃ¶ltsÃ©gek is ebbe az osztÃ¡lyba talÃ¡lhatÃ³k.
 public class Telepes extends Szereplo {
-	private ArrayList<Nyersanyag> nyersanyagok; // A telepesnél lévõ nyersanyagokat tárolja.
-	private static ArrayList<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>(); // A portál és robot építésének a
-																// költségét tárolja.
-	private ArrayList<Portal> portal;// A Telepesnél lévõ portálokat tárolja.
+	private ArrayList<Nyersanyag> nyersanyagok; // A telepesnÃ©l lÃ©vÅ‘ nyersanyagokat tÃ¡rolja.
+	private static ArrayList<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>(); // A
+																									// portÃ¡l
+																									// Ã©s
+																									// robot
+																									// Ã©pÃ­tÃ©sÃ©nek
+																									// a
+	// kÃ¶ltsÃ©gÃ©t tÃ¡rolja.
+	private ArrayList<Portal> portal;// A TelepesnÃ©l lÃ©vÅ‘ portÃ¡lokat tÃ¡rolja.
 
 	Telepes() {
 		nyersanyagok = new ArrayList<Nyersanyag>();
@@ -17,11 +22,11 @@ public class Telepes extends Szereplo {
 	}
 
 	/**
-	 * Meghívja a szereplõ mozgás függvényét amivel egy mésik aszteroidára utazik a telepes, majd
-	 * meghívja azon az aszteroidán az ellenõrizNyert fv-t hogy ellenõrizzük összegyült-e elég
-	 * nyersanyag a játék megnyeréséhez.
+	 * MeghÃ­vja a szereplÅ‘ mozgÃ¡s fÃ¼ggvÃ©nyÃ©t amivel egy mÃ©sik aszteroidÃ¡ra utazik a telepes, majd
+	 * meghÃ­vja azon az aszteroidÃ¡n az ellenÅ‘rizNyert fv-t hogy ellenÅ‘rizzÃ¼k Ã¶sszegyÃ¼lt-e elÃ©g
+	 * nyersanyag a jÃ¡tÃ©k megnyerÃ©sÃ©hez.
 	 * 
-	 * @param sorszam Az aszteroida azonosítója
+	 * @param sorszam Az aszteroida azonosÃ­tÃ³ja
 	 */
 	public void Mozgas(int sorszam) {
 		Log.call();
@@ -30,8 +35,8 @@ public class Telepes extends Szereplo {
 	}
 
 	/**
-	 * A telepes meghívja a Banyaszat() fv-t azon az aszteroidán amelyiken áll, ha van nyersanyag az
-	 * aszteroidába akkor azt magához veszi és meghívja az ellenõriznyertet az aszteroidán.
+	 * A telepes meghÃ­vja a Banyaszat() fv-t azon az aszteroidÃ¡n amelyiken Ã¡ll, ha van nyersanyag az
+	 * aszteroidÃ¡ba akkor azt magÃ¡hoz veszi Ã©s meghÃ­vja az ellenÅ‘riznyertet az aszteroidÃ¡n.
 	 */
 	public void Banyaszat() {
 		Log.call();
@@ -44,9 +49,9 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * Visszaadja a telepesnél lévõ nyersanyagok listáját.
+	 * Visszaadja a telepesnÃ©l lÃ©vÅ‘ nyersanyagok listÃ¡jÃ¡t.
 	 * 
-	 * @return ArrayList<Nyersanyag> A telepesnél lévõ nyersanyagok listája.
+	 * @return ArrayList<Nyersanyag> A telepesnÃ©l lÃ©vÅ‘ nyersanyagok listÃ¡ja.
 	 */
 	@Override
 	public ArrayList<Nyersanyag> getNyersanyagok() {
@@ -58,9 +63,9 @@ public class Telepes extends Szereplo {
 	private void mozgasMenu() {
 		Integer szomszeddb = aszteroida.getSzomszedok().size() + 1;
 		Integer valasztas = Cin.getInt("Melyik helyre szeretne utazni az aszteroida " + szomszeddb
-				+ " db szomszédja közül? (1-" + szomszeddb);
+				+ " db szomszÃ©dja kÃ¶zÃ¼l? (1-" + szomszeddb);
 		if ((valasztas > szomszeddb) && (valasztas <= 0)) {
-			System.out.println("Nem jót adott meg!");
+			System.out.println("Nem jÃ³t adott meg!");
 		} else {
 			Mozgas(valasztas - 1);
 		}
@@ -69,12 +74,12 @@ public class Telepes extends Szereplo {
 	private void nyersanyagvisszarakMenu() {
 		if (!nyersanyagok.isEmpty()) {
 			System.out
-					.println("Melyik nyersanyagot szeretné visszarakni?(sorszámával válaszoljon)");
+					.println("Melyik nyersanyagot szeretnÃ© visszarakni?(sorszÃ¡mÃ¡val vÃ¡laszoljon)");
 			Integer db = 0;
 			for (int i = 0; i < nyersanyagok.size(); i++) {
-				if (nyersanyagok.get(i).getNev().equals("Urán")) {
+				if (nyersanyagok.get(i).getNev().equals("UrÃ¡n")) {
 					System.out.println(i + 1 + ". " + nyersanyagok.get(i).getNev()
-							+ " napközelben felszínre kerülések száma: "
+							+ " napkÃ¶zelben felszÃ­nre kerÃ¼lÃ©sek szÃ¡ma: "
 							+ ((Uran) nyersanyagok.get(i)).getnapFenyerte());
 				} else {
 					System.out.print(i + 1 + ". " + nyersanyagok.get(i).getNev());
@@ -83,7 +88,7 @@ public class Telepes extends Szereplo {
 			}
 			Integer valasztas = Cin.getInt();
 			if ((valasztas > db) && (valasztas <= 0)) {
-				System.out.println("Nem jót adott meg!");
+				System.out.println("Nem jÃ³t adott meg!");
 			} else {
 				visszarakNyersanyag(nyersanyagok.get(valasztas - 1));
 			}
@@ -94,8 +99,8 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * Teszt alatt egyszer se hívódik meg de majd rendes mûködés alatt itt választhat a felhasználó,
-	 * hogy mit szeretne csinálni a telepessel, és a választásnak megfelelõ függvény fog meghívódni.
+	 * Teszt alatt egyszer se hÃ­vÃ³dik meg de majd rendes mÅ±kÃ¶dÃ©s alatt itt vÃ¡laszthat a felhasznÃ¡lÃ³,
+	 * hogy mit szeretne csinÃ¡lni a telepessel, Ã©s a vÃ¡lasztÃ¡snak megfelelÅ‘ fÃ¼ggvÃ©ny fog meghÃ­vÃ³dni.
 	 */
 	@Override
 	public void Lepes() {
@@ -104,9 +109,9 @@ public class Telepes extends Szereplo {
 		if (elorejelzes) {
 			Log.userInfo("Kovetkezo korbe napvihar lesz");
 		}
-		int valasz = Cin.kerdez_tobbvalasz("Képességek", "Mozgás", "Fúrás", "Bányászat",
-				"Robotépítés és lehelyezés", "Teleportkapupár-építés", "Teleportkapu-lehelyezés",
-				"Nyersanyag visszahelyezés");
+		int valasz = Cin.kerdez_tobbvalasz("KÃ©pessÃ©gek", "MozgÃ¡s", "FÃºrÃ¡s", "BÃ¡nyÃ¡szat",
+				"RobotÃ©pÃ­tÃ©s Ã©s lehelyezÃ©s", "TeleportkapupÃ¡r-Ã©pÃ­tÃ©s", "Teleportkapu-lehelyezÃ©s",
+				"Nyersanyag visszahelyezÃ©s");
 		switch (valasz) {
 			case 1:
 				mozgasMenu();
@@ -135,13 +140,13 @@ public class Telepes extends Szereplo {
 				break;
 		}
 		// Scanner sc = new Scanner(System.in);
-		// TODO 7 opciobol választás bemenet alapján
+		// TODO 7 opciobol vÃ¡lasztÃ¡s bemenet alapjÃ¡n
 	}
 
 	/**
-	 * A Telepes átasdja a nyersanyagait az építésköltség-nek ami megmondja, hogy van e elég a robot
-	 * építéséhez, ha van elég akkor épít egy robotot és rá utaztatja az aszteroidára amin áll
-	 * éppen, ha nincs elég nyersanyag akkor nem csinál semmmit.
+	 * A Telepes Ã¡tasdja a nyersanyagait az Ã©pÃ­tÃ©skÃ¶ltsÃ©g-nek ami megmondja, hogy van e elÃ©g a robot
+	 * Ã©pÃ­tÃ©sÃ©hez, ha van elÃ©g akkor Ã©pÃ­t egy robotot Ã©s rÃ¡ utaztatja az aszteroidÃ¡ra amin Ã¡ll
+	 * Ã©ppen, ha nincs elÃ©g nyersanyag akkor nem csinÃ¡l semmmit.
 	 */
 	public Robot epitRobot() {
 		Log.call();
@@ -156,10 +161,10 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * Ha a Telepesnél nincs már portál, átasdja a nyersanyagait az építésköltség-nek ami megmondja,
-	 * hogy van e elég a portál építéséhez, ha van elég akkor épít egy portál párt és rá és elrakja
-	 * magának, ha nincs elég nyersanyag akkor nem csinál semmmit, ha van néla portál akkor se
-	 * csinál semmit.
+	 * Ha a TelepesnÃ©l nincs mÃ¡r portÃ¡l, Ã¡tasdja a nyersanyagait az Ã©pÃ­tÃ©skÃ¶ltsÃ©g-nek ami megmondja,
+	 * hogy van e elÃ©g a portÃ¡l Ã©pÃ­tÃ©sÃ©hez, ha van elÃ©g akkor Ã©pÃ­t egy portÃ¡l pÃ¡rt Ã©s rÃ¡ Ã©s elrakja
+	 * magÃ¡nak, ha nincs elÃ©g nyersanyag akkor nem csinÃ¡l semmmit, ha van nÃ©la portÃ¡l akkor se
+	 * csinÃ¡l semmit.
 	 */
 	public ArrayList<Portal> epitPortal() {
 		Log.call();
@@ -183,9 +188,9 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * A telepes lehelyez egy portált tehát beállítja a végpontját az aszteroidára amin állunk.
+	 * A telepes lehelyez egy portÃ¡lt tehÃ¡t beÃ¡llÃ­tja a vÃ©gpontjÃ¡t az aszteroidÃ¡ra amin Ã¡llunk.
 	 * 
-	 * @param p a lehelyezendõ portál
+	 * @param p a lehelyezendÅ‘ portÃ¡l
 	 */
 	public void lehelyezPortal(Portal p) {
 		Log.call();
@@ -194,9 +199,9 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * A telepes törli magától a paraméterként megadott portált.
+	 * A telepes tÃ¶rli magÃ¡tÃ³l a paramÃ©terkÃ©nt megadott portÃ¡lt.
 	 * 
-	 * @param p a törlendõ portál
+	 * @param p a tÃ¶rlendÅ‘ portÃ¡l
 	 */
 	public void torolPortal(Portal p) {
 		Log.call();
@@ -206,21 +211,21 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * Telepes visszarakja a nyersanyagot az aszteroidába ha az az aszteroida ki van fúrva és üreges
+	 * Telepes visszarakja a nyersanyagot az aszteroidÃ¡ba ha az az aszteroida ki van fÃºrva Ã©s Ã¼reges
 	 * a belseje.
 	 * 
-	 * @param ny visszarakandó nyersanyag
+	 * @param ny visszarakandÃ³ nyersanyag
 	 */
 	public void visszarakNyersanyag(Nyersanyag ny) {
 		Log.call();
-		if (Cin.getBool("Üres és kifúrt?")) {
+		if (Cin.getBool("Ãœres Ã©s kifÃºrt?")) {
 			nyersanyagok.remove(ny);
 			aszteroida.hozzaadNyersanyag(ny);
 		}
 	}
 
 	/**
-	 * A telepes felrobban és meghívja magán a meghal függvényt.
+	 * A telepes felrobban Ã©s meghÃ­vja magÃ¡n a meghal fÃ¼ggvÃ©nyt.
 	 */
 	@Override
 	public void Robbanas() {
@@ -229,9 +234,9 @@ public class Telepes extends Szereplo {
 	}
 
 	/**
-	 * A Telepes meghal, felrobbantja a portáljait (itt most csak removolja), és a nyersanyagait,
-	 * majd meghívja a Szereplõ meghal függvényét,ami kitörli az aszteroidáról és törli a
-	 * léptethetõk listájából. Végül meghívja a játékon a telepesmeghal függvényét.
+	 * A Telepes meghal, felrobbantja a portÃ¡ljait (itt most csak removolja), Ã©s a nyersanyagait,
+	 * majd meghÃ­vja a SzereplÅ‘ meghal fÃ¼ggvÃ©nyÃ©t,ami kitÃ¶rli az aszteroidÃ¡rÃ³l Ã©s tÃ¶rli a
+	 * lÃ©ptethetÅ‘k listÃ¡jÃ¡bÃ³l. VÃ©gÃ¼l meghÃ­vja a jÃ¡tÃ©kon a telepesmeghal fÃ¼ggvÃ©nyÃ©t.
 	 */
 	@Override
 	public void Meghal() {
@@ -256,9 +261,9 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * Telepes hozzáadja magához a paraméterként kapott nyersanyagot.
+	 * Telepes hozzÃ¡adja magÃ¡hoz a paramÃ©terkÃ©nt kapott nyersanyagot.
 	 * 
-	 * @param ny a hozzáadandó nyersanyag
+	 * @param ny a hozzÃ¡adandÃ³ nyersanyag
 	 */
 	public void hozzaadNyersanyag(Nyersanyag ny) {
 		Log.call();
@@ -269,9 +274,9 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * Telepes megkapja a paraméterként kapott Nyersanyagköltséget.
+	 * Telepes megkapja a paramÃ©terkÃ©nt kapott NyersanyagkÃ¶ltsÃ©get.
 	 * 
-	 * @param k A hozzáadandó nyersanyagköltség
+	 * @param k A hozzÃ¡adandÃ³ nyersanyagkÃ¶ltsÃ©g
 	 */
 	public static void hozzaadKoltseg(NyersanyagKoltseg k) {
 		Log.call();
@@ -280,9 +285,9 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * A Telepes beállítja magának a paraméterként kaportt portált.
+	 * A Telepes beÃ¡llÃ­tja magÃ¡nak a paramÃ©terkÃ©nt kaportt portÃ¡lt.
 	 * 
-	 * @param p A beállítandó portál
+	 * @param p A beÃ¡llÃ­tandÃ³ portÃ¡l
 	 */
 	public void setPortal(Portal p) {
 		Log.call();

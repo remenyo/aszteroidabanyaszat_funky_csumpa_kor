@@ -1,8 +1,8 @@
 package src;
 
 /**
- * aktiv - A portalon kereszt�l lehet e utazni birtokos - A telepes aki a port�lt birtokolni par
- * -A port�l p�rja vegpont -az aszteroida, amin a port�l elhelyezkedik megkergult - a portál
+ * aktiv - A portalon kereszt�l lehet e utazni birtokos - A telepes aki a port�lt birtokolni par -A
+ * port�l p�rja vegpont -az aszteroida, amin a port�l elhelyezkedik megkergult - a portál
  * megkergültségét jellemzi
  */
 public class Portal extends Hely implements Leptetheto {
@@ -12,6 +12,7 @@ public class Portal extends Hely implements Leptetheto {
 	private Portal par;
 	private Aszteroida vegpont;
 	private Boolean lepett = false;
+
 	/**
 	 * Megh�vja az aszteroid�n �s a p�rj�n a beszippantot.
 	 */
@@ -69,8 +70,8 @@ public class Portal extends Hely implements Leptetheto {
 
 
 	/**
-	 * Ha a port�lnak �s a p�rj�nak is van v�gpontja, akkor enged�lyezi az utaz�st
-	 * k�t port�lp�r k�z�tt
+	 * Ha a port�lnak �s a p�rj�nak is van v�gpontja, akkor enged�lyezi az utaz�st k�t port�lp�r
+	 * k�z�tt
 	 * 
 	 * @param a
 	 */
@@ -188,21 +189,24 @@ public class Portal extends Hely implements Leptetheto {
 
 	public String toString() {
 		return aktiv.toString() + ":" + Szkeleton.getID(birtokos) + ":" + Szkeleton.getID(par) + ":"
-				+ Szkeleton.getID(vegpont) + ":" + megkergult.toString() +":"+String.valueOf(lepett); /*+ "" + (char) 13
-				+ (char) 10;*/ // TODO nem kell ujsor
+				+ Szkeleton.getID(vegpont) + ":" + megkergult.toString() + ":"
+				+ String.valueOf(lepett); /*
+											 * + "" + (char) 13 + (char) 10;
+											 */ // TODO nem kell ujsor
 	}
 
 	@Override
 	public Boolean lepette() {
 		return lepett;
 	}
-	
+
 	@Override
 	public void resetLepett() {
 		lepett = false;
 	}
-	//teszt miatt
+
+	// teszt miatt
 	public Aszteroida getAszteroida() {
-    	return vegpont;
-    }
+		return vegpont;
+	}
 }

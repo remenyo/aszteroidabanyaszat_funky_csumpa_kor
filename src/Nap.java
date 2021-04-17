@@ -3,23 +3,23 @@ package src;
 import java.util.ArrayList;
 
 /**
- * Aszteroidákat ismer akiken meghívja a napvihart valamilyen valószínûséggel egy kör
- * elõrejelzéssel, most tesztelés miatt egybõl napvihart hív.
+ * AszteroidÃ¡kat ismer akiken meghÃ­vja a napvihart valamilyen valÃ³szÃ­nÅ±sÃ©ggel egy kÃ¶r
+ * elÅ‘rejelzÃ©ssel, most tesztelÃ©s miatt egybÅ‘l napvihart hÃ­v.
  */
 public class Nap implements Leptetheto {
-	// TODO: a nap globális? akkor ez is legyen singleton
-	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>(); // Nap körüli
-	private ArrayList<Aszteroida> napviharravarok = new ArrayList<Aszteroida>(); // Akiken következõ
-																					// körben
+	// TODO: a nap globÃ¡lis? akkor ez is legyen singleton
+	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>(); // Nap kÃ¶rÃ¼li
+	private ArrayList<Aszteroida> napviharravarok = new ArrayList<Aszteroida>(); // Akiken kÃ¶vetkezÅ‘
+																					// kÃ¶rben
 																					// napvihar lesz
 																					// //
-																					// aszteroidákat
-																					// tároló lista
-	private boolean napviharfolyamatban = false; // Azt jelzi, hogy az elõrejelzés van-e, ha igaz
+																					// aszteroidÃ¡kat
+																					// tÃ¡rolÃ³ lista
+	private boolean napviharfolyamatban = false; // Azt jelzi, hogy az elÅ‘rejelzÃ©s van-e, ha igaz
 													// akkor
 	// indul a napvihar ha hamis akkor nem
-	// most teszteléshez nem használjuk.
-	// Ez a függvény felel a napvihar meghívásáért a naphoz tartozó aszteroidán.
+	// most tesztelÃ©shez nem hasznÃ¡ljuk.
+	// Ez a fÃ¼ggvÃ©ny felel a napvihar meghÃ­vÃ¡sÃ¡Ã©rt a naphoz tartozÃ³ aszteroidÃ¡n.
 
 	public void Lepes() {
 		Log.call();
@@ -47,17 +47,17 @@ public class Nap implements Leptetheto {
 
 
 	/**
-	 * Törli a naptól egy aszteroidát.
+	 * TÃ¶rli a naptÃ³l egy aszteroidÃ¡t.
 	 * 
-	 * @param a törlendõ aszteroida
+	 * @param a tÃ¶rlendÅ‘ aszteroida
 	 */
 	public void torolAszteroida(Aszteroida a) {
 		Log.call();
 		aszteroidak.remove(a);
 	}
 
-	// A lépés ezt hívná meg, hogy az elõrejelzés alapján napvihart generáljon
-	// de most teszteléshez nem használjuk.
+	// A lÃ©pÃ©s ezt hÃ­vnÃ¡ meg, hogy az elÅ‘rejelzÃ©s alapjÃ¡n napvihart generÃ¡ljon
+	// de most tesztelÃ©shez nem hasznÃ¡ljuk.
 	// TODO napvihar
 	private void Napvihar() {
 		Log.call(); // kell-e?
@@ -65,7 +65,7 @@ public class Nap implements Leptetheto {
 
 
 	/**
-	 * A naphoz hozzáadunk egy aszteroida listát
+	 * A naphoz hozzÃ¡adunk egy aszteroida listÃ¡t
 	 * 
 	 * @param a aszteroida lista
 	 */
@@ -79,14 +79,14 @@ public class Nap implements Leptetheto {
 	}
 
 
-	@Override //teszt miatt nem fontos
+	@Override // teszt miatt nem fontos
 	public Boolean lepette() {
 		return null;
 	}
 
 
-	@Override//teszt miatt nem fontos
+	@Override // teszt miatt nem fontos
 	public void resetLepett() {
-		
+
 	}
 }

@@ -4,9 +4,9 @@ public class Uran extends Nyersanyag {
     private static Integer osszesUran = 0;
     private Integer napfenyErte;
 
-    // Létrejöttekor növeli az összes urán számot eggyel
+    // LÃ©trejÃ¶ttekor nÃ¶veli az Ã¶sszes urÃ¡n szÃ¡mot eggyel
     Uran() {
-        super("Urán");
+        super("UrÃ¡n");
         Log.ctor();
         osszesUran++;
         napfenyErte = 0;
@@ -14,7 +14,7 @@ public class Uran extends Nyersanyag {
 
 
     /**
-     * Felszínre kerültekor kideríti, hogy napközelben van-e, ha igen robban
+     * FelszÃ­nre kerÃ¼ltekor kiderÃ­ti, hogy napkÃ¶zelben van-e, ha igen robban
      * 
      * @param a aszteroida, amiben a nyersanyag van
      */
@@ -30,8 +30,8 @@ public class Uran extends Nyersanyag {
     }
 
     /**
-     * Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kideríti van-e még
-     * elég, ha nincs vesztett
+     * Amikor megsemmisÃ¼l a nyersanyag csÃ¶kkenti az Ã¶sszes szÃ¡mÃ¡t eggyel, majd kiderÃ­ti van-e mÃ©g
+     * elÃ©g, ha nincs vesztett
      */
     @Override
     public void ellenorizVesztett() {
@@ -45,9 +45,9 @@ public class Uran extends Nyersanyag {
     public String toString() {
         return osszesUran.toString() + ":" + napfenyErte.toString() /* + (char) 13 + (char) 10 */;
     }
-    
+
     public Integer getnapFenyerte() {
-    	return napfenyErte;
+        return napfenyErte;
     }
 
 }
