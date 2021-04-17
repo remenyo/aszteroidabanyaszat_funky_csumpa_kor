@@ -14,7 +14,7 @@ letrehozRobot:r1:a2
 info:r1
 visszarakNyersanyag:t1:uran1
 mozgas:r1:a1
-furas: eletbenMaradoTelepes
+furas:eletbenMaradoTelepes
 banyaszas:t1
 mozgas:r1:a2
 furas:eletbenMaradoTelepes
@@ -23,6 +23,6 @@ mozgas:r1:a1
 furas:eletbenMaradoTelepes
 banyaszas:t1
 mozgas:r1:a2
-furas: eletbenMaradoTelepes
+furas:eletbenMaradoTelepes
 visszarakNyersanyag:t1:uran1
 info:r1
