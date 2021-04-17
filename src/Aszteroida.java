@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 /**
@@ -90,28 +91,23 @@ public class Aszteroida extends Hely {
         	}*/
         	//szereplok.forEach(it->{it.Napvihar();});
         	//ArrayList<Szereplo> szereplokTemp = szereplok;
-        	//try {
-        //	int s = szereplok.size();
-        	//int i = 0;
-        	//while(i<szereplok.size()) {
-        	//	szereplokTemp.get(i++).Napvihar();
-        	//}
+        	int s = szereplok.size();
+        	try {
+        		for(int i=0; i<s; i++) {
+        			szereplok.get(0).Napvihar();
+        		}
+        	}catch(ConcurrentModificationException e){
         		
-            	//for (int i = 0; i<s;i++) {
-                
-                	
-            //    }
-        	//}catch(Exception e){
-        	//	
-        	//}*/
-        	ArrayList<Szereplo> temp = szereplok;
+        	}
+        	/*ArrayList<Szereplo> temp = szereplok;
             int k=0;
             for(int i=0; i<temp.size(); i++) {
                 if(temp.get(i)!=szereplok.get(k)) {
                     k++;
                 }
                 szereplok.get(k).Napvihar();
-            }
+            }*/
+        	
         	
         }
     }

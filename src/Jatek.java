@@ -196,6 +196,7 @@ public class Jatek {
 					t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
 				}
 			}
+			
 			atmenetiAszteroidatar.add(a);
 		}
 		atmenetiAszteroidatar.get(0)
@@ -221,7 +222,7 @@ public class Jatek {
 					break;
 				}
 			}*/
-			int k=0;
+			/*int k=0;
             for(int i=0; i<temp.size(); i++) {
                 if(temp.get(i)!=leptethetok.get(k)) {
                     k++;
@@ -230,7 +231,17 @@ public class Jatek {
                 if (allapot != 0) {
 					break;
 				}
-            }
+            }*/
+			try {
+        		for(int i=0; i<leptethetok.size(); i++) {
+        			leptethetok.get(i).Lepes();
+        			if (allapot != 0) {
+    					break;
+    				}
+        		}
+        	}catch(Exception e){
+        		
+        	}
 		}
 	}
 
