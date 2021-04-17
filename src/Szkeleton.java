@@ -1,13 +1,20 @@
 package src;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.TreeMap;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.Map;
 
 public class Szkeleton {
@@ -24,7 +31,24 @@ public class Szkeleton {
 
 	private Szkeleton() {
 		objektumok = new TreeMap<>();
-		// TODO get alapertelmezett values for fields
+
+		Field[] fields = Jatek.getInstance().getClass().getDeclaredFields();
+		for (Field field : fields) {
+			int modifier = field.getModifiers();
+			boolean private_field = Modifier.isPrivate(modifier);
+			if (private_field) {
+				field.setAccessible(true);
+			}
+			try {
+				jatek_alapertelmezes.put(field, field.get(Jatek.getInstance()));
+			} catch (Exception e) {
+				Log.error(e.toString());
+			} finally {
+				if (private_field) {
+					field.setAccessible(false);
+				}
+			}
+		}
 	}
 
 	public static void Fomenu() {
@@ -38,8 +62,7 @@ public class Szkeleton {
 				case 2:
 					teszt_parancssor();
 				case 3:
-					// TODO
-					Log.info("Tinglitangli");
+					teszt_betoltes(Cin.getString("A fájl neve/címe:"));
 				case 4:
 					teszt_reset();
 				case 5:
@@ -50,6 +73,68 @@ public class Szkeleton {
 			}
 		}
 	};
+
+	private static List<File> fajlBetoltes(String... argumentumok) {
+		List<File> files_to_test = new ArrayList<File>();
+
+		Boolean arg_should_be_dir = false;
+		String dir = "";
+		if (argumentumok.length == 0) {
+			arg_should_be_dir = true;
+			dir = System.getProperty("user.dir");
+		} else if (argumentumok.length == 1) {
+			arg_should_be_dir = argumentumok[0].contains(".");
+			dir = argumentumok[0];
+		}
+		if (arg_should_be_dir) {
+			try (Stream<Path> stream = Files.list(Paths.get(dir))) {
+				files_to_test = stream.filter(file -> {
+					if (Files.isDirectory(file))
+						return false;
+					String name = file.getFileName().toString();
+					return (!name.contains("elvart")) && (!name.contains("eredmeny")
+							&& name.substring(name.lastIndexOf(".") + 1).equals("txt"));
+				}).map(Path::toFile).collect(Collectors.toList());
+			} catch (Exception e) {
+				Log.error(e.toString());
+			}
+		} else {// argumentumok.length >= 2 --> mind file
+			for (String fileName : argumentumok) {
+				try {
+					File f = Paths.get(System.getProperty("user.dir"), fileName).toFile();
+					files_to_test.add(f);
+				} catch (Exception e) {
+					Log.error(e.toString());
+				}
+			}
+		}
+		return files_to_test;
+	}
+
+	private static void athelyez_regi_eredmenyek() {
+		Path cel = null;
+		try {
+			cel = Files.createDirectories(Paths.get(System.getProperty("user.dir"), "eredmenyek"));
+		} catch (Exception e) {
+			Log.error(e.toString());
+		}
+
+		try (Stream<Path> stream = Files.list(Paths.get(System.getProperty("user.dir")))) {
+			for (File file : stream
+					.filter(file -> file.getFileName().toString().contains("eredmeny")
+							&& !Files.isDirectory(file))
+					.map(Path::toFile).collect(Collectors.toList())) {
+				// File test = cel.resolve(null)
+			}
+		} catch (Exception e) {
+			Log.error(e.toString());
+		}
+	}
+
+	public static void teszt_betoltes(String... argumentumok) {
+		List<File> files = fajlBetoltes(argumentumok);
+		athelyez_regi_eredmenyek();
+	}
 
 	public static void teszt_parancssor() {
 		while (true) {
@@ -74,11 +159,30 @@ public class Szkeleton {
 		}
 	}
 
+	private static void resetJatek() {
+		for (Entry<Field, Object> e : jatek_alapertelmezes.entrySet()) {
+			int modifier = e.getKey().getModifiers();
+			boolean private_field = Modifier.isPrivate(modifier);
+			if (private_field) {
+				e.getKey().setAccessible(true);
+			}
+			try {
+				e.getKey().set(Jatek.getInstance(), e.getValue());
+			} catch (Exception exception) {
+				Log.error(exception.toString());
+			} finally {
+				if (private_field) {
+					e.getKey().setAccessible(false);
+				}
+			}
+		}
+	}
+
 	protected static void reset() {
 		objektumok.clear();
 		objektumok.put("_this", getInstance());
-		// TODO resetJatek();
 		objektumok.put("jatek", Jatek.getInstance());
+		resetJatek();
 		objektumok.put("nap", new Nap());
 		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
 
@@ -356,7 +460,7 @@ public class Szkeleton {
 	}
 
 	static void teszt_letrehozNyersanyag(String... argumentumok) {
-		letrehoz(argumentumok[1], argumentumok[0]); // TODO kell-e null mert konsruktor ures
+		letrehoz(argumentumok[1], argumentumok[0]);
 	}
 
 	static void teszt_letrehozAszteroida(String... argumentumok) {
@@ -367,7 +471,7 @@ public class Szkeleton {
 	}
 
 	static void teszt_letrehozTelepes(String... argumentumok) {
-		letrehoz("Telepes", argumentumok[0]); // TODO kell-e null mert konstruktor ures
+		letrehoz("Telepes", argumentumok[0]);
 		hiv(argumentumok[0], "beallitAszteroida", argumentumok[1]); // aszteroidan is rajta lesz a
 																	// telepes
 		String[] nyersanyagok = Arrays.copyOfRange(argumentumok, 2, argumentumok.length);
