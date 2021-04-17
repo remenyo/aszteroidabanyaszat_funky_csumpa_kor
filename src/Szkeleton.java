@@ -656,7 +656,7 @@ public class Szkeleton {
 	}
 
 	public static void teszt_furas(String id) {
-		hiv(id, "furas");
+		hiv(id, "Furas");
 	}
 
 	public static void teszt_napviharOkozasa(String aids) { // hehe
