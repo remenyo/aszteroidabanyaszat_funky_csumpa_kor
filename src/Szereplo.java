@@ -8,13 +8,13 @@ abstract public class Szereplo implements Leptetheto {
 
     public Szereplo() {
         Log.call();
-        Jatek.leptethetok.add(this); // Szereplõ létrejöttekor a léptethetõk listája is bõvül
+        Jatek.leptethetok.add(this); // Szereplï¿½ lï¿½trejï¿½ttekor a lï¿½ptethetï¿½k listï¿½ja is bï¿½vï¿½l
     }
 
     /**
-     * Az aszteroida paraméterül kapott sorszámú szomszédjára utazik és a jelenlegirõl törli magát
+     * Az aszteroida paramï¿½terï¿½l kapott sorszï¿½mï¿½ szomszï¿½djï¿½ra utazik ï¿½s a jelenlegirï¿½l tï¿½rli magï¿½t
      * 
-     * @param sorszam Az aszteroida azonosí­tója
+     * @param sorszam Az aszteroida azonosï¿½tï¿½ja
      */
     public void Mozgas(Integer sorszam) {
         Log.call();
@@ -24,7 +24,7 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * Halálakor hí­vódik meg, törli az aszteroidáról és a léptethetõk közül
+     * Halï¿½lakor hï¿½vï¿½dik meg, tï¿½rli az aszteroidï¿½rï¿½l ï¿½s a lï¿½ptethetï¿½k kï¿½zï¿½l
      */
     public void Meghal() {
         Log.call();
@@ -33,7 +33,7 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * Amikor napvihar éri a szereplõt, meghal
+     * Amikor napvihar ï¿½ri a szereplï¿½t, meghal
      */
     public void Napvihar() {
         Log.call();
@@ -41,35 +41,35 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * Robbanáskor hí­vódik meg, a leszármazottak valósí­tják meg
+     * Robbanï¿½skor hï¿½vï¿½dik meg, a leszï¿½rmazottak valï¿½sï¿½tjï¿½k meg
      */
     public void Robbanas() {
         Log.call();
         Meghal();
-        // TODO a leszármazottak valósí­tják meg
+        // TODO a leszï¿½rmazottak valï¿½sï¿½tjï¿½k meg
     }
 
     /**
-     * Telepes leszármazott visszaadja a szereplõ nyersanyagjait
+     * Telepes leszï¿½rmazott visszaadja a szereplï¿½ nyersanyagjait
      * 
-     * @return ArrayList<Nyersanyag> a nyersanyagok listája, egyébként {@code null}
+     * @return ArrayList<Nyersanyag> a nyersanyagok listï¿½ja, egyï¿½bkï¿½nt {@code null}
      */
     public ArrayList<Nyersanyag> getNyersanyagok() {
         Log.call();
-        return null; // defaultan null-t ad vissza Robot miatt, a leszármazttak felülí­rják
+        return null; // defaultan null-t ad vissza Robot miatt, a leszï¿½rmazttak felï¿½lï¿½rjï¿½k
     }
 
     /**
-     * Ezt hí­vja emg a kört levezetõ rendszer
+     * Ezt hï¿½vja emg a kï¿½rt levezetï¿½ rendszer
      */
     public void Lepes() {
         Log.call();
     }
 
     /**
-     * Beállí­tja a paraméterül kapott aszteroidát jelenleginek
+     * Beï¿½llï¿½tja a paramï¿½terï¿½l kapott aszteroidï¿½t jelenleginek
      * 
-     * @param a A beállí­tandó aszteroida
+     * @param a A beï¿½llï¿½tandï¿½ aszteroida
      */
     public void beallitAszteroida(Aszteroida a) {
         Log.call();
@@ -80,4 +80,18 @@ abstract public class Szereplo implements Leptetheto {
     public Aszteroida getAszteroida() {
         return aszteroida;
     }
+    
+    @Override
+	public Boolean lepette() {
+		if(lepett) {
+			return true;
+		}else {
+			lepett = true;
+			return false;
+		}
+	}
+    @Override
+	public void resetLepett() {
+		lepett = false;
+	}
 }
