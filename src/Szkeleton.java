@@ -417,8 +417,7 @@ public class Szkeleton {
 	}
 
 	public static String Nagykezdobetusites(String szo) {
-		String ujszo = ((szo.charAt(0) + "").toUpperCase() + szo.substring(1));
-		return ujszo;
+		return ((szo.charAt(0) + "").toUpperCase() + szo.substring(1));
 	}
 
 	public static void teszt_letrehozNyersanyag(String nyid, String tipus) {
@@ -450,7 +449,7 @@ public class Szkeleton {
 	public static void teszt_mozgas(String id, String aid) {
 		if (lepesTeszt(id)) {
 			Aszteroida aminVagyunk = (Aszteroida) hiv(id, "getAszteroida");
-			Aszteroida amireMegyunk = ((Aszteroida) objektumok.get(aid));
+			Aszteroida amireMegyunk = ((Aszteroida) getObj(aid));
 			Integer menesSzam = aminVagyunk.getSzomszedok().indexOf(amireMegyunk);
 			if (menesSzam != -1) {
 				hiv(id, "Mozgas", menesSzam.toString()); // TODO ez itt igy jo?
@@ -522,7 +521,7 @@ public class Szkeleton {
 	}
 
 	public static void teszt_letrehozPortalTelepes(String pid, String tid) {
-		if (((Telepes) objektumok.get(tid)).getPortal().size() < 3) {
+		if (((Telepes) getObj(tid)).getPortal().size() < 3) {
 			letrehoz("Portal", pid);
 			hiv(pid, "setBirtokos", tid);
 			hiv(tid, "setPortal", pid);
@@ -578,6 +577,6 @@ public class Szkeleton {
 	}
 
 	public static void teszt_randomValoszinuseg(String igazsagErtek) {
-		Jatek.robot_robbanas_elso_szomszed = Boolean.parseBoolean(igazsagErtek);
+		beallit("jatek", "robot_robbanas_elso_szomszed", igazsagErtek);
 	}
 }
