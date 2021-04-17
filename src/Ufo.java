@@ -32,13 +32,4 @@ public class Ufo extends Szereplo {
 				+ String.valueOf(lepett); /* + (char) 13 + (char) 10 */
 	}
 
-	@Override
-	public Boolean lepette() {
-		return lepett;
-	}
-
-	@Override
-	public void resetLepett() {
-		lepett = false;
-	}
 }

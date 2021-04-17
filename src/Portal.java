@@ -195,15 +195,19 @@ public class Portal extends Hely implements Leptetheto {
 											 */ // TODO nem kell ujsor
 	}
 
-	@Override
-	public Boolean lepette() {
-		return lepett;
-	}
-
-	@Override
-	public void resetLepett() {
-		lepett = false;
-	}
+	 @Override
+		public Boolean lepette() {
+			if(lepett) {
+				return true;
+			}else {
+				lepett = true;
+				return false;
+			}
+		}
+	    @Override
+		public void resetLepett() {
+			lepett = false;
+		}
 
 	// teszt miatt
 	public Aszteroida getAszteroida() {

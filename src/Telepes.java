@@ -319,13 +319,4 @@ public class Telepes extends Szereplo {
 		return kimenet;
 	}
 
-	@Override
-	public Boolean lepette() {
-		return lepett;
-	}
-
-	@Override
-	public void resetLepett() {
-		lepett = false;
-	}
 }
