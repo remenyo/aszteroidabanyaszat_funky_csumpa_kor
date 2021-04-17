@@ -151,6 +151,18 @@ public class Szkeleton {
 			}
 		}
 	}
+	
+	public static String[] tombAtadas(String elemek) {
+		String[] argumentumok = elemek.split(",");
+		//if (argumentumok.length == 1) {
+		//	parancs(argumentumok[0]);
+		//} else if (argumentumok.length >= 2) {
+		//	parancs(argumentumok[0],
+		//			Arrays.copyOfRange(argumentumok, 1, argumentumok.length));
+		//}
+		return argumentumok;
+	}
+	
 
 	protected static void reset() {
 		objektumok.clear();
@@ -452,13 +464,14 @@ public class Szkeleton {
 		hiv(aid, "setNyersanyag", nyid);
 	}
 
-	public static void teszt_letrehozTelepes(String tid, String aid, String[] nyids) {
+	public static void teszt_letrehozTelepes(String tid, String aid, String nyids) {
 		letrehoz("Telepes", tid);
 		hiv(tid, "beallitAszteroida", aid); // aszteroidan is rajta lesz a
 											// telepes
 		// String[] nyersanyagok = Arrays.copyOfRange(argumentumok, 2, argumentumok.length);
-		for (int i = 0; i < nyids.length; i++) {
-			hiv(tid, "hozzaadNyersanyag", nyids[i]);
+		String[] nyidsDarabolt = tombAtadas(nyids);
+		for (int i = 0; i < nyidsDarabolt.length; i++) {
+			hiv(tid, "hozzaadNyersanyag", nyidsDarabolt[i]);
 		}
 	}
 
@@ -564,9 +577,10 @@ public class Szkeleton {
 		hiv(id, "furas", null);
 	}
 
-	public static void teszt_napviharOkozasa(String[] aids) { // hehe
-		for (int i = 0; i < aids.length; i++) {
-			hiv(aids[i], "Napvihar");
+	public static void teszt_napviharOkozasa(String aids) { // hehe
+		String[] aidsDarabolt=tombAtadas(aids);
+		for (int i = 0; i < aidsDarabolt.length; i++) {
+			hiv(aidsDarabolt[i], "Napvihar");
 		}
 	}
 
