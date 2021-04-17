@@ -533,9 +533,11 @@ public class Szkeleton {
 	}
 
 	public static void teszt_letrehozPortalTelepes(String pid, String tid) {
-		if (((Telepes) objektumok.get(tid)).getPortal().size() < 3)
+		if (((Telepes) objektumok.get(tid)).getPortal().size() < 3) {
 			letrehoz("Portal", pid);
-		beallit(pid, "birtokos", tid);
+		beallit(tid, "setBirtokos", pid);
+		beallit(pid, "setPortal", tid);
+		}
 	}
 
 	public static void teszt_visszarakNyersanyag(String tid, String nyid) {
