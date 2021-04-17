@@ -157,7 +157,7 @@ public class Jatek {
 	 */
 	public static void jatekVegeNyert() {
 		Log.call();
-		System.out.println("Gratul�lunk nyert�l!! :)");
+		System.out.println("Gratulálunk nyertél!! :)");
 		allapot = 1;
 	}
 
@@ -253,11 +253,11 @@ public class Jatek {
 
 	}
 
-	public static Integer getAllapot() { // TODO static?
+	public Integer getAllapot() { // TODO static?
 		return allapot;
 	}
 
-	public static Boolean mindenkiLepett() {
+	public Boolean mindenkiLepett() {
 		for (Leptetheto l : leptethetok) {
 			if (l.lepette() == false) {
 				return false;
@@ -266,7 +266,7 @@ public class Jatek {
 		return true;
 	}
 
-	public static void resetLepett() {
+	public void resetLepett() {
 		for (Leptetheto l : leptethetok) {
 			l.resetLepett();
 		}
