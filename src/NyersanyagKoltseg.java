@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * koltseg - Az építendő eszköz költségét tárolja.
  */
 public class NyersanyagKoltseg {
-    ArrayList<Nyersanyag> koltseg;
-    ArrayList<Nyersanyag> masolatTarolo;
+    ArrayList<Nyersanyag> koltseg = new ArrayList<Nyersanyag>();
+    ArrayList<Nyersanyag> masolatTarolo = new ArrayList<Nyersanyag>();
 
 
     /**
@@ -31,6 +31,7 @@ public class NyersanyagKoltseg {
      */
      //Majd a k�sz �sszehasonl�t�s
      public Boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
+    	 Log.call();
          ArrayList<Nyersanyag> koltsegKlon = koltseg;
          masolatTarolo = ny;
 
@@ -50,6 +51,7 @@ public class NyersanyagKoltseg {
      * @return Igazságérték, ha szerepel vagy nem szerepel benne
      */
      private Boolean Szukseges(Nyersanyag k){
+    	 Log.call();
          for(Nyersanyag m : masolatTarolo)
              if(m.azonos(k)) {
                  masolatTarolo.remove(m);
@@ -64,6 +66,7 @@ public class NyersanyagKoltseg {
      * @param ny - felülírandó nyersanyagtömb
      */
     public void felulirNyersanyagok(ArrayList<Nyersanyag> ny) {
+    	Log.call();
         ny = masolatTarolo;
     }
 

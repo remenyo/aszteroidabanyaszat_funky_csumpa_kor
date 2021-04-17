@@ -148,7 +148,7 @@ public class Jatek {
 			if (i == 0) {
 				for (int j = 0; j < JATEKOS_SZAM; j++) {
 					Telepes t = new Telepes();
-					a.hozzaadSzereplo(t);
+					t.beallitAszteroida(a); //aszteroidanak is beallitja a szereplot
 					telepesszam++;
 					leptethetok.add(t);
 				}
@@ -182,5 +182,24 @@ public class Jatek {
 	public String toString() {
 		return telepesszam.toString() + ":" + leptethetok.size() /* + "" + (char) 13 + (char) 10 */;
 
+	}
+	
+	public Integer getAllapot() { //TODO static?
+		return allapot;
+	}
+	
+	public Boolean mindenkiLepett() {
+		for(Leptetheto l : leptethetok) {
+			if(l.lepette()==false) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public void resetLepett() {
+		for(Leptetheto l : leptethetok) {
+			l.resetLepett();
+		}	
 	}
 }

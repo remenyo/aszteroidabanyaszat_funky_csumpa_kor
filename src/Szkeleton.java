@@ -1,6 +1,8 @@
 package src;
 
-import java.io.File;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -28,6 +30,8 @@ public class Szkeleton {
 
 	private static Map<String, Object> objektumok;
 	private static Map<Field, Object> jatek_alapertelmezes;
+
+	private static String filebaIrando = "";
 
 	private Szkeleton() {
 		objektumok = new TreeMap<>();
@@ -264,7 +268,6 @@ public class Szkeleton {
 	 * @return A megtalált adattag. Ha nem létezik, nullal tér vissza.
 	 */
 	private static Field adattagKereses(Class<?> cls, String adattag_nev) {
-
 		do {
 			Field[] fields = cls.getDeclaredFields();
 			for (Field field : fields) {
@@ -480,8 +483,112 @@ public class Szkeleton {
 		}
 	}
 
-	// static void teszt_mozgas(String... argumentumok) {
-	// hiv(argumentumok[0],"Mozgas",); //TODO daninak majd ejfelkor
-	// }
+	static void teszt_mozgas(String... argumentumok) {
+		Aszteroida aminVagyunk = (Aszteroida) hiv(argumentumok[0], "getAszteroida");
+		Aszteroida amireMegyunk = ((Aszteroida) objektumok.get(argumentumok[1]));
+		Integer menesSzam = aminVagyunk.getSzomszedok().indexOf(amireMegyunk);
+		if (menesSzam != -1) {
+			hiv(argumentumok[0], "Mozgas", menesSzam.toString()); // TODO ez itt igy jo?
+		}
 
+	}
+
+	static void teszt_info(String... argumentumok) {
+		System.out.println((String) hiv(argumentumok[0], "toString", null));
+		filebaIrando += (String) hiv(argumentumok[0], "toString", null);
+	}
+
+	static void teszt_mentes(String... argumentumok) { // TODO beirni 0. fejezetbe hogy ne irjak oda
+														// hogy .txt
+		try { // TODO hova mentsen
+				// TODO mentes kis m-el
+			FileOutputStream kiStream = new FileOutputStream(argumentumok[0] + "_eredmeny.txt");
+			OutputStreamWriter kiWriter = new OutputStreamWriter(kiStream, "UTF-8");
+			BufferedWriter ir = new BufferedWriter(kiWriter);
+			ir.write(filebaIrando);
+			ir.close();
+			filebaIrando = "";
+		} catch (Exception e) {
+			System.out.println("HIBA");
+			e.printStackTrace();
+		}
+	}
+
+	static void teszt_infoMinden() {
+		for (Map.Entry<String, Object> objektum : objektumok.entrySet()) {
+			System.out.println((String) hiv(objektum.getKey(), "toString", null));
+		}
+	}
+
+	static void teszt_infoAllapot() { // TODO ha a char cuccok helyett mas megoldas lesz akkor
+										// ezeket atirni
+		Integer jelenlegiAllapot = ((Integer) hiv("jatek", "getAllapot", null));
+		if (jelenlegiAllapot == 0) {
+			System.out.println("folyamatban");
+			filebaIrando += "folyamatban" + (char) 13 + (char) 10;
+		} else if (jelenlegiAllapot == 1) {
+			System.out.println("nyert");
+			filebaIrando += "nyert" + (char) 13 + (char) 10;
+		} else if (jelenlegiAllapot == -1) {
+			System.out.println("vesztett");
+			filebaIrando += "vesztett" + (char) 13 + (char) 10;
+		}
+
+	}
+
+	static void mindenkiLepett() {
+		Jatek jatek = ((Jatek) objektumok.get("jatek"));
+		if (jatek.mindenkiLepett()) {
+			jatek.resetLepett(); // TODO minden lepes vegere odairni hogy at kell allitani a lepest
+									// truera
+			// TODO ezt a fuggvenyt is oda kell irni
+		}
+	}
+
+	// ------------------- Balazs cuccai ---------------
+	static void teszt_letrehozRobot(String... argumentumok) {
+		letrehoz("Robot", argumentumok[0]);
+		beallit(argumentumok[0], "aszteroida", argumentumok[1]);
+	}
+
+	static void teszt_letrehozUfo(String... argumentumok) {
+		letrehoz("Ufo", argumentumok[0]);
+		beallit(argumentumok[0], "aszteroida", argumentumok[1]);
+	}
+
+	static void teszt_letrehozPortalTelepes(String... argumentumok) {
+		if (((Telepes) objektumok.get(argumentumok[0])).getPortal().size() < 3)
+			letrehoz("Portal", argumentumok[0]);
+		beallit(argumentumok[0], "birtokos", argumentumok[1]);
+	}
+
+	static void teszt_visszarakNyersanyag(String... argumentumok) {
+		hiv(argumentumok[0], "visszarakNyersanyag", argumentumok[1]);
+	}
+
+	static void teszt_lerakPortal(String... argumentumok) {
+		hiv(argumentumok[0], "lerakPortal", argumentumok[1]);
+	}
+
+	static void teszt_epitPortal(String... argumentumok) {
+		ArrayList<Portal> portalok = (ArrayList<Portal>) hiv(argumentumok[0], "epitPortal", null);
+		if (portalok != null) {
+			objektumok.put(argumentumok[1], portalok.get(0));
+			objektumok.put(argumentumok[2], portalok.get(1));
+		}
+	}
+
+	static void teszt_furas(String... argumentumok) {
+		hiv(argumentumok[0], "furas", null);
+	}
+
+	static void teszt_napviharOkozasa(String... argumentumok) {
+		for (int i = 0; i < argumentumok.length; i++) {
+			hiv(argumentumok[i], "Napvihar", null);
+		}
+	}
+
+	static void teszt_randomValoszinuseg(String... argumentumok) {
+		Jatek.robot_robbanas_elso_szomszed = Boolean.parseBoolean(argumentumok[1]);
+	}
 }
