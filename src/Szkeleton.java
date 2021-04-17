@@ -8,16 +8,11 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.Map;
 
 public class Szkeleton {
@@ -30,8 +25,8 @@ public class Szkeleton {
 
 	private static Map<String, Object> objektumok;
 	private static ArrayList<String> filebaIrando = new ArrayList<String>();
-	private static Boolean inkonzisztens_allapot = false;
-	private static Boolean automata_futas = false;
+	protected static Boolean inkonzisztens_allapot = false;
+	protected static Boolean automata_futas = false;
 
 	private Szkeleton() {
 		objektumok = new TreeMap<>();
@@ -63,134 +58,22 @@ public class Szkeleton {
 		}
 	};
 
-	//
-	// FÁJLOK
-	//
-
-	private static List<File> fajlBetoltes(String... argumentumok) {
-		List<File> files_to_test = new ArrayList<File>();
-
-		Boolean arg_should_be_dir = false;
-		String dir = "";
-		if (argumentumok.length == 0) {
-			arg_should_be_dir = true;
-			dir = System.getProperty("user.dir");
-		} else if (argumentumok.length == 1) {
-			arg_should_be_dir = !argumentumok[0].contains(".");
-			dir = argumentumok[0];
-		}
-		if (arg_should_be_dir) {
-			try (Stream<Path> stream = Files.list(Paths.get(dir))) {
-				files_to_test = stream.filter(file -> {
-					if (Files.isDirectory(file))
-						return false;
-					String name = file.getFileName().toString();
-					return (!name.contains("elvart")) && (!name.contains("eredmeny")
-							&& name.substring(name.lastIndexOf(".") + 1).equals("txt"));
-				}).map(Path::toFile).collect(Collectors.toList());
-			} catch (Exception e) {
-				Log.error(e.toString());
-			}
-		} else {// argumentumok.length >= 2 --> mind file
-			for (String fileName : argumentumok) {
-				try {
-					File f = Paths.get(System.getProperty("user.dir"), fileName).toFile();
-					files_to_test.add(f);
-				} catch (Exception e) {
-					Log.error(e.toString());
-				}
-			}
-		}
-		return files_to_test;
-	}
-
-	private static void athelyez_regi_eredmenyek(List<File> files) {
-		Path cel = null;
-		try {
-			for (File file_to_test : files) {
-				cel = Files
-						.createDirectories(
-								Paths.get(
-										file_to_test.getAbsolutePath().substring(0,
-												file_to_test.getAbsolutePath().length()
-														- file_to_test.getName().length()),
-										"eredmenyek"));
-				File eredmeny = Paths
-						.get(file_to_test.getAbsolutePath().substring(0,
-								file_to_test.getAbsolutePath().length() - 4) + "_eredmeny.txt")
-						.toFile();
-				if (!eredmeny.exists()) {
-					continue;
-				}
-				Path dest = Paths.get(cel.toAbsolutePath().toString(), eredmeny.getName());
-				Path src = Paths.get(eredmeny.getAbsolutePath());
-				while (Files.exists(dest)) {
-					dest = Paths
-							.get(cel.toString(),
-									dest.getFileName().toString().substring(0,
-											dest.getFileName().toString().length() - 4)
-											+ "_ujabb.txt");
-				}
-				Files.move(src, dest);
-			}
-		} catch (Exception e) {
-			Log.error(e.toString());
-		}
-
-		// try (Stream<Path> stream = Files.list(Paths.get(System.getProperty("user.dir")))) {
-		// for (File file : stream
-		// .filter(file -> file.getFileName().toString().contains("eredmeny")
-		// && !Files.isDirectory(file))
-		// .map(Path::toFile).collect(Collectors.toList())) {
-		// Path dest = Paths.get(cel.toAbsolutePath().toString(), file.getName());
-		// Path src = Paths.get(file.getAbsolutePath());
-		// while (Files.exists(dest)) {
-		// dest = Paths.get(cel.toAbsolutePath().toString(), file.getName() + "_ujabb");
-		// }
-		// Files.move(src, dest);
-		// }
-		// } catch (Exception e) {
-		// Log.error(e.toString());
-		// }
-	}
-
 	public static void teszt_betoltes(String mappa_vagy_file) {
 		automata_futas = true;
-		List<File> files = fajlBetoltes(mappa_vagy_file);
-		athelyez_regi_eredmenyek(files);
+		List<File> files = Filekezelo.fajlListazas(mappa_vagy_file);
+		Filekezelo.athelyez_regi_eredmenyek(files);
 		for (File file : files) {
 			Log.debug("Teszt " + file.getName());
-			auto_teszt_futtatas(file);
+			Filekezelo.auto_teszt_futtatas(file);
 			if (inkonzisztens_allapot) {
 				Log.warn("A teszt nem biztos hogy végig lefutott.");
 				break;
+			} else {
+				Log.debug(file.getName() + " végig lefutott.");
 			}
-			Log.debug(file.getName() + " végig lefutott.");
 			// TODO automatikus ellenorzes
 		}
 		automata_futas = false;
-	}
-
-	private static void auto_teszt_futtatas(File file) {
-		try (Stream<String> nyers_sorok = Files.lines(file.toPath())) {
-			List<String> sorok = nyers_sorok.map(l -> l.replaceAll(l, l.replaceAll("\\s+", "")))
-					.collect(Collectors.toList());
-			for (String sor : sorok) {
-				Log.debug(sor);
-				String[] argumentumok = sor.split(":");
-				if (argumentumok.length == 1) {
-					parancs(argumentumok[0]);
-				} else if (argumentumok.length >= 2) {
-					parancs(argumentumok[0],
-							Arrays.copyOfRange(argumentumok, 1, argumentumok.length));
-				}
-				if (inkonzisztens_allapot) {
-					break;
-				}
-			}
-		} catch (Exception e) {
-			Log.error(e.toString());
-		}
 	}
 
 	public static void teszt_parancssor() {
@@ -215,22 +98,17 @@ public class Szkeleton {
 			}
 		}
 	}
-	
+
 	public static String[] tombAtadas(String elemek) {
 		String[] argumentumok = elemek.split(",");
-		//if (argumentumok.length == 1) {
-		//	parancs(argumentumok[0]);
-		//} else if (argumentumok.length >= 2) {
-		//	parancs(argumentumok[0],
-		//			Arrays.copyOfRange(argumentumok, 1, argumentumok.length));
-		//}
+		// if (argumentumok.length == 1) {
+		// parancs(argumentumok[0]);
+		// } else if (argumentumok.length >= 2) {
+		// parancs(argumentumok[0],
+		// Arrays.copyOfRange(argumentumok, 1, argumentumok.length));
+		// }
 		return argumentumok;
 	}
-	
-
-	//
-	// FÁJLOK VÉGE
-	//
 
 	protected static void reset() {
 		inkonzisztens_allapot = false;
@@ -241,18 +119,10 @@ public class Szkeleton {
 		objektumok.put("nap", new Nap());
 		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a
 		// tömbbe.
-
 		Log.info("RESET");
 	}
 
-	public static void teszt_reset() {
-		if (Cin.getBool(
-				"A program minden beállí­tása alapértelmezett értékre áll vissza, és minden létrehozott objektum törlődik. Biztos vagy benne?")) {
-			reset();
-		}
-	}
-
-	private static void parancs(String parancs, String... argumentumok) {
+	protected static void parancs(String parancs, String... argumentumok) {
 		hiv("_this", "teszt_" + parancs, argumentumok);
 	}
 
@@ -504,6 +374,13 @@ public class Szkeleton {
 		}
 	}
 
+	public static void teszt_reset() {
+		if (Cin.getBool(
+				"A program minden beállí­tása alapértelmezett értékre áll vissza, és minden létrehozott objektum törlődik. Biztos vagy benne?")) {
+			reset();
+		}
+	}
+
 	public static void teszt_letrehozPortalAszteroida(String pid, String aid) {
 		letrehoz("Portal", pid);
 		beallit(pid, "aszteroida", aid);
@@ -551,7 +428,8 @@ public class Szkeleton {
 		hiv(tid, "beallitAszteroida", aid); // aszteroidan is rajta lesz a
 											// telepes
 		// String[] nyersanyagok = Arrays.copyOfRange(argumentumok, 2, argumentumok.length);
-		if(nyids.equals("null")) return;
+		if (nyids.equals("null"))
+			return;
 		String[] nyidsDarabolt = tombAtadas(nyids);
 		for (int i = 0; i < nyidsDarabolt.length; i++) {
 			hiv(tid, "hozzaadNyersanyag", nyidsDarabolt[i]);
@@ -661,8 +539,9 @@ public class Szkeleton {
 	}
 
 	public static void teszt_napviharOkozasa(String aids) { // hehe
-		if (aids.equals("null")) return;
-		String[] aidsDarabolt=tombAtadas(aids);
+		if (aids.equals("null"))
+			return;
+		String[] aidsDarabolt = tombAtadas(aids);
 		for (int i = 0; i < aidsDarabolt.length; i++) {
 			hiv(aidsDarabolt[i], "Napvihar");
 		}
