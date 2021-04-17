@@ -189,13 +189,11 @@ public class Jatek {
 
 			a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
 			a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
-
+			
 			if (i == 0) {
 				for (int j = 0; j < JATEKOS_SZAM; j++) {
 					Telepes t = new Telepes();
 					t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
-					telepesszam++;
-					leptethetok.add(t);
 				}
 			}
 			atmenetiAszteroidatar.add(a);
@@ -215,7 +213,7 @@ public class Jatek {
 
 		allapot = 0;
 		ArrayList<Leptetheto> temp = leptethetok;
-        
+		System.out.println(leptethetok.toString());
 		while (allapot == 0) {
 			/*for (Leptetheto leptetheto : leptethetok) {
 				leptetheto.Lepes();
@@ -229,6 +227,9 @@ public class Jatek {
                     k++;
                 }
                 leptethetok.get(k).Lepes();
+                if (allapot != 0) {
+					break;
+				}
             }
 		}
 	}
