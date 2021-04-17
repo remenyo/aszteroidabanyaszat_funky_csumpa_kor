@@ -90,28 +90,7 @@ public class Jatek {
 
 	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();
-		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
-		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
-		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
-		RobothozNyersanyag.hozzaadNyersanyag(new Szen());
-		RobothozNyersanyag.hozzaadNyersanyag(new Vas());
-		RobothozNyersanyag.hozzaadNyersanyag(new Uran());
-
-		PortalhozNyersanyag.hozzaadNyersanyag(new Uran());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg());
-
-		for (int i = 0; i < 3; i++) {
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran());
-		}
-
-		Telepes.hozzaadKoltseg(RobothozNyersanyag);
-		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
-		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
+		
 	}
 
 	// Nem haszn�ljuk a tesztben, kezdetleges K�r
@@ -171,7 +150,28 @@ public class Jatek {
 	public static void jatekInditas() {
 		Log.call();
 		
+		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
+		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
+		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
+		RobothozNyersanyag.hozzaadNyersanyag(new Szen());
+		RobothozNyersanyag.hozzaadNyersanyag(new Vas());
+		RobothozNyersanyag.hozzaadNyersanyag(new Uran());
 
+		PortalhozNyersanyag.hozzaadNyersanyag(new Uran());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg());
+
+		for (int i = 0; i < 3; i++) {
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran());
+		}
+
+		Telepes.hozzaadKoltseg(RobothozNyersanyag);
+		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
+		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
 		Nap n = new Nap();
 		leptethetok.add(n);
 		ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
