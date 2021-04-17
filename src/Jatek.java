@@ -258,7 +258,7 @@ public class Jatek {
 		return allapot;
 	}
 
-	public Boolean mindenkiLepett() {
+	public static Boolean mindenkiLepett() {
 		for (Leptetheto l : leptethetok) {
 			if (l.lepette() == false) {
 				return false;

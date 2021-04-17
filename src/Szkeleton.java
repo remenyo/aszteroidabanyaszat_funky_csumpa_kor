@@ -224,9 +224,7 @@ public class Szkeleton {
 	public static void letrehoz(String tipus, String id, String... argumentumok) {
 		if (objektumok.containsKey(id)) {
 			Log.error("A megadott azonosí­tó már létezik! (" + id + ")");
-			if (automata_futas) {
-				inkonzisztens_allapot = true;
-			}
+			inkonzisztencia();
 			return;
 		}
 		try {
@@ -279,9 +277,7 @@ public class Szkeleton {
 					} catch (Exception e) {
 						Log.warn(
 								"A függvényhí­vás hí­vás nem sikerült. A program inkonzisztens állapotba kerülhetett.");
-						if (automata_futas) {
-							inkonzisztens_allapot = true;
-						}
+						inkonzisztencia();
 						Log.debug(e.toString());
 					}
 				}
@@ -352,6 +348,12 @@ public class Szkeleton {
 			}
 		}
 		return "<ismeretlen " + object.getClass().getName() + ">";
+	}
+
+	private static void inkonzisztencia() {
+		if (automata_futas) {
+			inkonzisztens_allapot = true;
+		}
 	}
 
 	public static void JatekMenu() {
@@ -473,9 +475,9 @@ public class Szkeleton {
 		filebaIrando.add(result);
 	}
 
-	public static void teszt_mentes(String nev) { // TODO beirni 0. fejezetbe hogy ne
-													// irjak oda
-		// hogy .txt
+	public static void teszt_mentes(String nev) {
+		// TODO beirni 0. fejezetbe hogy ne irjak oda hogy .txt
+
 		try { // TODO hova mentsen
 				// TODO mentes kis m-el
 			FileOutputStream kiStream = new FileOutputStream(nev + "_eredmeny.txt");
@@ -488,8 +490,7 @@ public class Szkeleton {
 			ir.close();
 			filebaIrando.clear();
 		} catch (Exception e) {
-			System.out.println("HIBA");
-			e.printStackTrace();
+			Log.error(e.toString());
 		}
 	}
 
@@ -515,10 +516,8 @@ public class Szkeleton {
 	}
 
 	public static void mindenkiLepett() {// FONTOS
-		Jatek jatek = ((Jatek) objektumok.get("jatek"));
-		if (jatek.mindenkiLepett()) {
-			jatek.resetLepett();
-		}
+		if (Jatek.mindenkiLepett())
+			Jatek.resetLepett();
 	}
 
 	// ------------------- Balazs cuccai ---------------
@@ -533,16 +532,17 @@ public class Szkeleton {
 	}
 
 	public static void teszt_letrehozPortalTelepes(String pid, String tid) {
-		if (((Telepes) objektumok.get(tid)).getPortal().size() < 3)
+		if (((Telepes) objektumok.get(tid)).getPortal().size() < 3) {
 			letrehoz("Portal", pid);
-		beallit(pid, "birtokos", tid);
+			hiv(pid, "setBirtokos", tid);
+			hiv(tid, "setPortal", pid);
+		}
 	}
 
 	public static void teszt_visszarakNyersanyag(String tid, String nyid) {
 		if (lepesTeszt(tid)) {
 			hiv(tid, "visszarakNyersanyag", nyid);
 		}
-
 	}
 
 	public static Boolean lepesTeszt(String id) {
@@ -552,6 +552,7 @@ public class Szkeleton {
 			return true; // léphet
 		}
 		Log.warn("Már lépett!");
+		inkonzisztencia();
 		return false;
 	}
 
