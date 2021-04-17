@@ -1,0 +1,10 @@
+letrehozAszteroida:a1:5:false:null
+letrehozAszteroida:a2:5:false:null
+letrehozNyersanyag:ny1:Szen
+letrehozNyersanyag:ny2:Vas
+osszekotAszteroida:a1:a2
+letrehozTelepes:t1:a1:ny1,ny2
+info:t1
+mozgas:t1:a2
+info:t1
+
