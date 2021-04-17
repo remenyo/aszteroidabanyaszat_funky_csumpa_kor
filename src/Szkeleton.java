@@ -39,8 +39,8 @@ public class Szkeleton {
 
 	public static void Fomenu() {
 		while (true) {
-			int valasz = Cin.kerdez_tobbvalasz("F�men�", "J�t�k ind�t�s", "Parancssor",
-					"Teszt bet�lt�s", "J�t�k alaphelyzetbe �ll�t�sa", "Kil�p�s");
+			int valasz = Cin.kerdez_tobbvalasz("F�men�", "J�t�k ind�t�s", "Parancssor",
+					"Teszt bet�lt�s", "J�t�k alaphelyzetbe �ll�t�sa", "Kil�p�s");
 			switch (valasz) {
 				case 1:
 					Jatek.jatekInditas();
@@ -49,13 +49,13 @@ public class Szkeleton {
 					teszt_parancssor();
 					break;
 				case 3:
-					teszt_betoltes(Cin.getString("A f�jl neve/c�me:"));
+					teszt_betoltes(Cin.getString("A f�jl neve/c�me:"));
 					break;
 				case 4:
 					teszt_reset();
 					break;
 				case 5:
-					if (Cin.getBool("Ez t�rli a j�t�k �llapot�t, biztos vagy benne?"))
+					if (Cin.getBool("Ez t�rli a j�t�k �llapot�t, biztos vagy benne?"))
 						return;
 				default:
 					break;
@@ -157,9 +157,10 @@ public class Szkeleton {
 		objektumok.clear();
 		objektumok.put("_this", getInstance());
 		objektumok.put("jatek", Jatek.getInstance());
-		// Jatek.restoreBackup();
+		Jatek.beallitas_visszatoltes();
 		objektumok.put("nap", new Nap());
-		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
+		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a
+		// tömbbe.
 
 		Log.info("RESET");
 	}
@@ -210,8 +211,8 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Az ertekek tömb érékeit a tipus tömb szerinti típusú objektumokká alakítja, majd visszaadja
-	 * őket egy tömbben. Hiba esetén null-al tér vissza.
+	 * Az ertekek tömb érékeit a tipus tömb szerinti típusú objektumokká alakítja, majd
+	 * visszaadja őket egy tömbben. Hiba esetén null-al tér vissza.
 	 * 
 	 * @param tipusok kívánt típusok
 	 * @param ertekek kívánt értékek
@@ -234,7 +235,8 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Megkeres és visszaadja a cls osztály vagy annak ősében található adattag_nev nevű adattagot.
+	 * Megkeres és visszaadja a cls osztály vagy annak ősében található adattag_nev nevű
+	 * adattagot.
 	 * 
 	 * @param cls A keresendő osztály
 	 * @param adattag_nev A keresendő adattag név
@@ -255,8 +257,8 @@ public class Szkeleton {
 	/**
 	 * Létrehoz egy tipus típusú objektumot az argumentumok felhasználásával, majd elmenti az
 	 * objektumok tömbbe, id azonosítóval. Ha nem talál megfelelő konstruktort, vagy nem tudja
-	 * átalakítani az argumentumokat megfelelő típusra vagy az id azonosító foglalt, nem hoz létre
-	 * semmit.
+	 * átalakítani az argumentumokat megfelelő típusra vagy az id azonosító foglalt, nem hoz
+	 * létre semmit.
 	 * 
 	 * @param tipus
 	 * @param id
@@ -328,8 +330,8 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Az id azonosítójú objektum adattag_neve nevű adattagját uj_ertek értékre állítja be, ha
-	 * létezik az adattag, és átalakítható az uj_ertek az adattag típusára.
+	 * Az id azonosítójú objektum adattag_neve nevű adattagját uj_ertek értékre állítja be,
+	 * ha létezik az adattag, és átalakítható az uj_ertek az adattag típusára.
 	 * 
 	 * @param id
 	 * @param adattag_neve
@@ -377,10 +379,11 @@ public class Szkeleton {
 	}
 
 	public static void JatekMenu() {
-		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás űrhajóval", "Mozgás teleport kapun keresztül",
-				"Bányászat", "Vízjég Fúrás", "Urán fúrás", "Fúrás vas", "Portálkapu építés",
-				"Robot építés", "Nyersanyag visszahelyezés", "Portál lehelyezés",
-				"Robot Urán fúrás", "Napvihar")) {
+		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás űrhajóval",
+				"Mozgás teleport kapun keresztül", "Bányászat", "Vízjég Fúrás",
+				"Urán fúrás", "Fúrás vas", "Portálkapu építés", "Robot építés",
+				"Nyersanyag visszahelyezés", "Portál lehelyezés", "Robot Urán fúrás",
+				"Napvihar")) {
 			// TODO
 
 			default:
@@ -389,7 +392,7 @@ public class Szkeleton {
 	}
 
 	public static void BanyaszatMenu() {
-		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán Bányászat", "Vízjég Bányászat",
+		switch (Cin.kerdez_tobbvalasz("BØNYØSZAT", "Urán Bányászat", "Vízjég Bányászat",
 				"Szén Bányászat", "Vas Bányászat")) {
 			// TODO
 
@@ -401,8 +404,8 @@ public class Szkeleton {
 	public static void NyersanyagVisszahelyezesMenu() {
 		System.out.println("1. Urán visszahelyezés\r\n" + "2. Vízjég visszahelyezés\r\n"
 				+ "3. Szén visszahelyezés\r\n" + "4. Vas visszahelyezés");
-		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán visszahelyezés", "Vízjég visszahelyezés",
-				"Szén visszahelyezés", "Vas visszahelyezés")) {
+		switch (Cin.kerdez_tobbvalasz("BØNYØSZAT", "Urán visszahelyezés",
+				"Vízjég visszahelyezés", "Szén visszahelyezés", "Vas visszahelyezés")) {
 			// TODO
 
 			default:
@@ -410,7 +413,7 @@ public class Szkeleton {
 		}
 	}
 
-	public static void teszt_letrehozPortalAszteroida(String pid, String aid ) {
+	public static void teszt_letrehozPortalAszteroida(String pid, String aid) {
 		letrehoz("Portal", pid);
 		beallit(pid, "aszteroida", aid);
 	}
@@ -439,7 +442,8 @@ public class Szkeleton {
 		letrehoz(tipus, nyid);
 	}
 
-	public static void teszt_letrehozAszteroida(String aid, String reteg, String napkozel, String nyid) {
+	public static void teszt_letrehozAszteroida(String aid, String reteg, String napkozel,
+			String nyid) {
 		letrehoz("Aszteroida", aid, "nap");
 		hiv(aid, "setReteg", reteg);
 		hiv(aid, "setNapkozel", napkozel);
@@ -449,8 +453,8 @@ public class Szkeleton {
 	public static void teszt_letrehozTelepes(String tid, String aid, String[] nyids) {
 		letrehoz("Telepes", tid);
 		hiv(tid, "beallitAszteroida", aid); // aszteroidan is rajta lesz a
-																	// telepes
-		//String[] nyersanyagok = Arrays.copyOfRange(argumentumok, 2, argumentumok.length);
+											// telepes
+		// String[] nyersanyagok = Arrays.copyOfRange(argumentumok, 2, argumentumok.length);
 		for (int i = 0; i < nyids.length; i++) {
 			hiv(tid, "hozzaadNyersanyag", nyids[i]);
 		}
@@ -472,7 +476,7 @@ public class Szkeleton {
 	}
 
 	public static void teszt_mentes(String nev) { // TODO beirni 0. fejezetbe hogy ne
-																// irjak oda
+													// irjak oda
 		// hogy .txt
 		try { // TODO hova mentsen
 				// TODO mentes kis m-el
@@ -558,7 +562,7 @@ public class Szkeleton {
 		hiv(id, "furas", null);
 	}
 
-	public static void teszt_napviharOkozasa(String[] aids) { //hehe
+	public static void teszt_napviharOkozasa(String[] aids) { // hehe
 		for (int i = 0; i < aids.length; i++) {
 			hiv(aids[i], "Napvihar");
 		}
