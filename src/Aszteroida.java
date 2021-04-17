@@ -39,7 +39,13 @@ public class Aszteroida extends Hely {
      */
     public Hely getSzomszed(int i) {
         Log.call();
-        return szomszedok.get(i);
+        try {
+        	return szomszedok.get(i);
+        }catch(Exception e) {
+        	System.out.println("Nincs ilyen aszteroida");
+        	return this; //"onmagara megy"
+        }
+        
     }
 
     /**
