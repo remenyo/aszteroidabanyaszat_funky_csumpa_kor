@@ -32,7 +32,7 @@ public class Szkeleton {
 	private static Map<String, Object> objektumok;
 	private static Map<Field, Object> jatek_alapertelmezes;
 
-	private static String filebaIrando = "";
+	private static ArrayList<String> filebaIrando = new ArrayList<String>();
 
 	private Szkeleton() {
 		objektumok = new TreeMap<>();
@@ -502,7 +502,7 @@ public class Szkeleton {
 
 	public static void teszt_info(String... argumentumok) {
 		System.out.println((String) hiv(argumentumok[0], "toString", null));
-		filebaIrando += (String) hiv(argumentumok[0], "toString", null);
+		filebaIrando.add((String) hiv(argumentumok[0], "toString", null));
 	}
 
 	public static void teszt_mentes(String... argumentumok) { // TODO beirni 0. fejezetbe hogy ne
@@ -513,9 +513,12 @@ public class Szkeleton {
 			FileOutputStream kiStream = new FileOutputStream(argumentumok[0] + "_eredmeny.txt");
 			OutputStreamWriter kiWriter = new OutputStreamWriter(kiStream, "UTF-8");
 			BufferedWriter ir = new BufferedWriter(kiWriter);
-			ir.write(filebaIrando);
+			for(String sor: filebaIrando) {
+				ir.write(sor);
+				ir.write(System.lineSeparator());
+			}
 			ir.close();
-			filebaIrando = "";
+			filebaIrando.clear();
 		} catch (Exception e) {
 			System.out.println("HIBA");
 			e.printStackTrace();
@@ -528,19 +531,17 @@ public class Szkeleton {
 		}
 	}
 
-	public static void teszt_infoAllapot() { // TODO ha a char cuccok helyett mas megoldas lesz
-												// akkor
-		// ezeket atirni
+	public static void teszt_infoAllapot() { 
 		Integer jelenlegiAllapot = ((Integer) hiv("jatek", "getAllapot", null));
 		if (jelenlegiAllapot == 0) {
 			System.out.println("folyamatban");
-			filebaIrando += "folyamatban" + (char) 13 + (char) 10;
+			filebaIrando.add("folyamatban");
 		} else if (jelenlegiAllapot == 1) {
 			System.out.println("nyert");
-			filebaIrando += "nyert" + (char) 13 + (char) 10;
+			filebaIrando.add("nyert");
 		} else if (jelenlegiAllapot == -1) {
 			System.out.println("vesztett");
-			filebaIrando += "vesztett" + (char) 13 + (char) 10;
+			filebaIrando.add("vesztett");
 		}
 
 	}
