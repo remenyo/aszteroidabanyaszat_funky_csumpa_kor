@@ -77,29 +77,6 @@ public class Szkeleton {
 	}
 
 	public static void teszt_parancssor() {
-		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
-		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
-		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
-		RobothozNyersanyag.hozzaadNyersanyag(new Szen());
-		RobothozNyersanyag.hozzaadNyersanyag(new Vas());
-		RobothozNyersanyag.hozzaadNyersanyag(new Uran());
-
-		PortalhozNyersanyag.hozzaadNyersanyag(new Uran());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg());
-
-		for (int i = 0; i < 3; i++) {
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran());
-		}
-
-		Telepes.hozzaadKoltseg(RobothozNyersanyag);
-		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
-		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
-
 
 		while (true) {
 			System.out.print("> ");
@@ -355,6 +332,10 @@ public class Szkeleton {
 		return "";
 	}
 
+	public static Object getObj(String id) {
+		return objektumok.get(id);
+	}
+
 	public static String getID(Object object) {
 		for (Entry<String, Object> e : objektumok.entrySet()) {
 			if (e.getValue().equals(object)) {
@@ -421,13 +402,17 @@ public class Szkeleton {
 	}
 
 	public static void teszt_epitRobot(String tid, String rid) {
-		Robot r = (Robot) hiv(tid, "epitRobot");
-		if (r != null)
-			objektumok.put(rid, r);
+		if(lepesTeszt(tid)) {
+			Robot r = (Robot) hiv(tid, "epitRobot");
+			if (r != null)
+				objektumok.put(rid, r);
+		}
 	}
 
 	public static void teszt_banyaszas(String tid) {
-		hiv(tid, "Banyaszat");
+		if(lepesTeszt(tid)) {
+			hiv(tid, "Banyaszat");
+		}
 	}
 
 	public static String Nagykezdobetusites(String szo) {
@@ -444,7 +429,7 @@ public class Szkeleton {
 		letrehoz("Aszteroida", aid, "nap");
 		hiv(aid, "setReteg", reteg);
 		hiv(aid, "setNapkozel", napkozel);
-		if(!nyid.equals("null"))
+		if (!nyid.equals("null"))
 			hiv(aid, "setNyersanyag", nyid);
 	}
 
@@ -462,11 +447,13 @@ public class Szkeleton {
 	}
 
 	public static void teszt_mozgas(String id, String aid) {
-		Aszteroida aminVagyunk = (Aszteroida) hiv(id, "getAszteroida");
-		Aszteroida amireMegyunk = ((Aszteroida) objektumok.get(aid));
-		Integer menesSzam = aminVagyunk.getSzomszedok().indexOf(amireMegyunk);
-		if (menesSzam != -1) {
-			hiv(id, "Mozgas", menesSzam.toString()); // TODO ez itt igy jo?
+		if(lepesTeszt(id)) {
+			Aszteroida aminVagyunk = (Aszteroida) hiv(id, "getAszteroida");
+			Aszteroida amireMegyunk = ((Aszteroida) objektumok.get(aid));
+			Integer menesSzam = aminVagyunk.getSzomszedok().indexOf(amireMegyunk);
+			if (menesSzam != -1) {
+				hiv(id, "Mozgas", menesSzam.toString()); // TODO ez itt igy jo?
+			}
 		}
 
 	}
@@ -517,12 +504,10 @@ public class Szkeleton {
 
 	}
 
-	public static void mindenkiLepett() {
+	public static void mindenkiLepett() {//FONTOS
 		Jatek jatek = ((Jatek) objektumok.get("jatek"));
 		if (jatek.mindenkiLepett()) {
-			jatek.resetLepett(); // TODO minden lepes vegere odairni hogy at kell allitani a lepest
-									// truera
-			// TODO ezt a fuggvenyt is oda kell irni
+			jatek.resetLepett(); 
 		}
 	}
 
@@ -542,25 +527,44 @@ public class Szkeleton {
 			letrehoz("Portal", pid);
 		beallit(pid, "birtokos", tid);
 	}
-
+	
 	public static void teszt_visszarakNyersanyag(String tid, String nyid) {
-		hiv(tid, "visszarakNyersanyag", nyid);
+		if(lepesTeszt(tid)) {
+			hiv(tid, "visszarakNyersanyag", nyid);
+		}
+		
 	}
-
+	
+	public static Boolean lepesTeszt(String id) {
+		if((Boolean)hiv(id,"lepette") == false) {
+			mindenkiLepett();
+			return true; //léphet
+		}
+		Log.warn("Már lépett!");
+		return false;
+	}
+	
+	
 	public static void teszt_lerakPortal(String tid, String pid) {
-		hiv(tid, "lerakPortal", pid);
+		if(lepesTeszt(tid)) {
+			hiv(tid, "lerakPortal", pid);
+		}
 	}
 
 	public static void teszt_epitPortal(String tid, String pid1, String pid2) {
-		ArrayList<Portal> portalok = (ArrayList<Portal>) hiv(tid, "epitPortal");
-		if (portalok != null) {
-			objektumok.put(pid1, portalok.get(0));
-			objektumok.put(pid2, portalok.get(1));
+		if(lepesTeszt(tid)) {
+			ArrayList<Portal> portalok = (ArrayList<Portal>) hiv(tid, "epitPortal");
+			if (portalok != null) {
+				objektumok.put(pid1, portalok.get(0));
+				objektumok.put(pid2, portalok.get(1));
+			}
 		}
 	}
 
 	public static void teszt_furas(String id) {
-		hiv(id, "Furas");
+		if(lepesTeszt(id)) {
+			hiv(id, "Furas");
+		}
 	}
 
 	public static void teszt_napviharOkozasa(String aids) { // hehe

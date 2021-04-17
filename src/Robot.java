@@ -1,43 +1,43 @@
 package src;
 
-// Mesterséges intelligencia, amely fúrhat vagy mozoghat
+// Mestersï¿½ges intelligencia, amely fï¿½rhat vagy mozoghat
 public class Robot extends Szereplo {
 
 	Robot() {
-		super(); // Beállí­tásra kerülnek az alapértelmezések
+		super(); // Beï¿½llï¿½tï¿½sra kerï¿½lnek az alapï¿½rtelmezï¿½sek
 		Log.ctor();
 	}
 
-	// Robbanáskor a robot árvándorol egy szomszédos aszteroidára
+	// Robbanï¿½skor a robot ï¿½rvï¿½ndorol egy szomszï¿½dos aszteroidï¿½ra
 	public void Robbanas() {
 		Log.call();
 		mozgasIntelligencia();
 	}
 
-	// A robot lépése egy körben, ami lehet fúrás vagy mozgás
+	// A robot lï¿½pï¿½se egy kï¿½rben, ami lehet fï¿½rï¿½s vagy mozgï¿½s
 	public void Lepes() {
 		Log.call();
 		// TODO ez kell? int cselekves = RandomUtils.randomIntHatarokKozott(0, 4);
-		// mekkora eséllyel fúrjon vagy mozogjon
-		// (fúrás gyakrabb mint a mozgás)
+		// mekkora esï¿½llyel fï¿½rjon vagy mozogjon
+		// (fï¿½rï¿½s gyakrabb mint a mozgï¿½s)
 		if (RandomUtils.randomBooleanValoszinuseggel(Jatek.ROBOT_MOZGAS_VALOSZINUSEG))
 			mozgasIntelligencia();
 		else
 			Furas();
 	}
 
-	// A robot eldönti hogy hova szeretne mozogni
+	// A robot eldï¿½nti hogy hova szeretne mozogni
 	public void mozgasIntelligencia() {
 		Log.call();
-		// Az aszteroida szomszédainak száma, a robot eldönti hogy hanyas számúra szeretne
+		// Az aszteroida szomszï¿½dainak szï¿½ma, a robot eldï¿½nti hogy hanyas szï¿½mï¿½ra szeretne
 		// mozogni
 		int szomszedszam = aszteroida.getSzomszedok().size() - 1;
 		Integer sorszam = RandomUtils.randomIntHatarokKozott(0, szomszedszam);
-		Mozgas(sorszam); // véletlenszerûen vándorlik egy szomszédra
+		Mozgas(sorszam); // vï¿½letlenszerï¿½en vï¿½ndorlik egy szomszï¿½dra
 	}
 
 	/**
-	 * Fúrja az aszteroidát, amin áll
+	 * Fï¿½rja az aszteroidï¿½t, amin ï¿½ll
 	 */
 	public void Furas() {
 		Log.call();
@@ -49,13 +49,5 @@ public class Robot extends Szereplo {
 				+ String.valueOf(lepett); /* + "" + (char) 13 + (char) 10 */
 	}
 
-	@Override
-	public Boolean lepette() {
-		return lepett;
-	}
-
-	@Override
-	public void resetLepett() {
-		lepett = false;
-	}
+	
 }
