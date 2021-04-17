@@ -10,11 +10,11 @@ public class App {
         do {
             Szkeleton.Fomenu();
             Szkeleton.reset();
-        } while (Cin.getBool("Kezdjük újra?"));
+        } while (Cin.getBool("KezdjÃ¼k Ãºjra?"));
 
-        Log.info("A program leállt.");
+        Log.info("A program leÃ¡llt.");
 
-        // System.out.println("Nyomja meg az entert a kilépéshez...");
+        // System.out.println("Nyomja meg az entert a kilï¿½pï¿½shez...");
         // System.in.read();
     }
 }
