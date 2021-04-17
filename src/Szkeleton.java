@@ -551,6 +551,7 @@ public class Szkeleton {
 		hiv(tid, "beallitAszteroida", aid); // aszteroidan is rajta lesz a
 											// telepes
 		// String[] nyersanyagok = Arrays.copyOfRange(argumentumok, 2, argumentumok.length);
+		if(nyids.equals("null")) return;
 		String[] nyidsDarabolt = tombAtadas(nyids);
 		for (int i = 0; i < nyidsDarabolt.length; i++) {
 			hiv(tid, "hozzaadNyersanyag", nyidsDarabolt[i]);
@@ -660,6 +661,7 @@ public class Szkeleton {
 	}
 
 	public static void teszt_napviharOkozasa(String aids) { // hehe
+		if (aids.equals("null")) return;
 		String[] aidsDarabolt=tombAtadas(aids);
 		for (int i = 0; i < aidsDarabolt.length; i++) {
 			hiv(aidsDarabolt[i], "Napvihar");
