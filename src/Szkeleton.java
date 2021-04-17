@@ -576,7 +576,7 @@ public class Szkeleton {
 		}
 	}
 
-	public static void teszt_randomValoszinuseg(String... argumentumok) {
-		Jatek.robot_robbanas_elso_szomszed = Boolean.parseBoolean(argumentumok[1]);
+	public static void teszt_randomValoszinuseg(String igazsagErtek) {
+		Jatek.robot_robbanas_elso_szomszed = Boolean.parseBoolean(igazsagErtek);
 	}
 }
