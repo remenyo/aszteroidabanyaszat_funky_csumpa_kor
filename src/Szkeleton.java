@@ -576,7 +576,12 @@ public class Szkeleton {
 		}
 	}
 
+<<<<<<< Updated upstream
 	public static void teszt_randomValoszinuseg(String igazsagErtek) {
 		beallit("jatek", "robot_robbanas_elso_szomszed", igazsagErtek);
+=======
+	public static void teszt_randomValoszinuseg(String nev,String igazsagErtek) {
+		((Jatek)objektumok.get("jatek")).robot_robbanas_elso_szomszed = Boolean.parseBoolean(igazsagErtek);
+>>>>>>> Stashed changes
 	}
 }
