@@ -67,10 +67,13 @@ public class Szkeleton {
 					break;
 				case 2:
 					teszt_parancssor();
+					break;
 				case 3:
 					teszt_betoltes(Cin.getString("A fájl neve/címe:"));
+					break;
 				case 4:
 					teszt_reset();
+					break;
 				case 5:
 					if (Cin.getBool("Ez törli a játék állapotát, biztos vagy benne?"))
 						return;
@@ -225,9 +228,11 @@ public class Szkeleton {
 			}
 		}
 		// fallback
-		if (ertek.equals("null")) {
+		if (tipus.equals(ertek.getClass()))
+			return ertek;
+		if (ertek.equals("null"))
 			return null;
-		} else {
+		else {
 			try {
 				return tipus.getMethod("valueOf", String.class).invoke(null, ertek);
 			} catch (Exception e) {
@@ -464,8 +469,8 @@ public class Szkeleton {
 		hiv(argumentumok[0], "Banyaszat");
 	}
 
-	public static void teszt_letrehozNyersanyag(String... argumentumok) {
-		letrehoz(argumentumok[1], argumentumok[0]);
+	public static void teszt_letrehozNyersanyag(String id, String tipus) {
+		letrehoz(tipus, id);
 	}
 
 	public static void teszt_letrehozAszteroida(String... argumentumok) {
