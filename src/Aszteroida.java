@@ -1,6 +1,8 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 
 /**
  *
@@ -82,9 +84,16 @@ public class Aszteroida extends Hely {
             h.szomszedNapvihar();
         }
         if (reteg != 0 || nyersanyag != null) {
-            for (Szereplo sz : szereplok) {
-                sz.Napvihar();
-            }
+        	
+        	int s = szereplok.size();
+        	try {
+        		for(int i=0; i<s; i++) {
+        			szereplok.get(0).Napvihar();
+        		}
+        	}catch(ConcurrentModificationException e){
+        		
+        	}
+        	
         }
     }
 
@@ -96,7 +105,7 @@ public class Aszteroida extends Hely {
         Log.call();
         if (reteg > 0) {
             reteg--;
-            if (reteg == 0) {
+            if (reteg == 0 || nyersanyag!= null) {
                 nyersanyag.felszinreKerul(this);
             }
         }
@@ -159,9 +168,12 @@ public class Aszteroida extends Hely {
      */
     public Nyersanyag Banyaszat() {
         Log.call();
-        Nyersanyag visszaAdando = nyersanyag; // kimentjük az értéket
-        torolNyersanyag(); // üressé tesszük az aszteroidát
-        return visszaAdando; // nem null értéket visszaadjuk.
+        if(reteg==0 && nyersanyag !=null) {
+        	Nyersanyag visszaAdando = nyersanyag; // kimentjük az értéket
+            torolNyersanyag(); // üressé tesszük az aszteroidát
+            return visszaAdando; // nem null értéket visszaadjuk.
+        }
+        return null;
     }
 
     /**
