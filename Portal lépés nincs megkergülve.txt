@@ -1,0 +1,6 @@
+letrehozAszteroida:a1:5:false:null
+letrehozAszteroida:a2:5:false:null
+osszekotAszteroida:a1:a2
+letrehozPortalAszteroida:portal:a1
+mozgas:portal:a2
+info:portal

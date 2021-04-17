@@ -31,6 +31,7 @@ public class Aszteroida extends Hely {
         szereplok = new ArrayList<Szereplo>();
         szomszedok = new ArrayList<Hely>();
         elorejelzesvan = false;
+        nap.hozzaadAszteroida(this);
     }
 
     /**

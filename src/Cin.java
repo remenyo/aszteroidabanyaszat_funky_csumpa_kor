@@ -16,10 +16,10 @@ public class Cin {
     }
 
     /**
-     * Egy {@code int}-et olvas be a bemenetr�l. Ha a bemenet nem �rtelmezhet�, a f�ggv�ny -1-t ad
+     * Egy {@code int}-et olvas be a bemenetről. Ha a bemenet nem értelmezhető, a függvény -1-t ad
      * viszza.
      * 
-     * @return a beolvasott �rt�k
+     * @return a beolvasott érték
      */
     public static Integer getInt() {
         String input = "";
@@ -29,21 +29,13 @@ public class Cin {
         } catch (Exception e) {
             Log.error("Nem értelmezett bemenet: \"" + input + "\".");
             return -1;
-
-            /*
-             * if (s.equals("y") || s.equals("Y")) { Log.info("V�lasz �talak��tva " + s +
-             * "-r�l 1-re. ;)"); return 1; } else if (s.equals("n") || s.equals("N")) {
-             * Log.info("V�lasz �talak��tva " + s + "-r�l 0-ra. ;)"); return 0; } else {
-             * Log.error("Nem �rtelmezett bemenet: \"" + scanner.next() + "\"."); return 0; }
-             */
-
         }
     }
 
     /**
-     * Egy {@code String}-et olvas be a bemenetr�l. (egy sort.)
+     * Egy {@code String}-et olvas be a bemenetről. (egy sort.)
      * 
-     * @return a beolvasott �rt�k
+     * @return a beolvasott érték
      */
     public static String getString() {
         try {
@@ -55,11 +47,11 @@ public class Cin {
     }
 
     /**
-     * Feltesz egy k�rd�st a felhaszn�l�nak, majd egy {@code int}-et olvas be a bemenetr�l. Ha a
-     * bemenet nem �rtelmezhet�, a f�ggv�ny -1-t ad vissza.
+     * Feltesz egy kérdést a felhasználónak, majd egy {@code int}-et olvas be a bemenetről. Ha a
+     * bemenet nem értelmezhető, a függvény -1-t ad vissza.
      * 
-     * @param kerdes A felhaszn�l�nak ki��rand� k�rd�s.
-     * @return A be��rt sz�m, vagy -1 ha nem �rtlemezhet� a bemenet.
+     * @param kerdes A felhasználónak kiiÍrandó kérdés.
+     * @return A beírrt szám, vagy -1 ha nem értlemezhető a bemenet.
      */
     public static Integer getInt(String kerdes) {
         kerdez(kerdes);

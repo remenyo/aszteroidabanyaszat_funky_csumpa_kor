@@ -1,0 +1,9 @@
+letrehozAszteroida:a1:0:false:null
+letrehozAszteroida:a2:0:false:null
+osszekotAszteroida:a1:a2
+letrehozUfo:ufo:a1
+banyaszas:ufo
+info:ufo
+
+
+

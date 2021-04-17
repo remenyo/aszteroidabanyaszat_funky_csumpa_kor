@@ -1,0 +1,10 @@
+letrehozAszteroida:a1:5:false:null
+letrehozAszteroida:a2:5:false:null
+osszekotAszteroida:a1:a2
+letrehozTelepes:t1:a1:null
+letrehozTelepes:t2:a2:null
+info:jatek
+info:a1
+napviharOkozasa:a1
+info:jatek
+info:a1

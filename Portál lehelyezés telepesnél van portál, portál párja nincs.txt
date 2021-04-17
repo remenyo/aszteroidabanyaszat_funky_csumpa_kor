@@ -1,0 +1,10 @@
+letrehozAszteroida:a1:5:false:null
+letrehozAszteroida:a2:5:false:null
+osszekotAszteroida:a1:a2
+letrehozTelepes:t1:a1:null
+letrehozPortalTelepes:p1:t1
+letrehozPortalTelepes:p2:t1
+osszekotPortal:p1:p2
+lerakPortal:p1
+info:a1
+info:p1
