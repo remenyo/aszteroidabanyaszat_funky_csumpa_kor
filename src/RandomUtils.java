@@ -15,18 +15,18 @@ public class RandomUtils {
     }
 
     /**
-     * Visszaad vÃ©letlenszerÅ±en egy egÃ©sz szÃ¡mot a megadott kÃ©t hatÃ¡r kÃ¶zÃ¶tt, a hatÃ¡rokat is
-     * beleÃ©rtve. Az alsÃ³ hatÃ¡r nem kell hogy nagyobb legyen a felsÅ‘nÃ©l. MindkettÅ‘ Ã©rtÃ©k lehet
-     * negatÃ­v.
+     * Visszaad véletlenszerûen egy egész számot a megadott két határ között, a határokat is
+     * beleértve. Az alsó határ nem kell hogy nagyobb legyen a felsõnél. Mindkettõ érték lehet
+     * negatí­v.
      *
-     * @param alsoHatar Az alsÃ³ hatÃ¡r
-     * @param felsoHatar Az felsÅ‘ hatÃ¡r
+     * @param alsoHatar Az alsó határ
+     * @param felsoHatar Az felsõ határ
      */
     public static Integer randomIntHatarokKozott(int alsoHatar, int felsoHatar) {
         if (alsoHatar > felsoHatar) {
             Log.debug(
-                    "randomIntHatarokKozott: AlsÃ³ hatÃ¡r nagyobb mint a felsÅ‘, megcserÃ©ltem. ("
-                            + alsoHatar + ">" + felsoHatar + ") A hÃ­vÃ³ neve talÃ¡lhatÃ³ a debugban.",
+                    "randomIntHatarokKozott: Alsó határ nagyobb mint a felsõ, megcseréltem. ("
+                            + alsoHatar + ">" + felsoHatar + ") A hí­vó neve található a debugban.",
                     1, 1);
             int a = alsoHatar;
             alsoHatar = felsoHatar;
@@ -37,30 +37,30 @@ public class RandomUtils {
     }
 
     /**
-     * Visszaad egy booleant, ami {@code valoszinuseg} valÃ³szÃ­nÅ±sÃ©ggel lesz igaz Ã©rtÃ©kÅ±. (A
-     * pontossÃ¡g 5.)
+     * Visszaad egy booleant, ami {@code valoszinuseg} valószí­nûséggel lesz igaz értékû. (A
+     * pontosság 5.)
      *
-     * @param valoszinuseg (0.0 - 1.0) {@code true} valÃ³szÃ­nÅ±sÃ©ge
+     * @param valoszinuseg (0.0 - 1.0) {@code true} valószí­nûsége
      */
     public static Boolean randomBooleanValoszinuseggel(double valoszinuseg) {
         return randomBooleanValoszinuseggel(valoszinuseg, 5);
     }
 
     /**
-     * Visszaad egy booleant, ami {@code valoszinuseg} valÃ³szÃ­nÅ±sÃ©ggel lesz igaz Ã©rtÃ©kÅ±.
+     * Visszaad egy booleant, ami {@code valoszinuseg} valószí­nûséggel lesz igaz értékû.
      *
-     * @param valoszinuseg (0.0 - 1.0) a {@code true} valÃ³szÃ­nÅ±sÃ©ge
-     * @param pontossag (1-7) minnÃ©l nagyobb, annÃ¡l kÃ¶zelebb lesz a valÃ³di valÃ³szÃ­nÅ±sÃ©g a kÃ­vÃ¡nt
-     *        Ã©rtÃ©khez
+     * @param valoszinuseg (0.0 - 1.0) a {@code true} valószí­nûsége
+     * @param pontossag (1-7) minnél nagyobb, annál közelebb lesz a valódi valószí­nûség a kí­vánt
+     *        értékhez
      */
     private static Boolean randomBooleanValoszinuseggel(double valoszinuseg, int pontossag) {
         pontossag = Math.min(7, Math.max(1, pontossag));
         if (valoszinuseg >= 1) {
-            Log.debug("1-nÃ©l nagyobb vagy egyenlÅ‘ valÃ³szÃ­nÅ±sÃ©g -> igen", 1, 1);
+            Log.debug("1-nél nagyobb vagy egyenlõ valószí­nûség -> igen", 1, 1);
             return true;
         }
         if (valoszinuseg <= 0) {
-            Log.debug("0-nÃ¡l kisebb vagy egyenlÅ‘ valÃ³szÃ­nÅ±sÃ©g -> nem", 1, 1);
+            Log.debug("0-nál kisebb vagy egyenlõ valószí­nûség -> nem", 1, 1);
             return false;
         }
 

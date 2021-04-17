@@ -3,15 +3,16 @@ package src;
 public class Vas extends Nyersanyag {
     private static Integer osszesVas = 0;
 
-    // LÃ©trejÃ¶ttekor nÃ¶veli az Ã¶sszes vas szÃ¡mÃ¡t eggyel
+    // Létrejöttekor növeli az összes vas számát eggyel
     Vas() {
         super("Vas");
         Log.ctor();
         osszesVas++;
     }
 
-    // Amikor megsemmisÃ¼l a nyersanyag csÃ¶kkenti az Ã¶sszes szÃ¡mÃ¡t eggyel, majd kiderÃ­ti van-e mÃ©g
-    // elÃ©g, ha nincs vesztett
+    // Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kiderí­ti van-e
+    // még
+    // elég, ha nincs vesztett
     @Override
     public void ellenorizVesztett() {
         Log.call();

@@ -8,13 +8,13 @@ abstract public class Szereplo implements Leptetheto {
 
     public Szereplo() {
         Log.call();
-        Jatek.leptethetok.add(this); // SzereplÅ‘ lÃ©trejÃ¶ttekor a lÃ©ptethetÅ‘k listÃ¡ja is bÅ‘vÃ¼l
+        Jatek.leptethetok.add(this); // Szereplõ létrejöttekor a léptethetõk listája is bõvül
     }
 
     /**
-     * Az aszteroida paramÃ©terÃ¼l kapott sorszÃ¡mÃº szomszÃ©djÃ¡ra utazik Ã©s a jelenlegirÅ‘l tÃ¶rli magÃ¡t
+     * Az aszteroida paraméterül kapott sorszámú szomszédjára utazik és a jelenlegirõl törli magát
      * 
-     * @param sorszam Az aszteroida azonosÃ­tÃ³ja
+     * @param sorszam Az aszteroida azonosí­tója
      */
     public void Mozgas(Integer sorszam) {
         Log.call();
@@ -24,7 +24,7 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * HalÃ¡lakor hÃ­vÃ³dik meg, tÃ¶rli az aszteroidÃ¡rÃ³l Ã©s a lÃ©ptethetÅ‘k kÃ¶zÃ¼l
+     * Halálakor hí­vódik meg, törli az aszteroidáról és a léptethetõk közül
      */
     public void Meghal() {
         Log.call();
@@ -33,7 +33,7 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * Amikor napvihar Ã©ri a szereplÅ‘t, meghal
+     * Amikor napvihar éri a szereplõt, meghal
      */
     public void Napvihar() {
         Log.call();
@@ -41,35 +41,35 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * RobbanÃ¡skor hÃ­vÃ³dik meg, a leszÃ¡rmazottak valÃ³sÃ­tjÃ¡k meg
+     * Robbanáskor hí­vódik meg, a leszármazottak valósí­tják meg
      */
     public void Robbanas() {
         Log.call();
         Meghal();
-        // TODO a leszÃ¡rmazottak valÃ³sÃ­tjÃ¡k meg
+        // TODO a leszármazottak valósí­tják meg
     }
 
     /**
-     * Telepes leszÃ¡rmazott visszaadja a szereplÅ‘ nyersanyagjait
+     * Telepes leszármazott visszaadja a szereplõ nyersanyagjait
      * 
-     * @return ArrayList<Nyersanyag> a nyersanyagok listÃ¡ja, egyÃ©bkÃ©nt {@code null}
+     * @return ArrayList<Nyersanyag> a nyersanyagok listája, egyébként {@code null}
      */
     public ArrayList<Nyersanyag> getNyersanyagok() {
         Log.call();
-        return null; // defaultan null-t ad vissza Robot miatt, a leszÃ¡rmazttak felÃ¼lÃ­rjÃ¡k
+        return null; // defaultan null-t ad vissza Robot miatt, a leszármazttak felülí­rják
     }
 
     /**
-     * Ezt hÃ­vja emg a kÃ¶rt levezetÅ‘ rendszer
+     * Ezt hí­vja emg a kört levezetõ rendszer
      */
     public void Lepes() {
         Log.call();
     }
 
     /**
-     * BeÃ¡llÃ­tja a paramÃ©terÃ¼l kapott aszteroidÃ¡t jelenleginek
+     * Beállí­tja a paraméterül kapott aszteroidát jelenleginek
      * 
-     * @param a A beÃ¡llÃ­tandÃ³ aszteroida
+     * @param a A beállí­tandó aszteroida
      */
     public void beallitAszteroida(Aszteroida a) {
         Log.call();

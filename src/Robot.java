@@ -1,42 +1,43 @@
 package src;
 
-// MestersÃ©ges intelligencia, amely fÃºrhat vagy mozoghat
+// Mesterséges intelligencia, amely fúrhat vagy mozoghat
 public class Robot extends Szereplo {
 
 	Robot() {
-		super(); // BeÃ¡llÃ­tÃ¡sra kerÃ¼lnek az alapÃ©rtelmezÃ©sek
+		super(); // Beállí­tásra kerülnek az alapértelmezések
 		Log.ctor();
 	}
 
-	// RobbanÃ¡skor a robot Ã¡rvÃ¡ndorol egy szomszÃ©dos aszteroidÃ¡ra
+	// Robbanáskor a robot árvándorol egy szomszédos aszteroidára
 	public void Robbanas() {
 		Log.call();
 		mozgasIntelligencia();
 	}
 
-	// A robot lÃ©pÃ©se egy kÃ¶rben, ami lehet fÃºrÃ¡s vagy mozgÃ¡s
+	// A robot lépése egy körben, ami lehet fúrás vagy mozgás
 	public void Lepes() {
 		Log.call();
 		// TODO ez kell? int cselekves = RandomUtils.randomIntHatarokKozott(0, 4);
-		// mekkora esÃ©llyel fÃºrjon vagy mozogjon
-		// (fÃºrÃ¡s gyakrabb mint a mozgÃ¡s)
+		// mekkora eséllyel fúrjon vagy mozogjon
+		// (fúrás gyakrabb mint a mozgás)
 		if (RandomUtils.randomBooleanValoszinuseggel(Jatek.ROBOT_MOZGAS_VALOSZINUSEG))
 			mozgasIntelligencia();
 		else
 			Furas();
 	}
 
-	// A robot eldÃ¶nti hogy hova szeretne mozogni
+	// A robot eldönti hogy hova szeretne mozogni
 	public void mozgasIntelligencia() {
 		Log.call();
-		// Az aszteroida szomszÃ©dainak szÃ¡ma, a robot eldÃ¶nti hogy hanyas szÃ¡mÃºra szeretne mozogni
+		// Az aszteroida szomszédainak száma, a robot eldönti hogy hanyas számúra szeretne
+		// mozogni
 		int szomszedszam = aszteroida.getSzomszedok().size() - 1;
 		Integer sorszam = RandomUtils.randomIntHatarokKozott(0, szomszedszam);
-		Mozgas(sorszam); // vÃ©letlenszerÅ±en vÃ¡ndorlik egy szomszÃ©dra
+		Mozgas(sorszam); // véletlenszerûen vándorlik egy szomszédra
 	}
 
 	/**
-	 * FÃºrja az aszteroidÃ¡t, amin Ã¡ll
+	 * Fúrja az aszteroidát, amin áll
 	 */
 	public void Furas() {
 		Log.call();

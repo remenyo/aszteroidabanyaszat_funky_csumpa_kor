@@ -1,9 +1,9 @@
 package src;
 
 /**
- * aktiv - A portalon kereszt�l lehet e utazni birtokos - A telepes aki a port�lt birtokolni par -A
- * port�l p�rja vegpont -az aszteroida, amin a port�l elhelyezkedik megkergult - a portál
- * megkergültségét jellemzi
+ * aktiv - A portalon keresztül lehet e utazni birtokos - A telepes aki a portált birtokolni par -A
+ * portál párja vegpont -az aszteroida, amin a portál elhelyezkedik megkergult - a portál
+ * megkerg�lts�g�t jellemzi
  */
 public class Portal extends Hely implements Leptetheto {
 	private Boolean aktiv = false;
@@ -14,7 +14,7 @@ public class Portal extends Hely implements Leptetheto {
 	private Boolean lepett = false;
 
 	/**
-	 * Megh�vja az aszteroid�n �s a p�rj�n a beszippantot.
+	 * Meghívja az aszteroid�n és a párján a beszippantot.
 	 */
 	public void Robbanas() {
 		Log.call();
@@ -43,25 +43,25 @@ public class Portal extends Hely implements Leptetheto {
 
 
 	/**
-	 * Be�ll�tja a param�terk�nt kapott aszteroid�t a port�l v�gpontj�nak
+	 * Be�ll�tja a param�terk�nt kapott aszteroid�t a portál v�gpontjának
 	 * 
 	 * @param a a be�ll�tand� v�gpont
 	 */
 	public void beallitVegpont(Aszteroida a) {
 		Log.call();
-		vegpont = a; // megt�rt�nik a be�ll�t�s
-		birtokos.torolPortal(this); // T�bb� nem fogja birtokolni telepes ezt a port�lt
-		birtokos = null; // A port�l sem t�rolja t�bb� az �t birtokl� telepest
-		vegpont.hozzaadSzomszed(this); // Az aszteroid�n be�ll�t�sra ker�l a port�l
+		vegpont = a; // megt�rt�nik a be�ll�tés
+		birtokos.torolPortal(this); // T�bb� nem fogja birtokolni telepes ezt a portált
+		birtokos = null; // A portál sem t�rolja t�bb� az �t birtokl� telepest
+		vegpont.hozzaadSzomszed(this); // Az aszteroid�n be�ll�tésra ker�l a portál
 
 		mukodesbeHelyezes(a);
 	}
 
 
 	/**
-	 * A port�l p�rj�val val� �sszerendel�s
+	 * A portál párj�val val� ésszerendelés
 	 * 
-	 * @param p a m�sik port�l
+	 * @param p a mésik portál
 	 */
 	public void beallitPar(Portal p) {
 		Log.call();
@@ -70,7 +70,7 @@ public class Portal extends Hely implements Leptetheto {
 
 
 	/**
-	 * Ha a port�lnak �s a p�rj�nak is van v�gpontja, akkor enged�lyezi az utaz�st k�t port�lp�r
+	 * Ha a portálnak és a párjának is van v�gpontja, akkor enged�lyezi az utazést k�t portálpár
 	 * k�z�tt
 	 * 
 	 * @param a
@@ -78,8 +78,8 @@ public class Portal extends Hely implements Leptetheto {
 	private void mukodesbeHelyezes(Aszteroida a) {
 		Log.call();
 		if (par.getVegpont() != null) { // ha nincs, akkor nem lehet
-										// utazni a k�t port�l k�z�tt
-			// Mindk�t port�lt utazhat�v� kell tenni
+										// utazni a k�t portál k�z�tt
+			// Mindk�t portált utazhat�v� kell tenni
 			beallitAktiv();
 			par.beallitAktiv();
 		}
@@ -87,22 +87,22 @@ public class Portal extends Hely implements Leptetheto {
 	}
 
 	/**
-	 * Megsemmis�ti a port�lt
+	 * Megsemmis�ti a portált
 	 */
 	private void Beszippant() {
 		Log.call();
 		if (birtokos != null)
-			// Ha telepesn�l van a port�l, akkor elt�vol�tja azt az �rhaj�j�b�l
+			// Ha telepesn�l van a portál, akkor elt�vol�tja azt az �rhaj�j�b�l
 			birtokos.torolPortal(this);
 		if (vegpont != null)
-			// Ha egy aszteroid�n van a port�l, akkor elt�vol�tja azt a felsz�n�r�l
+			// Ha egy aszteroid�n van a portál, akkor elt�vol�tja azt a felsz�n�r�l
 			vegpont.torolSzomszed(this);
 
 	}
 
 	/**
-	 * Ha a portál meg van kergülve, akkor minden körben mozog egyet a végpontja valamelyik
-	 * szomszédjára
+	 * Ha a portál meg van kerg�lve, akkor minden k�rben mozog egyet a v�gpontja valamelyik
+	 * szomsz�dj�ra
 	 */
 	public void Lepes() {
 		Log.call();
@@ -114,9 +114,9 @@ public class Portal extends Hely implements Leptetheto {
 	}
 
 	/**
-	 * A portál mozgása aszteroidák között
+	 * A portál mozgésa aszteroid�k k�z�tt
 	 * 
-	 * @param sorszam - a végpontjának erre a sorszámú szomszédjára mozog
+	 * @param sorszam - a v�gpontjának erre a sorsz�m� szomsz�dj�ra mozog
 	 */
 	public void Mozgas(int sorszam) {
 		Log.call();
@@ -127,7 +127,7 @@ public class Portal extends Hely implements Leptetheto {
 	}
 
 	/**
-	 * Megh�vja a p�rj�n a teleport�l�s f�ggv�ny�t a megadott param�terrel
+	 * Meghívja a párján a teleportálés f�ggv�ny�t a megadott param�terrel
 	 *
 	 * @param sz - Szereplo, akit utaztat
 	 */
@@ -141,7 +141,7 @@ public class Portal extends Hely implements Leptetheto {
 	/**
 	 * A param�terk�nt kapott szerepl�t utaztatja a v�gpontj�ra
 	 *
-	 * @param sz - Szereplo, akit elteleportál a végpon
+	 * @param sz - Szereplo, akit elteleportál a v�gpon
 	 */
 	public void teleportalas(Szereplo sz) {
 		Log.call();
@@ -149,7 +149,7 @@ public class Portal extends Hely implements Leptetheto {
 	}
 
 	/**
-	 * Elhelyezi a párján a paraméterül kapott Hely-et
+	 * Elhelyezi a párján a param�ter�l kapott Hely-et
 	 *
 	 * @param hely - Hely, akit utaztat
 	 */
@@ -167,7 +167,7 @@ public class Portal extends Hely implements Leptetheto {
 
 
 	/**
-	 * �t birtokl� telepes be�ll�t�sa (teszthez)
+	 * �t birtokl� telepes be�ll�tésa (teszthez)
 	 * 
 	 * @param t - portál birtokosa
 	 */
@@ -178,7 +178,7 @@ public class Portal extends Hely implements Leptetheto {
 
 
 	/**
-	 * Annak az aszteroid�nak a be�ll�t�sa, amin a port�l el fog helyezkedni (teszt)
+	 * Annak az aszteroid�nak a be�ll�tésa, amin a portál el fog helyezkedni (teszt)
 	 * 
 	 * @param a - az aszteroida, amin a portál el fog helyezkedni
 	 */
