@@ -39,8 +39,8 @@ public class Szkeleton {
 
 	public static void Fomenu() {
 		while (true) {
-			int valasz = Cin.kerdez_tobbvalasz("F˜men˜", "J˜t˜k ind˜t˜s", "Parancssor",
-					"Teszt bet˜lt˜s", "J˜t˜k alaphelyzetbe ˜ll˜t˜sa", "Kil˜p˜s");
+			int valasz = Cin.kerdez_tobbvalasz("Fõmenü", "Játék indítás", "Parancssor",
+					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
 			switch (valasz) {
 				case 1:
 					Jatek.jatekInditas();
@@ -49,13 +49,13 @@ public class Szkeleton {
 					teszt_parancssor();
 					break;
 				case 3:
-					teszt_betoltes(Cin.getString("A f˜jl neve/c˜me:"));
+					teszt_betoltes(Cin.getString("A fájl neve/címe:"));
 					break;
 				case 4:
 					teszt_reset();
 					break;
 				case 5:
-					if (Cin.getBool("Ez t˜rli a j˜t˜k ˜llapot˜t, biztos vagy benne?"))
+					if (Cin.getBool("Ez törli a játék állapotát, biztos vagy benne?"))
 						return;
 				default:
 					break;
@@ -157,7 +157,7 @@ public class Szkeleton {
 		objektumok.clear();
 		objektumok.put("_this", getInstance());
 		objektumok.put("jatek", Jatek.getInstance());
-		// Jatek.restoreBackup();
+		Jatek.beallitas_visszatoltes();
 		objektumok.put("nap", new Nap());
 		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
 

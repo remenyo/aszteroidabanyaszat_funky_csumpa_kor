@@ -5,12 +5,11 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.Map.Entry;
 
 public class Jatek {
 
 	private static final Jatek INSTANCE = new Jatek();
-	private static Map<Field, Object> beallitasok_backup;
+	private static Map<String, Object> beallitasok_backup;
 
 	public static Jatek getInstance() {
 		return INSTANCE;
@@ -48,10 +47,24 @@ public class Jatek {
 	// lépés determinisztikussá tételéhez
 	public static Boolean robot_robbanas_elso_szomszed = false;
 
-	private static void backup() {
-		beallitasok_backup = new TreeMap<Field, Object>();
+	public static void beallitas_mentes() {
+		beallitas_kezeles(true);
+	}
+
+	public static void beallitas_visszatoltes() {
+		beallitas_kezeles(false);
+	}
+
+	private static void beallitas_kezeles(Boolean mentes) {
+		if (mentes) {
+			if (beallitasok_backup != null)
+				Log.warn("Alapértelmezések felülírva.");
+			beallitasok_backup = new TreeMap<String, Object>();
+		}
 		Field[] fields = getInstance().getClass().getDeclaredFields();
 		for (Field field : fields) {
+			if (field.getName().equals("beallitasok_backup"))
+				continue;
 			int modifier = field.getModifiers();
 			if (Modifier.isFinal(modifier))
 				continue;
@@ -60,7 +73,10 @@ public class Jatek {
 				field.setAccessible(true);
 			}
 			try {
-				beallitasok_backup.put(field, field.get(getInstance()));
+				if (mentes)
+					beallitasok_backup.put(field.getName(), field.get(getInstance()));
+				else
+					field.set(getInstance(), beallitasok_backup.get(field.getName()));
 			} catch (Exception e) {
 				Log.error(e.toString());
 			} finally {
@@ -71,27 +87,7 @@ public class Jatek {
 		}
 	}
 
-	protected static void restoreBackup() {
-		for (Entry<Field, Object> e : beallitasok_backup.entrySet()) {
-			int modifier = e.getKey().getModifiers();
-			boolean private_field = Modifier.isPrivate(modifier);
-			if (private_field) {
-				e.getKey().setAccessible(true);
-			}
-			try {
-				e.getKey().set(getInstance(), e.getValue());
-			} catch (Exception exception) {
-				Log.error(exception.toString());
-			} finally {
-				if (private_field) {
-					e.getKey().setAccessible(false);
-				}
-			}
-		}
-	}
-
 	private Jatek() {
-		// backup();
 		leptethetok = new ArrayList<Leptetheto>();
 	}
 
