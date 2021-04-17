@@ -16,10 +16,10 @@ public class Cin {
     }
 
     /**
-     * Egy {@code int}-et olvas be a bemenetrõl. Ha a bemenet nem értelmezhetõ, a függvény -1-t ad
+     * Egy {@code int}-et olvas be a bemenetrï¿½l. Ha a bemenet nem ï¿½rtelmezhetï¿½, a fï¿½ggvï¿½ny -1-t ad
      * viszza.
      * 
-     * @return a beolvasott érték
+     * @return a beolvasott ï¿½rtï¿½k
      */
     public static Integer getInt() {
         String input = "";
@@ -27,23 +27,23 @@ public class Cin {
             input = getString();
             return Integer.parseInt(input);
         } catch (Exception e) {
-            Log.error("Nem értelmezett bemenet: \"" + input + "\".");
+            Log.error("Nem Ã©rtelmezett bemenet: \"" + input + "\".");
             return -1;
 
             /*
-             * if (s.equals("y") || s.equals("Y")) { Log.info("Válasz átalakí­tva " + s +
-             * "-ról 1-re. ;)"); return 1; } else if (s.equals("n") || s.equals("N")) {
-             * Log.info("Válasz átalakí­tva " + s + "-rõl 0-ra. ;)"); return 0; } else {
-             * Log.error("Nem értelmezett bemenet: \"" + scanner.next() + "\"."); return 0; }
+             * if (s.equals("y") || s.equals("Y")) { Log.info("Vï¿½lasz ï¿½talakï¿½ï¿½tva " + s +
+             * "-rï¿½l 1-re. ;)"); return 1; } else if (s.equals("n") || s.equals("N")) {
+             * Log.info("Vï¿½lasz ï¿½talakï¿½ï¿½tva " + s + "-rï¿½l 0-ra. ;)"); return 0; } else {
+             * Log.error("Nem ï¿½rtelmezett bemenet: \"" + scanner.next() + "\"."); return 0; }
              */
 
         }
     }
 
     /**
-     * Egy {@code String}-et olvas be a bemenetrõl. (egy sort.)
+     * Egy {@code String}-et olvas be a bemenetrï¿½l. (egy sort.)
      * 
-     * @return a beolvasott érték
+     * @return a beolvasott ï¿½rtï¿½k
      */
     public static String getString() {
         try {
@@ -55,11 +55,11 @@ public class Cin {
     }
 
     /**
-     * Feltesz egy kérdést a felhasználónak, majd egy {@code int}-et olvas be a bemenetrõl. Ha a
-     * bemenet nem értelmezhetõ, a függvény -1-t ad vissza.
+     * Feltesz egy kï¿½rdï¿½st a felhasznï¿½lï¿½nak, majd egy {@code int}-et olvas be a bemenetrï¿½l. Ha a
+     * bemenet nem ï¿½rtelmezhetï¿½, a fï¿½ggvï¿½ny -1-t ad vissza.
      * 
-     * @param kerdes A felhasználónak kií­randó kérdés.
-     * @return A beí­rt szám, vagy -1 ha nem értlemezhetõ a bemenet.
+     * @param kerdes A felhasznï¿½lï¿½nak kiï¿½ï¿½randï¿½ kï¿½rdï¿½s.
+     * @return A beï¿½ï¿½rt szï¿½m, vagy -1 ha nem ï¿½rtlemezhetï¿½ a bemenet.
      */
     public static Integer getInt(String kerdes) {
         kerdez(kerdes);
@@ -67,10 +67,10 @@ public class Cin {
     }
 
     /**
-     * Feltesz egy kérdést a felhasználónak, majd egy {@code String}-et olvas be a bemenetrõl.
+     * Feltesz egy kï¿½rdï¿½st a felhasznï¿½lï¿½nak, majd egy {@code String}-et olvas be a bemenetrï¿½l.
      * 
-     * @param kerdes A felhasználónak kií­randó kérdés.
-     * @return A beí­rt szöveg.
+     * @param kerdes A felhasznï¿½lï¿½nak kiï¿½ï¿½randï¿½ kï¿½rdï¿½s.
+     * @return A beï¿½ï¿½rt szï¿½veg.
      */
     public static String getString(String kerdes) {
         kerdez(kerdes);
@@ -78,10 +78,10 @@ public class Cin {
     }
 
     /**
-     * Feltesz egy kérdést a felhasználónak, majd egy {@code int}-et olvas be a bemenetrõl. Ha a
-     * bemenet {@code 1}, a visszatérési érték {@code true} különben {@code false}.
+     * Feltesz egy kï¿½rdï¿½st a felhasznï¿½lï¿½nak, majd egy {@code int}-et olvas be a bemenetrï¿½l. Ha a
+     * bemenet {@code 1}, a visszatï¿½rï¿½si ï¿½rtï¿½k {@code true} kï¿½lï¿½nben {@code false}.
      * 
-     * @param kerdes A felhasználónak kií­randó kérdés.
+     * @param kerdes A felhasznï¿½lï¿½nak kiï¿½ï¿½randï¿½ kï¿½rdï¿½s.
      * @return {@code true} vagy {@code false}
      */
     public static Boolean getBool(String kerdes) {
@@ -91,12 +91,12 @@ public class Cin {
     }
 
     /**
-     * Menü szerepet betöltõ függvény.
+     * Menï¿½ szerepet betï¿½ltï¿½ fï¿½ggvï¿½ny.
      * 
-     * @param cim Menü neve
-     * @param lehetosegek A választható elemek
-     * @return Egy int ami {@code 1}-tõl lehetõségek számáig terjed. {@code -1} ha nem értelmezett a
-     *         választás.
+     * @param cim Menï¿½ neve
+     * @param lehetosegek A vï¿½laszthatï¿½ elemek
+     * @return Egy int ami {@code 1}-tï¿½l lehetï¿½sï¿½gek szï¿½mï¿½ig terjed. {@code -1} ha nem ï¿½rtelmezett a
+     *         vï¿½lasztï¿½s.
      */
     public static Integer kerdez_tobbvalasz(String cim, String... lehetosegek) {
         String border = "";
@@ -107,11 +107,11 @@ public class Cin {
         for (int i = 0; i < lehetosegek.length; i++) {
             kerdes += i + 1 + " - " + lehetosegek[i] + "\n";
         }
-        kerdes += "Válasz [1-" + lehetosegek.length + "]: ";
+        kerdes += "VÃ¡lasz [1-" + lehetosegek.length + "]: ";
         kerdez(kerdes);
         int valasz = getInt();
         if (valasz > lehetosegek.length || valasz < 1) {
-            Log.warn("Helytelen válasz!", 0, 1);
+            Log.warn("Helytelen vÃ¡lasz!", 0, 1);
             valasz = -1;
         }
         return valasz;

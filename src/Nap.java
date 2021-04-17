@@ -26,7 +26,7 @@ public class Nap implements Leptetheto {
 	public void Lepes() {
 		Log.call();
 		if (!napviharfolyamatban) {
-			if (RandomUtils.randomIntHatarokKozott(0, 100) <= 99) {
+			if (RandomUtils.randomIntHatarokKozott(0, 100) <= 5) {
 				napviharravarok.clear();
 				for (int i = 0; i < aszteroidak.size() / 2; i++) {
 					Aszteroida randomNapviharravaro = aszteroidak

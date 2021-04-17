@@ -3,6 +3,7 @@ package src;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -189,15 +190,14 @@ public class Jatek {
 
 			a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
 			a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
-
+			
 			if (i == 0) {
 				for (int j = 0; j < JATEKOS_SZAM; j++) {
 					Telepes t = new Telepes();
 					t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
-					telepesszam++;
-					leptethetok.add(t);
 				}
 			}
+			
 			atmenetiAszteroidatar.add(a);
 		}
 		atmenetiAszteroidatar.get(0)
@@ -215,21 +215,18 @@ public class Jatek {
 
 		allapot = 0;
 		ArrayList<Leptetheto> temp = leptethetok;
-        
+		System.out.println(leptethetok.toString());
 		while (allapot == 0) {
-			/*for (Leptetheto leptetheto : leptethetok) {
-				leptetheto.Lepes();
-				if (allapot != 0) {
-					break;
-				}
-			}*/
-			int k=0;
-            for(int i=0; i<temp.size(); i++) {
-                if(temp.get(i)!=leptethetok.get(k)) {
-                    k++;
-                }
-                leptethetok.get(k).Lepes();
-            }
+			try {
+        		for(int i=0; i<leptethetok.size(); i++) {
+        			leptethetok.get(i).Lepes();
+        			if (allapot != 0) {
+    					break;
+    				}
+        		}
+        	}catch(ConcurrentModificationException e){
+        		
+        	}
 		}
 	}
 

@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 /**
@@ -83,35 +84,15 @@ public class Aszteroida extends Hely {
             h.szomszedNapvihar();
         }
         if (reteg != 0 || nyersanyag != null) {
-        	/*Iterator<Szereplo> i = szereplok.iterator();
-        	while (i.hasNext()) {
-        		Szereplo s = i.next();
-        		s.Napvihar();
-        	}*/
-        	//szereplok.forEach(it->{it.Napvihar();});
-        	//ArrayList<Szereplo> szereplokTemp = szereplok;
-        	//try {
-        //	int s = szereplok.size();
-        	//int i = 0;
-        	//while(i<szereplok.size()) {
-        	//	szereplokTemp.get(i++).Napvihar();
-        	//}
+        	
+        	int s = szereplok.size();
+        	try {
+        		for(int i=0; i<s; i++) {
+        			szereplok.get(0).Napvihar();
+        		}
+        	}catch(ConcurrentModificationException e){
         		
-            	//for (int i = 0; i<s;i++) {
-                
-                	
-            //    }
-        	//}catch(Exception e){
-        	//	
-        	//}*/
-        	ArrayList<Szereplo> temp = szereplok;
-            int k=0;
-            for(int i=0; i<temp.size(); i++) {
-                if(temp.get(i)!=szereplok.get(k)) {
-                    k++;
-                }
-                szereplok.get(k).Napvihar();
-            }
+        	}
         	
         }
     }
@@ -190,9 +171,16 @@ public class Aszteroida extends Hely {
         if(reteg==0 && nyersanyag !=null) {
         	Nyersanyag visszaAdando = nyersanyag; // kimentjük az értéket
             torolNyersanyag(); // üressé tesszük az aszteroidát
+            System.out.println(visszaAdando.getNev()+" kibányászva");
             return visszaAdando; // nem null értéket visszaadjuk.
+        }else if(reteg>0) {
+        	System.out.println("Még van kéreg");
+        	return null;
+        }else {
+        	System.out.println("Üres az aszteroida");
+            return null;
         }
-        return null;
+        
     }
 
     /**
