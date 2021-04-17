@@ -1,5 +1,8 @@
 package src;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -22,6 +25,7 @@ public class Szkeleton {
 	private static Map<String, Object> objektumok;
 	private static Map<Field, Object> jatek_alapertelmezes;
 
+	private static String filebaIrando="";
 	private Szkeleton() {
 		objektumok = new TreeMap<>();
 		// TODO get alapertelmezett values for fields
@@ -379,5 +383,43 @@ public class Szkeleton {
 	// static void teszt_mozgas(String... argumentumok) {
 	// hiv(argumentumok[0],"Mozgas",); //TODO daninak majd ejfelkor
 	// }
-
+	
+	static void teszt_info(String... argumentumok){
+		System.out.println((String)hiv(argumentumok[0],"toString",null));
+		filebaIrando += (String)hiv(argumentumok[0],"toString",null);
+	}
+	
+	static void teszt_mentes(String... argumentumok){ //TODO beirni 0. fejezetbe hogy ne irjak oda hogy .txt
+		try { //TODO hova mentsen
+            FileOutputStream kiStream = new FileOutputStream(argumentumok[0]+".txt");
+            OutputStreamWriter kiWriter = new OutputStreamWriter(kiStream,"UTF-8");
+            BufferedWriter ir = new BufferedWriter(kiWriter);
+            ir.write(filebaIrando);
+            ir.close();
+        } catch (Exception e) {
+        	System.out.println("HIBA");
+            e.printStackTrace();
+        }
+	}
+	
+	static void teszt_infoMinden() {
+		for(Map.Entry<String,Object> objektum : objektumok.entrySet()) {
+			System.out.println((String)hiv(objektum.getKey(),"toString",null));
+		}
+	}
+	
+	static void teszt_infoAllapot() { //TODO ha a char cuccok helyett mas megoldas lesz akkor ezeket atirni
+		Integer jelenlegiAllapot = ((Integer)hiv("jatek","getAllapot",null));
+		if(jelenlegiAllapot==0) {
+			System.out.println("folyamatban");
+			filebaIrando += "folyamatban"+(char)13 + (char)10;
+		}else if(jelenlegiAllapot==1) {
+			System.out.println("nyert");
+			filebaIrando += "nyert"+(char)13 + (char)10;
+		}else if(jelenlegiAllapot==-1) {
+			System.out.println("vesztett");
+			filebaIrando += "vesztett"+(char)13 + (char)10;
+		}
+		
+	}
 }
