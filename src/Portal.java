@@ -186,4 +186,8 @@ public class Portal extends Hely implements Leptetheto {
 	public void resetLepett() {
 		lepett = false;
 	}
+	//teszt miatt
+	public Aszteroida getAszteroida() {
+    	return vegpont;
+    }
 }

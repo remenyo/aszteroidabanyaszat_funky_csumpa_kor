@@ -381,10 +381,15 @@ public class Szkeleton {
 	}
 	//TODO Megbeszelni itt egy tipus check legyen vagy valami mas megoldas mert portal nem ugy mozog mint a tobbiek
 	//talan ha valamilyen fuggvenyt atnevezunk vagy valahogy ez nagyon kaka 
-	/*static void teszt_mozgas:<RobotVagyUfoVagyPortalVagyTelepesNeve>:<AszteroidaNeve>(String... argumentumok) {
-		 
-		 hiv(argumentumok[0],"Mozgas",szam); 
-	 }*/
+	static void teszt_mozgas(String... argumentumok) {
+		Aszteroida aminVagyunk =  (Aszteroida)hiv(argumentumok[0],"getAszteroida");
+		Aszteroida amireMegyunk = ((Aszteroida)objektumok.get(argumentumok[1]));
+		Integer menesSzam = aminVagyunk.getSzomszedok().indexOf(amireMegyunk);
+		if(menesSzam!=-1) {
+			hiv(argumentumok[0],"Mozgas",menesSzam.toString()); //TODO ez itt igy jo?
+		}
+		
+	 }
 	
 	static void teszt_info(String... argumentumok){
 		System.out.println((String)hiv(argumentumok[0],"toString",null));
@@ -433,5 +438,51 @@ public class Szkeleton {
 			jatek.resetLepett(); //TODO minden lepes vegere odairni hogy at kell allitani a lepest truera
 			//TODO ezt a fuggvenyt is oda kell irni
 		}
+	}
+	//------------------- Balazs cuccai ---------------
+	static void teszt_letrehozRobot(String... argumentumok){
+		letrehoz("Robot",argumentumok[0]);
+		beallit(argumentumok[0],"aszteroida",argumentumok[1]);
+	}
+	
+	static void teszt_letrehozUfo(String... argumentumok){
+		letrehoz("Ufo",argumentumok[0]);
+		beallit(argumentumok[0],"aszteroida",argumentumok[1]);
+	}
+	
+	static void teszt_letrehozPortalTelepes(String... argumentumok){
+		if(((Telepes)objektumok.get(argumentumok[0])).getPortal().size() < 3)
+		letrehoz("Portal",argumentumok[0]);
+		beallit(argumentumok[0],"birtokos",argumentumok[1]);
+	}
+	
+	static void teszt_visszarakNyersanyag(String... argumentumok){
+		hiv(argumentumok[0],"visszarakNyersanyag",argumentumok[1]);
+	}
+	
+	static void teszt_lerakPortal(String... argumentumok){
+		hiv(argumentumok[0],"lerakPortal",argumentumok[1]);
+	}
+	
+	static void teszt_epitPortal(String... argumentumok){
+		ArrayList<Portal> portalok = (ArrayList<Portal>)hiv(argumentumok[0],"epitPortal",null);
+		if(portalok != null) {
+			objektumok.put(argumentumok[1], portalok.get(0));
+			objektumok.put(argumentumok[2], portalok.get(1));
+		}
+	}
+	
+	static void teszt_furas(String... argumentumok){
+		hiv(argumentumok[0],"furas",null);
+	}
+	
+	static void teszt_napviharOkozasa(String... argumentumok){
+		for(int i = 0; i < argumentumok.length; i++) {
+			hiv(argumentumok[i],"Napvihar",null);
+		}
+	}
+	
+	static void teszt_randomValoszinuseg(String... argumentumok){
+		Jatek.robot_robbanas_elso_szomszed = Boolean.parseBoolean(argumentumok[1]);
 	}
 }

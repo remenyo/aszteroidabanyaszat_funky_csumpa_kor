@@ -3,7 +3,7 @@ package src;
 import java.util.ArrayList;
 
 public class Balazsbalfaszkodasa {
-	static void teszt_letrehozRobot(String... argumentumok){
+	/*static void teszt_letrehozRobot(String... argumentumok){
 		letrehoz("Robot",argumentumok[0]);
 		beallit(argumentumok[0],"aszteroida",argumentumok[1]);
 	}
@@ -48,7 +48,7 @@ public class Balazsbalfaszkodasa {
 	
 	static void teszt_randomValoszinuseg(String... argumentumok){
 		Jatek.robot_robbanas_elso_szomszed = Boolean.parseBoolean(argumentumok[1]);
-	}
+	}*/
 	
 }
 

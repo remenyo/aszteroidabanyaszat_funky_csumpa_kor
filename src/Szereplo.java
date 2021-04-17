@@ -76,4 +76,8 @@ abstract public class Szereplo implements Leptetheto {
         aszteroida = a;
         a.hozzaadSzereplo(this);
     }
+    
+    public Aszteroida getAszteroida() {
+    	return aszteroida;
+    }
 }
