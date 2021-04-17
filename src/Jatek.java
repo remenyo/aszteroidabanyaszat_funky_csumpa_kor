@@ -133,7 +133,7 @@ public class Jatek {
 	/**
 	 * T�rli a param�terk�nt kapott l�ptethet�t a list�b�l
 	 * 
-	 * @param l a t�rlend� l�ptethet�
+	 * @param l a törlendő l�ptethet�
 	 */
 	public static void torolLeptetheto(Leptetheto l) {
 		Log.call();
@@ -141,7 +141,7 @@ public class Jatek {
 	}
 
 	/**
-	 * Cs�kkenti a telepessz�mot eggyel, �s ha m�r nincs el�g akkor megh�vja a j�t�k v�ge vesztett
+	 * Csökkenti a telepesszémot eggyel, és ha már nincs elég akkor meghívja a játék vége vesztett
 	 * fv.t
 	 */
 	public static void telepesMeghal() {
@@ -153,7 +153,7 @@ public class Jatek {
 	}
 
 	/**
-	 * Gratul�l a gy�zelemhez �s lez�rja a progit
+	 * Gratulál a győzelemhez és megállítja a játékot.
 	 */
 	public static void jatekVegeNyert() {
 		Log.call();
@@ -162,11 +162,11 @@ public class Jatek {
 	}
 
 	/**
-	 * Veres�gn�l lez�rja a progit
+	 * Vereségnél megállítja a játékot.
 	 */
 	public static void jatekVegeVesztett() {
 		Log.call();
-		System.out.println("Gratul�lunk vesztett�l !! :)");
+		System.out.println("Gratulálunk vesztettél !! :)");
 		allapot = -1;
 	}
 

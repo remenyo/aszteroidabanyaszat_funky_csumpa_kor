@@ -85,16 +85,16 @@ public class Aszteroida extends Hely {
             h.szomszedNapvihar();
         }
         if (reteg != 0 || nyersanyag != null) {
-        	
-        	int s = szereplok.size();
-        	try {
-        		for(int i=0; i<s; i++) {
-        			szereplok.get(0).Napvihar();
-        		}
-        	}catch(ConcurrentModificationException e){
-        		
-        	}
-        	
+
+            int s = szereplok.size();
+            try {
+                for (int i = 0; i < s; i++) {
+                    szereplok.get(0).Napvihar();
+                }
+            } catch (ConcurrentModificationException e) {
+
+            }
+
         }
     }
 
@@ -106,7 +106,7 @@ public class Aszteroida extends Hely {
         Log.call();
         if (reteg > 0) {
             reteg--;
-            if (reteg == 0 && nyersanyag!= null) {
+            if (reteg == 0 && nyersanyag != null) {
                 nyersanyag.felszinreKerul(this);
             }
         }
@@ -169,19 +169,19 @@ public class Aszteroida extends Hely {
      */
     public Nyersanyag Banyaszat() {
         Log.call();
-        if(reteg==0 && nyersanyag !=null) {
-        	Nyersanyag visszaAdando = nyersanyag; // kimentjük az értéket
+        if (reteg == 0 && nyersanyag != null) {
+            Nyersanyag visszaAdando = nyersanyag; // kimentjük az értéket
             torolNyersanyag(); // üressé tesszük az aszteroidát
-            System.out.println(visszaAdando.getNev()+" kibányászva");
+            System.out.println(visszaAdando.getNev() + " kibányászva");
             return visszaAdando; // nem null értéket visszaadjuk.
-        }else if(reteg>0) {
-        	System.out.println("Még van kéreg");
-        	return null;
-        }else {
-        	System.out.println("Üres az aszteroida");
+        } else if (reteg > 0) {
+            System.out.println("Még van kéreg");
+            return null;
+        } else {
+            System.out.println("Üres az aszteroida");
             return null;
         }
-        
+
     }
 
     /**
@@ -241,8 +241,8 @@ public class Aszteroida extends Hely {
      */
     public Boolean hozzaadNyersanyag(Nyersanyag ny) {
         Log.call();
-        if(reteg==0 && nyersanyag == null) {
-        	nyersanyag = ny;
+        if (reteg == 0 && nyersanyag == null) {
+            nyersanyag = ny;
             ny.felszinreKerul(this);
             return true;
         }
@@ -321,19 +321,25 @@ public class Aszteroida extends Hely {
         for (Szereplo szereplo : szereplok) {
             kimenet += Szkeleton.getID(szereplo) + ":";
         }
-        if(szereplok.size()!=0)
-        kimenet = kimenet.substring(0, kimenet.length() - 1);
-        else {kimenet+="null";}
+        if (szereplok.size() != 0)
+            kimenet = kimenet.substring(0, kimenet.length() - 1);
+        else {
+            kimenet += "null";
+        }
         kimenet += "]:[";
         for (Hely szomszed : szomszedok) {
             kimenet += Szkeleton.getID(szomszed) + ":";
         }
-        if(szomszedok.size()!=0)
-        kimenet = kimenet.substring(0, kimenet.length() - 1);
-        else {kimenet+="null";}
-        kimenet += "]:" ;
-        if(nyersanyag!=null)kimenet+=Szkeleton.getID(nyersanyag);
-        else {kimenet+="null";}
+        if (szomszedok.size() != 0)
+            kimenet = kimenet.substring(0, kimenet.length() - 1);
+        else {
+            kimenet += "null";
+        }
+        kimenet += "]:";
+        if (nyersanyag != null)
+            kimenet += Szkeleton.getID(nyersanyag);
+        else
+            kimenet += "null";
         // kimenet += "" /* + (char) 13 + (char) 10 */;
         return kimenet;
 
