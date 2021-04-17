@@ -105,7 +105,7 @@ public class Aszteroida extends Hely {
         Log.call();
         if (reteg > 0) {
             reteg--;
-            if (reteg == 0 || nyersanyag!= null) {
+            if (reteg == 0 && nyersanyag!= null) {
                 nyersanyag.felszinreKerul(this);
             }
         }

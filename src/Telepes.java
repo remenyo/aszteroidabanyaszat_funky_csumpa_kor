@@ -302,7 +302,7 @@ public class Telepes extends Szereplo {
 	}
 
 	public String toString() {
-		/*String kimenet = Szkeleton.getID(aszteroida) + ":[";
+		String kimenet = Szkeleton.getID(aszteroida) + ":[";
 		for (Nyersanyag nyersanyag : nyersanyagok) {
 			kimenet += Szkeleton.getID(nyersanyag) + ":";
 		}
@@ -314,9 +314,7 @@ public class Telepes extends Szereplo {
 		kimenet = kimenet.substring(0, kimenet.length() - 2);
 		kimenet += "]:";
 		kimenet += String.valueOf(lepett);
-		// kimenet += (char) 13 + (char) 10;
-		return kimenet;*/
-		return "kaki";
+		return kimenet;
 	}
 
 	@Override
