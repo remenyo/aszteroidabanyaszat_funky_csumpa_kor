@@ -330,7 +330,9 @@ public class Aszteroida extends Hely {
         if(szomszedok.size()!=0)
         kimenet = kimenet.substring(0, kimenet.length() - 1);
         else {kimenet+="null";}
-        kimenet += "]:" + Szkeleton.getID(nyersanyag);
+        kimenet += "]:" ;
+        if(nyersanyag!=null)kimenet+=Szkeleton.getID(nyersanyag);
+        else {kimenet+="null";}
         // kimenet += "" /* + (char) 13 + (char) 10 */;
         return kimenet;
 
