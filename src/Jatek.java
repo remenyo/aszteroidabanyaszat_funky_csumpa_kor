@@ -227,7 +227,6 @@ public class Jatek {
 			}
 		}
 
-		n.hozzaadAszteroidak(atmenetiAszteroidatar);
 
 		allapot = 0;
 		ArrayList<Leptetheto> temp = leptethetok;

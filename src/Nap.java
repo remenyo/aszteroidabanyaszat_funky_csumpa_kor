@@ -72,9 +72,9 @@ public class Nap implements Leptetheto {
 	 * 
 	 * @param a aszteroida lista
 	 */
-	public void hozzaadAszteroidak(ArrayList<Aszteroida> a) {
+	public void hozzaadAszteroida(Aszteroida a) {
 		Log.call();
-		aszteroidak = a;
+		aszteroidak.add(a);
 	}
 
 	public String toString() {
