@@ -378,8 +378,7 @@ public class Szkeleton {
 			hiv(argumentumok[0], "hozzaadNyersanyag", nyersanyagok[i]);
 		}
 	}
-	//TODO Megbeszelni itt egy tipus check legyen vagy valami mas megoldas mert portal nem ugy mozog mint a tobbiek
-	//talan ha valamilyen fuggvenyt atnevezunk vagy valahogy ez nagyon kaka 
+	
 	static void teszt_mozgas(String... argumentumok) {
 		Aszteroida aminVagyunk =  (Aszteroida)hiv(argumentumok[0],"getAszteroida");
 		Aszteroida amireMegyunk = ((Aszteroida)objektumok.get(argumentumok[1]));
