@@ -194,6 +194,30 @@ public class Szkeleton {
 	}
 
 	public static void teszt_parancssor() {
+		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
+		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
+		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
+		RobothozNyersanyag.hozzaadNyersanyag(new Szen());
+		RobothozNyersanyag.hozzaadNyersanyag(new Vas());
+		RobothozNyersanyag.hozzaadNyersanyag(new Uran());
+
+		PortalhozNyersanyag.hozzaadNyersanyag(new Uran());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg());
+
+		for (int i = 0; i < 3; i++) {
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran());
+		}
+
+		Telepes.hozzaadKoltseg(RobothozNyersanyag);
+		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
+		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
+
+
 		while (true) {
 			System.out.print("> ");
 			String parancs = Cin.getString();
@@ -636,7 +660,7 @@ public class Szkeleton {
 	}
 
 	public static void teszt_letrehozPortalTelepes(String pid, String tid) {
-		if (((Telepes) objektumok.get(pid)).getPortal().size() < 3)
+		if (((Telepes) objektumok.get(tid)).getPortal().size() < 3)
 			letrehoz("Portal", pid);
 		beallit(pid, "birtokos", tid);
 	}
