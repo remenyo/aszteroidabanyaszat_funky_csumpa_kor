@@ -44,6 +44,15 @@ public class Robot extends Szereplo {
 	}
 
 	public String toString() {
-		return Szkeleton.getID(aszteroida) /* + "" + (char) 13 + (char) 10 */;
+		return Szkeleton.getID(aszteroida) +":"+String.valueOf(lepett); /* + "" + (char) 13 + (char) 10 */
+	}
+
+	@Override
+	public Boolean lepette() {
+		return lepett;
+	}
+	@Override
+	public void resetLepett() {
+		lepett = false;
 	}
 }

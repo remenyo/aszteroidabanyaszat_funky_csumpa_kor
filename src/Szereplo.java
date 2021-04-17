@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 abstract public class Szereplo implements Leptetheto {
     protected Aszteroida aszteroida;
-
+    protected Boolean lepett = false;
+    
     public Szereplo() {
         Log.call();
         Jatek.leptethetok.add(this); // Szereplõ létrejöttekor a léptethetõk listája is bõvül

@@ -11,7 +11,7 @@ public class Portal extends Hely implements Leptetheto {
 	private Telepes birtokos;
 	private Portal par;
 	private Aszteroida vegpont;
-
+	private Boolean lepett = false;
 	/**
 	 * Megh�vja az aszteroid�n �s a p�rj�n a beszippantot.
 	 */
@@ -173,7 +173,17 @@ public class Portal extends Hely implements Leptetheto {
 
 	public String toString() {
 		return aktiv.toString() + ":" + Szkeleton.getID(birtokos) + ":" + Szkeleton.getID(par) + ":"
-				+ Szkeleton.getID(vegpont) + ":" + megkergult.toString() + "" + (char) 13
-				+ (char) 10; // TODO nem kell ujsor
+				+ Szkeleton.getID(vegpont) + ":" + megkergult.toString() +":"+String.valueOf(lepett); /*+ "" + (char) 13
+				+ (char) 10;*/ // TODO nem kell ujsor
+	}
+
+	@Override
+	public Boolean lepette() {
+		return lepett;
+	}
+	
+	@Override
+	public void resetLepett() {
+		lepett = false;
 	}
 }

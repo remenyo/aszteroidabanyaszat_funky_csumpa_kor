@@ -422,4 +422,12 @@ public class Szkeleton {
 		}
 		
 	}
+	
+	static void mindenkiLepett() {
+		Jatek jatek = ((Jatek)objektumok.get("jatek"));
+		if(jatek.mindenkiLepett()) {
+			jatek.resetLepett(); //TODO minden lepes vegere odairni hogy at kell allitani a lepest truera
+			//TODO ezt a fuggvenyt is oda kell irni
+		}
+	}
 }

@@ -45,9 +45,6 @@ public class Balazsbalfaszkodasa {
 		}
 	}
 	
-	static void teszt_info(String... argumentumok){
-		hiv(argumentumok[0],"toString",null);
-	}
 	
 	static void teszt_randomValoszinuseg(String... argumentumok){
 		Jatek.robot_robbanas_elso_szomszed = Boolean.parseBoolean(argumentumok[1]);

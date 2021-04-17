@@ -77,4 +77,16 @@ public class Nap implements Leptetheto {
 	public String toString() {
 		return Integer.toString(aszteroidak.size()) /* + "" + (char) 13 + (char) 10 */;
 	}
+
+
+	@Override //teszt miatt nem fontos
+	public Boolean lepette() {
+		return null;
+	}
+
+
+	@Override//teszt miatt nem fontos
+	public void resetLepett() {
+		
+	}
 }
