@@ -30,37 +30,17 @@ public class Szkeleton {
 	}
 
 	private static Map<String, Object> objektumok;
-	private static Map<Field, Object> jatek_alapertelmezes;
 
 	private static ArrayList<String> filebaIrando = new ArrayList<String>();
 
 	private Szkeleton() {
 		objektumok = new TreeMap<>();
-
-		// TODO jatek beallitasok load
-		// Field[] fields = Jatek.getInstance().getClass().getDeclaredFields();
-		// for (Field field : fields) {
-		// int modifier = field.getModifiers();
-		// boolean private_field = Modifier.isPrivate(modifier);
-		// if (private_field) {
-		// field.setAccessible(true);
-		// }
-		// try {
-		// jatek_alapertelmezes.put(field, field.get(Jatek.getInstance()));
-		// } catch (Exception e) {
-		// Log.error(e.toString());
-		// } finally {
-		// if (private_field) {
-		// field.setAccessible(false);
-		// }
-		// }
-		// }
 	}
 
 	public static void Fomenu() {
 		while (true) {
-			int valasz = Cin.kerdez_tobbvalasz("Fõmenü", "Játék indítás", "Parancssor",
-					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
+			int valasz = Cin.kerdez_tobbvalasz("F˜men˜", "J˜t˜k ind˜t˜s", "Parancssor",
+					"Teszt bet˜lt˜s", "J˜t˜k alaphelyzetbe ˜ll˜t˜sa", "Kil˜p˜s");
 			switch (valasz) {
 				case 1:
 					Jatek.jatekInditas();
@@ -69,13 +49,13 @@ public class Szkeleton {
 					teszt_parancssor();
 					break;
 				case 3:
-					teszt_betoltes(Cin.getString("A fájl neve/címe:"));
+					teszt_betoltes(Cin.getString("A f˜jl neve/c˜me:"));
 					break;
 				case 4:
 					teszt_reset();
 					break;
 				case 5:
-					if (Cin.getBool("Ez törli a játék állapotát, biztos vagy benne?"))
+					if (Cin.getBool("Ez t˜rli a j˜t˜k ˜llapot˜t, biztos vagy benne?"))
 						return;
 				default:
 					break;
@@ -133,7 +113,12 @@ public class Szkeleton {
 					.filter(file -> file.getFileName().toString().contains("eredmeny")
 							&& !Files.isDirectory(file))
 					.map(Path::toFile).collect(Collectors.toList())) {
-				// File test = cel.resolve(null)
+				Path dest = Paths.get(cel.toAbsolutePath().toString(), file.getName());
+				Path src = Paths.get(file.getAbsolutePath());
+				while (Files.exists(dest)) {
+					dest = Paths.get(cel.toAbsolutePath().toString(), file.getName() + "_ujabb");
+				}
+				Files.move(src, dest);
 			}
 		} catch (Exception e) {
 			Log.error(e.toString());
@@ -155,7 +140,7 @@ public class Szkeleton {
 			if (parancs.toLowerCase().equals("kilepes")) {
 				return;
 			} else if (parancs.toLowerCase().equals("parancssor")) {
-				Log.info("Már a parancssorban vagy.");
+				Log.info("M˜r a parancssorban vagy.");
 			} else {
 				String[] argumentumok = parancs.split(":");
 				if (argumentumok.length == 1) {
@@ -168,30 +153,11 @@ public class Szkeleton {
 		}
 	}
 
-	private static void resetJatek() {
-		for (Entry<Field, Object> e : jatek_alapertelmezes.entrySet()) {
-			int modifier = e.getKey().getModifiers();
-			boolean private_field = Modifier.isPrivate(modifier);
-			if (private_field) {
-				e.getKey().setAccessible(true);
-			}
-			try {
-				e.getKey().set(Jatek.getInstance(), e.getValue());
-			} catch (Exception exception) {
-				Log.error(exception.toString());
-			} finally {
-				if (private_field) {
-					e.getKey().setAccessible(false);
-				}
-			}
-		}
-	}
-
 	protected static void reset() {
 		objektumok.clear();
 		objektumok.put("_this", getInstance());
 		objektumok.put("jatek", Jatek.getInstance());
-		// resetJatek();
+		// Jatek.restoreBackup();
 		objektumok.put("nap", new Nap());
 		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
 
@@ -513,7 +479,7 @@ public class Szkeleton {
 			FileOutputStream kiStream = new FileOutputStream(argumentumok[0] + "_eredmeny.txt");
 			OutputStreamWriter kiWriter = new OutputStreamWriter(kiStream, "UTF-8");
 			BufferedWriter ir = new BufferedWriter(kiWriter);
-			for(String sor: filebaIrando) {
+			for (String sor : filebaIrando) {
 				ir.write(sor);
 				ir.write(System.lineSeparator());
 			}
@@ -531,7 +497,7 @@ public class Szkeleton {
 		}
 	}
 
-	public static void teszt_infoAllapot() { 
+	public static void teszt_infoAllapot() {
 		Integer jelenlegiAllapot = ((Integer) hiv("jatek", "getAllapot", null));
 		if (jelenlegiAllapot == 0) {
 			System.out.println("folyamatban");

@@ -1,10 +1,16 @@
 package src;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 
 public class Jatek {
 
 	private static final Jatek INSTANCE = new Jatek();
+	private static Map<Field, Object> beallitasok_backup;
 
 	public static Jatek getInstance() {
 		return INSTANCE;
@@ -42,7 +48,50 @@ public class Jatek {
 	// lépés determinisztikussá tételéhez
 	public static Boolean robot_robbanas_elso_szomszed = false;
 
+	private static void backup() {
+		beallitasok_backup = new TreeMap<Field, Object>();
+		Field[] fields = getInstance().getClass().getDeclaredFields();
+		for (Field field : fields) {
+			int modifier = field.getModifiers();
+			if (Modifier.isFinal(modifier))
+				continue;
+			boolean private_field = Modifier.isPrivate(modifier);
+			if (private_field) {
+				field.setAccessible(true);
+			}
+			try {
+				beallitasok_backup.put(field, field.get(getInstance()));
+			} catch (Exception e) {
+				Log.error(e.toString());
+			} finally {
+				if (private_field) {
+					field.setAccessible(false);
+				}
+			}
+		}
+	}
+
+	protected static void restoreBackup() {
+		for (Entry<Field, Object> e : beallitasok_backup.entrySet()) {
+			int modifier = e.getKey().getModifiers();
+			boolean private_field = Modifier.isPrivate(modifier);
+			if (private_field) {
+				e.getKey().setAccessible(true);
+			}
+			try {
+				e.getKey().set(getInstance(), e.getValue());
+			} catch (Exception exception) {
+				Log.error(exception.toString());
+			} finally {
+				if (private_field) {
+					e.getKey().setAccessible(false);
+				}
+			}
+		}
+	}
+
 	private Jatek() {
+		// backup();
 		leptethetok = new ArrayList<Leptetheto>();
 	}
 
@@ -148,7 +197,7 @@ public class Jatek {
 			if (i == 0) {
 				for (int j = 0; j < JATEKOS_SZAM; j++) {
 					Telepes t = new Telepes();
-					t.beallitAszteroida(a); //aszteroidanak is beallitja a szereplot
+					t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
 					telepesszam++;
 					leptethetok.add(t);
 				}
@@ -183,23 +232,23 @@ public class Jatek {
 		return telepesszam.toString() + ":" + leptethetok.size() /* + "" + (char) 13 + (char) 10 */;
 
 	}
-	
-	public Integer getAllapot() { //TODO static?
+
+	public Integer getAllapot() { // TODO static?
 		return allapot;
 	}
-	
+
 	public Boolean mindenkiLepett() {
-		for(Leptetheto l : leptethetok) {
-			if(l.lepette()==false) {
+		for (Leptetheto l : leptethetok) {
+			if (l.lepette() == false) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	public void resetLepett() {
-		for(Leptetheto l : leptethetok) {
+		for (Leptetheto l : leptethetok) {
 			l.resetLepett();
-		}	
+		}
 	}
 }
