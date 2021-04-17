@@ -543,7 +543,8 @@ public class Szkeleton {
 		letrehoz("Aszteroida", aid, "nap");
 		hiv(aid, "setReteg", reteg);
 		hiv(aid, "setNapkozel", napkozel);
-		hiv(aid, "setNyersanyag", nyid);
+		if(!nyid.equals("null"))
+			hiv(aid, "setNyersanyag", nyid);
 	}
 
 	public static void teszt_letrehozTelepes(String tid, String aid, String nyids) {
