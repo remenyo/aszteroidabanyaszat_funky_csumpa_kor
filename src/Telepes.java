@@ -306,12 +306,14 @@ public class Telepes extends Szereplo {
 		for (Nyersanyag nyersanyag : nyersanyagok) {
 			kimenet += Szkeleton.getID(nyersanyag) + ":";
 		}
-		kimenet = kimenet.substring(0, kimenet.length() - 2);
+		kimenet = kimenet.substring(0, kimenet.length() - 1);
 		kimenet += "]:[";
 		for (Portal port : portal) {
 			kimenet += Szkeleton.getID(port) + ":";
 		}
-		kimenet = kimenet.substring(0, kimenet.length() - 2);
+		if(portal.size()!=0)
+		kimenet = kimenet.substring(0, kimenet.length() - 1);
+		else {kimenet += "null";}
 		kimenet += "]:";
 		kimenet += String.valueOf(lepett);
 		return kimenet;

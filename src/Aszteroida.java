@@ -316,12 +316,16 @@ public class Aszteroida extends Hely {
         for (Szereplo szereplo : szereplok) {
             kimenet += Szkeleton.getID(szereplo) + ":";
         }
-        kimenet = kimenet.substring(0, kimenet.length() - 2);
+        if(szereplok.size()!=0)
+        kimenet = kimenet.substring(0, kimenet.length() - 1);
+        else {kimenet+="null";}
         kimenet += "]:[";
         for (Hely szomszed : szomszedok) {
             kimenet += Szkeleton.getID(szomszed) + ":";
         }
-        kimenet = kimenet.substring(0, kimenet.length() - 2);
+        if(szomszedok.size()!=0)
+        kimenet = kimenet.substring(0, kimenet.length() - 1);
+        else {kimenet+="null";}
         kimenet += "]:" + Szkeleton.getID(nyersanyag);
         // kimenet += "" /* + (char) 13 + (char) 10 */;
         return kimenet;
