@@ -16,7 +16,7 @@ public class Jatek {
 		return INSTANCE;
 	}
 
-	// PROGRAM BE�LL�T�SOK
+	// PROGRAM BEÁLLÍTÁSOK
 	public static Boolean COLOR_IN_TERMINAL = true;
 	public static Boolean LOG_FUNCTION_CALLS = true;
 	public static Boolean LOG_CONSTRUCTORS = true;
@@ -25,7 +25,7 @@ public class Jatek {
 	// 2+info | 4 = 3+debug
 	public static Integer LOG_LEVEL = 4;
 
-	// J�T�K BE�LL�T�SOK
+	// JÁTÉK BEÁLLÍTÁSOK
 	public static Integer MIN_SZEN = 3;
 	public static Integer MIN_URAN = 3;
 	public static Integer MIN_VIZJEG = 3;
@@ -157,7 +157,7 @@ public class Jatek {
 	 */
 	public static void jatekVegeNyert() {
 		Log.call();
-		System.out.println("Gratul�lunk nyert�l!! :)");
+		System.out.println("Gratulálunk nyertél!! :)");
 		allapot = 1;
 	}
 
@@ -252,11 +252,11 @@ public class Jatek {
 
 	}
 
-	public static Integer getAllapot() { // TODO static?
+	public Integer getAllapot() { // TODO static?
 		return allapot;
 	}
 
-	public static Boolean mindenkiLepett() {
+	public Boolean mindenkiLepett() {
 		for (Leptetheto l : leptethetok) {
 			if (l.lepette() == false) {
 				return false;
@@ -265,7 +265,7 @@ public class Jatek {
 		return true;
 	}
 
-	public static void resetLepett() {
+	public void resetLepett() {
 		for (Leptetheto l : leptethetok) {
 			l.resetLepett();
 		}
