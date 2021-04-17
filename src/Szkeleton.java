@@ -379,10 +379,11 @@ public class Szkeleton {
 			hiv(argumentumok[0], "hozzaadNyersanyag", nyersanyagok[i]);
 		}
 	}
-
-	// static void teszt_mozgas(String... argumentumok) {
-	// hiv(argumentumok[0],"Mozgas",); //TODO daninak majd ejfelkor
-	// }
+	//TODO 0. fejezetben atirni hogy tetszoleges aszteroidara menes
+	/* static void teszt_mozgas:<RobotVagyUfoVagyPortalVagyTelepesNeve>:<AszteroidaNeve>(String... argumentumok) {
+		 
+		 hiv(argumentumok[0],"Mozgas",szam); 
+	 }*/
 	
 	static void teszt_info(String... argumentumok){
 		System.out.println((String)hiv(argumentumok[0],"toString",null));
@@ -390,12 +391,14 @@ public class Szkeleton {
 	}
 	
 	static void teszt_mentes(String... argumentumok){ //TODO beirni 0. fejezetbe hogy ne irjak oda hogy .txt
-		try { //TODO hova mentsen
-            FileOutputStream kiStream = new FileOutputStream(argumentumok[0]+".txt");
+		try { //TODO hova mentsen 
+			//TODO mentes kis m-el
+            FileOutputStream kiStream = new FileOutputStream(argumentumok[0]+"_eredmeny.txt");
             OutputStreamWriter kiWriter = new OutputStreamWriter(kiStream,"UTF-8");
             BufferedWriter ir = new BufferedWriter(kiWriter);
             ir.write(filebaIrando);
             ir.close();
+            filebaIrando="";
         } catch (Exception e) {
         	System.out.println("HIBA");
             e.printStackTrace();
