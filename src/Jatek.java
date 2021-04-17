@@ -90,7 +90,36 @@ public class Jatek {
 
 	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();
-		
+	}
+
+	public static void init() {
+		Jatek.LOG_CONSTRUCTORS = false;
+		Jatek.LOG_FUNCTION_CALLS = false;
+
+		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
+		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
+		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
+		RobothozNyersanyag.hozzaadNyersanyag(new Szen());
+		RobothozNyersanyag.hozzaadNyersanyag(new Vas());
+		RobothozNyersanyag.hozzaadNyersanyag(new Uran());
+
+		PortalhozNyersanyag.hozzaadNyersanyag(new Uran());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg());
+
+		for (int i = 0; i < 3; i++) {
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran());
+		}
+
+		Telepes.hozzaadKoltseg(RobothozNyersanyag);
+		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
+		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
+		Jatek.LOG_CONSTRUCTORS = true;
+		Jatek.LOG_FUNCTION_CALLS = true;
 	}
 
 	// Nem haszn�ljuk a tesztben, kezdetleges K�r
@@ -149,30 +178,10 @@ public class Jatek {
 	// TODO kivonni a nyersanyagokat
 	public static void jatekInditas() {
 		Log.call();
-		
-		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
-		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
-		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
-		RobothozNyersanyag.hozzaadNyersanyag(new Szen());
-		RobothozNyersanyag.hozzaadNyersanyag(new Vas());
-		RobothozNyersanyag.hozzaadNyersanyag(new Uran());
+		Jatek.LOG_CONSTRUCTORS = false;
+		Jatek.LOG_FUNCTION_CALLS = false;
 
-		PortalhozNyersanyag.hozzaadNyersanyag(new Uran());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg());
-
-		for (int i = 0; i < 3; i++) {
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran());
-		}
-
-		Telepes.hozzaadKoltseg(RobothozNyersanyag);
-		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
-		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
-		Nap n = new Nap();
+		Nap n = (Nap) Szkeleton.getObj("nap");
 		leptethetok.add(n);
 		ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
 		for (int i = 0; i < 50; i++) {
@@ -191,14 +200,14 @@ public class Jatek {
 
 			a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
 			a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
-			
+
 			if (i == 0) {
 				for (int j = 0; j < JATEKOS_SZAM; j++) {
 					Telepes t = new Telepes();
 					t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
 				}
 			}
-			
+
 			atmenetiAszteroidatar.add(a);
 		}
 		atmenetiAszteroidatar.get(0)
@@ -209,12 +218,12 @@ public class Jatek {
 			for (int j = 0; j < SZOMSZED_SZAM - 2; j++) {
 				Aszteroida randomAszteroida = atmenetiAszteroidatar.get(
 						RandomUtils.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1));
-				if(atmenetiAszteroidatar.get(i)!= randomAszteroida && 
-						!atmenetiAszteroidatar.get(i).getSzomszedok().contains(randomAszteroida)) {
+				if (atmenetiAszteroidatar.get(i) != randomAszteroida && !atmenetiAszteroidatar
+						.get(i).getSzomszedok().contains(randomAszteroida)) {
 					atmenetiAszteroidatar.get(i).hozzaadSzomszed(randomAszteroida);
 					randomAszteroida.hozzaadSzomszed(atmenetiAszteroidatar.get(i));
 				}
-				
+
 			}
 		}
 
@@ -222,18 +231,20 @@ public class Jatek {
 
 		allapot = 0;
 		ArrayList<Leptetheto> temp = leptethetok;
-		System.out.println(leptethetok.toString());
+		Jatek.LOG_CONSTRUCTORS = true;
+		Jatek.LOG_FUNCTION_CALLS = true;
+		Log.info(leptethetok.toString());
 		while (allapot == 0) {
 			try {
-        		for(int i=0; i<leptethetok.size(); i++) {
-        			leptethetok.get(i).Lepes();
-        			if (allapot != 0) {
-    					break;
-    				}
-        		}
-        	}catch(ConcurrentModificationException e){
-        		
-        	}
+				for (int i = 0; i < leptethetok.size(); i++) {
+					leptethetok.get(i).Lepes();
+					if (allapot != 0) {
+						break;
+					}
+				}
+			} catch (ConcurrentModificationException e) {
+
+			}
 		}
 	}
 
@@ -242,11 +253,11 @@ public class Jatek {
 
 	}
 
-	public Integer getAllapot() { // TODO static?
+	public static Integer getAllapot() { // TODO static?
 		return allapot;
 	}
 
-	public Boolean mindenkiLepett() {
+	public static Boolean mindenkiLepett() {
 		for (Leptetheto l : leptethetok) {
 			if (l.lepette() == false) {
 				return false;
@@ -255,7 +266,7 @@ public class Jatek {
 		return true;
 	}
 
-	public void resetLepett() {
+	public static void resetLepett() {
 		for (Leptetheto l : leptethetok) {
 			l.resetLepett();
 		}

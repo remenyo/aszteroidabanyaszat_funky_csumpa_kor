@@ -77,29 +77,6 @@ public class Szkeleton {
 	}
 
 	public static void teszt_parancssor() {
-		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
-		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
-		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
-		RobothozNyersanyag.hozzaadNyersanyag(new Szen());
-		RobothozNyersanyag.hozzaadNyersanyag(new Vas());
-		RobothozNyersanyag.hozzaadNyersanyag(new Uran());
-
-		PortalhozNyersanyag.hozzaadNyersanyag(new Uran());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg());
-
-		for (int i = 0; i < 3; i++) {
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran());
-		}
-
-		Telepes.hozzaadKoltseg(RobothozNyersanyag);
-		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
-		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
-
 
 		while (true) {
 			System.out.print("> ");
@@ -355,6 +332,10 @@ public class Szkeleton {
 		return "";
 	}
 
+	public static Object getObj(String id) {
+		return objektumok.get(id);
+	}
+
 	public static String getID(Object object) {
 		for (Entry<String, Object> e : objektumok.entrySet()) {
 			if (e.getValue().equals(object)) {
@@ -444,7 +425,7 @@ public class Szkeleton {
 		letrehoz("Aszteroida", aid, "nap");
 		hiv(aid, "setReteg", reteg);
 		hiv(aid, "setNapkozel", napkozel);
-		if(!nyid.equals("null"))
+		if (!nyid.equals("null"))
 			hiv(aid, "setNyersanyag", nyid);
 	}
 
