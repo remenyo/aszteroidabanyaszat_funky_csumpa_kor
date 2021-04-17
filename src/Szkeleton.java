@@ -537,6 +537,7 @@ public class Szkeleton {
 	
 	public static Boolean lepesTeszt(String id) {
 		if((Boolean)hiv(id,"lepette") == false) {
+			beallit(id,"lepett","true");
 			mindenkiLepett();
 			return true; //léphet
 		}
