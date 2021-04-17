@@ -1,6 +1,7 @@
 package src;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Constructor;
@@ -36,23 +37,24 @@ public class Szkeleton {
 	private Szkeleton() {
 		objektumok = new TreeMap<>();
 
-		Field[] fields = Jatek.getInstance().getClass().getDeclaredFields();
-		for (Field field : fields) {
-			int modifier = field.getModifiers();
-			boolean private_field = Modifier.isPrivate(modifier);
-			if (private_field) {
-				field.setAccessible(true);
-			}
-			try {
-				jatek_alapertelmezes.put(field, field.get(Jatek.getInstance()));
-			} catch (Exception e) {
-				Log.error(e.toString());
-			} finally {
-				if (private_field) {
-					field.setAccessible(false);
-				}
-			}
-		}
+		// TODO jatek beallitasok load
+		// Field[] fields = Jatek.getInstance().getClass().getDeclaredFields();
+		// for (Field field : fields) {
+		// int modifier = field.getModifiers();
+		// boolean private_field = Modifier.isPrivate(modifier);
+		// if (private_field) {
+		// field.setAccessible(true);
+		// }
+		// try {
+		// jatek_alapertelmezes.put(field, field.get(Jatek.getInstance()));
+		// } catch (Exception e) {
+		// Log.error(e.toString());
+		// } finally {
+		// if (private_field) {
+		// field.setAccessible(false);
+		// }
+		// }
+		// }
 	}
 
 	public static void Fomenu() {
@@ -186,7 +188,7 @@ public class Szkeleton {
 		objektumok.clear();
 		objektumok.put("_this", getInstance());
 		objektumok.put("jatek", Jatek.getInstance());
-		resetJatek();
+		// resetJatek();
 		objektumok.put("nap", new Nap());
 		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a tömbbe.
 
@@ -437,43 +439,43 @@ public class Szkeleton {
 		}
 	}
 
-	static void teszt_letrehozPortalAszteroida(String... argumentumok) {
+	public static void teszt_letrehozPortalAszteroida(String... argumentumok) {
 		letrehoz("Portal", argumentumok[0]);
 		beallit(argumentumok[0], "aszteroida", argumentumok[1]);
 	}
 
-	static void teszt_osszekotAszteroida(String... argumentumok) {
+	public static void teszt_osszekotAszteroida(String... argumentumok) {
 		hiv(argumentumok[0], "hozzaadSzomszed", argumentumok[1]);
 		hiv(argumentumok[1], "hozzaadSzomszed", argumentumok[0]);
 	}
 
-	static void teszt_osszekotPortal(String... argumentumok) {
+	public static void teszt_osszekotPortal(String... argumentumok) {
 		hiv(argumentumok[0], "beallitPar", argumentumok[1]);
 		hiv(argumentumok[1], "beallitPar", argumentumok[0]);
 	}
 
-	static void teszt_epitRobot(String... argumentumok) {
+	public static void teszt_epitRobot(String... argumentumok) {
 		Robot r = (Robot) hiv(argumentumok[0], "epitRobot");
 		if (r != null)
 			objektumok.put(argumentumok[1], r);
 	}
 
-	static void teszt_banyaszas(String... argumentumok) {
+	public static void teszt_banyaszas(String... argumentumok) {
 		hiv(argumentumok[0], "Banyaszat");
 	}
 
-	static void teszt_letrehozNyersanyag(String... argumentumok) {
+	public static void teszt_letrehozNyersanyag(String... argumentumok) {
 		letrehoz(argumentumok[1], argumentumok[0]);
 	}
 
-	static void teszt_letrehozAszteroida(String... argumentumok) {
+	public static void teszt_letrehozAszteroida(String... argumentumok) {
 		letrehoz("Aszteroida", argumentumok[0], "nap");
 		hiv(argumentumok[0], "setReteg", argumentumok[1]);
 		hiv(argumentumok[0], "setNapkozel", argumentumok[2]);
 		hiv(argumentumok[0], "setNyersanyag", argumentumok[3]);
 	}
 
-	static void teszt_letrehozTelepes(String... argumentumok) {
+	public static void teszt_letrehozTelepes(String... argumentumok) {
 		letrehoz("Telepes", argumentumok[0]);
 		hiv(argumentumok[0], "beallitAszteroida", argumentumok[1]); // aszteroidan is rajta lesz a
 																	// telepes
@@ -483,7 +485,7 @@ public class Szkeleton {
 		}
 	}
 
-	static void teszt_mozgas(String... argumentumok) {
+	public static void teszt_mozgas(String... argumentumok) {
 		Aszteroida aminVagyunk = (Aszteroida) hiv(argumentumok[0], "getAszteroida");
 		Aszteroida amireMegyunk = ((Aszteroida) objektumok.get(argumentumok[1]));
 		Integer menesSzam = aminVagyunk.getSzomszedok().indexOf(amireMegyunk);
@@ -493,13 +495,14 @@ public class Szkeleton {
 
 	}
 
-	static void teszt_info(String... argumentumok) {
+	public static void teszt_info(String... argumentumok) {
 		System.out.println((String) hiv(argumentumok[0], "toString", null));
 		filebaIrando += (String) hiv(argumentumok[0], "toString", null);
 	}
 
-	static void teszt_mentes(String... argumentumok) { // TODO beirni 0. fejezetbe hogy ne irjak oda
-														// hogy .txt
+	public static void teszt_mentes(String... argumentumok) { // TODO beirni 0. fejezetbe hogy ne
+																// irjak oda
+		// hogy .txt
 		try { // TODO hova mentsen
 				// TODO mentes kis m-el
 			FileOutputStream kiStream = new FileOutputStream(argumentumok[0] + "_eredmeny.txt");
@@ -514,14 +517,15 @@ public class Szkeleton {
 		}
 	}
 
-	static void teszt_infoMinden() {
+	public static void teszt_infoMinden() {
 		for (Map.Entry<String, Object> objektum : objektumok.entrySet()) {
 			System.out.println((String) hiv(objektum.getKey(), "toString", null));
 		}
 	}
 
-	static void teszt_infoAllapot() { // TODO ha a char cuccok helyett mas megoldas lesz akkor
-										// ezeket atirni
+	public static void teszt_infoAllapot() { // TODO ha a char cuccok helyett mas megoldas lesz
+												// akkor
+		// ezeket atirni
 		Integer jelenlegiAllapot = ((Integer) hiv("jatek", "getAllapot", null));
 		if (jelenlegiAllapot == 0) {
 			System.out.println("folyamatban");
@@ -536,7 +540,7 @@ public class Szkeleton {
 
 	}
 
-	static void mindenkiLepett() {
+	public static void mindenkiLepett() {
 		Jatek jatek = ((Jatek) objektumok.get("jatek"));
 		if (jatek.mindenkiLepett()) {
 			jatek.resetLepett(); // TODO minden lepes vegere odairni hogy at kell allitani a lepest
@@ -546,31 +550,31 @@ public class Szkeleton {
 	}
 
 	// ------------------- Balazs cuccai ---------------
-	static void teszt_letrehozRobot(String... argumentumok) {
+	public static void teszt_letrehozRobot(String... argumentumok) {
 		letrehoz("Robot", argumentumok[0]);
 		beallit(argumentumok[0], "aszteroida", argumentumok[1]);
 	}
 
-	static void teszt_letrehozUfo(String... argumentumok) {
+	public static void teszt_letrehozUfo(String... argumentumok) {
 		letrehoz("Ufo", argumentumok[0]);
 		beallit(argumentumok[0], "aszteroida", argumentumok[1]);
 	}
 
-	static void teszt_letrehozPortalTelepes(String... argumentumok) {
+	public static void teszt_letrehozPortalTelepes(String... argumentumok) {
 		if (((Telepes) objektumok.get(argumentumok[0])).getPortal().size() < 3)
 			letrehoz("Portal", argumentumok[0]);
 		beallit(argumentumok[0], "birtokos", argumentumok[1]);
 	}
 
-	static void teszt_visszarakNyersanyag(String... argumentumok) {
+	public static void teszt_visszarakNyersanyag(String... argumentumok) {
 		hiv(argumentumok[0], "visszarakNyersanyag", argumentumok[1]);
 	}
 
-	static void teszt_lerakPortal(String... argumentumok) {
+	public static void teszt_lerakPortal(String... argumentumok) {
 		hiv(argumentumok[0], "lerakPortal", argumentumok[1]);
 	}
 
-	static void teszt_epitPortal(String... argumentumok) {
+	public static void teszt_epitPortal(String... argumentumok) {
 		ArrayList<Portal> portalok = (ArrayList<Portal>) hiv(argumentumok[0], "epitPortal", null);
 		if (portalok != null) {
 			objektumok.put(argumentumok[1], portalok.get(0));
@@ -578,17 +582,17 @@ public class Szkeleton {
 		}
 	}
 
-	static void teszt_furas(String... argumentumok) {
+	public static void teszt_furas(String... argumentumok) {
 		hiv(argumentumok[0], "furas", null);
 	}
 
-	static void teszt_napviharOkozasa(String... argumentumok) {
+	public static void teszt_napviharOkozasa(String... argumentumok) {
 		for (int i = 0; i < argumentumok.length; i++) {
 			hiv(argumentumok[i], "Napvihar", null);
 		}
 	}
 
-	static void teszt_randomValoszinuseg(String... argumentumok) {
+	public static void teszt_randomValoszinuseg(String... argumentumok) {
 		Jatek.robot_robbanas_elso_szomszed = Boolean.parseBoolean(argumentumok[1]);
 	}
 }
