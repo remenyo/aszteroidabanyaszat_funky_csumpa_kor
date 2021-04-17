@@ -238,10 +238,14 @@ public class Aszteroida extends Hely {
      * 
      * @param ny Az aszteroida magjába helyezendő nyersanyag
      */
-    public void hozzaadNyersanyag(Nyersanyag ny) {
+    public Boolean hozzaadNyersanyag(Nyersanyag ny) {
         Log.call();
-        nyersanyag = ny;
-        ny.felszinreKerul(this);
+        if(reteg==0 && nyersanyag == null) {
+        	nyersanyag = ny;
+            ny.felszinreKerul(this);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -279,7 +283,7 @@ public class Aszteroida extends Hely {
      * 
      * @return Aszteroida napközelsége
      */
-    public boolean isNapkozelben() {
+    public Boolean isNapkozelben() {
         Log.call();
         return napkozel;
     }

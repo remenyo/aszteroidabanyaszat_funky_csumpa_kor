@@ -206,8 +206,14 @@ public class Jatek {
 			atmenetiAszteroidatar.get(i).hozzaadSzomszed(atmenetiAszteroidatar.get(i + 1));
 			atmenetiAszteroidatar.get(i + 1).hozzaadSzomszed(atmenetiAszteroidatar.get(i));
 			for (int j = 0; j < SZOMSZED_SZAM - 2; j++) {
-				atmenetiAszteroidatar.get(i).hozzaadSzomszed(atmenetiAszteroidatar.get(
-						RandomUtils.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1)));
+				Aszteroida randomAszteroida = atmenetiAszteroidatar.get(
+						RandomUtils.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1));
+				if(atmenetiAszteroidatar.get(i)!= randomAszteroida && 
+						!atmenetiAszteroidatar.get(i).getSzomszedok().contains(randomAszteroida)) {
+					atmenetiAszteroidatar.get(i).hozzaadSzomszed(randomAszteroida);
+					randomAszteroida.hozzaadSzomszed(atmenetiAszteroidatar.get(i));
+				}
+				
 			}
 		}
 
