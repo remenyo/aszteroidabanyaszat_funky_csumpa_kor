@@ -3,5 +3,5 @@ letrehozAszteroida:a2:0:false:null
 osszekotAszteroida:a1:a2
 letrehozTelepes:t1:a1:null
 info:a1
-furas:a1
+furas:t1
 info:a1

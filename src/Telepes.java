@@ -182,6 +182,8 @@ public class Telepes extends Szereplo {
 				p2.beallitPar(p1);
 				temp.add(p1);
 				temp.add(p2);
+				portal.add(p1);
+				portal.add(p2);
 			}
 		}
 		return temp;
