@@ -307,10 +307,14 @@ public class Telepes extends Szereplo {
 
 	public String toString() {
 		String kimenet = Szkeleton.getID(aszteroida) + ":[";
-		for (Nyersanyag nyersanyag : nyersanyagok) {
-			kimenet += Szkeleton.getID(nyersanyag) + ":";
-		}
+		if(nyersanyagok.size()!=0) {
+			for (Nyersanyag nyersanyag : nyersanyagok) {
+				kimenet += Szkeleton.getID(nyersanyag) + ":";
+			}
 		kimenet = kimenet.substring(0, kimenet.length() - 1);
+		}else {
+			kimenet += "null";
+		}
 		kimenet += "]:[";
 		for (Portal port : portal) {
 			kimenet += Szkeleton.getID(port) + ":";
