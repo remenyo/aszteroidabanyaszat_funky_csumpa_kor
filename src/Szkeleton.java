@@ -379,8 +379,9 @@ public class Szkeleton {
 			hiv(argumentumok[0], "hozzaadNyersanyag", nyersanyagok[i]);
 		}
 	}
-	//TODO 0. fejezetben atirni hogy tetszoleges aszteroidara menes
-	/* static void teszt_mozgas:<RobotVagyUfoVagyPortalVagyTelepesNeve>:<AszteroidaNeve>(String... argumentumok) {
+	//TODO Megbeszelni itt egy tipus check legyen vagy valami mas megoldas mert portal nem ugy mozog mint a tobbiek
+	//talan ha valamilyen fuggvenyt atnevezunk vagy valahogy ez nagyon kaka 
+	/*static void teszt_mozgas:<RobotVagyUfoVagyPortalVagyTelepesNeve>:<AszteroidaNeve>(String... argumentumok) {
 		 
 		 hiv(argumentumok[0],"Mozgas",szam); 
 	 }*/
