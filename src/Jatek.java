@@ -45,7 +45,7 @@ public class Jatek {
 	public static Integer allapot = 0;
 	public static ArrayList<Leptetheto> leptethetok;
 
-	// l�p�s determinisztikuss� t�tel�hez
+	// lépés determinisztikussá tételéhez
 	public static Boolean robot_robbanas_elso_szomszed = false;
 
 	public static void beallitas_mentes() {
@@ -101,20 +101,20 @@ public class Jatek {
 		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
 		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
 		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
-		RobothozNyersanyag.hozzaadNyersanyag(new Szen());
-		RobothozNyersanyag.hozzaadNyersanyag(new Vas());
-		RobothozNyersanyag.hozzaadNyersanyag(new Uran());
+		RobothozNyersanyag.hozzaadNyersanyag(new Szen(false));
+		RobothozNyersanyag.hozzaadNyersanyag(new Vas(false));
+		RobothozNyersanyag.hozzaadNyersanyag(new Uran(false));
 
-		PortalhozNyersanyag.hozzaadNyersanyag(new Uran());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas());
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg());
+		PortalhozNyersanyag.hozzaadNyersanyag(new Uran(false));
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
 
 		for (int i = 0; i < 3; i++) {
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg());
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran());
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas(false));
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen(false));
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran(false));
 		}
 
 		Telepes.hozzaadKoltseg(RobothozNyersanyag);
@@ -187,18 +187,25 @@ public class Jatek {
 		leptethetok.add(n);
 		ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
 		for (int i = 0; i < 50; i++) {
-			Aszteroida a = new Aszteroida(n); // 0 Vas 1 Sz�n 2 Vizjeg 3 Uran 4 �res
-			if (i % 5 == 0) {
-				a.setNyersanyag(new Vas());
-			} else if (i % 5 == 1) {
-				a.setNyersanyag(new Szen());
-			} else if (i % 5 == 2) {
-				a.setNyersanyag(new Vizjeg());
-			} else if (i % 5 == 3) {
-				a.setNyersanyag(new Uran());
-			} else if (i % 5 == 4) {
-				a.setNyersanyag(null);
+			Aszteroida a = new Aszteroida(n); // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
+			Nyersanyag ny;
+			switch (i % 5) {
+				case 0:
+					ny = new Vas();
+					break;
+				case 1:
+					ny = new Szen();
+					break;
+				case 2:
+					ny = new Vizjeg();
+					break;
+				case 3:
+					ny = new Uran();
+					break;
+				default: // 4
+					ny = null;
 			}
+			a.setNyersanyag(ny);
 
 			a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
 			a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
@@ -234,6 +241,8 @@ public class Jatek {
 		ArrayList<Leptetheto> temp = leptethetok;
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
+
+
 		Log.info(leptethetok.toString());
 		while (allapot == 0) {
 			try {

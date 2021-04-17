@@ -106,6 +106,10 @@ public class Szkeleton {
 		objektumok.clear();
 		objektumok.put("_this", getInstance());
 		objektumok.put("jatek", Jatek.getInstance());
+		Vas.reset();
+		Uran.reset();
+		Vizjeg.reset();
+		Szen.reset();
 		Jatek.beallitas_visszatoltes();
 		objektumok.put("nap", new Nap());
 		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a
@@ -319,7 +323,7 @@ public class Szkeleton {
 
 	private static String className(String id) {
 		try {
-			return objektumok.get(id).getClass().getName();
+			return objektumok.get(id).getClass().getName().replaceAll("src.", "");
 		} catch (Exception e) {
 			Log.error(e.toString());
 			return "?";
@@ -573,7 +577,8 @@ public class Szkeleton {
 	}
 
 
-	public static void teszt_randomValoszinuseg(String nev,String igazsagErtek) {
-		((Jatek)objektumok.get("jatek")).robot_robbanas_elso_szomszed = Boolean.parseBoolean(igazsagErtek);
+	public static void teszt_randomValoszinuseg(String nev, String igazsagErtek) {
+		((Jatek) objektumok.get("jatek")).robot_robbanas_elso_szomszed =
+				Boolean.parseBoolean(igazsagErtek);
 	}
 }

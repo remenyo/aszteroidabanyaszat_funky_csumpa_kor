@@ -4,14 +4,23 @@ public class Szen extends Nyersanyag {
     private static Integer osszesSzen = 0;
 
     Szen() {
-        super("Szen");
-        Log.ctor();
-        osszesSzen++;
+        this(true);
     }
 
-    // Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kiderí­ti van-e
-    // még
-    // elég, ha nincs vesztett
+    Szen(Boolean jatekonBelul) {
+        super("Szen");
+        Log.ctor();
+        if (jatekonBelul)
+            osszesSzen++;
+    }
+
+    protected static void reset() {
+        osszesSzen = 0;
+    }
+
+    // Amikor megsemmisï¿½l a nyersanyag csï¿½kkenti az ï¿½sszes szï¿½mï¿½t eggyel, majd kiderï¿½ï¿½ti van-e
+    // mï¿½g
+    // elï¿½g, ha nincs vesztett
     @Override
     public void ellenorizVesztett() {
         Log.call();

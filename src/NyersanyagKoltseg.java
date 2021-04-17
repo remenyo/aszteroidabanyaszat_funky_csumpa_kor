@@ -19,6 +19,7 @@ public class NyersanyagKoltseg {
     public void hozzaadNyersanyag(Nyersanyag ny) {
         Log.call();
         koltseg.add(ny);
+
     }
 
     /**

@@ -3,16 +3,24 @@ package src;
 public class Vas extends Nyersanyag {
     private static Integer osszesVas = 0;
 
-    // Létrejöttekor növeli az összes vas számát eggyel
     Vas() {
-        super("Vas");
-        Log.ctor();
-        osszesVas++;
+        this(true);
     }
 
-    // Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kiderí­ti van-e
-    // még
-    // elég, ha nincs vesztett
+    Vas(Boolean jatekonBelul) {
+        super("Vas");
+        Log.ctor();
+        if (jatekonBelul)
+            osszesVas++;
+    }
+
+    protected static void reset() {
+        osszesVas = 0;
+    }
+
+    // Amikor megsemmisï¿½l a nyersanyag csï¿½kkenti az ï¿½sszes szï¿½mï¿½t eggyel, majd kiderï¿½ï¿½ti van-e
+    // mï¿½g
+    // elï¿½g, ha nincs vesztett
     @Override
     public void ellenorizVesztett() {
         Log.call();

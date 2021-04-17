@@ -1,6 +1,8 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 // Telepes a Szerepl� lesz�rmazottja, ismeri a n�la l�v� port�lokat, nyersanyagokat �s
 // a statikus �p�t�si k�lts�gek is ebbe az oszt�lyba tal�lhat�k.
@@ -74,28 +76,42 @@ public class Telepes extends Szereplo {
 
 	private void nyersanyagvisszarakMenu() {
 		if (!nyersanyagok.isEmpty()) {
-			System.out
-					.println("Melyik nyersanyagot szeretné visszarakni? (sorszámával válaszoljon)");
-			Integer db = 0;
-			for (int i = 0; i < nyersanyagok.size(); i++) {
-				if (nyersanyagok.get(i).getNev().equals("Urán")) {
-					System.out.println(i + 1 + ". " + nyersanyagok.get(i).getNev()
-							+ " napközelben felszínre kerülések száma: "
-							+ ((Uran) nyersanyagok.get(i)).getnapFenyerte());
-				} else {
-					System.out.print(i + 1 + ". " + nyersanyagok.get(i).getNev());
-				}
-				db = i + 1;
-			}
-			Integer valasztas = Cin.getInt();
-			if ((valasztas > db) && (valasztas <= 0)) {
-				System.out.println("Nem jót adott meg!");
-			} else {
-				visszarakNyersanyag(nyersanyagok.get(valasztas - 1));
-			}
-		} else {
-			System.out.println("Nincs nyersanyaga!");
-		}
+			ArrayList<String> anyagLista = new ArrayList<String>(nyersanyagok.stream()
+					.map(ny -> ny.getNev() + (ny.getNev().equals("Urán")
+							? " (expozíciók száma:) " + ((Uran) ny).getnapFenyerte()
+							: ""))
+					.collect(Collectors.toList()));
+			Integer valasz = -1 + Cin.kerdez_tobbvalasz("Melyik nyersanyagot szeretné visszarakni?",
+					(String[]) anyagLista.toArray());
+			if (valasz > 0)
+				visszarakNyersanyag(nyersanyagok.get(valasz - 1));
+			else
+				Log.jatek("Rossz válasz, nem történt visszahelyezés.");
+		} else
+			Log.jatek("Nincs nyersanyaga!");
+
+		// System.out.println(
+		// "Melyik nyersanyagot szeretné visszarakni? (sorszámával válaszoljon)");
+		// Integer db = 0;
+		// for (int i = 0; i < nyersanyagok.size(); i++) {
+		// if (nyersanyagok.get(i).getNev().equals("Urán")) {
+		// System.out.println(i + 1 + ". " + nyersanyagok.get(i).getNev()
+		// + " napközelben felszínre kerülések száma: "
+		// + ((Uran) nyersanyagok.get(i)).getnapFenyerte());
+		// } else {
+		// System.out.print(i + 1 + ". " + nyersanyagok.get(i).getNev());
+		// }
+		// db = i + 1;
+		// }
+		// Integer valasztas = Cin.getInt();
+		// if ((valasztas > db) && (valasztas <= 0)) {
+		// System.out.println("Nem jót adott meg!");
+		// } else {
+		// visszarakNyersanyag(nyersanyagok.get(valasztas - 1));
+		// }
+		// } else {
+		// Log.jatek("Nincs nyersanyaga!");
+		// }
 	}
 
 
