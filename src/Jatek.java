@@ -15,25 +15,25 @@ public class Jatek {
 		return INSTANCE;
 	}
 
-	// PROGRAM BEÁLLÍTÁSOK
+	// PROGRAM BEï¿½LLï¿½Tï¿½SOK
 	public static Boolean COLOR_IN_TERMINAL = true;
 	public static Boolean LOG_FUNCTION_CALLS = true;
 	public static Boolean LOG_CONSTRUCTORS = true;
 	public static Boolean LOG_GAME_INFO = true;
-	// -1 = semmi | 0 = ctor és call, ha engedélyezve vannak, 1 = csak error | 2 = 1+warn | 3 =
+	// -1 = semmi | 0 = ctor ï¿½s call, ha engedï¿½lyezve vannak, 1 = csak error | 2 = 1+warn | 3 =
 	// 2+info | 4 = 3+debug
 	public static Integer LOG_LEVEL = 4;
 
-	// JÁTÉK BEÁLLÍTÁSOK
+	// Jï¿½Tï¿½K BEï¿½LLï¿½Tï¿½SOK
 	public static Integer MIN_SZEN = 3;
 	public static Integer MIN_URAN = 3;
 	public static Integer MIN_VIZJEG = 3;
 	public static Integer MIN_VAS = 3;
 
-	// a mozgás valószí­nûsége, ha nem mozog épp a robot akkor fúr
+	// a mozgï¿½s valï¿½szï¿½nï¿½sï¿½ge, ha nem mozog ï¿½pp a robot akkor fï¿½r
 	public static Double ROBOT_MOZGAS_VALOSZINUSEG = 0.7;
 
-	// ha ennél kevesebb telepes marad a játékban, a játéknak vége
+	// ha ennï¿½l kevesebb telepes marad a jï¿½tï¿½kban, a jï¿½tï¿½knak vï¿½ge
 	public static Integer MIN_TELEPES_NYERESHEZ = 1;
 
 	public static Integer JATEKOS_SZAM = 5;
@@ -44,7 +44,7 @@ public class Jatek {
 	public static Integer allapot = 0;
 	public static ArrayList<Leptetheto> leptethetok;
 
-	// lépés determinisztikussá tételéhez
+	// lï¿½pï¿½s determinisztikussï¿½ tï¿½telï¿½hez
 	public static Boolean robot_robbanas_elso_szomszed = false;
 
 	public static void beallitas_mentes() {
@@ -58,7 +58,7 @@ public class Jatek {
 	private static void beallitas_kezeles(Boolean mentes) {
 		if (mentes) {
 			if (beallitasok_backup != null)
-				Log.warn("Alapértelmezések felülí­rva.");
+				Log.warn("Alapï¿½rtelmezï¿½sek felï¿½lï¿½rva.");
 			beallitasok_backup = new TreeMap<String, Object>();
 		}
 		Field[] fields = getInstance().getClass().getDeclaredFields();
@@ -91,7 +91,7 @@ public class Jatek {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
 
-	// Nem használjuk a tesztben, kezdetleges Kör
+	// Nem hasznï¿½ljuk a tesztben, kezdetleges Kï¿½r
 	public static void Kor() {
 		Log.call();
 		for (Leptetheto leptetheto : leptethetok) {
@@ -100,9 +100,9 @@ public class Jatek {
 	}
 
 	/**
-	 * Törli a paraméterként kapott léptethetõt a listából
+	 * Tï¿½rli a paramï¿½terkï¿½nt kapott lï¿½ptethetï¿½t a listï¿½bï¿½l
 	 * 
-	 * @param l a törlendõ léptethetõ
+	 * @param l a tï¿½rlendï¿½ lï¿½ptethetï¿½
 	 */
 	public static void torolLeptetheto(Leptetheto l) {
 		Log.call();
@@ -110,7 +110,7 @@ public class Jatek {
 	}
 
 	/**
-	 * Csökkenti a telepesszámot eggyel, és ha már nincs elég akkor meghí­vja a játék vége vesztett
+	 * Csï¿½kkenti a telepesszï¿½mot eggyel, ï¿½s ha mï¿½r nincs elï¿½g akkor meghï¿½vja a jï¿½tï¿½k vï¿½ge vesztett
 	 * fv.t
 	 */
 	public static void telepesMeghal() {
@@ -122,20 +122,20 @@ public class Jatek {
 	}
 
 	/**
-	 * Gratulál a gyõzelemhez és lezárja a progit
+	 * Gratulï¿½l a gyï¿½zelemhez ï¿½s lezï¿½rja a progit
 	 */
 	public static void jatekVegeNyert() {
 		Log.call();
-		System.out.println("Gratulálunk nyertél!! :)");
+		System.out.println("Gratulï¿½lunk nyertï¿½l!! :)");
 		allapot = 1;
 	}
 
 	/**
-	 * Vereségnél lezárja a progit
+	 * Veresï¿½gnï¿½l lezï¿½rja a progit
 	 */
 	public static void jatekVegeVesztett() {
 		Log.call();
-		System.out.println("Gratulálunk vesztettél !! :)");
+		System.out.println("Gratulï¿½lunk vesztettï¿½l !! :)");
 		allapot = -1;
 	}
 
@@ -174,7 +174,7 @@ public class Jatek {
 		leptethetok.add(n);
 		ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
 		for (int i = 0; i < 50; i++) {
-			Aszteroida a = new Aszteroida(n); // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
+			Aszteroida a = new Aszteroida(n); // 0 Vas 1 Szï¿½n 2 Vizjeg 3 Uran 4 ï¿½res
 			if (i % 5 == 0) {
 				a.setNyersanyag(new Vas());
 			} else if (i % 5 == 1) {
@@ -214,13 +214,22 @@ public class Jatek {
 		n.hozzaadAszteroidak(atmenetiAszteroidatar);
 
 		allapot = 0;
+		ArrayList<Leptetheto> temp = leptethetok;
+        
 		while (allapot == 0) {
-			for (Leptetheto leptetheto : leptethetok) {
+			/*for (Leptetheto leptetheto : leptethetok) {
 				leptetheto.Lepes();
 				if (allapot != 0) {
 					break;
 				}
-			}
+			}*/
+			int k=0;
+            for(int i=0; i<temp.size(); i++) {
+                if(temp.get(i)!=leptethetok.get(k)) {
+                    k++;
+                }
+                leptethetok.get(k).Lepes();
+            }
 		}
 	}
 

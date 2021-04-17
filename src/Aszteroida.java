@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -82,9 +83,36 @@ public class Aszteroida extends Hely {
             h.szomszedNapvihar();
         }
         if (reteg != 0 || nyersanyag != null) {
-            for (Szereplo sz : szereplok) {
-                sz.Napvihar();
+        	/*Iterator<Szereplo> i = szereplok.iterator();
+        	while (i.hasNext()) {
+        		Szereplo s = i.next();
+        		s.Napvihar();
+        	}*/
+        	//szereplok.forEach(it->{it.Napvihar();});
+        	//ArrayList<Szereplo> szereplokTemp = szereplok;
+        	//try {
+        //	int s = szereplok.size();
+        	//int i = 0;
+        	//while(i<szereplok.size()) {
+        	//	szereplokTemp.get(i++).Napvihar();
+        	//}
+        		
+            	//for (int i = 0; i<s;i++) {
+                
+                	
+            //    }
+        	//}catch(Exception e){
+        	//	
+        	//}*/
+        	ArrayList<Szereplo> temp = szereplok;
+            int k=0;
+            for(int i=0; i<temp.size(); i++) {
+                if(temp.get(i)!=szereplok.get(k)) {
+                    k++;
+                }
+                szereplok.get(k).Napvihar();
             }
+        	
         }
     }
 
@@ -96,7 +124,7 @@ public class Aszteroida extends Hely {
         Log.call();
         if (reteg > 0) {
             reteg--;
-            if (reteg == 0) {
+            if (reteg == 0 || nyersanyag!= null) {
                 nyersanyag.felszinreKerul(this);
             }
         }
@@ -159,9 +187,12 @@ public class Aszteroida extends Hely {
      */
     public Nyersanyag Banyaszat() {
         Log.call();
-        Nyersanyag visszaAdando = nyersanyag; // kimentjük az értéket
-        torolNyersanyag(); // üressé tesszük az aszteroidát
-        return visszaAdando; // nem null értéket visszaadjuk.
+        if(reteg==0 && nyersanyag !=null) {
+        	Nyersanyag visszaAdando = nyersanyag; // kimentjük az értéket
+            torolNyersanyag(); // üressé tesszük az aszteroidát
+            return visszaAdando; // nem null értéket visszaadjuk.
+        }
+        return null;
     }
 
     /**
