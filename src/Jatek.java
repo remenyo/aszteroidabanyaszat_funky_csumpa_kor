@@ -31,10 +31,10 @@ public class Jatek {
 	public static Integer MIN_VIZJEG = 3;
 	public static Integer MIN_VAS = 3;
 
-	// a mozg�s val�sz�n�s�ge, ha nem mozog �pp a robot akkor f�r
+	// a mozgás valószínűsége, ha nem mozog épp a robot akkor fúr
 	public static Double ROBOT_MOZGAS_VALOSZINUSEG = 0.7;
 
-	// ha enn�l kevesebb telepes marad a j�t�kban, a j�t�knak v�ge
+	// ha enn�l kevesebb telepes marad a játékban, a játéknak vége
 	public static Integer MIN_TELEPES_NYERESHEZ = 1;
 
 	public static Integer JATEKOS_SZAM = 5;
@@ -59,7 +59,7 @@ public class Jatek {
 	private static void beallitas_kezeles(Boolean mentes) {
 		if (mentes) {
 			if (beallitasok_backup != null)
-				Log.warn("Alap�rtelmez�sek fel�l�rva.");
+				Log.warn("Alapértelmezések felülírva.");
 			beallitasok_backup = new TreeMap<String, Object>();
 		}
 		Field[] fields = getInstance().getClass().getDeclaredFields();
@@ -92,9 +92,11 @@ public class Jatek {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
 
-	public static void init() {
+	public static void reset() {
 		Jatek.LOG_CONSTRUCTORS = false;
 		Jatek.LOG_FUNCTION_CALLS = false;
+
+		resetLepett();
 
 		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
 		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
@@ -265,7 +267,7 @@ public class Jatek {
 		return true;
 	}
 
-	public void resetLepett() {
+	public static void resetLepett() {
 		for (Leptetheto l : leptethetok) {
 			l.resetLepett();
 		}
