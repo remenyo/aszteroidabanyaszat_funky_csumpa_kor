@@ -84,13 +84,7 @@ public class Aszteroida extends Hely {
             h.szomszedNapvihar();
         }
         if (reteg != 0 || nyersanyag != null) {
-        	/*Iterator<Szereplo> i = szereplok.iterator();
-        	while (i.hasNext()) {
-        		Szereplo s = i.next();
-        		s.Napvihar();
-        	}*/
-        	//szereplok.forEach(it->{it.Napvihar();});
-        	//ArrayList<Szereplo> szereplokTemp = szereplok;
+        	
         	int s = szereplok.size();
         	try {
         		for(int i=0; i<s; i++) {
@@ -99,15 +93,6 @@ public class Aszteroida extends Hely {
         	}catch(ConcurrentModificationException e){
         		
         	}
-        	/*ArrayList<Szereplo> temp = szereplok;
-            int k=0;
-            for(int i=0; i<temp.size(); i++) {
-                if(temp.get(i)!=szereplok.get(k)) {
-                    k++;
-                }
-                szereplok.get(k).Napvihar();
-            }*/
-        	
         	
         }
     }
