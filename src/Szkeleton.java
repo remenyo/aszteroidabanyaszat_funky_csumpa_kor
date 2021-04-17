@@ -39,8 +39,8 @@ public class Szkeleton {
 
 	public static void Fomenu() {
 		while (true) {
-			int valasz = Cin.kerdez_tobbvalasz("Fõmenü", "Játék indítás", "Parancssor",
-					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
+			int valasz = Cin.kerdez_tobbvalasz("Fï¿½menï¿½", "Jï¿½tï¿½k indï¿½tï¿½s", "Parancssor",
+					"Teszt betï¿½ltï¿½s", "Jï¿½tï¿½k alaphelyzetbe ï¿½llï¿½tï¿½sa", "Kilï¿½pï¿½s");
 			switch (valasz) {
 				case 1:
 					Jatek.jatekInditas();
@@ -49,13 +49,13 @@ public class Szkeleton {
 					teszt_parancssor();
 					break;
 				case 3:
-					teszt_betoltes(Cin.getString("A fájl neve/címe:"));
+					teszt_betoltes(Cin.getString("A fï¿½jl neve/cï¿½me:"));
 					break;
 				case 4:
 					teszt_reset();
 					break;
 				case 5:
-					if (Cin.getBool("Ez törli a játék állapotát, biztos vagy benne?"))
+					if (Cin.getBool("Ez tï¿½rli a jï¿½tï¿½k ï¿½llapotï¿½t, biztos vagy benne?"))
 						return;
 				default:
 					break;
@@ -437,9 +437,14 @@ public class Szkeleton {
 	public static void teszt_banyaszas(String tid) {
 		hiv(tid, "Banyaszat");
 	}
+	
+	public static String Nagykezdobetusites(String szo) {
+		String ujszo = ((szo.charAt(0)+"").toUpperCase()+szo.substring(1));
+		return ujszo;
+	}
 
 	public static void teszt_letrehozNyersanyag(String nyid, String tipus) {
-		letrehoz(tipus, nyid);
+		letrehoz(Nagykezdobetusites(tipus), nyid);
 	}
 
 	public static void teszt_letrehozAszteroida(String aid, String reteg, String napkozel,
