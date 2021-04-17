@@ -90,6 +90,7 @@ public class Jatek {
 
 	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();
+		
 	}
 
 	// Nem haszn�ljuk a tesztben, kezdetleges K�r
@@ -148,6 +149,7 @@ public class Jatek {
 	// TODO kivonni a nyersanyagokat
 	public static void jatekInditas() {
 		Log.call();
+		
 		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
 		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
 		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
@@ -170,7 +172,6 @@ public class Jatek {
 		Telepes.hozzaadKoltseg(RobothozNyersanyag);
 		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
 		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
-
 		Nap n = new Nap();
 		leptethetok.add(n);
 		ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
