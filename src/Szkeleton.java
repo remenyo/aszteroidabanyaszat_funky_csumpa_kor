@@ -100,17 +100,6 @@ public class Szkeleton {
 		}
 	}
 
-	public static String[] tombAtadas(String elemek) {
-		String[] argumentumok = elemek.split(",");
-		// if (argumentumok.length == 1) {
-		// parancs(argumentumok[0]);
-		// } else if (argumentumok.length >= 2) {
-		// parancs(argumentumok[0],
-		// Arrays.copyOfRange(argumentumok, 1, argumentumok.length));
-		// }
-		return argumentumok;
-	}
-
 	protected static void reset() {
 		inkonzisztens_allapot = false;
 		objektumok.clear();
@@ -451,7 +440,7 @@ public class Szkeleton {
 		// String[] nyersanyagok = Arrays.copyOfRange(argumentumok, 2, argumentumok.length);
 		if (nyids.equals("null"))
 			return;
-		String[] nyidsDarabolt = tombAtadas(nyids);
+		String[] nyidsDarabolt = nyids.split(",");
 		for (int i = 0; i < nyidsDarabolt.length; i++) {
 			hiv(tid, "hozzaadNyersanyag", nyidsDarabolt[i]);
 		}
@@ -582,7 +571,7 @@ public class Szkeleton {
 	public static void teszt_napviharOkozasa(String aids) { // hehe
 		if (aids.equals("null"))
 			return;
-		String[] aidsDarabolt = tombAtadas(aids);
+		String[] aidsDarabolt = aids.split(",");
 		for (int i = 0; i < aidsDarabolt.length; i++) {
 			hiv(aidsDarabolt[i], "Napvihar");
 		}
