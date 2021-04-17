@@ -36,8 +36,8 @@ public class Telepes extends Szereplo {
 	}
 
 	/**
-	 * A telepes megh�vja a Banyaszat() fv-t azon az aszteroid�n amelyiken �ll, ha van nyersanyag
-	 * az aszteroid�ba akkor azt mag�hoz veszi �s megh�vja az ellen�riznyertet az aszteroid�n.
+	 * A telepes megh�vja a Banyaszat() fv-t azon az aszteroid�n amelyiken �ll, ha van nyersanyag az
+	 * aszteroid�ba akkor azt mag�hoz veszi �s megh�vja az ellen�riznyertet az aszteroid�n.
 	 */
 	public void Banyaszat() {
 		Log.call();
@@ -75,12 +75,12 @@ public class Telepes extends Szereplo {
 	private void nyersanyagvisszarakMenu() {
 		if (!nyersanyagok.isEmpty()) {
 			System.out
-					.println("Melyik nyersanyagot szeretn� visszarakni?(sorsz�m�val v�laszoljon)");
+					.println("Melyik nyersanyagot szeretné visszarakni? (sorszámával válaszoljon)");
 			Integer db = 0;
 			for (int i = 0; i < nyersanyagok.size(); i++) {
-				if (nyersanyagok.get(i).getNev().equals("Ur�n")) {
+				if (nyersanyagok.get(i).getNev().equals("Urán")) {
 					System.out.println(i + 1 + ". " + nyersanyagok.get(i).getNev()
-							+ " napk�zelben felsz�nre ker�l�sek sz�ma: "
+							+ " napközelben felszínre kerülések száma: "
 							+ ((Uran) nyersanyagok.get(i)).getnapFenyerte());
 				} else {
 					System.out.print(i + 1 + ". " + nyersanyagok.get(i).getNev());
@@ -89,7 +89,7 @@ public class Telepes extends Szereplo {
 			}
 			Integer valasztas = Cin.getInt();
 			if ((valasztas > db) && (valasztas <= 0)) {
-				System.out.println("Nem j�t adott meg!");
+				System.out.println("Nem jót adott meg!");
 			} else {
 				visszarakNyersanyag(nyersanyagok.get(valasztas - 1));
 			}
@@ -100,16 +100,15 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * Teszt alatt egyszer se h�v�dik meg de majd rendes m�k�d�s alatt itt v�laszthat a
-	 * felhaszn�l�, hogy mit szeretne csin�lni a telepessel, �s a v�laszt�snak megfelel� f�ggv�ny
-	 * fog megh�v�dni.
+	 * Teszt alatt egyszer se h�v�dik meg de majd rendes m�k�d�s alatt itt v�laszthat a felhaszn�l�,
+	 * hogy mit szeretne csin�lni a telepessel, �s a v�laszt�snak megfelel� f�ggv�ny fog megh�v�dni.
 	 */
 	@Override
 	public void Lepes() {
 		Log.call();
 		Boolean elorejelzes = aszteroida.getElorejelzesvan();
 		if (elorejelzes) {
-			Log.userInfo("Kovetkezo korbe napvihar lesz");
+			Log.jatek("Kovetkezo korbe napvihar lesz");
 		}
 		int valasz = Cin.kerdez_tobbvalasz("K�pess�gek", "Mozg�s", "F�r�s", "B�ny�szat",
 				"Robot�p�t�s �s lehelyez�s", "Teleportkapup�r-�p�t�s", "Teleportkapu-lehelyez�s",
@@ -146,9 +145,9 @@ public class Telepes extends Szereplo {
 	}
 
 	/**
-	 * A Telepes �tasdja a nyersanyagait az �p�t�sk�lts�g-nek ami megmondja, hogy van e el�g a
-	 * robot �p�t�s�hez, ha van el�g akkor �p�t egy robotot �s r� utaztatja az aszteroid�ra amin
-	 * �ll �ppen, ha nincs el�g nyersanyag akkor nem csin�l semmmit.
+	 * A Telepes �tasdja a nyersanyagait az �p�t�sk�lts�g-nek ami megmondja, hogy van e el�g a robot
+	 * �p�t�s�hez, ha van el�g akkor �p�t egy robotot �s r� utaztatja az aszteroid�ra amin �ll
+	 * �ppen, ha nincs el�g nyersanyag akkor nem csin�l semmmit.
 	 */
 	public Robot epitRobot() {
 		Log.call();
@@ -163,10 +162,10 @@ public class Telepes extends Szereplo {
 
 
 	/**
-	 * Ha a Telepesn�l nincs m�r port�l, �tasdja a nyersanyagait az �p�t�sk�lts�g-nek ami
-	 * megmondja, hogy van e el�g a port�l �p�t�s�hez, ha van el�g akkor �p�t egy port�l p�rt �s
-	 * r� �s elrakja mag�nak, ha nincs el�g nyersanyag akkor nem csin�l semmmit, ha van n�la port�l
-	 * akkor se csin�l semmit.
+	 * Ha a Telepesn�l nincs m�r port�l, �tasdja a nyersanyagait az �p�t�sk�lts�g-nek ami megmondja,
+	 * hogy van e el�g a port�l �p�t�s�hez, ha van el�g akkor �p�t egy port�l p�rt �s r� �s elrakja
+	 * mag�nak, ha nincs el�g nyersanyag akkor nem csin�l semmmit, ha van n�la port�l akkor se
+	 * csin�l semmit.
 	 */
 	public ArrayList<Portal> epitPortal() {
 		Log.call();
@@ -225,7 +224,7 @@ public class Telepes extends Szereplo {
 		Nyersanyag temp = ny;
 		nyersanyagok.remove(ny);
 		Boolean sikerult = aszteroida.hozzaadNyersanyag(ny);
-		if(!sikerult){
+		if (!sikerult) {
 			nyersanyagok.add(temp);
 		}
 	}
@@ -273,6 +272,8 @@ public class Telepes extends Szereplo {
 	 */
 	public void hozzaadNyersanyag(Nyersanyag ny) {
 		Log.call();
+		if (ny == null)
+			return;
 		if (nyersanyagok.size() < 10) {
 			nyersanyagok.add(ny);
 		}
@@ -307,21 +308,23 @@ public class Telepes extends Szereplo {
 
 	public String toString() {
 		String kimenet = Szkeleton.getID(aszteroida) + ":[";
-		if(nyersanyagok.size()!=0) {
+		if (nyersanyagok.size() != 0) {
 			for (Nyersanyag nyersanyag : nyersanyagok) {
 				kimenet += Szkeleton.getID(nyersanyag) + ":";
 			}
-		kimenet = kimenet.substring(0, kimenet.length() - 1);
-		}else {
+			kimenet = kimenet.substring(0, kimenet.length() - 1);
+		} else {
 			kimenet += "null";
 		}
 		kimenet += "]:[";
 		for (Portal port : portal) {
 			kimenet += Szkeleton.getID(port) + ":";
 		}
-		if(portal.size()!=0)
-		kimenet = kimenet.substring(0, kimenet.length() - 1);
-		else {kimenet += "null";}
+		if (portal.size() != 0)
+			kimenet = kimenet.substring(0, kimenet.length() - 1);
+		else {
+			kimenet += "null";
+		}
 		kimenet += "]:";
 		kimenet += String.valueOf(lepett);
 		return kimenet;

@@ -159,7 +159,7 @@ public class Jatek {
 	 */
 	public static void jatekVegeNyert() {
 		Log.call();
-		System.out.println("Gratulálunk nyertél!! :)");
+		Log.jatek("Gratulálunk nyertél!! :)");
 		allapot = 1;
 	}
 
@@ -168,7 +168,7 @@ public class Jatek {
 	 */
 	public static void jatekVegeVesztett() {
 		Log.call();
-		System.out.println("Gratulálunk vesztettél !! :)");
+		Log.jatek("Gratulálunk vesztettél !! :)");
 		allapot = -1;
 	}
 

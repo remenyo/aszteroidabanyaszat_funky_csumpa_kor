@@ -227,8 +227,7 @@ public class Szkeleton {
 
 				if (tipusos_parameterek != null) { // A LÉNYEG
 					try {
-						objektumok.put(id.toLowerCase(),
-								constructor.newInstance(tipusos_parameterek));
+						objektumok.put(id, constructor.newInstance(tipusos_parameterek));
 						Log.info(id + " " + cls.getName() + " Sikeresen létrehozva");
 						break;
 					} catch (Exception e) {
@@ -437,9 +436,6 @@ public class Szkeleton {
 		letrehoz("Telepes", tid);
 		hiv(tid, "beallitAszteroida", aid); // aszteroidan is rajta lesz a
 											// telepes
-		// String[] nyersanyagok = Arrays.copyOfRange(argumentumok, 2, argumentumok.length);
-		if (nyids.equals("null"))
-			return;
 		String[] nyidsDarabolt = nyids.split(",");
 		for (int i = 0; i < nyidsDarabolt.length; i++) {
 			hiv(tid, "hozzaadNyersanyag", nyidsDarabolt[i]);
@@ -492,13 +488,13 @@ public class Szkeleton {
 	public static void teszt_infoAllapot() {
 		Integer jelenlegiAllapot = ((Integer) hiv("jatek", "getAllapot"));
 		if (jelenlegiAllapot == 0) {
-			System.out.println("folyamatban");
+			Log.info("folyamatban");
 			filebaIrando.add("folyamatban");
 		} else if (jelenlegiAllapot == 1) {
-			System.out.println("nyert");
+			Log.info("nyert");
 			filebaIrando.add("nyert");
 		} else if (jelenlegiAllapot == -1) {
-			System.out.println("vesztett");
+			Log.info("vesztett");
 			filebaIrando.add("vesztett");
 		}
 

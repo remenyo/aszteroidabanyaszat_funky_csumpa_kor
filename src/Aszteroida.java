@@ -44,7 +44,7 @@ public class Aszteroida extends Hely {
         try {
             return szomszedok.get(i);
         } catch (Exception e) {
-            System.out.println("Nincs ilyen aszteroida");
+            Log.debug("Nincs " + (i + 1) + "db szomszédos aszteroida.");
             return this; // "onmagara megy"
         }
 
@@ -171,13 +171,13 @@ public class Aszteroida extends Hely {
         if (reteg == 0 && nyersanyag != null) {
             Nyersanyag visszaAdando = nyersanyag; // kimentjük az értéket
             torolNyersanyag(); // üressé tesszük az aszteroidát
-            System.out.println(visszaAdando.getNev() + " kibányászva");
+            Log.jatek(visszaAdando.getNev() + " kibányászva");
             return visszaAdando; // nem null értéket visszaadjuk.
         } else if (reteg > 0) {
-            System.out.println("Még van kéreg");
+            Log.debug("Még van kéreg");
             return null;
         } else {
-            System.out.println("Üres az aszteroida");
+            Log.debug("Üres az aszteroida");
             return null;
         }
 
