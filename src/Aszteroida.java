@@ -171,9 +171,16 @@ public class Aszteroida extends Hely {
         if(reteg==0 && nyersanyag !=null) {
         	Nyersanyag visszaAdando = nyersanyag; // kimentjük az értéket
             torolNyersanyag(); // üressé tesszük az aszteroidát
+            System.out.println(visszaAdando.getNev()+" kibányászva");
             return visszaAdando; // nem null értéket visszaadjuk.
+        }else if(reteg>0) {
+        	System.out.println("Még van kéreg");
+        	return null;
+        }else {
+        	System.out.println("Üres az aszteroida");
+            return null;
         }
-        return null;
+        
     }
 
     /**
