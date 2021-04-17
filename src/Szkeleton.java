@@ -38,7 +38,7 @@ public class Szkeleton {
 
 	public static void Fomenu() {
 		while (true) {
-			int valasz = Cin.kerdez_tobbvalasz("F?menü", "Játék indítás", "Parancssor",
+			int valasz = Cin.kerdez_tobbvalasz("Főmenü", "Játék indítás", "Parancssor",
 					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
 			switch (valasz) {
 				case 1:
@@ -435,8 +435,13 @@ public class Szkeleton {
 		hiv(tid, "Banyaszat");
 	}
 
+	public static String Nagykezdobetusites(String szo) {
+		String ujszo = ((szo.charAt(0) + "").toUpperCase() + szo.substring(1));
+		return ujszo;
+	}
+
 	public static void teszt_letrehozNyersanyag(String nyid, String tipus) {
-		letrehoz(tipus, nyid);
+		letrehoz(Nagykezdobetusites(tipus), nyid);
 	}
 
 	public static void teszt_letrehozAszteroida(String aid, String reteg, String napkozel,
@@ -468,8 +473,8 @@ public class Szkeleton {
 	}
 
 	public static void teszt_info(String id) {
-		System.out.println((String) hiv(id, "toString", null));
-		filebaIrando.add((String) hiv(id, "toString", null));
+		System.out.println((String) hiv(id, "toString"));
+		filebaIrando.add((String) hiv(id, "toString"));
 	}
 
 	public static void teszt_mentes(String nev) { // TODO beirni 0. fejezetbe hogy ne
@@ -494,12 +499,12 @@ public class Szkeleton {
 
 	public static void teszt_infoMinden() {
 		for (Map.Entry<String, Object> objektum : objektumok.entrySet()) {
-			System.out.println((String) hiv(objektum.getKey(), "toString", null));
+			System.out.println((String) hiv(objektum.getKey(), "toString"));
 		}
 	}
 
 	public static void teszt_infoAllapot() {
-		Integer jelenlegiAllapot = ((Integer) hiv("jatek", "getAllapot", null));
+		Integer jelenlegiAllapot = ((Integer) hiv("jatek", "getAllapot"));
 		if (jelenlegiAllapot == 0) {
 			System.out.println("folyamatban");
 			filebaIrando.add("folyamatban");
@@ -548,7 +553,7 @@ public class Szkeleton {
 	}
 
 	public static void teszt_epitPortal(String tid, String pid1, String pid2) {
-		ArrayList<Portal> portalok = (ArrayList<Portal>) hiv(tid, "epitPortal", null);
+		ArrayList<Portal> portalok = (ArrayList<Portal>) hiv(tid, "epitPortal");
 		if (portalok != null) {
 			objektumok.put(pid1, portalok.get(0));
 			objektumok.put(pid2, portalok.get(1));
@@ -561,7 +566,7 @@ public class Szkeleton {
 
 	public static void teszt_napviharOkozasa(String[] aids) { // hehe
 		for (int i = 0; i < aids.length; i++) {
-			hiv(aids[i], "Napvihar", null);
+			hiv(aids[i], "Napvihar");
 		}
 	}
 
