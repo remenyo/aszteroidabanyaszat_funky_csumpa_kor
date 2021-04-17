@@ -28,6 +28,7 @@ public class Aszteroida extends Hely {
         this.nap = nap;
         szereplok = new ArrayList<Szereplo>();
         szomszedok = new ArrayList<Hely>();
+        elorejelzesvan = false;
     }
 
     /**

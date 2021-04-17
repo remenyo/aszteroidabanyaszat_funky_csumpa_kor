@@ -148,7 +148,7 @@ public class Jatek {
 			if (i == 0) {
 				for (int j = 0; j < JATEKOS_SZAM; j++) {
 					Telepes t = new Telepes();
-					a.hozzaadSzereplo(t);
+					t.beallitAszteroida(a); //aszteroidanak is beallitja a szereplot
 					telepesszam++;
 					leptethetok.add(t);
 				}

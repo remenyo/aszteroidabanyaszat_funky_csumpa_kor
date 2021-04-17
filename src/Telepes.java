@@ -6,13 +6,12 @@ import java.util.ArrayList;
 // a statikus építési költségek is ebbe az osztályba találhatók.
 public class Telepes extends Szereplo {
 	private ArrayList<Nyersanyag> nyersanyagok; // A telepesnél lévõ nyersanyagokat tárolja.
-	private static ArrayList<NyersanyagKoltseg> epiteskoltseg; // A portál és robot építésének a
+	private static ArrayList<NyersanyagKoltseg> epiteskoltseg = new ArrayList<NyersanyagKoltseg>(); // A portál és robot építésének a
 																// költségét tárolja.
 	private ArrayList<Portal> portal;// A Telepesnél lévõ portálokat tárolja.
 
 	Telepes() {
 		nyersanyagok = new ArrayList<Nyersanyag>();
-		epiteskoltseg = new ArrayList<NyersanyagKoltseg>();
 		portal = new ArrayList<Portal>();
 		Jatek.telepesszam++;
 	}

@@ -164,7 +164,6 @@ public class Szkeleton {
 	 * @return A megtalált adattag. Ha nem létezik, nullal tér vissza.
 	 */
 	private static Field adattagKereses(Class<?> cls, String adattag_nev) {
-
 		do {
 			Field[] fields = cls.getDeclaredFields();
 			for (Field field : fields) {
