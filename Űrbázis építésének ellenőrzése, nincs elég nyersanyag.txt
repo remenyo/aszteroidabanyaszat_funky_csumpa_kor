@@ -7,4 +7,3 @@ letrehozTelepes:t1:a1:ny1,ny2
 info:t1
 mozgas:t1:a2
 info:t1
-
