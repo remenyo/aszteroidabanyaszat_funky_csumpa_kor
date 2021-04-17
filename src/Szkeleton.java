@@ -402,7 +402,7 @@ public class Szkeleton {
 	}
 
 	public static void teszt_epitRobot(String tid, String rid) {
-		if(lepesTeszt(tid)) {
+		if (lepesTeszt(tid)) {
 			Robot r = (Robot) hiv(tid, "epitRobot");
 			if (r != null)
 				objektumok.put(rid, r);
@@ -410,7 +410,7 @@ public class Szkeleton {
 	}
 
 	public static void teszt_banyaszas(String tid) {
-		if(lepesTeszt(tid)) {
+		if (lepesTeszt(tid)) {
 			hiv(tid, "Banyaszat");
 		}
 	}
@@ -447,7 +447,7 @@ public class Szkeleton {
 	}
 
 	public static void teszt_mozgas(String id, String aid) {
-		if(lepesTeszt(id)) {
+		if (lepesTeszt(id)) {
 			Aszteroida aminVagyunk = (Aszteroida) hiv(id, "getAszteroida");
 			Aszteroida amireMegyunk = ((Aszteroida) objektumok.get(aid));
 			Integer menesSzam = aminVagyunk.getSzomszedok().indexOf(amireMegyunk);
@@ -504,10 +504,10 @@ public class Szkeleton {
 
 	}
 
-	public static void mindenkiLepett() {//FONTOS
+	public static void mindenkiLepett() {// FONTOS
 		Jatek jatek = ((Jatek) objektumok.get("jatek"));
 		if (jatek.mindenkiLepett()) {
-			jatek.resetLepett(); 
+			jatek.resetLepett();
 		}
 	}
 
@@ -527,32 +527,32 @@ public class Szkeleton {
 			letrehoz("Portal", pid);
 		beallit(pid, "birtokos", tid);
 	}
-	
+
 	public static void teszt_visszarakNyersanyag(String tid, String nyid) {
-		if(lepesTeszt(tid)) {
+		if (lepesTeszt(tid)) {
 			hiv(tid, "visszarakNyersanyag", nyid);
 		}
-		
+
 	}
-	
+
 	public static Boolean lepesTeszt(String id) {
-		if((Boolean)hiv(id,"lepette") == false) {
+		if ((Boolean) hiv(id, "lepette") == false) {
 			mindenkiLepett();
-			return true; //léphet
+			return true; // léphet
 		}
 		Log.warn("Már lépett!");
 		return false;
 	}
-	
-	
+
+
 	public static void teszt_lerakPortal(String tid, String pid) {
-		if(lepesTeszt(tid)) {
+		if (lepesTeszt(tid)) {
 			hiv(tid, "lerakPortal", pid);
 		}
 	}
 
 	public static void teszt_epitPortal(String tid, String pid1, String pid2) {
-		if(lepesTeszt(tid)) {
+		if (lepesTeszt(tid)) {
 			ArrayList<Portal> portalok = (ArrayList<Portal>) hiv(tid, "epitPortal");
 			if (portalok != null) {
 				objektumok.put(pid1, portalok.get(0));
@@ -562,7 +562,7 @@ public class Szkeleton {
 	}
 
 	public static void teszt_furas(String id) {
-		if(lepesTeszt(id)) {
+		if (lepesTeszt(id)) {
 			hiv(id, "Furas");
 		}
 	}
