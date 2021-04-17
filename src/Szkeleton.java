@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 import java.util.Map;
+import java.util.Set;
 
 public class Szkeleton {
 
@@ -484,8 +485,8 @@ public class Szkeleton {
 	}
 
 	public static void teszt_infoMinden() {
-		for (Map.Entry<String, Object> objektum : objektumok.entrySet()) {
-			System.out.println((String) hiv(objektum.getKey(), "toString"));
+		for (String id : objektumok.keySet()) {
+			Log.info(info(id));
 		}
 	}
 
