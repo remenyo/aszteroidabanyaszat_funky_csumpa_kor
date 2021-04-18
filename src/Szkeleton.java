@@ -530,7 +530,6 @@ public class Szkeleton {
 
 	public static void teszt_visszarakNyersanyag(String tid, String nyid) {
 		if (lepesTeszt(tid)) {
-			if (((Telepes) getObj(tid)).getNyersanyagok().size() > 0)
 				hiv(tid, "visszarakNyersanyag", nyid);
 		}
 	}
