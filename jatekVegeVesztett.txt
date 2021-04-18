@@ -1,0 +1,8 @@
+letrehozNyersanyag:vizjeg1:Vizjeg
+letrehozAszteroida:a1:1:true:vizjeg1
+letrehozTelepes:t1:a1:null
+info:a1
+infoAllapot
+furas:t1
+infoAllapot
+info:a1
