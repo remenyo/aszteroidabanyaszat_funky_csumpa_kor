@@ -516,13 +516,11 @@ public class Szkeleton {
 		letrehoz("Robot", rid);
 		//beallit(rid, "aszteroida", aid);
 		hiv(rid, "beallitAszteroida", aid);
-		hiv(aid, "hozzaadSzereplo", rid);
 	}
 
 	public static void teszt_letrehozUfo(String uid, String aid) {
 		letrehoz("Ufo", uid);
 		hiv(uid, "beallitAszteroida", aid);
-		hiv(aid, "hozzaadSzereplo", uid);
 		}
 
 	public static void teszt_letrehozPortalTelepes(String pid, String tid) {
