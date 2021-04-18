@@ -34,7 +34,8 @@ public class NyersanyagKoltseg {
     public Boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
         Log.call();
         ArrayList<Nyersanyag> koltsegKlon = koltseg;
-        masolatTarolo = ny;
+        masolatTarolo.clear();
+        masolatTarolo.addAll(ny);
 
         koltsegKlon.removeIf(this::Szukseges);
 

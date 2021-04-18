@@ -187,10 +187,11 @@ public class Telepes extends Szereplo {
 		Log.call();
 		Portal p1;
 		Portal p2;
-		ArrayList<Portal> temp = new ArrayList<Portal>();
+		ArrayList<Portal> temp=null;
 		if (portal.size() <= 1) {
 			Boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
 			if (vaneleg) {
+				temp = new ArrayList<Portal>();
 				p1 = new Portal();
 				p2 = new Portal();
 				p1.beallitPar(p2);

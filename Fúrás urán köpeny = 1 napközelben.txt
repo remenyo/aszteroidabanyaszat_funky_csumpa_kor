@@ -1,0 +1,10 @@
+letrehozNyersanyag:uran1:uran
+letrehozAszteroida:a1:1:true:uran1
+letrehozAszteroida:a2:5:false:null
+osszekotAszteroida:a1:a2
+letrehozTelepes:t1:a1:null
+info:uran1
+info:a1
+furas:t1
+info:uran1
+info:a1

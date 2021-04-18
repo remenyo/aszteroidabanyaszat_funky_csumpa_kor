@@ -392,7 +392,8 @@ public class Szkeleton {
 
 	public static void teszt_letrehozPortalAszteroida(String pid, String aid) {
 		letrehoz("Portal", pid);
-		beallit(pid, "aszteroida", aid);
+		hiv(pid, "setVegpont", aid);
+		hiv(aid, "hozzaadSzomszed", pid);
 	}
 
 	public static void teszt_osszekotAszteroida(String aid1, String aid2) {
