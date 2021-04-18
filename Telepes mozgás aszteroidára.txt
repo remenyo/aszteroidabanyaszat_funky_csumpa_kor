@@ -1,0 +1,9 @@
+letrehozAszteroida:a1:0:false:null
+letrehozAszteroida:a2:0:false:null
+osszekotAszteroida:a1:a2
+letrehozTelepes:t1:a1:null
+info:a1
+info:a2
+mozgas:t1:a2
+info:a1
+info:a2

@@ -1,0 +1,15 @@
+letrehozAszteroida:a1:0:false:null
+letrehozAszteroida:a2:0:false:null
+letrehozAszteroida:b1:0:false:null
+letrehozAszteroida:b2:0:false:null
+osszekotAszteroida:a1:a2
+osszekotAszteroida:b1:b2
+osszekotAszteroida:a2:b2
+letrehozRobot:r1:a1
+letrehozTelepes:t1:b2:null
+letrehozPortalAszteroida:p1:a1
+letrehozPortalAszteroida:p2:b1
+osszekotPortal:p1:p2
+info:r1
+mozgas:r1:p1
+info:r1

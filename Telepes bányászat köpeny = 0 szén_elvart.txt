@@ -1,0 +1,4 @@
+0:false:[t1]:[a2]:szen1
+a1:[null]:[null]:false
+0:false:[t1]:[a2]:null
+a1:[szen1]:[null]:false
