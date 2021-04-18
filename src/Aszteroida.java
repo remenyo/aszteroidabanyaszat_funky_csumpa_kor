@@ -58,6 +58,7 @@ public class Aszteroida extends Hely {
         Log.call();
         // TODO rossz a sorrend, előbb robbantjuk a robotokat, aztán töröljük a szomszédokat
         // TODO az ifek csak a tesztek miatt kellettek ne fussunk indexOutOfBounds hibába.
+        nap.torolAszteroida(this);
         if (nyersanyag != null) {
             nyersanyag.Robbanas();
         }
@@ -67,7 +68,6 @@ public class Aszteroida extends Hely {
         for (Szereplo sz : szereplok) {
             sz.Robbanas();
         }
-        nap.torolAszteroida(this);
 
     }
 
