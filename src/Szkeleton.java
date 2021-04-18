@@ -449,7 +449,7 @@ public class Szkeleton {
 	public static void teszt_mozgas(String id, String aid) {
 		if (lepesTeszt(id)) {
 			Aszteroida aminVagyunk = (Aszteroida) hiv(id, "getAszteroida");
-			Aszteroida amireMegyunk = ((Aszteroida) getObj(aid));
+			Hely amireMegyunk = ((Hely) getObj(aid));
 			Integer menesSzam = aminVagyunk.getSzomszedok().indexOf(amireMegyunk);
 			if (menesSzam != -1) {
 				hiv(id, "Mozgas", menesSzam.toString()); // TODO ez itt igy jo?
