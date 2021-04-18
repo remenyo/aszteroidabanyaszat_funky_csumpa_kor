@@ -3,25 +3,24 @@ letrehozNyersanyag:legyenElegUran2:Uran
 letrehozNyersanyag:legyenElegUran3:Uran
 letrehozAszteroida:a1:5:false:null
 letrehozAszteroida:a2:0:true:null
-letrehozAszteroida:a3:5:false:null
-osszekotAszteroida:a1:a2
-osszekotAszteroida:a1:a3
+letrehozAszteroida:a3:5:true:null
+osszekotAszteroida:a2:a3
 letrehozNyersanyag:uran1:Uran
-letrehozTelepes:eletbenMaradoTelepes:a3:null
+letrehozTelepes:eletbenMaradoTelepes:a1:null
 letrehozTelepes:t1:a2:uran1
-letrehozUfo:u1:a2
+letrehozRobot:r1:a3
 info:jatek
 visszarakNyersanyag:t1:uran1
-mozgas:u1:a1
+furas:r1
 furas: eletbenMaradoTelepes
 banyaszas:t1
-mozgas:u1:a2
+furas:r1
 furas: eletbenMaradoTelepes
 visszarakNyersanyag:t1:uran1
-mozgas:u1:a1
+furas:r1
 furas: eletbenMaradoTelepes
 banyaszas:t1
-mozgas:u1:a2
+furas:r1
 furas: eletbenMaradoTelepes
 visszarakNyersanyag:t1:uran1
 info:jatek

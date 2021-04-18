@@ -2,8 +2,6 @@ letrehozAszteroida:a1:5:false:null
 letrehozAszteroida:a2:5:false:null
 osszekotAszteroida:a1:a2
 letrehozTelepes:t1:a1:null
-info:t1
 info:a1
-lerakPortal:nemLetezoPortal:t1
-info:t1
+furas:t1
 info:a1

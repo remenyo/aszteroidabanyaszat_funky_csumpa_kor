@@ -1,0 +1,9 @@
+letrehozNyersanyag:legyenElegUran1:Uran
+letrehozNyersanyag:legyenElegUran2:Uran
+letrehozNyersanyag:legyenElegUran3:Uran
+letrehozNyersanyag:uran1:Uran
+letrehozAszteroida:a1:0:false:uran1
+letrehozUfo:u1:a1
+info:a1
+banyaszas:u1
+info:a1

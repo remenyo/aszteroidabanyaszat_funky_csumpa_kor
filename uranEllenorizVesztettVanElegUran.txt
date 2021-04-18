@@ -9,19 +9,13 @@ osszekotAszteroida:a1:a3
 letrehozNyersanyag:uran1:Uran
 letrehozTelepes:eletbenMaradoTelepes:a3:null
 letrehozTelepes:t1:a2:uran1
-letrehozUfo:u1:a2
-info:jatek
-visszarakNyersanyag:t1:uran1
-mozgas:u1:a1
+info:legyenElegUran1
+visszarakNyersanyag:t1:uran1 
 furas: eletbenMaradoTelepes
 banyaszas:t1
-mozgas:u1:a2
 furas: eletbenMaradoTelepes
-visszarakNyersanyag:t1:uran1
-mozgas:u1:a1
-furas: eletbenMaradoTelepes
+visszarakNyersanyag:t1:uran1 
 banyaszas:t1
-mozgas:u1:a2
 furas: eletbenMaradoTelepes
-visszarakNyersanyag:t1:uran1
-info:jatek
+visszarakNyersanyag:t1:uran1 
+info:legyenElegUran1

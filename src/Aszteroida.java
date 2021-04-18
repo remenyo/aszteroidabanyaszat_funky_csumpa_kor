@@ -65,10 +65,9 @@ public class Aszteroida extends Hely {
         for (Hely h : szomszedok) {
             h.szomszedRobbant(this);
         }
+        // mindenkin végig kell menni mivel mindenki vagy átmegy máshová vagy meghal igy az első
+        // elem mindig más lesz.
         int eredeti = szereplok.size();
-        /*
-         * for (Szereplo sz : szereplok) { sz.Robbanas(); }
-         */
         for (int i = 0; i < eredeti; i++) {
             szereplok.get(0).Robbanas();
         }
@@ -126,9 +125,11 @@ public class Aszteroida extends Hely {
         Log.call();
         szomszedok.remove(h);
         if (szomszedok.size() == 0) {
-            for (Szereplo sz : szereplok) {
-                sz.Meghal();
+            int eredeti = szereplok.size();
+            for (int i = 0; i < eredeti; i++) {
+                szereplok.get(0).Meghal();
             }
+
             Robbanas(); // Robbanás előttt azért kell mindenkin meghívni a meghalt
                         // mert a robbanásban a robot nem halna meg
                         // hanem csak másik szomszédos aszteroidára kerülne de mivel

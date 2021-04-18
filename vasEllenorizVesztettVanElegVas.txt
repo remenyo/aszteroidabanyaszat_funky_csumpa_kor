@@ -1,3 +1,6 @@
+letrehozNyersanyag:legyenElegVas1:Vas
+letrehozNyersanyag:legyenElegVas2:Vas
+letrehozNyersanyag:legyenElegVas3:Vas
 letrehozNyersanyag:legyenElegUran1:Uran
 letrehozNyersanyag:legyenElegUran2:Uran
 letrehozNyersanyag:legyenElegUran3:Uran
@@ -7,21 +10,16 @@ letrehozAszteroida:a3:5:false:null
 osszekotAszteroida:a1:a2
 osszekotAszteroida:a1:a3
 letrehozNyersanyag:uran1:Uran
+letrehozNyersanyag:vas1:Vas
 letrehozTelepes:eletbenMaradoTelepes:a3:null
-letrehozTelepes:t1:a2:uran1
-letrehozUfo:u1:a2
-info:jatek
+letrehozTelepes:t1:a2:uran1,vas1
+info:legyenElegVas1
 visszarakNyersanyag:t1:uran1
-mozgas:u1:a1
 furas: eletbenMaradoTelepes
 banyaszas:t1
-mozgas:u1:a2
 furas: eletbenMaradoTelepes
 visszarakNyersanyag:t1:uran1
-mozgas:u1:a1
-furas: eletbenMaradoTelepes
 banyaszas:t1
-mozgas:u1:a2
 furas: eletbenMaradoTelepes
 visszarakNyersanyag:t1:uran1
-info:jatek
+info:legyenElegVas1

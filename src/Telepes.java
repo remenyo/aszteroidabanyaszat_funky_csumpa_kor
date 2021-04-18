@@ -31,7 +31,7 @@ public class Telepes extends Szereplo {
 	 * 
 	 * @param sorszam Az aszteroida azonos�t�ja
 	 */
-	public void Mozgas(int sorszam) {
+	public void Mozgas(Integer sorszam) {
 		Log.call();
 		super.Mozgas(sorszam);
 		aszteroida.ellenorizNyert();
@@ -126,7 +126,7 @@ public class Telepes extends Szereplo {
 		if (elorejelzes) {
 			Log.jatek("Kovetkezo korbe napvihar lesz");
 		}
-		int valasz = Cin.kerdez_tobbvalasz("K�pess�gek", "Mozg�s", "F�r�s", "B�ny�szat",
+		Integer valasz = Cin.kerdez_tobbvalasz("K�pess�gek", "Mozg�s", "F�r�s", "B�ny�szat",
 				"Robot�p�t�s �s lehelyez�s", "Teleportkapup�r-�p�t�s", "Teleportkapu-lehelyez�s",
 				"Nyersanyag visszahelyez�s");
 		switch (valasz) {

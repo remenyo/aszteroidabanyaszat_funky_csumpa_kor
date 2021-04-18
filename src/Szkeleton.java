@@ -410,6 +410,12 @@ public class Szkeleton {
 	public static void teszt_osszekotPortal(String pid1, String pid2) {
 		hiv(pid1, "beallitPar", pid2);
 		hiv(pid2, "beallitPar", pid1);
+		Aszteroida p1vegpont = (Aszteroida) hiv(pid1, "getVegpont");
+		Aszteroida p2vegpont = (Aszteroida) hiv(pid2, "getVegpont");
+		if ((p1vegpont != null) && (p2vegpont != null)) {
+			hiv(pid1, "setAktiv", "true");
+			hiv(pid2, "setAktiv", "true");
+		}
 	}
 
 	public static void teszt_epitRobot(String tid, String rid) {
@@ -459,7 +465,7 @@ public class Szkeleton {
 	public static void teszt_mozgas(String id, String aid) {
 		if (lepesTeszt(id)) {
 			Aszteroida aminVagyunk = (Aszteroida) hiv(id, "getAszteroida");
-			Aszteroida amireMegyunk = ((Aszteroida) getObj(aid));
+			Hely amireMegyunk = ((Hely) getObj(aid));
 			Integer menesSzam = aminVagyunk.getSzomszedok().indexOf(amireMegyunk);
 			if (menesSzam != -1) {
 				hiv(id, "Mozgas", menesSzam.toString()); // TODO ez itt igy jo?
@@ -528,13 +534,14 @@ public class Szkeleton {
 	public static void teszt_letrehozRobot(String rid, String aid) {
 		if (!letrehoz("Robot", rid))
 			return;
-		beallit(rid, "aszteroida", aid);
+		// beallit(rid, "aszteroida", aid);
+		hiv(rid, "beallitAszteroida", aid);
 	}
 
 	public static void teszt_letrehozUfo(String uid, String aid) {
 		if (!letrehoz("Ufo", uid))
 			return;
-		beallit(uid, "aszteroida", aid);
+		hiv(uid, "beallitAszteroida", aid);
 	}
 
 	public static void teszt_letrehozPortalTelepes(String pid, String tid) {
@@ -556,6 +563,7 @@ public class Szkeleton {
 
 	public static Boolean lepesTeszt(String id) {
 		if ((Boolean) hiv(id, "lepette") == false) {
+			beallit(id, "lepett", "true");
 			mindenkiLepett();
 			return true; // léphet
 		}

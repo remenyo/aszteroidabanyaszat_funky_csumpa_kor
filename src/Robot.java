@@ -48,4 +48,16 @@ public class Robot extends Szereplo {
 		return Szkeleton.getID(aszteroida) + ":"
 				+ String.valueOf(lepett); /* + "" + (char) 13 + (char) 10 */
 	}
+
+	// teszt miatt kell
+	public void Mozgas(Integer sorszam) {
+		Log.call();
+		if (Jatek.robot_robbanas_elso_szomszed) {
+			super.Mozgas(0);
+		} else {
+			super.Mozgas(sorszam);
+		}
+
+
+	}
 }

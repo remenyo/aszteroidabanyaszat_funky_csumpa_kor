@@ -1,0 +1,4 @@
+4
+1:true:[t1]:[tempaszt]:vizjeg4
+0:true:[t1]:[tempaszt]:null
+3
