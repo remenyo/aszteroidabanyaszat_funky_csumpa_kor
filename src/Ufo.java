@@ -9,7 +9,7 @@ public class Ufo extends Szereplo {
 
 	public void Lepes() {
 		Log.call();
-		Boolean sikeres = nyersanyagFelvetel();
+		Boolean sikeres = Banyaszat();
 		if (sikeres) {
 			Integer sorszam =
 					RandomUtils.randomIntHatarokKozott(0, aszteroida.getSzomszedok().size() - 1);
@@ -17,7 +17,7 @@ public class Ufo extends Szereplo {
 		}
 	}
 
-	public Boolean nyersanyagFelvetel() {
+	public Boolean Banyaszat() {
 		Log.call();
 		Nyersanyag temp = aszteroida.Banyaszat();
 		if (temp != null) {
