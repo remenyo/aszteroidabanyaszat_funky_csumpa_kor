@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 import java.util.Map;
-import java.util.Set;
 
 public class Szkeleton {
 
@@ -354,7 +353,7 @@ public class Szkeleton {
 				"Bányászat", "Ví­zjég Fúrás", "Urán fúrás", "Fúrás vas", "Portálkapu épí­tés",
 				"Robot épí­tés", "Nyersanyag visszahelyezés", "Portál lehelyezés",
 				"Robot Urán fúrás", "Napvihar")) {
-			// TODO
+			// TODO ez kell még?
 
 			default:
 				break;
@@ -364,7 +363,7 @@ public class Szkeleton {
 	public static void BanyaszatMenu() {
 		switch (Cin.kerdez_tobbvalasz("Bí?NYí?SZAT", "Urán Bányászat", "Ví­zjég Bányászat",
 				"Szén Bányászat", "Vas Bányászat")) {
-			// TODO
+			// TODO ez kell még?
 
 			default:
 				break;
@@ -376,7 +375,7 @@ public class Szkeleton {
 				+ "3. Szén visszahelyezés\r\n" + "4. Vas visszahelyezés");
 		switch (Cin.kerdez_tobbvalasz("Bí?NYí?SZAT", "Urán visszahelyezés",
 				"Ví­zjég visszahelyezés", "Szén visszahelyezés", "Vas visszahelyezés")) {
-			// TODO
+			// TODO ez kell még?
 
 			default:
 				break;
@@ -531,7 +530,7 @@ public class Szkeleton {
 
 	public static void teszt_visszarakNyersanyag(String tid, String nyid) {
 		if (lepesTeszt(tid)) {
-			if(((Telepes) getObj(tid)).getNyersanyagok().size()>0)
+			if (((Telepes) getObj(tid)).getNyersanyagok().size() > 0)
 				hiv(tid, "visszarakNyersanyag", nyid);
 		}
 	}
@@ -556,6 +555,8 @@ public class Szkeleton {
 	public static void teszt_epitPortal(String tid, String pid1, String pid2) {
 		if (lepesTeszt(tid)) {
 			ArrayList<Portal> portalok = (ArrayList<Portal>) hiv(tid, "epitPortal");
+			// Az Unchecked cast warning nem lényeges, az epitPortal biztosan
+			// vagy ArrayList<Portal>-t vagy null-t ad vissza.
 			if (portalok != null) {
 				objektumok.put(pid1, portalok.get(0));
 				objektumok.put(pid2, portalok.get(1));
@@ -580,7 +581,6 @@ public class Szkeleton {
 
 
 	public static void teszt_randomValoszinuseg(String nev, String igazsagErtek) {
-		((Jatek) objektumok.get("jatek")).robot_robbanas_elso_szomszed =
-				Boolean.parseBoolean(igazsagErtek);
+		Jatek.robot_robbanas_elso_szomszed = Boolean.parseBoolean(igazsagErtek);
 	}
 }
