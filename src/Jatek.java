@@ -17,7 +17,7 @@ public class Jatek {
 	}
 
 	// PROGRAM BEÁLLÍTÁSOK
-	public static Boolean COLOR_IN_TERMINAL = true;
+	public static Boolean COLOR_IN_TERMINAL = false;
 	public static Boolean LOG_FUNCTION_CALLS = true;
 	public static Boolean LOG_CONSTRUCTORS = true;
 	public static Boolean LOG_GAME_INFO = true;
