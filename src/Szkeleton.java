@@ -391,10 +391,17 @@ public class Szkeleton {
 	}
 
 	public static void teszt_letrehozPortalAszteroida(String pid, String aid) {
+<<<<<<< HEAD
 		letrehoz("Portal", pid);
 		hiv(pid, "setVegpont", aid);
 		hiv(aid, "hozzaadSzomszed", pid);
 	}
+=======
+        letrehoz("Portal", pid);
+        hiv(pid, "setVegpont", aid);
+        hiv(aid, "hozzaadSzomszed", pid);
+    }
+>>>>>>> e040bb49a7f176c8f99e8a6b318ef591baa62eb0
 
 	public static void teszt_osszekotAszteroida(String aid1, String aid2) {
 		hiv(aid1, "hozzaadSzomszed", aid2);
