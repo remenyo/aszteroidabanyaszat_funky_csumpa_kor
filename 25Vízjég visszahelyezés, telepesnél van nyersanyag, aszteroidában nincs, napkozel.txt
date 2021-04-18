@@ -1,0 +1,13 @@
+letrehozNyersanyag:vizjeg2:vizjeg
+letrehozNyersanyag:vizjeg3:vizjeg
+letrehozNyersanyag:vizjeg4:vizjeg
+letrehozNyersanyag:vizjeg1:vizjeg
+letrehozAszteroida:a1:0:true:null
+letrehozAszteroida:a2:0:false:null
+osszekotAszteroida:a1:a2
+letrehozTelepes:t1:a1:vizjeg1
+info:t1
+info:a1
+visszarakNyersanyag:t1:vizjeg1
+info:t1
+info:a1

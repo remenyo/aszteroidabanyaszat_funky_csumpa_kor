@@ -1,0 +1,11 @@
+letrehozNyersanyag:vas1:vas
+letrehozNyersanyag:szen1:szen
+letrehozNyersanyag:uran1:uran
+letrehozAszteroida:a1:5:false:null
+letrehozAszteroida:a2:5:false:null
+osszekotAszteroida:a1:a2
+letrehozTelepes:t1:a1:vas1,szen1,uran1
+info:t1
+epitRobot:t1:r1
+info:t1
+info:r1

@@ -1,0 +1,2 @@
+a1:[vas1:vas2:vizjeg1:uran1]:[p1:p2]:false
+a1:[vas1:vas2:vizjeg1:uran1]:[p1:p2]:false
