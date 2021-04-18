@@ -5,6 +5,6 @@ letrehozTelepes:t1:a1:null
 letrehozPortalTelepes:p1:t1
 letrehozPortalAszteroida:p2:a2
 osszekotPortal:p1:p2
-lerakPortal:p1
+lerakPortal:t1:p1
 info:a1
 info:p1

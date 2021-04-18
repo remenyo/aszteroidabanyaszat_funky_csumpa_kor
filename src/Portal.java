@@ -187,10 +187,16 @@ public class Portal extends Hely implements Leptetheto {
 		vegpont = a;
 	}
 
-	public String toString() {
-		return aktiv.toString() + ":" + Szkeleton.getID(birtokos) + ":" + Szkeleton.getID(par) + ":"
-				+ Szkeleton.getID(vegpont) + ":" + megkergult.toString() + ":"
-				+ String.valueOf(lepett); /*
+	public String toString() { 
+		String kimenet = aktiv.toString() + ":" ; 
+		if(birtokos!=null)kimenet += Szkeleton.getID(birtokos);else {kimenet+="null";} 
+		kimenet += ":" ;
+		if(par!=null)kimenet += Szkeleton.getID(par); else {kimenet+="null";}
+				kimenet += ":" ;
+		if( vegpont != null ) kimenet+= Szkeleton.getID(vegpont); else{kimenet+="null";}
+		kimenet +=  ":" + megkergult.toString() + ":"
+				+ String.valueOf(lepett);
+		return kimenet;/*
 											 * + "" + (char) 13 + (char) 10;
 											 */ // TODO nem kell ujsor
 	}
