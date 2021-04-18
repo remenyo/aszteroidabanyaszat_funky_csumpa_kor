@@ -530,6 +530,7 @@ public class Szkeleton {
 
 	public static void teszt_visszarakNyersanyag(String tid, String nyid) {
 		if (lepesTeszt(tid)) {
+			//if(((Telepes) getObj(tid)).getNyersanyagok().size()>0) //itt talán nem kellene ellenőrizni, mert a játék működése nem itt zajlik
 				hiv(tid, "visszarakNyersanyag", nyid);
 		}
 	}
