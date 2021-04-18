@@ -1,0 +1,3 @@
+a1:[vas1:szen1:uran1]:[null]:false
+a1:[null]:[null]:false
+a1:false

@@ -58,17 +58,20 @@ public class Aszteroida extends Hely {
         Log.call();
         // TODO rossz a sorrend, előbb robbantjuk a robotokat, aztán töröljük a szomszédokat
         // TODO az ifek csak a tesztek miatt kellettek ne fussunk indexOutOfBounds hibába.
+        nap.torolAszteroida(this);
         if (nyersanyag != null) {
             nyersanyag.Robbanas();
         }
         for (Hely h : szomszedok) {
             h.szomszedRobbant(this);
         }
-        for (Szereplo sz : szereplok) {
+        int eredeti  = szereplok.size();
+       /* for (Szereplo sz : szereplok) {
             sz.Robbanas();
+        }*/
+        for(int i = 0;i<eredeti;i++) {
+        	szereplok.get(0).Robbanas();
         }
-        nap.torolAszteroida(this);
-
     }
 
     /**
@@ -258,7 +261,7 @@ public class Aszteroida extends Hely {
      * 
      * @param ny Az aszteroida magjába helyezendő nyersanyag
      */
-    public Boolean hozzaadNyersanyag(Nyersanyag ny) {
+    public Boolean hozzaadNyersanyag(Nyersanyag ny) throws Exception{
         Log.call();
         if (reteg == 0 && nyersanyag == null) {
             nyersanyag = ny;

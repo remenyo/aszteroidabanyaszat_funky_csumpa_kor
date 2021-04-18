@@ -1,0 +1,10 @@
+letrehozNyersanyag:vas1:vas
+letrehozAszteroida:a1:5:false:null
+letrehozAszteroida:a2:5:false:null
+osszekotAszteroida:a1:a2
+letrehozTelepes:t1:a1:vas1
+info:t1
+info:a1
+epitRobot:t1:r1
+info:t1
+info:a1

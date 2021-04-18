@@ -1,0 +1,25 @@
+letrehozNyersanyag:legyenElegUran1:Uran
+letrehozNyersanyag:legyenElegUran2:Uran
+letrehozNyersanyag:legyenElegUran3:Uran
+letrehozAszteroida:a1:5:false:null
+letrehozAszteroida:a2:0:true:null
+letrehozAszteroida:a3:5:false:null
+osszekotAszteroida:a1:a2
+osszekotAszteroida:a1:a3
+letrehozNyersanyag:uran1:Uran
+letrehozTelepes:eletbenMaradoTelepes:a3:null
+letrehozTelepes:t1:a2:uran1
+letrehozPortalAszteroida:p1:a2
+letrehozPortalAszteroida:p2:a1
+osszekotPortal:p1:p2
+info:a1
+visszarakNyersanyag:t1:uran1
+furas: eletbenMaradoTelepes
+banyaszas:t1
+furas: eletbenMaradoTelepes
+visszarakNyersanyag:t1:uran1
+furas: eletbenMaradoTelepes
+banyaszas:t1
+furas: eletbenMaradoTelepes
+visszarakNyersanyag:t1:uran1
+info:a1
