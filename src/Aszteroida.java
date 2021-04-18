@@ -39,7 +39,7 @@ public class Aszteroida extends Hely {
      * @param i A szomszéd azonosítója
      * @return A szomszéd Hely aki az i. indexen áll.
      */
-    public Hely getSzomszed(int i) {
+    public Hely getSzomszed(Integer i) {
         Log.call();
         try {
             return szomszedok.get(i);
@@ -65,12 +65,12 @@ public class Aszteroida extends Hely {
         for (Hely h : szomszedok) {
             h.szomszedRobbant(this);
         }
-        int eredeti  = szereplok.size();
-       /* for (Szereplo sz : szereplok) {
-            sz.Robbanas();
-        }*/
-        for(int i = 0;i<eredeti;i++) {
-        	szereplok.get(0).Robbanas();
+        int eredeti = szereplok.size();
+        /*
+         * for (Szereplo sz : szereplok) { sz.Robbanas(); }
+         */
+        for (int i = 0; i < eredeti; i++) {
+            szereplok.get(0).Robbanas();
         }
     }
 
@@ -261,7 +261,7 @@ public class Aszteroida extends Hely {
      * 
      * @param ny Az aszteroida magjába helyezendő nyersanyag
      */
-    public Boolean hozzaadNyersanyag(Nyersanyag ny) throws Exception{
+    public Boolean hozzaadNyersanyag(Nyersanyag ny) throws Exception {
         Log.call();
         if (reteg == 0 && nyersanyag == null) {
             nyersanyag = ny;

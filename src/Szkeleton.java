@@ -58,48 +58,6 @@ public class Szkeleton {
 		}
 	};
 
-	public static void teszt_betoltes(String mappa_vagy_file) {
-		automata_futas = true;
-		List<File> files = Filekezelo.fajlListazas(mappa_vagy_file);
-		Filekezelo.athelyez_regi_eredmenyek(files);
-		for (File file : files) {
-			Log.debug("Teszt " + file.getName());
-			Filekezelo.auto_teszt_futtatas(file);
-			if (inkonzisztens_allapot) {
-				Log.warn("A teszt nem biztos hogy végig lefutott.");
-				break;
-			} else {
-				Log.debug(file.getName() + " végig lefutott.");
-			}
-			// TODO automatikus ellenorzes
-		}
-		automata_futas = false;
-	}
-
-	public static void teszt_parancssor() {
-
-		while (true) {
-			System.out.print("> ");
-			String parancs = Cin.getString();
-			parancs = parancs.replaceAll("\\s+", "");
-			if (parancs.equals(""))
-				continue;
-			if (parancs.toLowerCase().equals("kilepes")) {
-				return;
-			} else if (parancs.toLowerCase().equals("parancssor")) {
-				Log.info("Már a parancssorban vagy.");
-			} else {
-				String[] argumentumok = parancs.split(":");
-				if (argumentumok.length == 1) {
-					parancs(argumentumok[0]);
-				} else if (argumentumok.length >= 2) {
-					parancs(argumentumok[0],
-							Arrays.copyOfRange(argumentumok, 1, argumentumok.length));
-				}
-			}
-		}
-	}
-
 	protected static void reset() {
 		inkonzisztens_allapot = false;
 		objektumok.clear();
@@ -163,13 +121,7 @@ public class Szkeleton {
 	 * @return {@code tipus} tí­pusú, {@code ertek} értékű objektum tömb
 	 */
 	private static Object[] tobbParameterTipusForditas(Class<?>[] tipusok, String[] ertekek) {
-		// String[] ertekek = new String[tipusok.length];
-		// if (tipusok.length > 0 && tipusok[tipusok.length - 1].isArray()) {
-		// for (int i = 0; i < tipusok.length - 1; i++) {
-		// ertekek[i] = nyers_ertekek[i];
-		// }
-		//
-		// }
+		// a varargok kifogtak rajtam...
 		if (tipusok.length == ertekek.length) {
 			ArrayList<Object> parameterek = new ArrayList<>();
 			for (int i = 0; i < tipusok.length; i++) {
@@ -213,12 +165,14 @@ public class Szkeleton {
 	 * @param tipus
 	 * @param id
 	 * @param argumentumok
+	 * 
+	 * @return Boolean a függvény sikerességét jelzi.
 	 */
-	public static void letrehoz(String tipus, String id, String... argumentumok) {
+	public static Boolean letrehoz(String tipus, String id, String... argumentumok) {
 		if (objektumok.containsKey(id)) {
 			Log.error("A megadott azonosí­tó már létezik! (" + id + ")");
 			inkonzisztencia();
-			return;
+			return false;
 		}
 		try {
 			Class<?> cls = Class.forName("src." + tipus);
@@ -232,15 +186,18 @@ public class Szkeleton {
 					try {
 						objektumok.put(id, constructor.newInstance(tipusos_parameterek));
 						Log.info(id + " " + cls.getName() + " Sikeresen létrehozva");
-						break;
+						return true;
 					} catch (Exception e) {
+						inkonzisztencia();
 						Log.error(e.toString());
 					}
 				}
 			}
 		} catch (Exception e) {
+			inkonzisztencia();
 			Log.error(e.toString());
 		}
+		return false;
 	}
 
 	/**
@@ -250,7 +207,8 @@ public class Szkeleton {
 	 * @param id
 	 * @param fuggveny_nev
 	 * @param argumentumok
-	 * @return
+	 * 
+	 * @return A hívott függvény visszatérési értéke.
 	 */
 	public static Object hiv(String id, String fuggveny_nev, String... argumentumok) {
 		if (!objektumok.containsKey(id)) {
@@ -287,8 +245,11 @@ public class Szkeleton {
 	 * @param id
 	 * @param adattag_neve
 	 * @param uj_ertek
+	 * 
+	 * @return Boolean a függvény sikerességét jelzi.
 	 */
-	public static void beallit(String id, String adattag_neve, String uj_ertek) {
+	public static Boolean beallit(String id, String adattag_neve, String uj_ertek) {
+		Boolean sikeres = false;
 		Field adattag = adattagKereses(objektumok.get(id).getClass(), adattag_neve);
 		int modifier = adattag.getModifiers();
 		boolean private_field = Modifier.isPrivate(modifier);
@@ -302,13 +263,16 @@ public class Szkeleton {
 			try {
 				Object beallitando_ertek = egyParameterTipusForditas(adattag.getType(), uj_ertek);
 				adattag.set(objektumok.get(id), beallitando_ertek);
+				sikeres = true;
 			} catch (Exception e) {
+				inkonzisztencia();
 				Log.error(e.toString());
 			}
 		}
 		if (private_field) {
 			adattag.setAccessible(private_field);
 		}
+		return sikeres;
 	}
 
 	public static String info(String id) {
@@ -339,7 +303,7 @@ public class Szkeleton {
 				return e.getKey();
 			}
 		}
-		return "<ismeretlen " + object.getClass().getName() + ">";
+		return "<ismeretlen " + object.getClass().getName().replaceAll("src.", "") + ">";
 	}
 
 	private static void inkonzisztencia() {
@@ -373,8 +337,8 @@ public class Szkeleton {
 	public static void NyersanyagVisszahelyezesMenu() {
 		System.out.println("1. Urán visszahelyezés\r\n" + "2. Ví­zjég visszahelyezés\r\n"
 				+ "3. Szén visszahelyezés\r\n" + "4. Vas visszahelyezés");
-		switch (Cin.kerdez_tobbvalasz("Bí?NYí?SZAT", "Urán visszahelyezés",
-				"Ví­zjég visszahelyezés", "Szén visszahelyezés", "Vas visszahelyezés")) {
+		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán visszahelyezés", "Ví­zjég visszahelyezés",
+				"Szén visszahelyezés", "Vas visszahelyezés")) {
 			// TODO ez kell még?
 
 			default:
@@ -382,15 +346,58 @@ public class Szkeleton {
 		}
 	}
 
+	public static void teszt_betoltes(String mappa_vagy_file) {
+		automata_futas = true;
+		List<File> files = Filekezelo.fajlListazas(mappa_vagy_file);
+		Filekezelo.athelyez_regi_eredmenyek(files);
+		for (File file : files) {
+			reset();
+			Log.debug("Teszt " + file.getName());
+			Filekezelo.auto_teszt_futtatas(file);
+			if (inkonzisztens_allapot) {
+				Log.warn("A teszt nem biztos hogy végig lefutott.");
+				break;
+			} else {
+				Log.debug(file.getName() + " végig lefutott.");
+				teszt_mentes(file.getName().replace(".txt", ""));
+			}
+		}
+		automata_futas = false;
+	}
+
+	public static void teszt_parancssor() {
+		while (true) {
+			System.out.print("> ");
+			String parancs = Cin.getString();
+			parancs = parancs.replaceAll("\\s+", "");
+			if (parancs.equals(""))
+				continue;
+			if (parancs.toLowerCase().equals("kilepes")) {
+				return;
+			} else if (parancs.toLowerCase().equals("parancssor")) {
+				Log.info("Már a parancssorban vagy.");
+			} else {
+				String[] argumentumok = parancs.split(":");
+				if (argumentumok.length == 1) {
+					parancs(argumentumok[0]);
+				} else if (argumentumok.length >= 2) {
+					parancs(argumentumok[0],
+							Arrays.copyOfRange(argumentumok, 1, argumentumok.length));
+				}
+			}
+		}
+	}
+
 	public static void teszt_reset() {
-		if (Cin.getBool(
+		if (automata_futas || Cin.getBool(
 				"A program minden beállí­tása alapértelmezett értékre áll vissza, és minden létrehozott objektum törlődik. Biztos vagy benne?")) {
 			reset();
 		}
 	}
 
 	public static void teszt_letrehozPortalAszteroida(String pid, String aid) {
-		letrehoz("Portal", pid);
+		if (!letrehoz("Portal", pid))
+			return;
 		hiv(pid, "setVegpont", aid);
 		hiv(aid, "hozzaadSzomszed", pid);
 	}
@@ -424,12 +431,14 @@ public class Szkeleton {
 	}
 
 	public static void teszt_letrehozNyersanyag(String nyid, String tipus) {
-		letrehoz(Nagykezdobetusites(tipus), nyid);
+		if (!letrehoz(Nagykezdobetusites(tipus), nyid))
+			return;
 	}
 
 	public static void teszt_letrehozAszteroida(String aid, String reteg, String napkozel,
 			String nyid) {
-		letrehoz("Aszteroida", aid, "nap");
+		if (!letrehoz("Aszteroida", aid, "nap"))
+			return;
 		hiv(aid, "setReteg", reteg);
 		hiv(aid, "setNapkozel", napkozel);
 		if (!nyid.equals("null"))
@@ -437,7 +446,8 @@ public class Szkeleton {
 	}
 
 	public static void teszt_letrehozTelepes(String tid, String aid, String nyids) {
-		letrehoz("Telepes", tid);
+		if (!letrehoz("Telepes", tid))
+			return;
 		hiv(tid, "beallitAszteroida", aid); // aszteroidan is rajta lesz a
 											// telepes
 		String[] nyidsDarabolt = nyids.split(",");
@@ -464,7 +474,7 @@ public class Szkeleton {
 		filebaIrando.add(result);
 	}
 
-	public static void teszt_mentes(String nev) {
+	public static Boolean teszt_mentes(String nev) {
 		// TODO beirni 0. fejezetbe hogy ne irjak oda hogy .txt
 
 		try { // TODO hova mentsen
@@ -478,9 +488,12 @@ public class Szkeleton {
 			}
 			ir.close();
 			filebaIrando.clear();
+			Log.debug(nev + "_eredmeny.txt sikeresen mentve.");
+			return true;
 		} catch (Exception e) {
 			Log.error(e.toString());
 		}
+		return false;
 	}
 
 	public static void teszt_infoMinden() {
@@ -513,18 +526,21 @@ public class Szkeleton {
 
 	// ------------------- Balazs cuccai ---------------
 	public static void teszt_letrehozRobot(String rid, String aid) {
-		letrehoz("Robot", rid);
+		if (!letrehoz("Robot", rid))
+			return;
 		beallit(rid, "aszteroida", aid);
 	}
 
 	public static void teszt_letrehozUfo(String uid, String aid) {
-		letrehoz("Ufo", uid);
+		if (!letrehoz("Ufo", uid))
+			return;
 		beallit(uid, "aszteroida", aid);
 	}
 
 	public static void teszt_letrehozPortalTelepes(String pid, String tid) {
 		if (((Telepes) getObj(tid)).getPortal().size() < 3) {
-			letrehoz("Portal", pid);
+			if (!letrehoz("Portal", pid))
+				return;
 			hiv(pid, "setBirtokos", tid);
 			hiv(tid, "setPortal", pid);
 		}
@@ -532,8 +548,9 @@ public class Szkeleton {
 
 	public static void teszt_visszarakNyersanyag(String tid, String nyid) {
 		if (lepesTeszt(tid)) {
-			//if(((Telepes) getObj(tid)).getNyersanyagok().size()>0) //itt talán nem kellene ellenőrizni, mert a játék működése nem itt zajlik
-				hiv(tid, "visszarakNyersanyag", nyid);
+			// if(((Telepes) getObj(tid)).getNyersanyagok().size()>0) //itt talán nem kellene
+			// ellenőrizni, mert a játék működése nem itt zajlik
+			hiv(tid, "visszarakNyersanyag", nyid);
 		}
 	}
 

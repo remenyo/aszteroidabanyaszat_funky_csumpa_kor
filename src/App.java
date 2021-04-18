@@ -6,6 +6,14 @@ public class App {
         Jatek.beallitas_mentes();
         Jatek.init();
         Szkeleton.reset();
+
+        if (args.length == 2) {
+            if (args[0].equals("teszt")) {
+                Szkeleton.teszt_betoltes(args[1]);
+                System.exit(Szkeleton.inkonzisztens_allapot ? 1 : 0);
+            }
+        }
+
         Log.info("Program elindult");
 
         do {

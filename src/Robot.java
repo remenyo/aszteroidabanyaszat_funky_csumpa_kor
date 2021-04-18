@@ -48,6 +48,4 @@ public class Robot extends Szereplo {
 		return Szkeleton.getID(aszteroida) + ":"
 				+ String.valueOf(lepett); /* + "" + (char) 13 + (char) 10 */
 	}
-
-	
 }

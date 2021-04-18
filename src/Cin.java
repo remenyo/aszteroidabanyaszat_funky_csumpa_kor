@@ -39,7 +39,8 @@ public class Cin {
      */
     public static String getString() {
         try {
-            return scanner.nextLine();
+            return scanner.nextLine(); // new String(scanner.nextLine().getBytes("ISO-8859-1"),
+                                       // "UTF-8");
         } catch (Exception e) {
             Log.error(e.toString());
             return "";
