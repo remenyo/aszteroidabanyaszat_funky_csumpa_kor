@@ -105,11 +105,11 @@ public class Szkeleton {
 		objektumok.clear();
 		objektumok.put("_this", getInstance());
 		objektumok.put("jatek", Jatek.getInstance());
+		Jatek.reset();
 		Vas.reset();
 		Uran.reset();
 		Vizjeg.reset();
 		Szen.reset();
-		Jatek.beallitas_visszatoltes();
 		objektumok.put("nap", new Nap());
 		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a
 		// tömbbe.
@@ -485,7 +485,9 @@ public class Szkeleton {
 
 	public static void teszt_infoMinden() {
 		for (String id : objektumok.keySet()) {
-			Log.info(info(id));
+			if (!id.startsWith("_")) {
+				Log.info("[" + id + "]: " + info(id));
+			}
 		}
 	}
 
