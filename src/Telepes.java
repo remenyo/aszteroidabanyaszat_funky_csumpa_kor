@@ -84,7 +84,7 @@ public class Telepes extends Szereplo {
 			Integer valasz = -1 + Cin.kerdez_tobbvalasz("Melyik nyersanyagot szeretné visszarakni?",
 					(String[]) anyagLista.toArray());
 			if (valasz > 0)
-				visszarakNyersanyag(nyersanyagok.get(valasz - 1));
+				visszarakNyersanyag(nyersanyagok.get(valasz));
 			else
 				Log.jatek("Rossz válasz, nem történt visszahelyezés.");
 		} else
@@ -187,7 +187,7 @@ public class Telepes extends Szereplo {
 		Log.call();
 		Portal p1;
 		Portal p2;
-		ArrayList<Portal> temp=null;
+		ArrayList<Portal> temp = null;
 		if (portal.size() <= 1) {
 			Boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
 			if (vaneleg) {
@@ -238,9 +238,9 @@ public class Telepes extends Szereplo {
 	 */
 	public void visszarakNyersanyag(Nyersanyag ny) {
 		Log.call();
-		if(!nyersanyagok.contains(ny))
+		if (!nyersanyagok.contains(ny))
 			return;
-		
+
 		if (aszteroida.hozzaadNyersanyag(ny)) {
 			nyersanyagok.remove(ny);
 		}

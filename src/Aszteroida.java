@@ -144,19 +144,39 @@ public class Aszteroida extends Hely {
         szomszedok.add(h);
     }
 
+    /**
+     * A következő körben várható napvihar jelzés beállítására használható.
+     */
     public void setElorejelzesvan() {
         elorejelzesvan = true;
     }
 
+
+    /**
+     * A következő körben várható napvihar lekérdezésére használható.
+     * 
+     * @return Boolean a következő körben napvihar várható
+     */
     public Boolean getElorejelzesvan() {
         return elorejelzesvan;
     }
 
+
+    /**
+     * A rétegvastagságot beállítja a megadott értékre.
+     * 
+     * @param ujReteg Az új rétegvastagság
+     */
     public void setReteg(Integer ujReteg) {
-        reteg = ujReteg;
+        if (ujReteg < 0)
+            Log.debug("Negatív rétegvastagság!");
+        else
+            reteg = ujReteg;
     }
 
-    // Nap mozgása miatt kerül be az ős függvényének megvalósítása
+    /**
+     * Nap mozgása miatt kerül be az ős függvényének megvalósítása
+     */
     public void utazasHely(Hely hely) {
         hozzaadSzomszed(hely);
     }

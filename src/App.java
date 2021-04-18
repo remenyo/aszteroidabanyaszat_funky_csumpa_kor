@@ -15,7 +15,7 @@ public class App {
 
         Log.info("A program leállt.");
 
-        // System.out.println("Nyomja meg az entert a kil�p�shez...");
+        // System.out.println("Nyomja meg az entert a KILÉPÉSHEZ...");
         // System.in.read();
     }
 }
