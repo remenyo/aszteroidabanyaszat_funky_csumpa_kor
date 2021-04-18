@@ -44,6 +44,9 @@ public class Jatek {
 	public static Integer telepesszam = 0;
 	public static Integer allapot = 0;
 	public static ArrayList<Leptetheto> leptethetok;
+	private static NyersanyagKoltseg RobothozNyersanyag;
+	private static NyersanyagKoltseg PortalhozNyersanyag;
+	private static NyersanyagKoltseg UrbazishozNyersanyag;
 
 	// lépés determinisztikussá tételéhez
 	public static Boolean robot_robbanas_elso_szomszed = false;
@@ -64,10 +67,9 @@ public class Jatek {
 		}
 		Field[] fields = getInstance().getClass().getDeclaredFields();
 		for (Field field : fields) {
-			if (field.getName().equals("beallitasok_backup"))
-				continue;
 			int modifier = field.getModifiers();
-			if (Modifier.isFinal(modifier))
+			if (Modifier.isFinal(modifier) || field.getName().equals("beallitasok_backup")
+					|| field.getType().getName().equals("src.NyersanyagKoltseg"))
 				continue;
 			boolean private_field = Modifier.isPrivate(modifier);
 			if (private_field) {
@@ -92,39 +94,42 @@ public class Jatek {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
 
-	public static void reset() {
+	protected static void init() {
 		Jatek.LOG_CONSTRUCTORS = false;
 		Jatek.LOG_FUNCTION_CALLS = false;
 
-		resetLepett();
-
-		NyersanyagKoltseg RobothozNyersanyag = new NyersanyagKoltseg();
-		NyersanyagKoltseg PortalhozNyersanyag = new NyersanyagKoltseg();
-		NyersanyagKoltseg UrbazishozNyersanyag = new NyersanyagKoltseg();
+		RobothozNyersanyag = new NyersanyagKoltseg();
 		RobothozNyersanyag.hozzaadNyersanyag(new Szen(false));
 		RobothozNyersanyag.hozzaadNyersanyag(new Vas(false));
 		RobothozNyersanyag.hozzaadNyersanyag(new Uran(false));
+		Telepes.hozzaadKoltseg(RobothozNyersanyag);
 
+		PortalhozNyersanyag = new NyersanyagKoltseg();
 		PortalhozNyersanyag.hozzaadNyersanyag(new Uran(false));
 		PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
 		PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
 		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
+		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
 
+		UrbazishozNyersanyag = new NyersanyagKoltseg();
 		for (int i = 0; i < 3; i++) {
 			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas(false));
 			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen(false));
 			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
 			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran(false));
 		}
-
-		Telepes.hozzaadKoltseg(RobothozNyersanyag);
-		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
 		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
+
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
 	}
 
-	// Nem haszn�ljuk a tesztben, kezdetleges K�r
+	public static void reset() {
+		resetLepett();
+		beallitas_visszatoltes();
+	}
+
+	// Nem használjuk a tesztben, kezdetleges Kör
 	public static void Kor() {
 		Log.call();
 		for (Leptetheto leptetheto : leptethetok) {
