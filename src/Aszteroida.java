@@ -65,10 +65,13 @@ public class Aszteroida extends Hely {
         for (Hely h : szomszedok) {
             h.szomszedRobbant(this);
         }
-        for (Szereplo sz : szereplok) {
+        int eredeti  = szereplok.size();
+       /* for (Szereplo sz : szereplok) {
             sz.Robbanas();
+        }*/
+        for(int i = 0;i<eredeti;i++) {
+        	szereplok.get(0).Robbanas();
         }
-
     }
 
     /**
