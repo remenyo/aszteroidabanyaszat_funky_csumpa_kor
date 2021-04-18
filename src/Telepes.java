@@ -238,12 +238,19 @@ public class Telepes extends Szereplo {
 	 */
 	public void visszarakNyersanyag(Nyersanyag ny) {
 		Log.call();
-		if (!nyersanyagok.contains(ny))
-			return;
 
-		if (aszteroida.hozzaadNyersanyag(ny)) {
+		if (nyersanyagok.contains(ny)) { // Az a baj, hogy parancssorból akármilyen hülyeséget meg
+											// lehetne adni, és kiakad.(játék közben is)
+			Nyersanyag temp = ny;
 			nyersanyagok.remove(ny);
+			if (!aszteroida.hozzaadNyersanyag(ny))
+				nyersanyagok.add(temp);
 		}
+		/*
+		 * if(!nyersanyagok.contains(ny)) return;
+		 * 
+		 * if (aszteroida.hozzaadNyersanyag(ny)) { nyersanyagok.remove(ny); }
+		 */
 	}
 
 	/**
