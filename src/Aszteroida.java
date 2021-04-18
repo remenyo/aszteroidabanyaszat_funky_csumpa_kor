@@ -258,7 +258,7 @@ public class Aszteroida extends Hely {
      * 
      * @param ny Az aszteroida magjába helyezendő nyersanyag
      */
-    public Boolean hozzaadNyersanyag(Nyersanyag ny) {
+    public Boolean hozzaadNyersanyag(Nyersanyag ny) throws Exception{
         Log.call();
         if (reteg == 0 && nyersanyag == null) {
             nyersanyag = ny;

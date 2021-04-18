@@ -243,8 +243,13 @@ public class Telepes extends Szereplo {
 											// lehetne adni, és kiakad.(játék közben is)
 			Nyersanyag temp = ny;
 			nyersanyagok.remove(ny);
-			if (!aszteroida.hozzaadNyersanyag(ny))
-				nyersanyagok.add(temp);
+			try{ 
+				if (!aszteroida.hozzaadNyersanyag(ny))
+					nyersanyagok.add(temp);
+			} catch(Exception e) {
+				
+			}
+			
 		}
 		/*
 		 * if(!nyersanyagok.contains(ny)) return;
