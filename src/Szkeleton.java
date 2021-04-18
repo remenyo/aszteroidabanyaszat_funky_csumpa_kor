@@ -514,13 +514,16 @@ public class Szkeleton {
 	// ------------------- Balazs cuccai ---------------
 	public static void teszt_letrehozRobot(String rid, String aid) {
 		letrehoz("Robot", rid);
-		beallit(rid, "aszteroida", aid);
+		//beallit(rid, "aszteroida", aid);
+		hiv(rid, "beallitAszteroida", aid);
+		hiv(aid, "hozzaadSzereplo", rid);
 	}
 
 	public static void teszt_letrehozUfo(String uid, String aid) {
 		letrehoz("Ufo", uid);
-		beallit(uid, "aszteroida", aid);
-	}
+		hiv(uid, "beallitAszteroida", aid);
+		hiv(aid, "hozzaadSzereplo", uid);
+		}
 
 	public static void teszt_letrehozPortalTelepes(String pid, String tid) {
 		if (((Telepes) getObj(tid)).getPortal().size() < 3) {
