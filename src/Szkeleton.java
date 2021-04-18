@@ -403,6 +403,12 @@ public class Szkeleton {
 	public static void teszt_osszekotPortal(String pid1, String pid2) {
 		hiv(pid1, "beallitPar", pid2);
 		hiv(pid2, "beallitPar", pid1);
+		Aszteroida p1vegpont = (Aszteroida) hiv(pid1, "getVegpont");
+		Aszteroida p2vegpont = (Aszteroida) hiv(pid2, "getVegpont");
+		if((p1vegpont != null) && (p2vegpont != null)){
+			hiv(pid1, "setAktiv", "true");
+			hiv(pid2, "setAktiv", "true");
+		}
 	}
 
 	public static void teszt_epitRobot(String tid, String rid) {

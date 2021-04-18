@@ -219,4 +219,8 @@ public class Portal extends Hely implements Leptetheto {
 	public Aszteroida getAszteroida() {
 		return vegpont;
 	}
+	
+	public void setAktiv(Boolean bl){
+		aktiv = bl;
+	}
 }

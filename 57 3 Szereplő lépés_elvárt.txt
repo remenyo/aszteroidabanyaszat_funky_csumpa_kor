@@ -1,0 +1,6 @@
+0:false:[t1:r1:ufo1]:[a2]:null
+0:false:[null]:[a1]:null
+a1:[vas1]:[null]:false
+0:false:[t1:ufo1]:[a2]:null
+0:false:[r1]:[a1]:null
+a1:[null]:[null]:false
