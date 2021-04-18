@@ -238,11 +238,11 @@ public class Telepes extends Szereplo {
 	 */
 	public void visszarakNyersanyag(Nyersanyag ny) {
 		Log.call();
-		Nyersanyag temp = ny;
-		nyersanyagok.remove(ny);
-		Boolean sikerult = aszteroida.hozzaadNyersanyag(ny);
-		if (!sikerult) {
-			nyersanyagok.add(temp);
+		if(!nyersanyagok.contains(ny))
+			return;
+		
+		if (aszteroida.hozzaadNyersanyag(ny)) {
+			nyersanyagok.remove(ny);
 		}
 	}
 
