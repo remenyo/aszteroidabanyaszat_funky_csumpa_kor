@@ -33,7 +33,8 @@ public class NyersanyagKoltseg {
     // Majd a kďż˝sz ďż˝sszehasonlďż˝tďż˝s
     public Boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
         Log.call();
-        ArrayList<Nyersanyag> koltsegKlon = koltseg;
+        ArrayList<Nyersanyag> koltsegKlon = new ArrayList<Nyersanyag>();
+        koltsegKlon.addAll(koltseg);
         masolatTarolo.clear();
         masolatTarolo.addAll(ny);
 

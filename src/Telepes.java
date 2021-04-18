@@ -238,12 +238,17 @@ public class Telepes extends Szereplo {
 	 */
 	public void visszarakNyersanyag(Nyersanyag ny) {
 		Log.call();
-		if(!nyersanyagok.contains(ny))
+		
+		Nyersanyag temp = ny;
+		nyersanyagok.remove(ny);
+		if(!aszteroida.hozzaadNyersanyag(ny))
+			nyersanyagok.add(temp);
+		/*if(!nyersanyagok.contains(ny))
 			return;
 		
 		if (aszteroida.hozzaadNyersanyag(ny)) {
 			nyersanyagok.remove(ny);
-		}
+		}*/
 	}
 
 	/**
