@@ -3,8 +3,9 @@ package src;
 import java.util.ArrayList;
 
 /**
- * masolatTarolo - A koltsegSzamitas(ArrayList<Nyersanyag> ny) paramĂ©terĂĽl kapott nyersanyagainak
- * mĂˇsolatĂˇt tĂˇrolja. koltseg - Az Ă©pĂ­tendĹ‘ eszkĂ¶z kĂ¶ltsĂ©gĂ©t tĂˇrolja.
+ * masolatTarolo - A koltsegSzamitas(ArrayList<Nyersanyag> ny) paraméterként kapott nyersanyagainak
+ * másolatát tárolja
+ * koltseg - Az építendő eszköz költségét tárolja
  */
 public class NyersanyagKoltseg {
     ArrayList<Nyersanyag> koltseg = new ArrayList<Nyersanyag>();
@@ -12,9 +13,9 @@ public class NyersanyagKoltseg {
 
 
     /**
-     * Hozzďż˝adja a kďż˝ltsďż˝ghez a paramďż˝terďż˝l kapott nyersanyagot
+     * Hozzáadja a költséghez a paraméterként kapott nyersanyagot
      * 
-     * @param ny a kďż˝ltsďż˝ghez hozzďż˝adandďż˝ nyersanyag
+     * @param ny a költséghez hozzáadandó nyersanyag
      */
     public void hozzaadNyersanyag(Nyersanyag ny) {
         Log.call();
@@ -23,14 +24,12 @@ public class NyersanyagKoltseg {
     }
 
     /**
-     * Megkďż˝rdezi meg van-e az ďż˝sszes szďż˝ksďż˝ges nyersanyag, majd leellenďż˝rzi, hogy
-     * maradt-e mďż˝g elďż˝g a jďż˝tďż˝kban, ha nem vesztett.
+     * Megkérdezi meg van-e az összes szükséges nyersanyag, majd leellenőrzi, hogy maradt-e még elég
+     * a játékban, ha nem vesztett.
      *
-     * @param ny nyersanyagok listďż˝ja
-     * @return ha meg van az ďż˝sszes szďż˝ksďż˝ges nyersanyag {@code true} kďż˝lďż˝nben
-     *         {@code false}
+     * @param ny nyersanyagok listája
+     * @return ha meg van az összes szükséges nyersanyag {@code true} különben {@code false}
      */
-    // Majd a kďż˝sz ďż˝sszehasonlďż˝tďż˝s
     public Boolean koltsegSzamitas(ArrayList<Nyersanyag> ny) {
         Log.call();
         ArrayList<Nyersanyag> koltsegKlon = new ArrayList<Nyersanyag>();
@@ -48,11 +47,10 @@ public class NyersanyagKoltseg {
     }
 
     /**
-     * Ha a masolatTaroloban szerepel a paramĂ©terĂĽl kapott nyersanyag, akkor igazzal tĂ©r vissza
-     * Az elem tĂ¶rlĂ©sre kerĂĽl a masolatTarolobĂłl
-     * 
+     * Ha a masolatTaroloban szerepel a paraméterül kapott nyersanyag, akkor igazzal tér vissza
+     * Az elem törlésre kerül a masolatTaroloból
      * @param k - A nyersanyag, ami szerepelhet a masolatTaroloban
-     * @return IgazsĂˇgĂ©rtĂ©k, ha szerepel vagy nem szerepel benne
+     * @return Igazságérték, ha szerepel vagy nem szerepel benne
      */
     private Boolean Szukseges(Nyersanyag k) {
         Log.call();
@@ -65,9 +63,9 @@ public class NyersanyagKoltseg {
     }
 
     /**
-     * Felďż˝lďż˝rja a paramĂ©terĂĽl kapott nyersanyagot a nyersanyagTaroloval
+     * Felülírja a paraméterül kapott nyersanyagot a nyersanyagTaroloval
      * 
-     * @param ny - felĂĽlĂ­randĂł nyersanyagtĂ¶mb
+     * @param ny - felülírandó nyersanyagtömb
      */
     public void felulirNyersanyagok(ArrayList<Nyersanyag> ny) {
         Log.call();
