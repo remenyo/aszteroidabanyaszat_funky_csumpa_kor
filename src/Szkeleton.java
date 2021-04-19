@@ -38,7 +38,7 @@ public class Szkeleton {
 					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
 			switch (valasz) {
 				case 1:
-					Jatek.jatekInditas(objektumok.size()==2);
+					Jatek.jatekInditas(objektumok.size()==3);
 					break;
 				case 2:
 					teszt_parancssor();
