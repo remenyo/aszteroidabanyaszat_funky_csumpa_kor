@@ -127,6 +127,7 @@ public class Jatek {
 	public static void reset() {
 		resetLepett();
 		beallitas_visszatoltes();
+		leptethetok.clear();
 	}
 
 	// Nem használjuk a tesztben, kezdetleges Kör
@@ -264,7 +265,7 @@ public class Jatek {
 	}
 
 	public String toString() {
-		return telepesszam.toString() + ":" + leptethetok.size() /* + "" + (char) 13 + (char) 10 */;
+		return telepesszam.toString() + ":" + leptethetok.size();
 
 	}
 

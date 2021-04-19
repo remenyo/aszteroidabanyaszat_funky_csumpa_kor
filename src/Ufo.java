@@ -29,7 +29,7 @@ public class Ufo extends Szereplo {
 
 	public String toString() {
 		return Szkeleton.getID(aszteroida) + ":"
-				+ String.valueOf(lepett); /* + (char) 13 + (char) 10 */
+				+ String.valueOf(lepett); 
 	}
 
 }

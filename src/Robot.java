@@ -46,7 +46,7 @@ public class Robot extends Szereplo {
 
 	public String toString() {
 		return Szkeleton.getID(aszteroida) + ":"
-				+ String.valueOf(lepett); /* + "" + (char) 13 + (char) 10 */
+				+ String.valueOf(lepett);
 	}
 
 	// teszt miatt kell
@@ -57,7 +57,6 @@ public class Robot extends Szereplo {
 		} else {
 			super.Mozgas(sorszam);
 		}
-
 
 	}
 }

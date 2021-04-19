@@ -71,7 +71,8 @@ public class NyersanyagKoltseg {
      */
     public void felulirNyersanyagok(ArrayList<Nyersanyag> ny) {
         Log.call();
-        ny = masolatTarolo;
+        ny.clear();
+        ny.addAll(masolatTarolo);
     }
 
 }
