@@ -641,14 +641,11 @@ public class Szkeleton {
 			Jatek.resetLepett();
 	}
 
-<<<<<<< HEAD
 	/**
 	 * Robot létrehozása aszteroidára
 	 * @param rid - robot azonosítója
 	 * @param aid - Aszteroida azonosítója, ahova a robot kerülni fog
 	 */
-=======
->>>>>>> 16b364703b1b77dbb7a9b310bc6a73e10d33b2fe
 	public static void teszt_letrehozRobot(String rid, String aid) {
 		if (!letrehoz("Robot", rid))
 			return;
