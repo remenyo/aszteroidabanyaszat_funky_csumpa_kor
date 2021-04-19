@@ -3,26 +3,16 @@ package src;
 import java.util.ArrayList;
 
 /**
- * Aszteroid�kat ismer akiken megh�vja a napvihart valamilyen val�sz�n�s�ggel egy k�r
- * el�rejelz�ssel, most tesztel�s miatt egyb�l napvihart h�v.
+ * Aszteroidákat ismer akiken meghívja a napvihart valamilyen valószínűséggel egy kör
+ * előrejelzéssel, most tesztelés miatt egyből napvihart hív.
  */
 public class Nap implements Leptetheto {
-	// TODO: a nap glob�lis? akkor ez is legyen singleton
-	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>(); // Nap k�r�li
-	private ArrayList<Aszteroida> napviharravarok = new ArrayList<Aszteroida>(); // Akiken
-																					// k�vetkez�
-																					// k�rben
-																					// napvihar lesz
-																					// //
-																					// aszteroid�kat
-																					// t�rol�
-																					// lista
-	private boolean napviharfolyamatban = false; // Azt jelzi, hogy az el�rejelz�s van-e, ha igaz
-													// akkor
-	// indul a napvihar ha hamis akkor nem
-	// most tesztel�shez nem haszn�ljuk.
-	// Ez a f�ggv�ny felel a napvihar megh�v�s��rt a naphoz tartoz� aszteroid�n.
-
+	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>(); //Nap körüli aszteroidák
+	private ArrayList<Aszteroida> napviharravarok = new ArrayList<Aszteroida>(); // Akiken meg lesz hívva a napvihar
+	private boolean napviharfolyamatban = false; // Azt jelzi, hogy az előrejelzés van-e
+	/**
+	 * Nap lépése, az aszteroidak 5% at kiválasztja és szól nekik madj, következő körben meghívja rajtuk.
+	 */
 	public void Lepes() {
 		Log.call();
 		if (!napviharfolyamatban) {
@@ -50,9 +40,9 @@ public class Nap implements Leptetheto {
 
 
 	/**
-	 * T�rli a napt�l egy aszteroid�t.
+	 * Törli a naptól egy aszteroidát.
 	 * 
-	 * @param a t�rlend� aszteroida
+	 * @param a törlendő aszteroida
 	 */
 	public void torolAszteroida(Aszteroida a) {
 		Log.call();
@@ -68,7 +58,7 @@ public class Nap implements Leptetheto {
 
 
 	/**
-	 * A naphoz hozz�adunk egy aszteroida list�t
+	 * A naphoz hozzáadunk egy aszteroida listát
 	 * 
 	 * @param a aszteroida lista
 	 */
@@ -77,6 +67,10 @@ public class Nap implements Leptetheto {
 		aszteroidak.add(a);
 	}
 
+	/**
+	 * A nap adatait adja vissza.
+	 * @return adatai
+	 */
 	public String toString() {
 		return Integer.toString(aszteroidak.size());
 	}
