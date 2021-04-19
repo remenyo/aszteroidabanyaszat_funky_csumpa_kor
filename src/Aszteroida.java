@@ -363,7 +363,6 @@ public class Aszteroida extends Hely {
             kimenet += Szkeleton.getID(nyersanyag);
         else
             kimenet += "null";
-        // kimenet += "" /* + (char) 13 + (char) 10 */;
         return kimenet;
 
     }

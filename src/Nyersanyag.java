@@ -19,7 +19,7 @@ abstract public class Nyersanyag {
      * @param a Az aszteroida, ahol a nyersanyag van.
      */
     public void felszinreKerul(Aszteroida a) {
-        // TODO �szses nyersnyagnal felszinrekerul null check
+        
     }
 
     /**

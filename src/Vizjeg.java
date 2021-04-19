@@ -48,7 +48,7 @@ public class Vizjeg extends Nyersanyag {
     }
 
     public String toString() {
-        return osszesVizjeg.toString() /* + (char) 13 + (char) 10 */;
+        return osszesVizjeg.toString();
     }
 
 }
