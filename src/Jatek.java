@@ -58,7 +58,11 @@ public class Jatek {
 	public static void beallitas_visszatoltes() {
 		beallitas_kezeles(false);
 	}
-
+	/**
+	 * Program indulásánál elmenti a játék beállításait és vissza is tölti azt
+	 * 
+	 * @param mentes ha igaz ment ha hamis visszatölt
+	 */
 	private static void beallitas_kezeles(Boolean mentes) {
 		if (mentes) {
 			if (beallitasok_backup != null)
@@ -93,7 +97,11 @@ public class Jatek {
 	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
-
+	/**
+	 * Amikor létre jön a játék az építési nyersanyag költségek beállítódnak
+	 * 
+	 * 
+	 */
 	protected static void init() {
 		Jatek.LOG_CONSTRUCTORS = false;
 		Jatek.LOG_FUNCTION_CALLS = false;
@@ -139,9 +147,9 @@ public class Jatek {
 	}
 
 	/**
-	 * T�rli a param�terk�nt kapott l�ptethet�t a list�b�l
+	 * Törli a paraméterként kapott léptethetőt a listából
 	 * 
-	 * @param l a törlendő l�ptethet�
+	 * @param l a törlendő léptethető
 	 */
 	public static void torolLeptetheto(Leptetheto l) {
 		Log.call();
@@ -183,7 +191,11 @@ public class Jatek {
 		leptethetok.add(l);
 	}
 
-	// TODO kivonni a nyersanyagokat
+	/**
+	 * Játékban szereplő játékosok, aszteroidák inicializálásáért felelős
+	 * 
+	 * @param nincsAllapot Ha igaz akkor létre hozza alap értelmezett helyzetet ha hamis akkor a parancssorba lett beállítva valamilyen állapot
+	 */
 	public static void jatekInditas(boolean nincsAllapot) {
 		Log.call();
 		Jatek.LOG_CONSTRUCTORS = false;
@@ -244,7 +256,7 @@ public class Jatek {
 			}
 		}
 
-		allapot = 0;
+		allapot = 0; //futó állapit
 		ArrayList<Leptetheto> temp = leptethetok;
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
@@ -253,7 +265,7 @@ public class Jatek {
 			try {
 				for (int i = 0; i < leptethetok.size(); i++) {
 					leptethetok.get(i).Lepes();
-					if (allapot != 0) {
+					if (allapot != 0) { // ha egy lépés után vége a játéknak
 						break;
 					}
 				}
@@ -262,16 +274,30 @@ public class Jatek {
 			}
 		}
 	}
-
+	/**
+	 * Játék adatait írja ki
+	 * 
+	 * @return játék adatai
+	 */
 	public String toString() {
 		return telepesszam.toString() + ":" + leptethetok.size();
 
 	}
-
+	
+	/**
+	 * Állapotot adja vissza
+	 * 
+	 * 
+	 */
 	public Integer getAllapot() {
 		return allapot;
 	}
-
+	
+	/**
+	 * Lellenőrzi mindenki lépett e
+	 * 
+	 * @return mindenki lépett-e
+	 */
 	public static Boolean mindenkiLepett() {
 		for (Leptetheto l : leptethetok) {
 			if (l.lepette() == false) {
@@ -280,7 +306,13 @@ public class Jatek {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * Mindenki lépett állapotát hamissá teszi
+	 * 
+	 * 
+	 */
+	
 	public static void resetLepett() {
 		for (Leptetheto l : leptethetok) {
 			l.resetLepett();
