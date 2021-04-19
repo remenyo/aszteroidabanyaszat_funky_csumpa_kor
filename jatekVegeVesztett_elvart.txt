@@ -1,0 +1,4 @@
+1:true:[t1]:[null]:vizjeg1
+folyamatban
+vesztett
+0:true:[t1]:[null]:null
