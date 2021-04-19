@@ -29,7 +29,11 @@ public class Vas extends Nyersanyag {
             Jatek.jatekVegeVesztett();
         }
     }
-
+    /**
+     * Vas toStringje
+     * 
+     * @return Összes vas száma stringként.
+     */
     public String toString() {
         return osszesVas.toString();
     }

@@ -11,7 +11,7 @@ osszekotAszteroida:a3:a4
 letrehozTelepes:t1:a2:null
 letrehozTelepes:t2:a3:null
 letrehozTelepes:t3:a4:null
-info:Nap
+info:nap
 furas:t1
 furas:t2
 furas:t3
@@ -25,4 +25,4 @@ banyaszas:t1
 furas:t2
 furas:t3
 visszarakNyersanyag:t1:uran
-info:Nap
+info:nap
