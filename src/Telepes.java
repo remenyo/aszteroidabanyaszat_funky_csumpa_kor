@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-// Telepes a Szerepl� lesz�rmazottja, ismeri a n�la l�v� port�lokat, nyersanyagokat �s
+// Telepes a Szereplő lesz�rmazottja, ismeri a n�la l�v� port�lokat, nyersanyagokat �s
 // a statikus �p�t�si k�lts�gek is ebbe az oszt�lyba tal�lhat�k.
 public class Telepes extends Szereplo {
 	private ArrayList<Nyersanyag> nyersanyagok; // A telepesn�l l�v� nyersanyagokat t�rolja.
@@ -64,10 +64,10 @@ public class Telepes extends Szereplo {
 
 
 	private void mozgasMenu() {
-		Integer szomszeddb = aszteroida.getSzomszedok().size() + 1;
+		Integer szomszeddb = aszteroida.getSzomszedok().size();
 		Integer valasztas = Cin.getInt("Melyik helyre szeretne utazni az aszteroida " + szomszeddb
-				+ " db szomsz�dja k�z�l? (1-" + szomszeddb);
-		if ((valasztas > szomszeddb) && (valasztas <= 0)) {
+				+ " db szomsz�dja k�z�l? (1-" + szomszeddb + ")");
+		if ((valasztas > szomszeddb) || (valasztas <= 0)) {
 			System.out.println("Nem j�t adott meg!");
 		} else {
 			Mozgas(valasztas - 1);
