@@ -46,7 +46,11 @@ public class Vizjeg extends Nyersanyag {
         }
 
     }
-
+    /**
+     * Vízjég toStringje
+     * 
+     * @return Összes vízjég száma stringként.
+     */
     public String toString() {
         return osszesVizjeg.toString();
     }

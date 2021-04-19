@@ -9,7 +9,7 @@ abstract public class Nyersanyag {
     }
 
     /**
-     * Ellen�rzi, nem-e fogyott el az �sszes nyersanyag. (F�gv�nyen bel�l cs�kken a sz�ml�l�juk).
+     * Ellen�rzi, nem fogyott-e el az �sszes nyersanyag. (F�gv�nyen bel�l cs�kken a sz�ml�l�juk).
      */
     abstract public void ellenorizVesztett();
 
@@ -42,6 +42,11 @@ abstract public class Nyersanyag {
         return this.nev.equals(ny.nev);
     }
 
+    /**
+     * Visszaadja a nyersanyag nevét
+     * 
+     * @return Nyersanyag neve.
+     */
     public String getNev() {
         return nev;
     }
