@@ -248,8 +248,6 @@ public class Jatek {
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
 
-
-		Log.info(leptethetok.toString());
 		while (allapot == 0) {
 			try {
 				for (int i = 0; i < leptethetok.size(); i++) {

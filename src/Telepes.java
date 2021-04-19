@@ -90,28 +90,6 @@ public class Telepes extends Szereplo {
 		} else
 			Log.jatek("Nincs nyersanyaga!");
 
-		// System.out.println(
-		// "Melyik nyersanyagot szeretné visszarakni? (sorszámával válaszoljon)");
-		// Integer db = 0;
-		// for (int i = 0; i < nyersanyagok.size(); i++) {
-		// if (nyersanyagok.get(i).getNev().equals("Urán")) {
-		// System.out.println(i + 1 + ". " + nyersanyagok.get(i).getNev()
-		// + " napközelben felszínre kerülések száma: "
-		// + ((Uran) nyersanyagok.get(i)).getnapFenyerte());
-		// } else {
-		// System.out.print(i + 1 + ". " + nyersanyagok.get(i).getNev());
-		// }
-		// db = i + 1;
-		// }
-		// Integer valasztas = Cin.getInt();
-		// if ((valasztas > db) && (valasztas <= 0)) {
-		// System.out.println("Nem jót adott meg!");
-		// } else {
-		// visszarakNyersanyag(nyersanyagok.get(valasztas - 1));
-		// }
-		// } else {
-		// Log.jatek("Nincs nyersanyaga!");
-		// }
 	}
 
 
