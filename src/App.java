@@ -9,6 +9,7 @@ public class App {
 
         if (args.length == 2) {
             if (args[0].equals("tesztBetoltes")) {
+                System.out.println(args[1]);
                 Szkeleton.teszt_betoltes(args[1]);
                 System.exit(Szkeleton.inkonzisztens_allapot ? 1 : 0);
             }
