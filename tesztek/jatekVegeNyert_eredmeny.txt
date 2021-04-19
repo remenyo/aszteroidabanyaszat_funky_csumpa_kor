@@ -1,8 +1,0 @@
-5:false:[t1]:[a2]:null
-a1:[uran1:uran2:uran3:vas1:vas2:vas3:vizjeg1:vizjeg2:vizjeg3]:[null]:false
-a2:[szen1:szen2:szen3]:[null]:false
-folyamatban
-nyert
-5:false:[t2:t1]:[a1]:null
-a2:[uran1:uran2:uran3:vas1:vas2:vas3:vizjeg1:vizjeg2:vizjeg3]:[null]:true
-a2:[szen1:szen2:szen3]:[null]:false
