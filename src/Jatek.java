@@ -93,7 +93,9 @@ public class Jatek {
 	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
-
+	/**
+	 * Inicializáló függvény
+	 */
 	protected static void init() {
 		Jatek.LOG_CONSTRUCTORS = false;
 		Jatek.LOG_FUNCTION_CALLS = false;
@@ -123,7 +125,10 @@ public class Jatek {
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
 	}
-
+	
+	/**
+	 * Reseteli a játék helyzetet
+	 */
 	public static void reset() {
 		resetLepett();
 		beallitas_visszatoltes();
@@ -261,16 +266,27 @@ public class Jatek {
 			}
 		}
 	}
-
+	/**
+	 * Játék állapotának kiírása
+	 *
+	 */
 	public String toString() {
 		return telepesszam.toString() + ":" + leptethetok.size();
 
 	}
 
+	/**
+	 * Visszaadja a játék állapotát
+	 * @return játék mostani helyzete
+	 */
 	public Integer getAllapot() { // TODO static?
 		return allapot;
 	}
 
+	/**
+	 * Ellenőrzi, hogy lépett-e már mindenki
+	 * @return Ha mindenki lépett már, akkor true, egyébként false
+	 */
 	public static Boolean mindenkiLepett() {
 		for (Leptetheto l : leptethetok) {
 			if (l.lepette() == false) {
@@ -279,7 +295,10 @@ public class Jatek {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * Reseteli a lépett booleant
+	 */
 	public static void resetLepett() {
 		for (Leptetheto l : leptethetok) {
 			l.resetLepett();
