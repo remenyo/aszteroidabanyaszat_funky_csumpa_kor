@@ -15,7 +15,6 @@ public class Aszteroida extends Hely {
 
     /**
      * Aszteroida konstruktor
-     * 
      * @param reteg Az aszteroidán lévő kőréteg kezdeti vastagsága (0-sok)
      * @param napkozel Napközelben van-e az aszteroida
      * @param nap A nap referenciája
@@ -31,7 +30,6 @@ public class Aszteroida extends Hely {
 
     /**
      * Vissza adja azt az egy szomszéd Hely-et aki az i. indexen áll.
-     * 
      * @param i A szomszéd azonosítója
      * @return A szomszéd Hely aki az i. indexen áll.
      */
@@ -70,7 +68,6 @@ public class Aszteroida extends Hely {
     /**
      * Napvihar esetén hívódik meg. Ha van benne nyersanyag, vagy nincs átfúrva az aszteroida
      * köpenye, az entitásokon is meghívódik a Napvihar függvény.
-     * 
      * @see Nap
      */
     public void Napvihar() {
@@ -112,10 +109,8 @@ public class Aszteroida extends Hely {
 
     /**
      * Egy Aszteroida-t töröl a szomszédok listából.
-     * 
      * Ha egy aszteroida felrobban, akkor a szomszédjain végig hívja ezt hogy töröljék ki őt a
      * szomszédjaik közül Ha egy aszteroidának nem marad szomszédja felrobban
-     * 
      * @param h a törlendő aszteroida
      */
     public void torolSzomszed(Hely h) {
@@ -137,7 +132,6 @@ public class Aszteroida extends Hely {
 
     /**
      * Aszteroida hozzáadása a szomszédok listához.
-     * 
      * @param h A hozzáadadndó hely.
      */
     public void hozzaadSzomszed(Hely h) {
@@ -155,7 +149,6 @@ public class Aszteroida extends Hely {
 
     /**
      * A következő körben várható napvihar lekérdezésére használható.
-     * 
      * @return Boolean a következő körben napvihar várható
      */
     public Boolean getElorejelzesvan() {
@@ -185,7 +178,6 @@ public class Aszteroida extends Hely {
 
     /**
      * Bányászáskor hívódik meg a benne lévő nyersanyagot adja vissza és üressé teszi magát
-     * 
      * @return A kibányászott nyersanyag. Ha nem sikerül a múvelet, {@code null}-al tér vissza.
      */
     public Nyersanyag Banyaszat() {
@@ -202,12 +194,10 @@ public class Aszteroida extends Hely {
             Log.jatek("Üres az aszteroida");
             return null;
         }
-
     }
 
     /**
      * A játék "megnyert"-ségét ellenőrzi az aszteroidán.
-     * 
      * Ha az összes nyersanyag megtalálható az aszteroidán ami kell a játék megnyeréséhez, a játék
      * véget ér.
      */
@@ -224,7 +214,6 @@ public class Aszteroida extends Hely {
 
     /**
      * Hozzáad a szereplők listához egy {@code Szereplő}-t
-     * 
      * @param sz Az új szereplő
      */
     public void hozzaadSzereplo(Szereplo sz) {
@@ -234,7 +223,6 @@ public class Aszteroida extends Hely {
 
     /**
      * Eltávolít a szereplők listából egy {@code Szereplő}-t
-     * 
      * @param sz A törlendő szereplő
      */
     public void torolSzereplo(Szereplo sz) {
@@ -244,7 +232,6 @@ public class Aszteroida extends Hely {
 
     /**
      * Az aszteroida magjában található nyersanyagot elfelejti, (ezzel törölve azt.)
-     * 
      * Nem kell neki paraméter hisz egy Aszteroidába egy nyersanyag lehet.
      */
     public void torolNyersanyag() {
@@ -254,10 +241,8 @@ public class Aszteroida extends Hely {
 
     /**
      * Az Aszteroida magjába belerak egy nyersanyagot.
-     * 
      * (A vissza rakás feltételei miatt a felszínre is kerül egyből. Ettől fel is robbanhat, ha pl.
      * Urán volt, vagy el is párologhat, ha vízjég.)
-     * 
      * @param ny Az aszteroida magjába helyezendő nyersanyag
      */
     public Boolean hozzaadNyersanyag(Nyersanyag ny) throws Exception {
@@ -285,9 +270,7 @@ public class Aszteroida extends Hely {
 
     /**
      * A nyersanyagkoltséget {@code BillOfMaterial} állítja be.
-     * 
      * Jelen esteben hogy mi kell az űrbázis felépítéséhez.
-     * 
      * @param k A beállítandó {@code NyersanyagKoltseg}
      */
     public static void hozzaadUrbazisKoltseg(NyersanyagKoltseg k) {
@@ -305,7 +288,6 @@ public class Aszteroida extends Hely {
 
     /**
      * Napközelbenség lekérdezése
-     * 
      * @return Aszteroida napközelsége
      */
     public Boolean isNapkozelben() {
@@ -313,13 +295,16 @@ public class Aszteroida extends Hely {
         return napkozel;
     }
 
+    /**
+     * Beállítja a napkozel attribútumot
+     * @param ujNapkozel
+     */
     public void setNapkozel(Boolean ujNapkozel) {
         napkozel = ujNapkozel;
     }
 
     /**
      * Az Aszteroidába beSettelünk egy nyersanyagot. Ilyenkor nem hívódik meg a felszíre kerülés.
-     * 
      * @param ny Beállítandó nyersanyag
      */
     public void setNyersanyag(Nyersanyag ny) {
@@ -329,7 +314,6 @@ public class Aszteroida extends Hely {
 
     /**
      * Az aszteroida szomszédjainak listáját adja vissza.
-     * 
      * @return Szomszédok listája
      */
     public ArrayList<Hely> getSzomszedok() {
