@@ -93,9 +93,7 @@ public class Jatek {
 	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
-	/**
-	 * Inicializáló függvény
-	 */
+
 	protected static void init() {
 		Jatek.LOG_CONSTRUCTORS = false;
 		Jatek.LOG_FUNCTION_CALLS = false;
@@ -125,10 +123,7 @@ public class Jatek {
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
 	}
-	
-	/**
-	 * Reseteli a játék helyzetet
-	 */
+
 	public static void reset() {
 		resetLepett();
 		beallitas_visszatoltes();
@@ -189,70 +184,71 @@ public class Jatek {
 	}
 
 	// TODO kivonni a nyersanyagokat
-	public static void jatekInditas() {
+	public static void jatekInditas(boolean nincsAllapot) {
 		Log.call();
 		Jatek.LOG_CONSTRUCTORS = false;
 		Jatek.LOG_FUNCTION_CALLS = false;
 
 		Nap n = (Nap) Szkeleton.getObj("nap");
 		leptethetok.add(n);
-		ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
-		for (int i = 0; i < 50; i++) {
-			Aszteroida a = new Aszteroida(n); // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
-			Nyersanyag ny;
-			switch (i % 5) {
-				case 0:
-					ny = new Vas();
-					break;
-				case 1:
-					ny = new Szen();
-					break;
-				case 2:
-					ny = new Vizjeg();
-					break;
-				case 3:
-					ny = new Uran();
-					break;
-				default: // 4
-					ny = null;
+		if(nincsAllapot) {
+			ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
+			for (int i = 0; i < 50; i++) {
+				Aszteroida a = new Aszteroida(n); // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
+				Nyersanyag ny;
+				switch (i % 5) {
+					case 0:
+						ny = new Vas();
+						break;
+					case 1:
+						ny = new Szen();
+						break;
+					case 2:
+						ny = new Vizjeg();
+						break;
+					case 3:
+						ny = new Uran();
+						break;
+					default: // 4
+						ny = null;
+				}
+				a.setNyersanyag(ny);
+	
+				a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
+				a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
+	
+				if (i == 0) {
+					for (int j = 0; j < JATEKOS_SZAM; j++) {
+						Telepes t = new Telepes();
+						t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
+					}
+				}
+	
+				atmenetiAszteroidatar.add(a);
 			}
-			a.setNyersanyag(ny);
-
-			a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
-			a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
-
-			if (i == 0) {
-				for (int j = 0; j < JATEKOS_SZAM; j++) {
-					Telepes t = new Telepes();
-					t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
+			atmenetiAszteroidatar.get(0)
+					.hozzaadSzomszed(atmenetiAszteroidatar.get(atmenetiAszteroidatar.size() - 1));
+			for (int i = 0; i < atmenetiAszteroidatar.size() - 1; i++) {
+				atmenetiAszteroidatar.get(i).hozzaadSzomszed(atmenetiAszteroidatar.get(i + 1));
+				atmenetiAszteroidatar.get(i + 1).hozzaadSzomszed(atmenetiAszteroidatar.get(i));
+				for (int j = 0; j < SZOMSZED_SZAM - 2; j++) {
+					Aszteroida randomAszteroida = atmenetiAszteroidatar.get(
+							RandomUtils.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1));
+					if (atmenetiAszteroidatar.get(i) != randomAszteroida && !atmenetiAszteroidatar
+							.get(i).getSzomszedok().contains(randomAszteroida)) {
+						atmenetiAszteroidatar.get(i).hozzaadSzomszed(randomAszteroida);
+						randomAszteroida.hozzaadSzomszed(atmenetiAszteroidatar.get(i));
+					}
+	
 				}
 			}
-
-			atmenetiAszteroidatar.add(a);
 		}
-		atmenetiAszteroidatar.get(0)
-				.hozzaadSzomszed(atmenetiAszteroidatar.get(atmenetiAszteroidatar.size() - 1));
-		for (int i = 0; i < atmenetiAszteroidatar.size() - 1; i++) {
-			atmenetiAszteroidatar.get(i).hozzaadSzomszed(atmenetiAszteroidatar.get(i + 1));
-			atmenetiAszteroidatar.get(i + 1).hozzaadSzomszed(atmenetiAszteroidatar.get(i));
-			for (int j = 0; j < SZOMSZED_SZAM - 2; j++) {
-				Aszteroida randomAszteroida = atmenetiAszteroidatar.get(
-						RandomUtils.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1));
-				if (atmenetiAszteroidatar.get(i) != randomAszteroida && !atmenetiAszteroidatar
-						.get(i).getSzomszedok().contains(randomAszteroida)) {
-					atmenetiAszteroidatar.get(i).hozzaadSzomszed(randomAszteroida);
-					randomAszteroida.hozzaadSzomszed(atmenetiAszteroidatar.get(i));
-				}
-
-			}
-		}
-
 
 		allapot = 0;
 		ArrayList<Leptetheto> temp = leptethetok;
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
-
+		Log.info(leptethetok.toString());
 		while (allapot == 0) {
 			try {
 				for (int i = 0; i < leptethetok.size(); i++) {
@@ -266,27 +262,16 @@ public class Jatek {
 			}
 		}
 	}
-	/**
-	 * Játék állapotának kiírása
-	 *
-	 */
+
 	public String toString() {
 		return telepesszam.toString() + ":" + leptethetok.size();
 
 	}
 
-	/**
-	 * Visszaadja a játék állapotát
-	 * @return játék mostani helyzete
-	 */
-	public Integer getAllapot() { // TODO static?
+	public Integer getAllapot() {
 		return allapot;
 	}
 
-	/**
-	 * Ellenőrzi, hogy lépett-e már mindenki
-	 * @return Ha mindenki lépett már, akkor true, egyébként false
-	 */
 	public static Boolean mindenkiLepett() {
 		for (Leptetheto l : leptethetok) {
 			if (l.lepette() == false) {
@@ -295,10 +280,7 @@ public class Jatek {
 		}
 		return true;
 	}
-	
-	/**
-	 * Reseteli a lépett booleant
-	 */
+
 	public static void resetLepett() {
 		for (Leptetheto l : leptethetok) {
 			l.resetLepett();
