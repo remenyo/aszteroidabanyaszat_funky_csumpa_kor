@@ -104,9 +104,9 @@ public class Telepes extends Szereplo {
 		if (elorejelzes) {
 			Log.jatek("Kovetkezo korbe napvihar lesz");
 		}
-		Integer valasz = Cin.kerdez_tobbvalasz("K�pess�gek", "Mozg�s", "F�r�s", "B�ny�szat",
-				"Robot�p�t�s �s lehelyez�s", "Teleportkapup�r-�p�t�s", "Teleportkapu-lehelyez�s",
-				"Nyersanyag visszahelyez�s");
+		Integer valasz = Cin.kerdez_tobbvalasz("Képességek", "Mozgás", "Fúrás", "Bányászat",
+				"Robotépítés és lehelyezés", "Teleportkapupár-építés", "Teleportkapu-lehelyezés",
+				"Nyersanyag visszahelyezés");
 		switch (valasz) {
 			case 1:
 				mozgasMenu();
@@ -147,9 +147,12 @@ public class Telepes extends Szereplo {
 		Log.call();
 		Boolean vaneleg = epiteskoltseg.get(0).koltsegSzamitas(nyersanyagok);
 		if (vaneleg) {
+			Log.jatek("Robot Megépítve!");
 			Robot r = new Robot();
 			aszteroida.Utazas(r);
 			return r;
+		}else {
+			Log.jatek("Nincs elég nyersanyagod");
 		}
 		return null;
 	}
@@ -169,6 +172,7 @@ public class Telepes extends Szereplo {
 		if (portal.size() <= 1) {
 			Boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
 			if (vaneleg) {
+				Log.jatek("Portál Megépítve!");
 				temp = new ArrayList<Portal>();
 				p1 = new Portal();
 				p2 = new Portal();
@@ -178,6 +182,8 @@ public class Telepes extends Szereplo {
 				temp.add(p2);
 				portal.add(p1);
 				portal.add(p2);
+			}else {
+				Log.jatek("Nincs elég nyersanyagod");
 			}
 		}
 		return temp;
@@ -192,6 +198,7 @@ public class Telepes extends Szereplo {
 	 */
 	public void lerakPortal(Portal p) {
 		Log.call();
+		Log.jatek("Portál lerakva");
 		p.beallitVegpont(aszteroida);
 	}
 

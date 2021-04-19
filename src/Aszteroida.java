@@ -107,9 +107,12 @@ public class Aszteroida extends Hely {
         Log.call();
         if (reteg > 0) {
             reteg--;
+            System.out.println("A réteg csökkent eggyel");
             if (reteg == 0 && nyersanyag != null) {
                 nyersanyag.felszinreKerul(this);
             }
+        }else {
+        	System.out.println("A réteg már át van fúrva!");
         }
     }
 
@@ -199,10 +202,10 @@ public class Aszteroida extends Hely {
             Log.jatek(visszaAdando.getNev() + " kibányászva");
             return visszaAdando; // nem null értéket visszaadjuk.
         } else if (reteg > 0) {
-            Log.debug("Még van kéreg");
+            Log.jatek("Még van kéreg");
             return null;
         } else {
-            Log.debug("Üres az aszteroida");
+            Log.jatek("Üres az aszteroida");
             return null;
         }
 
@@ -266,21 +269,24 @@ public class Aszteroida extends Hely {
     public Boolean hozzaadNyersanyag(Nyersanyag ny) throws Exception {
         Log.call();
         if (reteg == 0 && nyersanyag == null) {
+        	Log.jatek("Nyersanyag visszahelyezve");
             nyersanyag = ny;
             ny.felszinreKerul(this);
             return true;
         }
+        Log.jatek("Nyersanyag nem lett visszahelyezve");
         return false;
     }
 
     /**
      * Mozgáskor hívódik meg. A szereplőt átutaztatja erre az aszteroidára.
-     * 
+     * Portállal való utazásnak is ez a vége.
      * @param sz Az utazó szereplő
      */
     public void Utazas(Szereplo sz) {
         Log.call();
         sz.beallitAszteroida(this);
+        Log.jatek("Átutaztál egy másik aszteroidára");
     }
 
     /**
@@ -323,7 +329,6 @@ public class Aszteroida extends Hely {
      * @param ny Beállítandó nyersanyag
      */
     public void setNyersanyag(Nyersanyag ny) {
-        // TODO ez a tesztekhez kellett. DE KELL IS! lesz teszt még
         Log.call();
         nyersanyag = ny;
     }
