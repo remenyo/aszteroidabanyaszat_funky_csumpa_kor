@@ -50,7 +50,7 @@ public class Uran extends Nyersanyag {
     }
 
     public String toString() {
-        return osszesUran.toString() + ":" + napfenyErte.toString() /* + (char) 13 + (char) 10 */;
+        return osszesUran.toString() + ":" + napfenyErte.toString();
     }
 
     public Integer getnapFenyerte() {
