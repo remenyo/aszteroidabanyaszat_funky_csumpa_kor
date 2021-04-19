@@ -27,6 +27,7 @@ public class Szkeleton {
 	private static ArrayList<String> filebaIrando = new ArrayList<String>();
 	protected static Boolean inkonzisztens_allapot = false;
 	protected static Boolean automata_futas = false;
+	public static String dir_to_save;
 
 	private Szkeleton() {
 		objektumok = new TreeMap<>();
@@ -38,7 +39,7 @@ public class Szkeleton {
 					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
 			switch (valasz) {
 				case 1:
-					Jatek.jatekInditas(objektumok.size()==3);
+					Jatek.jatekInditas(objektumok.size() == 3);
 					break;
 				case 2:
 					teszt_parancssor();
@@ -57,11 +58,12 @@ public class Szkeleton {
 			}
 		}
 	};
-	 /**
-     * Reseteli a jelenlegi állapotot vissza állítva a betöltési állapotba
-     * 
-     * @param ny Beállítandó nyersanyag
-     */
+
+	/**
+	 * Reseteli a jelenlegi állapotot vissza állítva a betöltési állapotba
+	 * 
+	 * @param ny Beállítandó nyersanyag
+	 */
 	protected static void reset() {
 		inkonzisztens_allapot = false;
 		objektumok.clear();
@@ -73,8 +75,6 @@ public class Szkeleton {
 		Vizjeg.reset();
 		Szen.reset();
 		objektumok.put("nap", new Nap());
-		// TODO itt bele kell rakni a játék automatikusan létrehozott globális objektumait a
-		// tömbbe.
 		Log.info("RESET");
 	}
 
@@ -358,18 +358,19 @@ public class Szkeleton {
 			reset();
 			Log.debug("Teszt " + file.getName());
 			Filekezelo.auto_teszt_futtatas(file);
-			if (inkonzisztens_allapot) {
+			if (!automata_futas && inkonzisztens_allapot) {
 				Log.warn("A teszt nem biztos hogy végig lefutott.");
 				break;
 			} else {
 				Log.debug(file.getName() + " végig lefutott.");
-				teszt_mentes(file.getName().replace(".txt", ""));
+				teszt_mentes(dir_to_save + "\\" + file.getName().replace(".txt", ""));
 			}
 		}
 		automata_futas = false;
 	}
 
 	public static void teszt_parancssor() {
+		dir_to_save = "";
 		while (true) {
 			System.out.print("> ");
 			String parancs = Cin.getString();
@@ -543,14 +544,12 @@ public class Szkeleton {
 			Jatek.resetLepett();
 	}
 
-<<<<<<< HEAD
 	/**
 	 * Robot létrehozása aszteroidára
+	 * 
 	 * @param rid - robot azonosítója
 	 * @param aid - Aszteroida azonosítója, ahova a robot kerülni fog
 	 */
-=======
->>>>>>> 16b364703b1b77dbb7a9b310bc6a73e10d33b2fe
 	public static void teszt_letrehozRobot(String rid, String aid) {
 		if (!letrehoz("Robot", rid))
 			return;
@@ -559,6 +558,7 @@ public class Szkeleton {
 
 	/**
 	 * Ufó létrehozása eg aszteroidára
+	 * 
 	 * @param uid - ufó azonosítója
 	 * @param aid - Aszteroida azonosítója, ahova az ufó kerülni fog
 	 */
@@ -570,6 +570,7 @@ public class Szkeleton {
 
 	/**
 	 * Portál létrehozása a telepes űrhajójába
+	 * 
 	 * @param pid - Létrehozandó portál azonosítója
 	 * @param tid - Telepes, akihez a portál kerülni fog
 	 */
@@ -584,6 +585,7 @@ public class Szkeleton {
 
 	/**
 	 * Nyersanyag visszarakásának tesztelése
+	 * 
 	 * @param tid - telepes, aki visszarakja a nyersanyagot
 	 * @param nyid - visszarakandó nyersanyag
 	 */
@@ -597,6 +599,7 @@ public class Szkeleton {
 
 	/**
 	 * Léptethetők lépésének tesztelése
+	 * 
 	 * @param id - léptethető azonosítója
 	 * @return - sikeres e a lépés
 	 */
@@ -611,11 +614,12 @@ public class Szkeleton {
 		return false;
 	}
 
-/**
- * Portál lerakásának tesztelése
- * @param tid - telepes, aki lerakja a portált
- * @param pid - lerakandó portál zonosítója
- */
+	/**
+	 * Portál lerakásának tesztelése
+	 * 
+	 * @param tid - telepes, aki lerakja a portált
+	 * @param pid - lerakandó portál zonosítója
+	 */
 	public static void teszt_lerakPortal(String tid, String pid) {
 		if (lepesTeszt(tid)) {
 			hiv(tid, "lerakPortal", pid);
@@ -624,6 +628,7 @@ public class Szkeleton {
 
 	/**
 	 * Portálépítés tesztelése
+	 * 
 	 * @param tid - telepes építi a portált
 	 * @param pid1 - első építendő portál azonosítója
 	 * @param pid2 - második építendő portál azonosítója
@@ -642,6 +647,7 @@ public class Szkeleton {
 
 	/**
 	 * Fúrás tesztelése
+	 * 
 	 * @param id - ezen az azonosítójú objektumon meghívódik a fúrás
 	 */
 	public static void teszt_furas(String id) {
@@ -652,8 +658,9 @@ public class Szkeleton {
 
 	/**
 	 * Napvihar okozása aszteroidákon
-	 * @param aids - azoknak az aszteroidáknak az azonosítója vesszőkkel elválasztva, 
-	 * amiken napvihar lesz
+	 * 
+	 * @param aids - azoknak az aszteroidáknak az azonosítója vesszőkkel elválasztva, amiken
+	 *        napvihar lesz
 	 */
 	public static void teszt_napviharOkozasa(String aids) { // hehe
 		if (aids.equals("null"))

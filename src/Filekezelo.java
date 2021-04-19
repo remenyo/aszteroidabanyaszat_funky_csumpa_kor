@@ -32,6 +32,7 @@ public class Filekezelo {
 			dir = argumentumok[0];
 		}
 		if (arg_should_be_dir) {
+			Szkeleton.dir_to_save = dir;
 			try (Stream<Path> stream = Files.list(Paths.get(dir))) {
 				files_to_test = stream.filter(file -> {
 					if (Files.isDirectory(file))
@@ -44,6 +45,7 @@ public class Filekezelo {
 				Log.error(e.toString());
 			}
 		} else {// argumentumok.length >= 2 --> mind file
+			Szkeleton.dir_to_save = "";
 			for (String fileName : argumentumok) {
 				try {
 					File f = Paths.get(System.getProperty("user.dir"), fileName).toFile();
