@@ -3,10 +3,6 @@ package src;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
-/**
- *
- * @author Danesz
- */
 public class Aszteroida extends Hely {
     private Integer reteg;
     private Boolean napkozel;
@@ -56,8 +52,6 @@ public class Aszteroida extends Hely {
      */
     public void Robbanas() {
         Log.call();
-        // TODO rossz a sorrend, előbb robbantjuk a robotokat, aztán töröljük a szomszédokat
-        // TODO az ifek csak a tesztek miatt kellettek ne fussunk indexOutOfBounds hibába.
         nap.torolAszteroida(this);
         if (nyersanyag != null) {
             nyersanyag.Robbanas();
@@ -65,7 +59,7 @@ public class Aszteroida extends Hely {
         for (Hely h : szomszedok) {
             h.szomszedRobbant(this);
         }
-        // mindenkin végig kell menni mivel mindenki vagy átmegy máshová vagy meghal igy az első
+        // mindenkin végig kell menni mivel mindenki vagy átmegy máshová vagy meghal így az első
         // elem mindig más lesz.
         int eredeti = szereplok.size();
         for (int i = 0; i < eredeti; i++) {
@@ -184,9 +178,9 @@ public class Aszteroida extends Hely {
     /**
      * Nap mozgása miatt kerül be az ős függvényének megvalósítása
      */
-    public void utazasHely(Hely hely) {
+    public void utazasHely(Portal hely) {
         hozzaadSzomszed(hely);
-        ((Portal) hely).setVegpont(this);
+        hely.setVegpont(this);
     }
 
     /**

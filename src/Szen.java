@@ -13,7 +13,10 @@ public class Szen extends Nyersanyag {
         if (jatekonBelul)
             osszesSzen++;
     }
-
+    /**
+     * Reseteli az osszes szén számot.
+     * 
+     */
     protected static void reset() {
         osszesSzen = 0;
     }
@@ -30,6 +33,11 @@ public class Szen extends Nyersanyag {
         }
     }
 
+    /**
+     * Szén toStringje
+     * 
+     * @return Összes szén száma stringként.
+     */
     public String toString() {
         return osszesSzen.toString();
     }
