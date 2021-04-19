@@ -1,8 +1,8 @@
 package src;
 
-// Azok az oszt�lyok val�s�tj�k meg, amelyek minden k�rben l�pnek
+// Azok az osztályok valósítják meg, amelyek minden körben lépnek
 public interface Leptetheto {
-  public void Lepes(); // mi t�rt�njen egy l�p�sben
+  public void Lepes(); // mi történjen egy lépésben
 
   /**
    * Visszaadja, hogy lépett-e már

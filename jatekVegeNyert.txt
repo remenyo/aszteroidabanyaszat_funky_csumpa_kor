@@ -21,6 +21,6 @@ info:t2
 infoAllapot
 mozgas:t1:a2
 infoAllapot
-info:a1
+info:a2
 info:t1
 info:t2
