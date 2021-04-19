@@ -118,7 +118,7 @@ public class Portal extends Hely implements Leptetheto {
 	 * 
 	 * @param sorszam - a v�gpontjának erre a sorsz�m� szomsz�dj�ra mozog
 	 */
-	public void Mozgas(int sorszam) {
+	public void Mozgas(Integer sorszam) {
 		Log.call();
 		Hely uj = vegpont.getSzomszed(sorszam);
 		vegpont.torolSzomszed(this);
@@ -157,6 +157,7 @@ public class Portal extends Hely implements Leptetheto {
 		Log.call();
 		if (aktiv)
 			par.getVegpont().hozzaadSzomszed(hely);
+			
 	}
 
 	public void szomszedNapvihar() {

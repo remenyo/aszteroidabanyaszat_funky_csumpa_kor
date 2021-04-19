@@ -90,28 +90,6 @@ public class Telepes extends Szereplo {
 		} else
 			Log.jatek("Nincs nyersanyaga!");
 
-		// System.out.println(
-		// "Melyik nyersanyagot szeretné visszarakni? (sorszámával válaszoljon)");
-		// Integer db = 0;
-		// for (int i = 0; i < nyersanyagok.size(); i++) {
-		// if (nyersanyagok.get(i).getNev().equals("Urán")) {
-		// System.out.println(i + 1 + ". " + nyersanyagok.get(i).getNev()
-		// + " napközelben felszínre kerülések száma: "
-		// + ((Uran) nyersanyagok.get(i)).getnapFenyerte());
-		// } else {
-		// System.out.print(i + 1 + ". " + nyersanyagok.get(i).getNev());
-		// }
-		// db = i + 1;
-		// }
-		// Integer valasztas = Cin.getInt();
-		// if ((valasztas > db) && (valasztas <= 0)) {
-		// System.out.println("Nem jót adott meg!");
-		// } else {
-		// visszarakNyersanyag(nyersanyagok.get(valasztas - 1));
-		// }
-		// } else {
-		// Log.jatek("Nincs nyersanyaga!");
-		// }
 	}
 
 
@@ -126,9 +104,9 @@ public class Telepes extends Szereplo {
 		if (elorejelzes) {
 			Log.jatek("Kovetkezo korbe napvihar lesz");
 		}
-		Integer valasz = Cin.kerdez_tobbvalasz("K�pess�gek", "Mozg�s", "F�r�s", "B�ny�szat",
-				"Robot�p�t�s �s lehelyez�s", "Teleportkapup�r-�p�t�s", "Teleportkapu-lehelyez�s",
-				"Nyersanyag visszahelyez�s");
+		Integer valasz = Cin.kerdez_tobbvalasz("Képességek", "Mozgás", "Fúrás", "Bányászat",
+				"Robotépítés és lehelyezés", "Teleportkapupár-építés", "Teleportkapu-lehelyezés",
+				"Nyersanyag visszahelyezés");
 		switch (valasz) {
 			case 1:
 				mozgasMenu();
@@ -147,7 +125,7 @@ public class Telepes extends Szereplo {
 				break;
 			case 6:
 				if (!portal.isEmpty()) {
-					lehelyezPortal(portal.get(0));
+					lerakPortal(portal.get(0));
 				}
 				break;
 			case 7:
@@ -169,9 +147,12 @@ public class Telepes extends Szereplo {
 		Log.call();
 		Boolean vaneleg = epiteskoltseg.get(0).koltsegSzamitas(nyersanyagok);
 		if (vaneleg) {
+			Log.jatek("Robot Megépítve!");
 			Robot r = new Robot();
 			aszteroida.Utazas(r);
 			return r;
+		}else {
+			Log.jatek("Nincs elég nyersanyagod");
 		}
 		return null;
 	}
@@ -191,6 +172,7 @@ public class Telepes extends Szereplo {
 		if (portal.size() <= 1) {
 			Boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
 			if (vaneleg) {
+				Log.jatek("Portál Megépítve!");
 				temp = new ArrayList<Portal>();
 				p1 = new Portal();
 				p2 = new Portal();
@@ -200,6 +182,8 @@ public class Telepes extends Szereplo {
 				temp.add(p2);
 				portal.add(p1);
 				portal.add(p2);
+			}else {
+				Log.jatek("Nincs elég nyersanyagod");
 			}
 		}
 		return temp;
@@ -212,8 +196,9 @@ public class Telepes extends Szereplo {
 	 * 
 	 * @param p a lehelyezend� port�l
 	 */
-	public void lehelyezPortal(Portal p) {
+	public void lerakPortal(Portal p) {
 		Log.call();
+		Log.jatek("Portál lerakva");
 		p.beallitVegpont(aszteroida);
 	}
 
