@@ -212,7 +212,7 @@ public class Telepes extends Szereplo {
 	 * 
 	 * @param p a lehelyezend� port�l
 	 */
-	public void lehelyezPortal(Portal p) {
+	public void lerakPortal(Portal p) {
 		Log.call();
 		p.beallitVegpont(aszteroida);
 	}
