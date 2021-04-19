@@ -21,7 +21,7 @@ public class Jatek {
 	public static Boolean LOG_FUNCTION_CALLS = true;
 	public static Boolean LOG_CONSTRUCTORS = true;
 	public static Boolean LOG_GAME_INFO = true;
-	// -1 = semmi | 0 = ctor �s call, ha enged�lyezve vannak, 1 = csak error | 2 = 1+warn | 3 =
+	// -1 = semmi | 0 = ctor és call, ha engedéyezve vannak, 1 = csak error | 2 = 1+warn | 3 =
 	// 2+info | 4 = 3+debug
 	public static Integer LOG_LEVEL = 4;
 
