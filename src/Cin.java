@@ -60,10 +60,10 @@ public class Cin {
     }
 
     /**
-     * Feltesz egy k�rd�st a felhaszn�l�nak, majd egy {@code String}-et olvas be a bemenetr�l.
+     * Feltesz egy kérdést a felhasználónak, majd egy {@code String}-et olvas be a bemenetről.
      * 
-     * @param kerdes A felhaszn�l�nak ki��rand� k�rd�s.
-     * @return A be��rt sz�veg.
+     * @param kerdes A felhasználónak kiírandó  kérdés.
+     * @return A beírt szöveg.
      */
     public static String getString(String kerdes) {
         kerdez(kerdes);
@@ -71,10 +71,10 @@ public class Cin {
     }
 
     /**
-     * Feltesz egy k�rd�st a felhaszn�l�nak, majd egy {@code int}-et olvas be a bemenetr�l. Ha a
-     * bemenet {@code 1}, a visszat�r�si �rt�k {@code true} k�l�nben {@code false}.
+     * Feltesz egy kérdést a felhasználónak, majd egy {@code int}-et olvas be a bemenetről. Ha a
+     * bemenet {@code 1}, a visszatérési érték {@code true} különben {@code false}.
      * 
-     * @param kerdes A felhaszn�l�nak ki��rand� k�rd�s.
+     * @param kerdes A felhasználónak kiírandó kérdés.
      * @return {@code true} vagy {@code false}
      */
     public static Boolean getBool(String kerdes) {
@@ -84,12 +84,12 @@ public class Cin {
     }
 
     /**
-     * Men� szerepet bet�lt� f�ggv�ny.
+     * Menü szerepet betöltő függvény.
      * 
-     * @param cim Men� neve
-     * @param lehetosegek A v�laszthat� elemek
-     * @return Egy int ami {@code 1}-t�l lehet�s�gek sz�m�ig terjed. {@code -1} ha nem �rtelmezett a
-     *         v�laszt�s.
+     * @param cim Menü neve
+     * @param lehetosegek A választható elemek
+     * @return Egy int ami {@code 1}-től lehetőségek számáig terjed. {@code -1} ha nem értelmezett a
+     *         választás.
      */
     public static Integer kerdez_tobbvalasz(String cim, String... lehetosegek) {
         String border = "";
