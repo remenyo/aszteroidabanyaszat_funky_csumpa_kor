@@ -52,7 +52,7 @@ abstract public class Szereplo implements Leptetheto {
 
     /**
      * Telepes leszármazott visszaadja a szereplő nyersanyagjait
-     * @return ArrayList<Nyersanyag> a nyersanyagok listája, egyébként {@code null}
+     * @return nyersanyagok listája, egyébként null
      */
     public ArrayList<Nyersanyag> getNyersanyagok() {
         Log.call();
