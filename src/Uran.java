@@ -49,10 +49,19 @@ public class Uran extends Nyersanyag {
         }
     }
 
+    /**
+     * Urán toStringje
+     * 
+     * @return Összes szén száma stringként + napfényérte stringként.
+     */
     public String toString() {
         return osszesUran.toString() + ":" + napfenyErte.toString();
     }
-
+    /**
+     * Szén toStringje
+     * 
+     * @return Hányszor érte napfény.
+     */
     public Integer getnapFenyerte() {
         return napfenyErte;
     }
