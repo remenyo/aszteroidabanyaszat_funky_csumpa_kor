@@ -181,9 +181,9 @@ public class Aszteroida extends Hely {
     /**
      * Nap mozgása miatt kerül be az ős függvényének megvalósítása
      */
-    public void utazasHely(Hely hely) {
+    public void utazasHely(Portal hely) {
         hozzaadSzomszed(hely);
-        ((Portal) hely).setVegpont(this);
+        hely.setVegpont(this);
     }
 
     /**

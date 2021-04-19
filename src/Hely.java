@@ -13,7 +13,7 @@ public abstract class Hely {
 	}
 
 	// Hely utaztatĂˇsa, melyet a leszďż˝rmazottak megvalďż˝sďż˝tanak
-	public abstract void utazasHely(Hely hely);
+	public abstract void utazasHely(Portal hely);
 
 	// LeszĂˇrmazottak megvalĂłsĂ­thatjĂˇk, nem csinĂˇl alapbĂłl semmit
 	public void szomszedNapvihar() {
