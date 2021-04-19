@@ -12,6 +12,13 @@ import java.util.stream.Stream;
 
 public class Filekezelo {
 
+
+	/**
+	 * Megkeresi a tesztelendő fájlokat.
+	 * 
+	 * @param argumentumok mappa vagy file név
+	 * @return List<File> a fájlok listája
+	 */
 	static List<File> fajlListazas(String... argumentumok) {
 		List<File> files_to_test = new ArrayList<File>();
 
@@ -53,6 +60,13 @@ public class Filekezelo {
 		return files_to_test;
 	}
 
+
+	/**
+	 * A régi tesztnev_eredmeny.txt-ket átrakja az eredmenyek mappába (és ha kell át is nevezi
+	 * őket.)
+	 * 
+	 * @param files az áthelyezendő eredmeny fájlok
+	 */
 	static void athelyez_regi_eredmenyek(List<File> files) {
 		Path cel = null;
 		try {
@@ -87,6 +101,12 @@ public class Filekezelo {
 		}
 	}
 
+
+	/**
+	 * A függvény automatikusan lefuttatja a tesztet.
+	 * 
+	 * @param file a file aminek generálni kell az eredményét
+	 */
 	static void auto_teszt_futtatas(File file) {
 		try (Stream<String> nyers_sorok = Files.lines(file.toPath())) {
 			List<String> sorok = nyers_sorok.map(l -> l.replaceAll(l, l.replaceAll("\\s+", "")))
