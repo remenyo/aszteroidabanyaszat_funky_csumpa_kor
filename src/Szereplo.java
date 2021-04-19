@@ -3,18 +3,20 @@ package src;
 import java.util.ArrayList;
 
 abstract public class Szereplo implements Leptetheto {
-    protected Aszteroida aszteroida;
-    protected Boolean lepett = false;
+    protected Aszteroida aszteroida; // Szereplő aszteroidája amin tartózkodik
+    protected Boolean lepett = false;// Megmutatja, hogy lépette a szereplő ebben a körben
 
+    /**
+     * Szereplo konstruktora
+     */
     public Szereplo() {
         Log.call();
         Jatek.leptethetok.add(this); // Szerepl� l�trej�ttekor a l�ptethet�k list�ja is b�v�l
     }
 
     /**
-     * Az aszteroida param�ter�l kapott sorsz�m� szomsz�dj�ra utazik �s a jelenlegir�l t�rli mag�t
-     * 
-     * @param sorszam Az aszteroida azonos�t�ja
+     * Az aszteroida paraméterül kapott sorszámú szomszédjára utazik és a jelenlegiről törli magát
+     * @param sorszam Az aszteroida azonosítója
      */
     public void Mozgas(Integer sorszam) {
         Log.call();
@@ -24,7 +26,7 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * Hal�lakor h�v�dik meg, t�rli az aszteroid�r�l �s a l�ptethet�k k�z�l
+     * Halálakor hívódik meg, törli az aszteroidáról és a léptethetők közül
      */
     public void Meghal() {
         Log.call();
@@ -33,7 +35,7 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * Amikor napvihar �ri a szerepl�t, meghal
+     * Amikor napvihar éri a szereplőt, meghal
      */
     public void Napvihar() {
         Log.call();
@@ -41,35 +43,32 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * Robban�skor h�v�dik meg, a lesz�rmazottak val�s�tj�k meg
+     * Robbanáskor hívódik meg, a leszármazottak valósítják meg
      */
     public void Robbanas() {
         Log.call();
         Meghal();
-        // TODO a lesz�rmazottak val�s�tj�k meg
     }
 
     /**
-     * Telepes lesz�rmazott visszaadja a szerepl� nyersanyagjait
-     * 
-     * @return ArrayList<Nyersanyag> a nyersanyagok list�ja, egy�bk�nt {@code null}
+     * Telepes leszármazott visszaadja a szereplő nyersanyagjait
+     * @return nyersanyagok listája, egyébként null
      */
     public ArrayList<Nyersanyag> getNyersanyagok() {
         Log.call();
-        return null; // defaultan null-t ad vissza Robot miatt, a lesz�rmazttak fel�l�rj�k
+        return null;// defaultan null-t ad vissza Robot miatt, a leszármazttak felülírják
     }
 
     /**
-     * Ezt h�vja emg a k�rt levezet� rendszer
+     * Ezt hívja meg a kört levezető rendszer
      */
     public void Lepes() {
         Log.call();
     }
 
     /**
-     * Be�ll�tja a param�ter�l kapott aszteroid�t jelenleginek
-     * 
-     * @param a A be�ll�tand� aszteroida
+     * Beállítja a paraméterül kapott aszteroidát jelenleginek
+     * @param a A beállítandó aszteroida
      */
     public void beallitAszteroida(Aszteroida a) {
         Log.call();
@@ -77,14 +76,26 @@ abstract public class Szereplo implements Leptetheto {
         a.hozzaadSzereplo(this);
     }
 
+    /**
+     * Visszaadja az aszteroidajat
+     * @return az aszteroida
+     */
     public Aszteroida getAszteroida() {
         return aszteroida;
     }
     
+    /**
+     * Visszaadja az, hogy lépette ebben a körben.
+     * @return lépette
+     */
     @Override
 	public Boolean lepette() {
 		return lepett;
 	}
+    
+    /**
+     * Reseteli a lépette attributumot false ra állítja.
+     */
     @Override
 	public void resetLepett() {
 		lepett = false;

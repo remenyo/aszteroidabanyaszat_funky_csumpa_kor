@@ -279,6 +279,11 @@ public class Szkeleton {
 		return sikeres;
 	}
 
+	/**
+	 * Információ az adott azonosítójú objektumról
+	 * @param id - objektum azonosítója
+	 * @return - információ
+	 */
 	public static String info(String id) {
 		try {
 			return String.class.cast(hiv(id, "toString"));
@@ -297,10 +302,20 @@ public class Szkeleton {
 		}
 	}
 
+	/**
+	 * Objektum lekérdezése azonosítóból
+	 * @param id - azonosító
+	 * @return - megfelelő objektum
+	 */
 	public static Object getObj(String id) {
 		return objektumok.get(id);
 	}
 
+	/**
+	 * Azonosító lekérdezése
+	 * @param object - objektum, aminek az azonosítóját lekérdezzük
+	 * @return - azonosító
+	 */
 	public static String getID(Object object) {
 		for (Entry<String, Object> e : objektumok.entrySet()) {
 			if (e.getValue().equals(object)) {
@@ -310,12 +325,18 @@ public class Szkeleton {
 		return "<ismeretlen " + object.getClass().getName().replaceAll("src.", "") + ">";
 	}
 
+	/**
+	 * Inkonzisztens állapotba kerülés
+	 */
 	private static void inkonzisztencia() {
 		if (automata_futas) {
 			inkonzisztens_allapot = true;
 		}
 	}
 
+	/**
+	 * Játék menü műveletek
+	 */
 	public static void JatekMenu() {
 		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás űrhajóval", "Mozgás teleport kapun keresztül",
 				"Bányászat", "Ví­zjég Fúrás", "Urán fúrás", "Fúrás vas", "Portálkapu épí­tés",
@@ -328,6 +349,9 @@ public class Szkeleton {
 		}
 	}
 
+	/**
+	 * Bányászat kiválasztása
+	 */
 	public static void BanyaszatMenu() {
 		switch (Cin.kerdez_tobbvalasz("Bí?NYí?SZAT", "Urán Bányászat", "Ví­zjég Bányászat",
 				"Szén Bányászat", "Vas Bányászat")) {
@@ -338,6 +362,9 @@ public class Szkeleton {
 		}
 	}
 
+	/**
+	 * Visszahelyezendő nyersanyag kiválasztása
+	 */
 	public static void NyersanyagVisszahelyezesMenu() {
 		System.out.println("1. Urán visszahelyezés\r\n" + "2. Ví­zjég visszahelyezés\r\n"
 				+ "3. Szén visszahelyezés\r\n" + "4. Vas visszahelyezés");
@@ -350,6 +377,10 @@ public class Szkeleton {
 		}
 	}
 
+	/**
+	 * Tesztek betöltése
+	 * @param mappa_vagy_file - mappa vagy file ahonnan a betöltés történik
+	 */
 	public static void teszt_betoltes(String mappa_vagy_file) {
 		automata_futas = true;
 		List<File> files = Filekezelo.fajlListazas(mappa_vagy_file);
@@ -369,6 +400,9 @@ public class Szkeleton {
 		automata_futas = false;
 	}
 
+	/**
+	 * Parancssor működése
+	 */
 	public static void teszt_parancssor() {
 		dir_to_save = "";
 		while (true) {
@@ -393,6 +427,9 @@ public class Szkeleton {
 		}
 	}
 
+	/**
+	 * Minden parancs következményének elvetése
+	 */
 	public static void teszt_reset() {
 		if (automata_futas || Cin.getBool(
 				"A program minden beállí­tása alapértelmezett értékre áll vissza, és minden létrehozott objektum törlődik. Biztos vagy benne?")) {
@@ -400,6 +437,11 @@ public class Szkeleton {
 		}
 	}
 
+	/**
+	 * Portál létrehozása aszteroidán
+	 * @param pid - portál azonosítója
+	 * @param aid - aszteroida azonosítója
+	 */
 	public static void teszt_letrehozPortalAszteroida(String pid, String aid) {
 		if (!letrehoz("Portal", pid))
 			return;
@@ -407,11 +449,21 @@ public class Szkeleton {
 		hiv(aid, "hozzaadSzomszed", pid);
 	}
 
+	/**
+	 * Aszteroidák szomszédjának beállítása
+	 * @param aid1 - első aszteroida azonosítója
+	 * @param aid2 - másoik aszteroida azonosítója
+	 */
 	public static void teszt_osszekotAszteroida(String aid1, String aid2) {
 		hiv(aid1, "hozzaadSzomszed", aid2);
 		hiv(aid2, "hozzaadSzomszed", aid1);
 	}
 
+	/**
+	 * Portálpárok beállítása
+	 * @param pid1 - első portál azonosítója
+	 * @param pid2 - másoik portál azonosítója
+	 */
 	public static void teszt_osszekotPortal(String pid1, String pid2) {
 		hiv(pid1, "beallitPar", pid2);
 		hiv(pid2, "beallitPar", pid1);
@@ -423,6 +475,11 @@ public class Szkeleton {
 		}
 	}
 
+	/**
+	 * Robot építése
+	 * @param tid - telepes azonosítója, aki építi a robotot
+	 * @param rid - Robot azonosítója
+	 */
 	public static void teszt_epitRobot(String tid, String rid) {
 		if (lepesTeszt(tid)) {
 			Robot r = (Robot) hiv(tid, "epitRobot");
@@ -431,21 +488,42 @@ public class Szkeleton {
 		}
 	}
 
+	/**
+	 * Bányászás tesztelése
+	 * @param tid - telepes azonosítója, aki bányászik
+	 */
 	public static void teszt_banyaszas(String tid) {
 		if (lepesTeszt(tid)) {
 			hiv(tid, "Banyaszat");
 		}
 	}
 
+	/**
+	 * Szó nagykezdőbetűbetűsítése
+	 * @param szo - átalakítandó szó
+	 * @return - átalakított szó
+	 */
 	public static String Nagykezdobetusites(String szo) {
 		return ((szo.charAt(0) + "").toUpperCase() + szo.substring(1));
 	}
 
+	/**
+	 * Nyersanyag létrehozása
+	 * @param nyid - nyersanyag azonosítója
+	 * @param tipus - nyersanyag típusa
+	 */
 	public static void teszt_letrehozNyersanyag(String nyid, String tipus) {
 		if (!letrehoz(Nagykezdobetusites(tipus), nyid))
 			return;
 	}
 
+	/**
+	 * Aszteroida létrehozása
+	 * @param aid - Aszteroida azonosítója
+	 * @param reteg - Aszteroida rétege
+	 * @param napkozel - Napközel vagy naptávol
+	 * @param nyid - nyersanyag, ami az aszteroidában van
+	 */
 	public static void teszt_letrehozAszteroida(String aid, String reteg, String napkozel,
 			String nyid) {
 		if (!letrehoz("Aszteroida", aid, "nap"))
@@ -456,6 +534,12 @@ public class Szkeleton {
 			hiv(aid, "setNyersanyag", nyid);
 	}
 
+	/**
+	 * Telepes létrehozása
+	 * @param tid - telepes azonosítója
+	 * @param aid - aszteroida azonosítója, ahova a telepes kerül
+	 * @param nyids - nyersanyag azonosítója, ami a telepesnél lesz
+	 */
 	public static void teszt_letrehozTelepes(String tid, String aid, String nyids) {
 		if (!letrehoz("Telepes", tid))
 			return;
@@ -467,6 +551,11 @@ public class Szkeleton {
 		}
 	}
 
+	/**
+	 * Adott azonosítójú objektum mozgatása egy helyre.
+	 * @param id - objektum, ami mozog
+	 * @param aid - hely, ahova mozog az objektum
+	 */
 	public static void teszt_mozgas(String id, String aid) {
 		if (lepesTeszt(id)) {
 			Aszteroida aminVagyunk = (Aszteroida) hiv(id, "getAszteroida");
@@ -479,12 +568,21 @@ public class Szkeleton {
 
 	}
 
+	/**
+	 * Adott azonosítójú objektum információjának kiiratása
+	 * @param id - objektum azonosítója
+	 */
 	public static void teszt_info(String id) {
 		String result = info(id);
 		Log.info(result);
 		filebaIrando.add(result);
 	}
 
+	/**
+	 * Program kimenetének lementése 'nev'_eredmeny nevű jegyzettömbbe
+	 * @param nev - ez lesz a file első felének neve
+	 * @return - sikerességérték
+	 */
 	public static Boolean teszt_mentes(String nev) {
 		// TODO beirni 0. fejezetbe hogy ne irjak oda hogy .txt
 
@@ -508,7 +606,7 @@ public class Szkeleton {
 	}
 
 	/**
-	 * 
+	 * Minden információ kilogolása
 	 */
 	public static void teszt_infoMinden() {
 		for (String id : objektumok.keySet()) {

@@ -1,0 +1,12 @@
+letrehozNyersanyag:vas1:vas
+letrehozNyersanyag:vas2:vas
+letrehozNyersanyag:vizjeg1:vizjeg
+letrehozNyersanyag:uran1:uran
+letrehozAszteroida:a1:5:false:null
+letrehozAszteroida:a2:5:false:null 
+osszekotAszteroida:a1:a2
+letrehozTelepes:t1:a1:vas1,vas2,vizjeg1,uran1
+letrehozPortalTelepes:p1:t1
+info:t1
+epitPortal:t1:p2:p3
+info:t1
