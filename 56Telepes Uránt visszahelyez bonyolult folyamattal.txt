@@ -12,8 +12,13 @@ letrehozTelepes:t1:a2:null
 letrehozTelepes:t2:a3:null
 info:nap
 furas:t1
+furas:t2
 banyaszas:t1
+furas:t2
 visszarakNyersanyag:t1:uran
+furas:t2
 banyaszas:t1
+furas:t2
 visszarakNyersanyag:t1:uran
+furas:t2
 info:nap
