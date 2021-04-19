@@ -1,0 +1,8 @@
+5:false:[t1]:[null]:null
+a1:[uran1:uran2:uran3:vas1:vas2:vas3:vizjeg1:vizjeg2:vizjeg3]:[null]:false
+a2:[szen1:szen2:szen3]:[null]:false
+folyamatban
+nyert
+5:false:[t1,t2]:[null]:null
+a2:[uran1:uran2:uran3:vas1:vas2:vas3:vizjeg1:vizjeg2:vizjeg3]:[null]:true
+a2:[szen1:zen2:szen3]:[null]:false

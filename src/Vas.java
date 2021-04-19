@@ -31,6 +31,6 @@ public class Vas extends Nyersanyag {
     }
 
     public String toString() {
-        return osszesVas.toString() /* + (char) 13 + (char) 10 */;
+        return osszesVas.toString();
     }
 }
