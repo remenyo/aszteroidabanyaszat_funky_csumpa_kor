@@ -38,7 +38,7 @@ public class Szkeleton {
 					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
 			switch (valasz) {
 				case 1:
-					Jatek.jatekInditas();
+					Jatek.jatekInditas(objektumok.size()==3);
 					break;
 				case 2:
 					teszt_parancssor();
@@ -57,7 +57,11 @@ public class Szkeleton {
 			}
 		}
 	};
-
+	 /**
+     * Reseteli a jelenlegi állapotot vissza állítva a betöltési állapotba
+     * 
+     * @param ny Beállítandó nyersanyag
+     */
 	protected static void reset() {
 		inkonzisztens_allapot = false;
 		objektumok.clear();
@@ -79,8 +83,8 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Visszaad egy tipus tí­pusú objektumot, aminek az értéke az ertek. Ha létezik ertek
-	 * azonosí­tóval tipus tí­pusú objektum az objektumok tömbben, akkor azt az objektumot adja
+	 * Visszaad egy tipus típusú objektumot, aminek az értéke az ertek. Ha létezik ertek
+	 * azonosí­tóval tipus típusú objektum az objektumok tömbben, akkor azt az objektumot adja
 	 * vissza. Ha nem sikeres az átalakí­tás, a függvény kivételt generál.
 	 * 
 	 * @param tipus A visszaadandó objektum tí­pusa
@@ -502,9 +506,6 @@ public class Szkeleton {
 		return false;
 	}
 
-	/**
-	 * 
-	 */
 	public static void teszt_infoMinden() {
 		for (String id : objektumok.keySet()) {
 			if (!id.startsWith("_")) {
@@ -513,9 +514,6 @@ public class Szkeleton {
 		}
 	}
 
-	/**
-	 * Játék állapotának lekérése
-	 */
 	public static void teszt_infoAllapot() {
 		Integer jelenlegiAllapot = ((Integer) hiv("jatek", "getAllapot"));
 		if (jelenlegiAllapot == 0) {
@@ -531,42 +529,23 @@ public class Szkeleton {
 
 	}
 
-	/**
-	 * Új kör indítása
-	 */
-	public static void mindenkiLepett() {
+	public static void mindenkiLepett() {// FONTOS
 		if (Jatek.mindenkiLepett())
 			Jatek.resetLepett();
 	}
 
-	/**
-	 * Robot létrehozása aszteroidára
-	 * @param rid - robot azonosítója
-	 * @param aid - Aszteroida azonosítója, ahova a robot kerülni fog
-	 */
 	public static void teszt_letrehozRobot(String rid, String aid) {
 		if (!letrehoz("Robot", rid))
 			return;
-		// beallit(rid, "aszteroida", aid);
 		hiv(rid, "beallitAszteroida", aid);
 	}
 
-	/**
-	 * Ufó létrehozása eg aszteroidára
-	 * @param uid - ufó azonosítója
-	 * @param aid - Aszteroida azonosítója, ahova az ufó kerülni fog
-	 */
 	public static void teszt_letrehozUfo(String uid, String aid) {
 		if (!letrehoz("Ufo", uid))
 			return;
 		hiv(uid, "beallitAszteroida", aid);
 	}
 
-	/**
-	 * Portál létrehozása a telepes űrhajójába
-	 * @param pid - Létrehozandó portál azonosítója
-	 * @param tid - Telepes, akihez a portál kerülni fog
-	 */
 	public static void teszt_letrehozPortalTelepes(String pid, String tid) {
 		if (((Telepes) getObj(tid)).getPortal().size() < 3) {
 			if (!letrehoz("Portal", pid))
@@ -576,11 +555,6 @@ public class Szkeleton {
 		}
 	}
 
-	/**
-	 * Nyersanyag visszarakásának tesztelése
-	 * @param tid - telepes, aki visszarakja a nyersanyagot
-	 * @param nyid - visszarakandó nyersanyag
-	 */
 	public static void teszt_visszarakNyersanyag(String tid, String nyid) {
 		if (lepesTeszt(tid)) {
 			// if(((Telepes) getObj(tid)).getNyersanyagok().size()>0) //itt talán nem kellene
@@ -589,11 +563,6 @@ public class Szkeleton {
 		}
 	}
 
-	/**
-	 * Léptethetők lépésének tesztelése
-	 * @param id - léptethető azonosítója
-	 * @return - sikeres e a lépés
-	 */
 	public static Boolean lepesTeszt(String id) {
 		if ((Boolean) hiv(id, "lepette") == false) {
 			beallit(id, "lepett", "true");
@@ -605,23 +574,13 @@ public class Szkeleton {
 		return false;
 	}
 
-/**
- * Portál lerakásának tesztelése
- * @param tid - telepes, aki lerakja a portált
- * @param pid - lerakandó portál zonosítója
- */
+
 	public static void teszt_lerakPortal(String tid, String pid) {
 		if (lepesTeszt(tid)) {
 			hiv(tid, "lerakPortal", pid);
 		}
 	}
 
-	/**
-	 * Portálépítés tesztelése
-	 * @param tid - telepes építi a portált
-	 * @param pid1 - első építendő portál azonosítója
-	 * @param pid2 - második építendő portál azonosítója
-	 */
 	public static void teszt_epitPortal(String tid, String pid1, String pid2) {
 		if (lepesTeszt(tid)) {
 			ArrayList<Portal> portalok = (ArrayList<Portal>) hiv(tid, "epitPortal");
@@ -634,21 +593,12 @@ public class Szkeleton {
 		}
 	}
 
-	/**
-	 * Fúrás tesztelése
-	 * @param id - ezen az azonosítójú objektumon meghívódik a fúrás
-	 */
 	public static void teszt_furas(String id) {
 		if (lepesTeszt(id)) {
 			hiv(id, "Furas");
 		}
 	}
 
-	/**
-	 * Napvihar okozása aszteroidákon
-	 * @param aids - azoknak az aszteroidáknak az azonosítója vesszőkkel elválasztva, 
-	 * amiken napvihar lesz
-	 */
 	public static void teszt_napviharOkozasa(String aids) { // hehe
 		if (aids.equals("null"))
 			return;
@@ -657,6 +607,7 @@ public class Szkeleton {
 			hiv(aidsDarabolt[i], "Napvihar");
 		}
 	}
+
 
 	public static void teszt_randomValoszinuseg(String nev, String igazsagErtek) {
 		Jatek.robot_robbanas_elso_szomszed = Boolean.parseBoolean(igazsagErtek);
