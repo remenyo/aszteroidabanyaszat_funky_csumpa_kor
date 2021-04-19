@@ -183,6 +183,7 @@ public class Aszteroida extends Hely {
      */
     public void utazasHely(Hely hely) {
         hozzaadSzomszed(hely);
+        ((Portal) hely).setVegpont(this);
     }
 
     /**
