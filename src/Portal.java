@@ -118,7 +118,7 @@ public class Portal extends Hely implements Leptetheto {
 	 * 
 	 * @param sorszam - a v�gpontjának erre a sorsz�m� szomsz�dj�ra mozog
 	 */
-	public void Mozgas(int sorszam) {
+	public void Mozgas(Integer sorszam) {
 		Log.call();
 		Hely uj = vegpont.getSzomszed(sorszam);
 		vegpont.torolSzomszed(this);
@@ -153,12 +153,16 @@ public class Portal extends Hely implements Leptetheto {
 	 *
 	 * @param hely - Hely, akit utaztat
 	 */
-	public void utazasHely(Hely hely) {
+	public void utazasHely(Portal hely) {
 		Log.call();
 		if (aktiv)
-			par.getVegpont().hozzaadSzomszed(hely);
+			par.getVegpont().utazasHely(hely);
+			
 	}
 
+	/**
+	 * Megkergültté teszi a portált, és hozzáadja a léptethetők közé
+	 */
 	public void szomszedNapvihar() {
 		Log.call();
 		megkergult = true;
@@ -187,6 +191,9 @@ public class Portal extends Hely implements Leptetheto {
 		vegpont = a;
 	}
 
+	/**
+	 * Portál a kimeneten
+	 */
 	public String toString() { 
 		String kimenet = aktiv.toString() + ":" ; 
 		if(birtokos!=null)kimenet += Szkeleton.getID(birtokos);else {kimenet+="null";} 
@@ -200,6 +207,9 @@ public class Portal extends Hely implements Leptetheto {
 										
 	}
 
+	/**
+	 * Portál lépésének az állapotát ellenőrzi a körben
+	 */
 	 @Override
 		public Boolean lepette() {
 			if(lepett) {
@@ -209,16 +219,26 @@ public class Portal extends Hely implements Leptetheto {
 				return false;
 			}
 		}
+	 /**
+	  * lépés helyreállítása
+	  */
 	    @Override
 		public void resetLepett() {
 			lepett = false;
 		}
 
+	    /**
+	     * Aszteroida lekérdezése
+	     */
 	// teszt miatt
 	public Aszteroida getAszteroida() {
 		return vegpont;
 	}
 	
+	/**
+	 * aktív attribútum átállítása
+	 * @param bl - amire az attribútum értéke változzon
+	 */
 	public void setAktiv(Boolean bl){
 		aktiv = bl;
 	}
