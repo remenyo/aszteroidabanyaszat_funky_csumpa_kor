@@ -9,12 +9,12 @@ abstract public class Nyersanyag {
     }
 
     /**
-     * Ellen�rzi, nem fogyott-e el az �sszes nyersanyag. (F�gv�nyen bel�l cs�kken a sz�ml�l�juk).
+     * Ellenőrzi, nem fogyott-e el az összes nyersanyag. (Függvényen belül csökken a számlálójuk).
      */
     abstract public void ellenorizVesztett();
 
     /**
-     * Ha felsz��re ker�l egy nyersanyag akkor h��v�dik meg ez a f�ggv�ny.
+     * Ha felszínre kerül egy nyersanyag akkor hívódik meg ez a f�ggv�ny.
      * 
      * @param a Az aszteroida, ahol a nyersanyag van.
      */
@@ -23,7 +23,7 @@ abstract public class Nyersanyag {
     }
 
     /**
-     * Nyersanyag robban�s kezd�pont
+     * Nyersanyag robbanás kezdőpont
      */
     public void Robbanas() {
         Log.call();
@@ -32,12 +32,12 @@ abstract public class Nyersanyag {
 
 
     /**
-     * Ellen�riz k�t nyersanyagot, hogy azonos t��pus�ak-e
+     * Ellenőriz két nyersanyagot, hogy azonos típusúak-e
      * 
-     * @param ny a m�sik nyersanyag
-     * @return boolean {@code true} ha azonosak (n�v alapj�n). {@code false} ha nem.
+     * @param ny a másik nyersanyag
+     * @return boolean {@code true} ha azonosak (név alapján). {@code false} ha nem.
      */
-    public boolean azonos(Nyersanyag ny) { // TODO ez egy equals f�ggv�ny...
+    public boolean azonos(Nyersanyag ny) { // TODO ez egy equals függvény...
         Log.call();
         return this.nev.equals(ny.nev);
     }

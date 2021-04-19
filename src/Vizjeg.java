@@ -19,8 +19,8 @@ public class Vizjeg extends Nyersanyag {
     }
 
     /**
-     * Amikor felsz��nre ker�l kider��ti, hogy napk�zelben van-e, ha igen t�rli mag�t az
-     * aszteroid�r�l �s megn�zi maradt-e m�g el�g
+     * Amikor felszínre kerül kideríti, hogy napközelben van-e, ha igen törli magát az
+     * aszteroidáról és megnézi maradt-e még elég
      * 
      * @param a az aszteroida ahol a nyersanyag van
      */
@@ -34,8 +34,8 @@ public class Vizjeg extends Nyersanyag {
     }
 
     /**
-     * Amikor megsemmis�l a nyersanyag cs�kkenti az �sszes sz�m�t eggyel, majd kider��ti van-e m�g
-     * el�g, ha nincs vesztett
+     * Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kideríti van-e még
+     * elég, ha nincs vesztett
      */
     @Override
     public void ellenorizVesztett() {

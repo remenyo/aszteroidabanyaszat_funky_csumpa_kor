@@ -38,7 +38,7 @@ public class Szkeleton {
 					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
 			switch (valasz) {
 				case 1:
-					Jatek.jatekInditas();
+					Jatek.jatekInditas(objektumok.size()==3);
 					break;
 				case 2:
 					teszt_parancssor();
@@ -57,7 +57,11 @@ public class Szkeleton {
 			}
 		}
 	};
-
+	 /**
+     * Reseteli a jelenlegi állapotot vissza állítva a betöltési állapotba
+     * 
+     * @param ny Beállítandó nyersanyag
+     */
 	protected static void reset() {
 		inkonzisztens_allapot = false;
 		objektumok.clear();
@@ -530,11 +534,9 @@ public class Szkeleton {
 			Jatek.resetLepett();
 	}
 
-	// ------------------- Balazs cuccai ---------------
 	public static void teszt_letrehozRobot(String rid, String aid) {
 		if (!letrehoz("Robot", rid))
 			return;
-		// beallit(rid, "aszteroida", aid);
 		hiv(rid, "beallitAszteroida", aid);
 	}
 

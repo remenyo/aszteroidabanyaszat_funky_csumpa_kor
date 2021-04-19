@@ -21,7 +21,7 @@ public class Uran extends Nyersanyag {
     }
 
     /**
-     * Felsz��nre ker�ltekor kider��ti, hogy napk�zelben van-e, ha igen robban
+     * Felszínre kerültekor kideríti, hogy napközelben van-e, ha igen robban
      * 
      * @param a aszteroida, amiben a nyersanyag van
      */
@@ -37,8 +37,8 @@ public class Uran extends Nyersanyag {
     }
 
     /**
-     * Amikor megsemmis�l a nyersanyag cs�kkenti az �sszes sz�m�t eggyel, majd kider��ti van-e m�g
-     * el�g, ha nincs vesztett
+     * Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kideríti van-e még
+     * elég, ha nincs vesztett
      */
     @Override
     public void ellenorizVesztett() {

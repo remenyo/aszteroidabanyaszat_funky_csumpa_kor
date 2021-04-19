@@ -141,8 +141,6 @@ public class Telepes extends Szereplo {
 			default:
 				break;
 		}
-		// Scanner sc = new Scanner(System.in);
-		// TODO 7 opciobol v�laszt�s bemenet alapj�n
 	}
 
 	/**
