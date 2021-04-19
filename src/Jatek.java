@@ -127,6 +127,7 @@ public class Jatek {
 	public static void reset() {
 		resetLepett();
 		beallitas_visszatoltes();
+		leptethetok.clear();
 	}
 
 	// Nem használjuk a tesztben, kezdetleges Kör
