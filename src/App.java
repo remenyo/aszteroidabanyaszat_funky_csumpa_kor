@@ -8,7 +8,7 @@ public class App {
         Szkeleton.reset();
 
         if (args.length == 2) {
-            if (args[0].equals("teszt")) {
+            if (args[0].equals("tesztBetoltes")) {
                 Szkeleton.teszt_betoltes(args[1]);
                 System.exit(Szkeleton.inkonzisztens_allapot ? 1 : 0);
             }
