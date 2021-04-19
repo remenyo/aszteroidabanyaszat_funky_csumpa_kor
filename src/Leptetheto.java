@@ -1,10 +1,17 @@
 package src;
 
-// Azok az osztályok valósí­tják meg, amelyek minden körben lépnek
+// Azok az osztï¿½lyok valï¿½sï¿½tjï¿½k meg, amelyek minden kï¿½rben lï¿½pnek
 public interface Leptetheto {
-  public void Lepes(); // mi történjen egy lépésben
+  public void Lepes(); // mi tï¿½rtï¿½njen egy lï¿½pï¿½sben
 
+  /**
+   * Visszaadja, hogy lÃ©pett-e mÃ¡r
+   * @return Ha igen true, ha nem false 
+   */
   public Boolean lepette();
 
+  /**
+   * Reseteli a lÃ©pÃ©sÃ©t
+   */
   public void resetLepett();
 }
