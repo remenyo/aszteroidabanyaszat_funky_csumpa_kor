@@ -147,7 +147,7 @@ public class Telepes extends Szereplo {
 				break;
 			case 6:
 				if (!portal.isEmpty()) {
-					lehelyezPortal(portal.get(0));
+					lerakPortal(portal.get(0));
 				}
 				break;
 			case 7:
