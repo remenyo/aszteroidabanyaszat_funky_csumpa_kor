@@ -21,9 +21,9 @@ public class Szen extends Nyersanyag {
         osszesSzen = 0;
     }
 
-    // Amikor megsemmis�l a nyersanyag cs�kkenti az �sszes sz�m�t eggyel, majd kider��ti van-e
-    // m�g
-    // el�g, ha nincs vesztett
+    // Amikor megsemmisül a nyersanyag csökkenti az összes számát eggyel, majd kideríti van-e
+    // még
+    // elég, ha nincs vesztett
     @Override
     public void ellenorizVesztett() {
         Log.call();
