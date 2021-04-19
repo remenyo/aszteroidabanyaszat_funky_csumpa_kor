@@ -83,8 +83,8 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Visszaad egy tipus tí­pusú objektumot, aminek az értéke az ertek. Ha létezik ertek
-	 * azonosí­tóval tipus tí­pusú objektum az objektumok tömbben, akkor azt az objektumot adja
+	 * Visszaad egy tipus típusú objektumot, aminek az értéke az ertek. Ha létezik ertek
+	 * azonosí­tóval tipus típusú objektum az objektumok tömbben, akkor azt az objektumot adja
 	 * vissza. Ha nem sikeres az átalakí­tás, a függvény kivételt generál.
 	 * 
 	 * @param tipus A visszaadandó objektum tí­pusa
