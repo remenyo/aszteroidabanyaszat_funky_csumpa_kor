@@ -49,13 +49,6 @@ public class Nap implements Leptetheto {
 		aszteroidak.remove(a);
 	}
 
-	// A l�p�s ezt h�vn� meg, hogy az el�rejelz�s alapj�n napvihart gener�ljon
-	// de most tesztel�shez nem haszn�ljuk.
-	// TODO napvihar
-	private void Napvihar() {
-		Log.call(); // kell-e?
-	}
-
 
 	/**
 	 * A naphoz hozzáadunk egy aszteroida listát
