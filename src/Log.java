@@ -33,7 +33,7 @@ public class Log {
      */
     private static StackTraceElement getCaller(int offset) {
         // https://stackoverflow.com/a/4065546 az alap innen jött
-        return Thread.currentThread().getStackTrace()[4 + offset]; // ?? magic
+        return Thread.currentThread().getStackTrace()[4 + offset]; // tru magic
     }
 
 

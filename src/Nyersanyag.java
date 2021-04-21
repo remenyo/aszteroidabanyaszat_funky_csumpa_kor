@@ -14,12 +14,12 @@ abstract public class Nyersanyag {
     abstract public void ellenorizVesztett();
 
     /**
-     * Ha felszínre kerül egy nyersanyag akkor hívódik meg ez a f�ggv�ny.
+     * Ha felszínre kerül egy nyersanyag akkor hívódik meg ez a függvény.
      * 
      * @param a Az aszteroida, ahol a nyersanyag van.
      */
     public void felszinreKerul(Aszteroida a) {
-        
+
     }
 
     /**

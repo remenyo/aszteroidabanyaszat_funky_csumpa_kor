@@ -34,7 +34,7 @@ public class Jatek {
 	// a mozgás valószínűsége, ha nem mozog épp a robot akkor fúr
 	public static Double ROBOT_MOZGAS_VALOSZINUSEG = 0.7;
 
-	// ha enn�l kevesebb telepes marad a játékban, a játéknak vége
+	// ha ennél kevesebb telepes marad a játékban, a játéknak vége
 	public static Integer MIN_TELEPES_NYERESHEZ = 1;
 
 	public static Integer JATEKOS_SZAM = 5;
@@ -58,6 +58,7 @@ public class Jatek {
 	public static void beallitas_visszatoltes() {
 		beallitas_kezeles(false);
 	}
+
 	/**
 	 * Program indulásánál elmenti a játék beállításait és vissza is tölti azt
 	 * 
@@ -97,6 +98,7 @@ public class Jatek {
 	private Jatek() {
 		leptethetok = new ArrayList<Leptetheto>();
 	}
+
 	/**
 	 * Amikor létre jön a játék az építési nyersanyag költségek beállítódnak
 	 * 
@@ -194,7 +196,8 @@ public class Jatek {
 	/**
 	 * Játékban szereplő játékosok, aszteroidák inicializálásáért felelős
 	 * 
-	 * @param nincsAllapot Ha igaz akkor létre hozza alap értelmezett helyzetet ha hamis akkor a parancssorba lett beállítva valamilyen állapot
+	 * @param nincsAllapot Ha igaz akkor létre hozza alap értelmezett helyzetet ha hamis akkor a
+	 *        parancssorba lett beállítva valamilyen állapot
 	 */
 	public static void jatekInditas(boolean nincsAllapot) {
 		Log.call();
@@ -203,7 +206,7 @@ public class Jatek {
 
 		Nap n = (Nap) Szkeleton.getObj("nap");
 		leptethetok.add(n);
-		if(nincsAllapot) {
+		if (nincsAllapot) {
 			ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
 			for (int i = 0; i < 50; i++) {
 				Aszteroida a = new Aszteroida(n); // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
@@ -225,17 +228,17 @@ public class Jatek {
 						ny = null;
 				}
 				a.setNyersanyag(ny);
-	
+
 				a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
 				a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
-	
+
 				if (i == 0) {
 					for (int j = 0; j < JATEKOS_SZAM; j++) {
 						Telepes t = new Telepes();
 						t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
 					}
 				}
-	
+
 				atmenetiAszteroidatar.add(a);
 			}
 			atmenetiAszteroidatar.get(0)
@@ -244,19 +247,19 @@ public class Jatek {
 				atmenetiAszteroidatar.get(i).hozzaadSzomszed(atmenetiAszteroidatar.get(i + 1));
 				atmenetiAszteroidatar.get(i + 1).hozzaadSzomszed(atmenetiAszteroidatar.get(i));
 				for (int j = 0; j < SZOMSZED_SZAM - 2; j++) {
-					Aszteroida randomAszteroida = atmenetiAszteroidatar.get(
-							RandomUtils.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1));
+					Aszteroida randomAszteroida = atmenetiAszteroidatar.get(RandomUtils
+							.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1));
 					if (atmenetiAszteroidatar.get(i) != randomAszteroida && !atmenetiAszteroidatar
 							.get(i).getSzomszedok().contains(randomAszteroida)) {
 						atmenetiAszteroidatar.get(i).hozzaadSzomszed(randomAszteroida);
 						randomAszteroida.hozzaadSzomszed(atmenetiAszteroidatar.get(i));
 					}
-	
+
 				}
 			}
 		}
 
-		allapot = 0; //futó állapit
+		allapot = 0; // futó állapit
 		ArrayList<Leptetheto> temp = leptethetok;
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
@@ -274,6 +277,7 @@ public class Jatek {
 			}
 		}
 	}
+
 	/**
 	 * Játék adatait írja ki
 	 * 
@@ -283,7 +287,7 @@ public class Jatek {
 		return telepesszam.toString() + ":" + leptethetok.size();
 
 	}
-	
+
 	/**
 	 * Állapotot adja vissza
 	 * 
@@ -292,7 +296,7 @@ public class Jatek {
 	public Integer getAllapot() {
 		return allapot;
 	}
-	
+
 	/**
 	 * Lellenőrzi mindenki lépett e
 	 * 
@@ -306,13 +310,13 @@ public class Jatek {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Mindenki lépett állapotát hamissá teszi
 	 * 
 	 * 
 	 */
-	
+
 	public static void resetLepett() {
 		for (Leptetheto l : leptethetok) {
 			l.resetLepett();

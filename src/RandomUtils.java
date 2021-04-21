@@ -25,8 +25,8 @@ public class RandomUtils {
     public static Integer randomIntHatarokKozott(int alsoHatar, int felsoHatar) {
         if (alsoHatar > felsoHatar) {
             Log.debug(
-                    "randomIntHatarokKozott: Als� hat�r nagyobb mint a fels�, megcser�ltem. ("
-                            + alsoHatar + ">" + felsoHatar + ") A h�v� neve tal�lhat� a debugban.",
+                    "randomIntHatarokKozott: Alsó határ nagyobb mint a felső, megcseréltem. ("
+                            + alsoHatar + ">" + felsoHatar + ") A hívó neve található a debugban.",
                     1, 1);
             int a = alsoHatar;
             alsoHatar = felsoHatar;
@@ -56,11 +56,11 @@ public class RandomUtils {
     private static Boolean randomBooleanValoszinuseggel(double valoszinuseg, int pontossag) {
         pontossag = Math.min(7, Math.max(1, pontossag));
         if (valoszinuseg >= 1) {
-            Log.debug("1-n�l nagyobb vagy egyenl� val�sz�n�s�g -> igen", 1, 1);
+            Log.debug("1-nél nagyobb vagy egyenlő valószínűség -> igen", 1, 1);
             return true;
         }
         if (valoszinuseg <= 0) {
-            Log.debug("0-n�l kisebb vagy egyenl� val�sz�n�s�g -> nem", 1, 1);
+            Log.debug("0-nál kisebb vagy egyenlő valószínűség -> nem", 1, 1);
             return false;
         }
 

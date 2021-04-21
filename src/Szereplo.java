@@ -11,11 +11,12 @@ abstract public class Szereplo implements Leptetheto {
      */
     public Szereplo() {
         Log.call();
-        Jatek.leptethetok.add(this); // Szerepl� l�trej�ttekor a l�ptethet�k list�ja is b�v�l
+        Jatek.leptethetok.add(this); // Szereplő létrejöttekor a léptethetők listája is bővül
     }
 
     /**
      * Az aszteroida paraméterül kapott sorszámú szomszédjára utazik és a jelenlegiről törli magát
+     * 
      * @param sorszam Az aszteroida azonosítója
      */
     public void Mozgas(Integer sorszam) {
@@ -52,6 +53,7 @@ abstract public class Szereplo implements Leptetheto {
 
     /**
      * Telepes leszármazott visszaadja a szereplő nyersanyagjait
+     * 
      * @return nyersanyagok listája, egyébként null
      */
     public ArrayList<Nyersanyag> getNyersanyagok() {
@@ -68,6 +70,7 @@ abstract public class Szereplo implements Leptetheto {
 
     /**
      * Beállítja a paraméterül kapott aszteroidát jelenleginek
+     * 
      * @param a A beállítandó aszteroida
      */
     public void beallitAszteroida(Aszteroida a) {
@@ -78,26 +81,28 @@ abstract public class Szereplo implements Leptetheto {
 
     /**
      * Visszaadja az aszteroidajat
+     * 
      * @return az aszteroida
      */
     public Aszteroida getAszteroida() {
         return aszteroida;
     }
-    
+
     /**
      * Visszaadja az, hogy lépette ebben a körben.
+     * 
      * @return lépette
      */
     @Override
-	public Boolean lepette() {
-		return lepett;
-	}
-    
+    public Boolean lepette() {
+        return lepett;
+    }
+
     /**
      * Reseteli a lépette attributumot false ra állítja.
      */
     @Override
-	public void resetLepett() {
-		lepett = false;
-	}
+    public void resetLepett() {
+        lepett = false;
+    }
 }

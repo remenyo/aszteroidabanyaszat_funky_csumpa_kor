@@ -141,7 +141,7 @@ public class Portal extends Hely implements Leptetheto {
 	/**
 	 * A paraméterként kapott szereplőt utaztatja a végpontjára
 	 *
-	 * @param sz - Szereplo, akit elteleportál a v�gpon
+	 * @param sz - Szereplo, akit elteleportál a végpont
 	 */
 	public void teleportalas(Szereplo sz) {
 		Log.call();
@@ -157,7 +157,7 @@ public class Portal extends Hely implements Leptetheto {
 		Log.call();
 		if (aktiv)
 			par.getVegpont().utazasHely(hely);
-			
+
 	}
 
 	/**
@@ -193,54 +193,68 @@ public class Portal extends Hely implements Leptetheto {
 
 	/**
 	 * Portál a kimeneten
-	 * @return - A portál attribútumait adja vissza szövegként 
+	 * 
+	 * @return - A portál attribútumait adja vissza szövegként
 	 */
-	public String toString() { 
-		String kimenet = aktiv.toString() + ":" ; 
-		if(birtokos!=null)kimenet += Szkeleton.getID(birtokos);else {kimenet+="null";} 
-		kimenet += ":" ;
-		if(par!=null)kimenet += Szkeleton.getID(par); else {kimenet+="null";}
-				kimenet += ":" ;
-		if( vegpont != null ) kimenet+= Szkeleton.getID(vegpont); else{kimenet+="null";}
-		kimenet +=  ":" + megkergult.toString() + ":"
-				+ String.valueOf(lepett);
+	public String toString() {
+		String kimenet = aktiv.toString() + ":";
+		if (birtokos != null)
+			kimenet += Szkeleton.getID(birtokos);
+		else {
+			kimenet += "null";
+		}
+		kimenet += ":";
+		if (par != null)
+			kimenet += Szkeleton.getID(par);
+		else {
+			kimenet += "null";
+		}
+		kimenet += ":";
+		if (vegpont != null)
+			kimenet += Szkeleton.getID(vegpont);
+		else {
+			kimenet += "null";
+		}
+		kimenet += ":" + megkergult.toString() + ":" + String.valueOf(lepett);
 		return kimenet;
-										
+
 	}
 
 	/**
 	 * Portál lépésének az állapotát ellenőrzi a körben
 	 */
-	 @Override
-		public Boolean lepette() {
-			if(lepett) {
-				return true;
-			}else {
-				lepett = true;
-				return false;
-			}
+	@Override
+	public Boolean lepette() {
+		if (lepett) {
+			return true;
+		} else {
+			lepett = true;
+			return false;
 		}
-	 /**
-	  * lépés helyreállítása
-	  */
-	    @Override
-		public void resetLepett() {
-			lepett = false;
-		}
+	}
 
-	    /**
-	     * Aszteroida lekérdezése
-	     */
+	/**
+	 * lépés helyreállítása
+	 */
+	@Override
+	public void resetLepett() {
+		lepett = false;
+	}
+
+	/**
+	 * Aszteroida lekérdezése
+	 */
 	// teszt miatt
 	public Aszteroida getAszteroida() {
 		return vegpont;
 	}
-	
+
 	/**
 	 * aktív attribútum átállítása
+	 * 
 	 * @param bl - amire az attribútum értéke változzon
 	 */
-	public void setAktiv(Boolean bl){
+	public void setAktiv(Boolean bl) {
 		aktiv = bl;
 	}
 }

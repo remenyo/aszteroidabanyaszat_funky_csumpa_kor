@@ -1,8 +1,8 @@
 package src;
 
-//Mesterséges intelligencia, amely fúrhat vagy mozoghat
+// Mesterséges intelligencia, amely fúrhat vagy mozoghat
 public class Robot extends Szereplo {
-	
+
 	/**
 	 * Robot konstora
 	 */
@@ -20,7 +20,7 @@ public class Robot extends Szereplo {
 	}
 
 	/**
-	 *  A robot lépése egy körben, ami lehet fúrás vagy mozgás
+	 * A robot lépése egy körben, ami lehet fúrás vagy mozgás
 	 */
 	public void Lepes() {
 		Log.call();
@@ -35,11 +35,11 @@ public class Robot extends Szereplo {
 	 */
 	public void mozgasIntelligencia() {
 		Log.call();
-		// Az aszteroida szomsz�dainak sz�ma, a robot eld�nti hogy hanyas sz�m�ra szeretne
+		// Az aszteroida szomszédainak száma, a robot eldönti hogy hanyas számúra szeretne
 		// mozogni
 		int szomszedszam = aszteroida.getSzomszedok().size() - 1;
 		Integer sorszam = RandomUtils.randomIntHatarokKozott(0, szomszedszam);
-		Mozgas(sorszam); // v�letlenszer�en v�ndorlik egy szomsz�dra
+		Mozgas(sorszam); // véletlenszerűen vándorlik egy szomszédra
 	}
 
 	/**
@@ -52,11 +52,11 @@ public class Robot extends Szereplo {
 
 	/**
 	 * Visszaadja az adatait a telepesnek.
+	 * 
 	 * @return Robot adatai
 	 */
 	public String toString() {
-		return Szkeleton.getID(aszteroida) + ":"
-				+ String.valueOf(lepett);
+		return Szkeleton.getID(aszteroida) + ":" + String.valueOf(lepett);
 	}
 
 	/**
