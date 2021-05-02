@@ -12,6 +12,7 @@ public class Aszteroida extends Hely {
     private Nap nap;
     private Nyersanyag nyersanyag;
     private static NyersanyagKoltseg urbazisKoltseg;
+    private AszteroidaView aszteroidaView;
 
     /**
      * Aszteroida konstruktor
@@ -27,7 +28,12 @@ public class Aszteroida extends Hely {
         elorejelzesvan = false;
         nap.hozzaadAszteroida(this);
     }
-
+    
+    void beallitAszteroidaView(AszteroidaView av) {
+    	aszteroidaView=av;
+    	av.setAszteroida=this;
+    }
+    
     /**
      * Vissza adja azt az egy szomszéd Hely-et aki az i. indexen áll.
      * @param i A szomszéd azonosítója
