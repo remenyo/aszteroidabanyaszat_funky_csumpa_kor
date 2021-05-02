@@ -17,9 +17,10 @@ public class Aszteroida extends Hely {
 
     /**
      * Aszteroida konstruktor
-     * @param reteg Az aszteroidán lévő kőréteg kezdeti vastagsága (0-sok)
-     * @param napkozel Napközelben van-e az aszteroida
-     * @param nap A nap referenciája
+     * 
+     * @param reteg      Az aszteroidán lévő kőréteg kezdeti vastagsága (0-sok)
+     * @param napkozel   Napközelben van-e az aszteroida
+     * @param nap        A nap referenciája
      * @param nyersanyag Az aszteroida magjában található nyersanyag (opcoinális)
      */
     Aszteroida(Nap nap) {
@@ -29,37 +30,38 @@ public class Aszteroida extends Hely {
         elorejelzesvan = false;
         nap.hozzaadAszteroida(this);
     }
-    
+
     public void addObszerver(AszteroidaView av) {
-    	aszteroidaView=av;
-    	aszteroidaView.BeallitAszteroida(this);
+        aszteroidaView = av;
+        aszteroidaView.BeallitAszteroida(this);
     }
-    
+
     public Integer getReteg() {
-    	return reteg;
+        return reteg;
     }
-    
+
     public JatekView getView() {
-    	return null;
+        return null;
     }
-    
-    public ArrayList<JatekView> getAllView(){
-    	ArrayList<JatekView> osszes = new ArrayList<JatekView>();
-    	for(Szereplo szereplo : szereplok) {
-    		JatekView nezet = szereplo.getView();
-    		if(nezet!=null)
-    			osszes.add(nezet);
-    	}
-    	for(Hely szomszed : szomszedok) {
-    		JatekView nezet = szomszed.getView();
-    		if(nezet!=null)
-    			osszes.add(nezet);
-    	}
-    	return osszes;
+
+    public ArrayList<JatekView> getAllView() {
+        ArrayList<JatekView> osszes = new ArrayList<JatekView>();
+        for (Szereplo szereplo : szereplok) {
+            JatekView nezet = szereplo.getView();
+            if (nezet != null)
+                osszes.add(nezet);
+        }
+        for (Hely szomszed : szomszedok) {
+            JatekView nezet = szomszed.getView();
+            if (nezet != null)
+                osszes.add(nezet);
+        }
+        return osszes;
     }
-    
+
     /**
      * Vissza adja azt az egy szomszéd Hely-et aki az i. indexen áll.
+     * 
      * @param i A szomszéd azonosítója
      * @return A szomszéd Hely aki az i. indexen áll.
      */
@@ -75,8 +77,8 @@ public class Aszteroida extends Hely {
     }
 
     /**
-     * Az aszteroida robbanás minden rajta tartózkodó entitást felrobbantja majd kivonva magát a
-     * szomszédai közül, majd a játékból.
+     * Az aszteroida robbanás minden rajta tartózkodó entitást felrobbantja majd
+     * kivonva magát a szomszédai közül, majd a játékból.
      */
     public void Robbanas() {
         Log.call();
@@ -87,7 +89,8 @@ public class Aszteroida extends Hely {
         for (Hely h : szomszedok) {
             h.szomszedRobbant(this);
         }
-        // mindenkin végig kell menni mivel mindenki vagy átmegy máshová vagy meghal így az első
+        // mindenkin végig kell menni mivel mindenki vagy átmegy máshová vagy meghal így
+        // az első
         // elem mindig más lesz.
         int eredeti = szereplok.size();
         for (int i = 0; i < eredeti; i++) {
@@ -96,8 +99,9 @@ public class Aszteroida extends Hely {
     }
 
     /**
-     * Napvihar esetén hívódik meg. Ha van benne nyersanyag, vagy nincs átfúrva az aszteroida
-     * köpenye, az entitásokon is meghívódik a Napvihar függvény.
+     * Napvihar esetén hívódik meg. Ha van benne nyersanyag, vagy nincs átfúrva az
+     * aszteroida köpenye, az entitásokon is meghívódik a Napvihar függvény.
+     * 
      * @see Nap
      */
     public void Napvihar() {
@@ -114,15 +118,15 @@ public class Aszteroida extends Hely {
                     szereplok.get(0).Napvihar();
                 }
             } catch (ConcurrentModificationException e) {
-
+                Log.error(e.toString());
             }
 
         }
     }
 
     /**
-     * Az aszteroida ezzel a függvényel fúrható. Ha elfogy a köpeny, felszínre kerül az Aszteroida
-     * nyersanyaga.
+     * Az aszteroida ezzel a függvényel fúrható. Ha elfogy a köpeny, felszínre kerül
+     * az Aszteroida nyersanyaga.
      */
     public void Furas() {
         Log.call();
@@ -132,15 +136,16 @@ public class Aszteroida extends Hely {
             if (reteg == 0 && nyersanyag != null) {
                 nyersanyag.felszinreKerul(this);
             }
-        }else {
-        	System.out.println("A réteg már át van fúrva!");
+        } else {
+            System.out.println("A réteg már át van fúrva!");
         }
     }
 
     /**
-     * Egy Aszteroida-t töröl a szomszédok listából.
-     * Ha egy aszteroida felrobban, akkor a szomszédjain végig hívja ezt hogy töröljék ki őt a
-     * szomszédjaik közül Ha egy aszteroidának nem marad szomszédja felrobban
+     * Egy Aszteroida-t töröl a szomszédok listából. Ha egy aszteroida felrobban,
+     * akkor a szomszédjain végig hívja ezt hogy töröljék ki őt a szomszédjaik közül
+     * Ha egy aszteroidának nem marad szomszédja felrobban
+     * 
      * @param h a törlendő aszteroida
      */
     public void torolSzomszed(Hely h) {
@@ -162,6 +167,7 @@ public class Aszteroida extends Hely {
 
     /**
      * Aszteroida hozzáadása a szomszédok listához.
+     * 
      * @param h A hozzáadadndó hely.
      */
     public void hozzaadSzomszed(Hely h) {
@@ -176,15 +182,14 @@ public class Aszteroida extends Hely {
         elorejelzesvan = true;
     }
 
-
     /**
      * A következő körben várható napvihar lekérdezésére használható.
+     * 
      * @return Boolean a következő körben napvihar várható
      */
     public Boolean getElorejelzesvan() {
         return elorejelzesvan;
     }
-
 
     /**
      * A rétegvastagságot beállítja a megadott értékre.
@@ -207,8 +212,11 @@ public class Aszteroida extends Hely {
     }
 
     /**
-     * Bányászáskor hívódik meg a benne lévő nyersanyagot adja vissza és üressé teszi magát
-     * @return A kibányászott nyersanyag. Ha nem sikerül a múvelet, {@code null}-al tér vissza.
+     * Bányászáskor hívódik meg a benne lévő nyersanyagot adja vissza és üressé
+     * teszi magát
+     * 
+     * @return A kibányászott nyersanyag. Ha nem sikerül a múvelet, {@code null}-al
+     *         tér vissza.
      */
     public Nyersanyag Banyaszat() {
         Log.call();
@@ -227,9 +235,8 @@ public class Aszteroida extends Hely {
     }
 
     /**
-     * A játék "megnyert"-ségét ellenőrzi az aszteroidán.
-     * Ha az összes nyersanyag megtalálható az aszteroidán ami kell a játék megnyeréséhez, a játék
-     * véget ér.
+     * A játék "megnyert"-ségét ellenőrzi az aszteroidán. Ha az összes nyersanyag
+     * megtalálható az aszteroidán ami kell a játék megnyeréséhez, a játék véget ér.
      */
     public void ellenorizNyert() {
         Log.call();
@@ -244,6 +251,7 @@ public class Aszteroida extends Hely {
 
     /**
      * Hozzáad a szereplők listához egy {@code Szereplő}-t
+     * 
      * @param sz Az új szereplő
      */
     public void hozzaadSzereplo(Szereplo sz) {
@@ -253,6 +261,7 @@ public class Aszteroida extends Hely {
 
     /**
      * Eltávolít a szereplők listából egy {@code Szereplő}-t
+     * 
      * @param sz A törlendő szereplő
      */
     public void torolSzereplo(Szereplo sz) {
@@ -270,15 +279,16 @@ public class Aszteroida extends Hely {
     }
 
     /**
-     * Az Aszteroida magjába belerak egy nyersanyagot.
-     * (A vissza rakás feltételei miatt a felszínre is kerül egyből. Ettől fel is robbanhat, ha pl.
-     * Urán volt, vagy el is párologhat, ha vízjég.)
+     * Az Aszteroida magjába belerak egy nyersanyagot. (A vissza rakás feltételei
+     * miatt a felszínre is kerül egyből. Ettől fel is robbanhat, ha pl. Urán volt,
+     * vagy el is párologhat, ha vízjég.)
+     * 
      * @param ny Az aszteroida magjába helyezendő nyersanyag
      */
     public Boolean hozzaadNyersanyag(Nyersanyag ny) throws Exception {
         Log.call();
         if (reteg == 0 && nyersanyag == null) {
-        	Log.jatek("Nyersanyag visszahelyezve");
+            Log.jatek("Nyersanyag visszahelyezve");
             nyersanyag = ny;
             ny.felszinreKerul(this);
             return true;
@@ -290,6 +300,7 @@ public class Aszteroida extends Hely {
     /**
      * Mozgáskor hívódik meg. A szereplőt átutaztatja erre az aszteroidára.
      * Portállal való utazásnak is ez a vége.
+     * 
      * @param sz Az utazó szereplő
      */
     public void Utazas(Szereplo sz) {
@@ -299,8 +310,9 @@ public class Aszteroida extends Hely {
     }
 
     /**
-     * A nyersanyagkoltséget {@code BillOfMaterial} állítja be.
-     * Jelen esteben hogy mi kell az űrbázis felépítéséhez.
+     * A nyersanyagkoltséget {@code BillOfMaterial} állítja be. Jelen esteben hogy
+     * mi kell az űrbázis felépítéséhez.
+     * 
      * @param k A beállítandó {@code NyersanyagKoltseg}
      */
     public static void hozzaadUrbazisKoltseg(NyersanyagKoltseg k) {
@@ -309,7 +321,8 @@ public class Aszteroida extends Hely {
     }
 
     /**
-     * Akkor hívódik meg ha egy szomszédja felrobbant és azt ki kell törölni a szomszédjai közül.
+     * Akkor hívódik meg ha egy szomszédja felrobbant és azt ki kell törölni a
+     * szomszédjai közül.
      */
     public void szomszedRobbant(Aszteroida a) {
         Log.call();
@@ -318,6 +331,7 @@ public class Aszteroida extends Hely {
 
     /**
      * Napközelbenség lekérdezése
+     * 
      * @return Aszteroida napközelsége
      */
     public Boolean isNapkozelben() {
@@ -327,6 +341,7 @@ public class Aszteroida extends Hely {
 
     /**
      * Beállítja a napkozel attribútumot
+     * 
      * @param ujNapkozel
      */
     public void setNapkozel(Boolean ujNapkozel) {
@@ -334,7 +349,9 @@ public class Aszteroida extends Hely {
     }
 
     /**
-     * Az Aszteroidába beSettelünk egy nyersanyagot. Ilyenkor nem hívódik meg a felszíre kerülés.
+     * Az Aszteroidába beSettelünk egy nyersanyagot. Ilyenkor nem hívódik meg a
+     * felszíre kerülés.
+     * 
      * @param ny Beállítandó nyersanyag
      */
     public void setNyersanyag(Nyersanyag ny) {
@@ -344,6 +361,7 @@ public class Aszteroida extends Hely {
 
     /**
      * Az aszteroida szomszédjainak listáját adja vissza.
+     * 
      * @return Szomszédok listája
      */
     public ArrayList<Hely> getSzomszedok() {
