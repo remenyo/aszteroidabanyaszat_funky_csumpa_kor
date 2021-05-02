@@ -29,6 +29,10 @@ public class Portal extends Hely implements Leptetheto {
 		Log.call();
 		aktiv = true;
 	}
+	
+	public Aszteroida szomszedosAszteroida() {
+		return par.getVegpont();
+	}
 
 
 	/**

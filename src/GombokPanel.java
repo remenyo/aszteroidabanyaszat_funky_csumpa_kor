@@ -3,12 +3,9 @@ package src;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 
 public class GombokPanel extends JPanel {
 	private Telepes jelenlegiTelepes;
@@ -19,9 +16,9 @@ public class GombokPanel extends JPanel {
 	private JButton portalEpitesButton = new JButton("Portal epites");
 	private JButton portalLerakasButton = new JButton("Portal lerakas");
 	private JButton nyersanyagLerakasButton = new JButton("Nyersanyag lerakas");
-	
+
 	public GombokPanel() {
-		
+
 		this.setLayout(new FlowLayout());
 		this.add(mozgasButton);
 		this.add(furasButton);
@@ -30,69 +27,92 @@ public class GombokPanel extends JPanel {
 		this.add(portalEpitesButton);
 		this.add(portalLerakasButton);
 		this.add(nyersanyagLerakasButton);
-				
-		
-		final class mozgasButtonActionListener implements ActionListener{
+
+		final class mozgasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				//TODO uj menu mozgashoz			
 				//jelenlegiTelepes.Mozgas(sorszam);
+=======
+				// TODO uj menu mozgashoz
+
+				// jelenlegiTelepes.Mozgas(sorszam);
+>>>>>>> 8624cf850c2801b01f34bf9fed2ab6ca1867db80
 			}
 		}
 		mozgasButton.addActionListener(new mozgasButtonActionListener());
-		
-		final class furasButtonActionListener implements ActionListener{
+
+		final class furasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.Furas();
 			}
 		}
 		furasButton.addActionListener(new furasButtonActionListener());
-		
-		final class banyaszatButtonActionListener implements ActionListener{
+
+		final class banyaszatButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.Banyaszat();
 			}
 		}
 		banyaszatButton.addActionListener(new banyaszatButtonActionListener());
-		
-		final class robotEpitesButtonActionListener implements ActionListener{
+
+		final class robotEpitesButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.epitRobot();
 			}
 		}
 		robotEpitesButton.addActionListener(new robotEpitesButtonActionListener());
-		
-		final class portalEpitesButtonActionListener implements ActionListener{
+
+		final class portalEpitesButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.epitPortal();
 			}
 		}
 		portalEpitesButton.addActionListener(new portalEpitesButtonActionListener());
-		
-		final class portalLerakasButtonActionListener implements ActionListener{
+
+		final class portalLerakasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				jelenlegiTelepes.lerakPortal(jelenlegiTelepes.getPortal().get(0));
+=======
+				// jelenlegiTelepes.lerakPortal(0);
+>>>>>>> 8624cf850c2801b01f34bf9fed2ab6ca1867db80
 			}
 		}
 		portalLerakasButton.addActionListener(new portalLerakasButtonActionListener());
-		
-		final class nyersanyagLerakasButtonActionListener implements ActionListener{
+
+		final class nyersanyagLerakasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				//TODO vissarakas menu				
 				//jelenlegiTelepes.visszarakNyersanyag(ny);
 			}
 		}
 		nyersanyagLerakasButton.addActionListener(new nyersanyagLerakasButtonActionListener());		
+=======
+				// TODO vissarakas menu
+
+				// jelenlegiTelepes.visszarakNyersanyag(ny);
+			}
+		}
+		nyersanyagLerakasButton.addActionListener(new nyersanyagLerakasButtonActionListener());
+
+>>>>>>> 8624cf850c2801b01f34bf9fed2ab6ca1867db80
 	}
-	
+
 	public void setTelepes(Telepes t) {
 		jelenlegiTelepes = t;
 	}
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 8624cf850c2801b01f34bf9fed2ab6ca1867db80
 }
