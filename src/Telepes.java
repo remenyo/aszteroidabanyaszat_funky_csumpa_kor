@@ -1,8 +1,6 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 // Telepes a Szereplő leszármazottja, ismeri a nála lévő portálokat, nyersanyagokat és
 // a statikus építési költségek is ebbe az osztályba találhatók.
