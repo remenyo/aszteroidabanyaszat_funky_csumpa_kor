@@ -12,6 +12,7 @@ public class Szen extends Nyersanyag {
         Log.ctor();
         if (jatekonBelul)
             osszesSzen++;
+        jatekView = new SzenView();
     }
     /**
      * Reseteli az osszes szén számot.

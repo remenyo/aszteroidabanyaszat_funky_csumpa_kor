@@ -12,6 +12,7 @@ public class Vas extends Nyersanyag {
         Log.ctor();
         if (jatekonBelul)
             osszesVas++;
+        jatekView = new VasView();
     }
 
     protected static void reset() {
