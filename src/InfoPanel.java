@@ -43,5 +43,6 @@ public class InfoPanel extends JPanel {
 		}else {
 			napvihar = "Nem lesz napvihar!";
 		}
+		this.repaint();
 	}
 }
