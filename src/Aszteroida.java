@@ -29,9 +29,23 @@ public class Aszteroida extends Hely {
         nap.hozzaadAszteroida(this);
     }
     
-    void beallitAszteroidaView(AszteroidaView av) {
+    public void beallitAszteroidaView(AszteroidaView av) {
     	aszteroidaView=av;
-    	av.setAszteroida=this;
+    	aszteroidaView.BeallitAszteroida(this);
+    }
+    
+    public Integer getReteg() {
+    	return reteg;
+    }
+    
+    public JatekView getView() {
+    	return null;
+    }
+    
+    public ArrayList<JatekView> getAllView(){
+    	ArrayList<JatekView> osszes = new ArrayList<JatekView>();
+    	szereplok.forEach( szereplo -> osszes.add(szereplo.getView()));
+    	
     }
     
     /**
