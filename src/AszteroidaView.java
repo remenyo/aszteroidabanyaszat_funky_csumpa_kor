@@ -6,16 +6,20 @@ import java.util.ArrayList;
 
 public class AszteroidaView {
 	private Aszteroida aszteroida;
-	private Integer reteg; 											//erre sztem nincs szukseg mo
+	private Integer reteg; 															//erre sztem nincs szukseg mo
 	private ArrayList<JatekView> nezetek = new ArrayList<JatekView>();
 	
 	static int x = 250;
 	static int y = 150;
 	static int oldal = 300;
 	
-	public AszteroidaView(Aszteroida a){
+	//réteg elfedi a nyersanyagot
+	static int x_reteg = 350;
+	static int y_reteg = 250;
+	static int oldal_reteg = 100;
+	
+	public AszteroidaView(Aszteroida a){ 											//kell-e
 		aszteroida = a;
-		UpdateView();
 	}
 	
 	public void BeallitAszteroida(Aszteroida a) {
@@ -34,7 +38,7 @@ public class AszteroidaView {
 		
 		if(reteg!=0) {
 			//réteg rárajzolása a nyersanyagra
-			int x_reteg, y_reteg, oldal_reteg;
+			//int x_reteg, y_reteg, oldal_reteg;
 			g.setColor(Color.GRAY);
 			g.drawOval(x_reteg,y_reteg,oldal_reteg, oldal_reteg);
 		}
