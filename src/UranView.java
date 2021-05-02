@@ -4,14 +4,19 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class UranView extends JatekView{
+	
+	static int x = 350;
+	static int y = 250;
+	static int oldal = 100;
+	
 	public void Draw(Graphics g, Integer sorszam) {
-		int x,y,width,height;
+		/*int x,y,width,height;
 		x=0;
 		y=0;
 		width=0;
-		height=0;
+		height=0;*/
 		Color sotetzold = new Color(0,100,0);
 		g.setColor(sotetzold);
-		g.fillOval(x, y, width, height);
+		g.fillOval(x, y, oldal, oldal);
 	}
 }

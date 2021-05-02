@@ -43,6 +43,11 @@ public class InfoPanel extends JPanel {
 		}else {
 			napvihar = "Nem lesz napvihar!";
 		}
+		sorszLabel.setText("Telepes sorszama: " + sorsz);
+		sorszLabel.setText("Telepes nyersanyagai: " + nyers);
+		sorszLabel.setText("Aszteroida rétege: " + reteg);
+		sorszLabel.setText("Portálkapuk száma: " + portal);
+		sorszLabel.setText("Napvihar előrejelzés: " + napvihar);
 		this.repaint();
 	}
 }
