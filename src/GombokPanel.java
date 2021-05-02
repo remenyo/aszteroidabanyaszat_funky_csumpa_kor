@@ -35,8 +35,7 @@ public class GombokPanel extends JPanel {
 		final class mozgasButtonActionListener implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO uj menu mozgashoz
-				
+				//TODO uj menu mozgashoz			
 				//jelenlegiTelepes.Mozgas(sorszam);
 			}
 		}
@@ -77,7 +76,7 @@ public class GombokPanel extends JPanel {
 		final class portalLerakasButtonActionListener implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//jelenlegiTelepes.lerakPortal(0);
+				jelenlegiTelepes.lerakPortal(jelenlegiTelepes.getPortal().get(0));
 			}
 		}
 		portalLerakasButton.addActionListener(new portalLerakasButtonActionListener());
@@ -85,21 +84,15 @@ public class GombokPanel extends JPanel {
 		final class nyersanyagLerakasButtonActionListener implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO vissarakas menu
-				
+				//TODO vissarakas menu				
 				//jelenlegiTelepes.visszarakNyersanyag(ny);
 			}
 		}
-		nyersanyagLerakasButton.addActionListener(new nyersanyagLerakasButtonActionListener());
-		
+		nyersanyagLerakasButton.addActionListener(new nyersanyagLerakasButtonActionListener());		
 	}
 	
 	public void setTelepes(Telepes t) {
 		jelenlegiTelepes = t;
 	}
-	
-	
-	
-	
-	
+		
 }

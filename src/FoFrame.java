@@ -27,7 +27,7 @@ public class FoFrame extends JFrame {
 	public void setTelepes(Telepes t) {
 		jelenlegiTelepes = t;
 		gombPanel.setTelepes(t);
-		rajzPanel.setTelepes(t);
+		rajzPanel.setAszteroida(t.getAszteroida());
 		infoPanel.setTelepes(t);
 		this.repaint();
 	}
