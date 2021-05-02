@@ -16,7 +16,8 @@ public class FoFrame extends JFrame {
 		gombPanel = gp;
 		rajzPanel = rp;
 		infoPanel = ip;
-
+		this.setSize(800, 600);
+		
 		setLayout(new GridLayout(3, 1));
 		this.add(infoPanel);
 		this.add(rajzPanel);
