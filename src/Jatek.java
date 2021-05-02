@@ -323,12 +323,12 @@ public class Jatek {
 		allapot = 0; // futó állapit
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
-		InfoPanel infoPanel = new InfoPanel();
-		RajzPanel rajzPanel = new RajzPanel();
-		GombokPanel gombokPanel = new GombokPanel();
-		foFrame = new FoFrame(gombokPanel, rajzPanel, infoPanel);
+		//InfoPanel infoPanel = new InfoPanel();
+		//RajzPanel rajzPanel = new RajzPanel();
+		//GombokPanel gombokPanel = new GombokPanel();
+		//foFrame = new FoFrame(gombokPanel, rajzPanel, infoPanel);
 		foFrame.setVisible(true);
-		
+		foFrame.setTelepes((Telepes)leptethetok.get(1));
 		kovetkezoLepes();
 	}
 
