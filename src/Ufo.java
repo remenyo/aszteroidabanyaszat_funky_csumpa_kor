@@ -1,7 +1,6 @@
 package src;
 
 public class Ufo extends Szereplo {
-	UfoView ufoView;
 	/**
 	 * Ufo konstruktora
 	 */
@@ -46,9 +45,5 @@ public class Ufo extends Szereplo {
 				+ String.valueOf(lepett); 
 	}
 
-	@Override
-	public JatekView getView() {
-		return ufoView;
-	}
 
 }
