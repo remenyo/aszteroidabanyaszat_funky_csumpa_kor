@@ -7,6 +7,8 @@ import java.util.ConcurrentModificationException;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.swing.JOptionPane;
+
 public class Jatek {
 
 	private static final Jatek INSTANCE = new Jatek();
@@ -61,7 +63,10 @@ public class Jatek {
 		beallitas_kezeles(false);
 	}
 	
-	//Átadja azt a telepest a FoFrame-nek akinek most jön a köre.
+	/**
+	 * Átadja azt a telepest a FoFrame-nek akinek most jön a köre.
+	 * @param t telepes akinek a köre jön
+	 */
 	public static void enKorom(Telepes t) {
 		foFrame.setTelepes(t);
 	}
@@ -71,10 +76,21 @@ public class Jatek {
 	*A kovetkező léptethető lépését hivja. Ha az utolsó léptethetőn vagyunk akkor vissz megy az első léptethetőre
 	*/
 	public static void kovetkezoLepes() {
-		if(szamlalo==leptethetok.size()){
-	          szamlalo=0;
-	    }
-	    leptethetok.get(szamlalo++).Lepes();
+		if(allapot==0) {
+			if(szamlalo==leptethetok.size()){
+		          szamlalo=0;
+		    }
+		    leptethetok.get(szamlalo++).Lepes();
+		}else {
+			if(allapot==1) {
+				JOptionPane.showMessageDialog(foFrame,  "Gratulálunk Nyertél", "Hurrá", JOptionPane.INFORMATION_MESSAGE);
+			}else {
+				JOptionPane.showMessageDialog(foFrame,  "Gratulálunk Vesztettél", "Jajne!", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			foFrame.dispose();
+		}
+		
 	}
 
 
