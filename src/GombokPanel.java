@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GombokPanel extends JPanel {
@@ -33,10 +35,6 @@ public class GombokPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				//TODO uj menu mozgashoz			
 				//jelenlegiTelepes.Mozgas(sorszam);
-
-				// TODO uj menu mozgashoz
-
-				// jelenlegiTelepes.Mozgas(sorszam);
 			}
 		}
 		mozgasButton.addActionListener(new mozgasButtonActionListener());
@@ -85,8 +83,19 @@ public class GombokPanel extends JPanel {
 		final class nyersanyagLerakasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO vissarakas menu				
-				//jelenlegiTelepes.visszarakNyersanyag(ny);
+				//TODO x re ne adjon vissza semmit.	
+				Integer visszarakando = -1;
+				JComboBox combobox = new JComboBox();
+				for(Nyersanyag ny: jelenlegiTelepes.getNyersanyagok()) {
+					combobox.addItem(ny.getNev());
+				}
+				JOptionPane.showMessageDialog(null,combobox, "Válassza ki melyiket szeretné visszarakni!",JOptionPane.QUESTION_MESSAGE);
+				visszarakando = combobox.getSelectedIndex();	
+				if(visszarakando >= 0) {
+					jelenlegiTelepes.visszarakNyersanyag(jelenlegiTelepes.getNyersanyagok().get(visszarakando));
+				}else {
+					JOptionPane.showMessageDialog(null,"Elveszett ez a köröd :(");
+				}
 			}
 		}
 		nyersanyagLerakasButton.addActionListener(new nyersanyagLerakasButtonActionListener());		
