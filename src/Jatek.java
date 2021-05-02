@@ -98,7 +98,8 @@ public class Jatek {
 		if (allapot == 1) {
 			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá", JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jajne!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jaj... ÚRISTEN!",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 		foFrame.dispose();
 		// if (allapot == 0) {
@@ -190,7 +191,7 @@ public class Jatek {
 		}
 		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
 
-		//foFrame = new FoFrame(new GombokPanel(), new RajzPanel(), new InfoPanel());
+		// foFrame = new FoFrame(new GombokPanel(), new RajzPanel(), new InfoPanel());
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
 	}
@@ -263,40 +264,49 @@ public class Jatek {
 	 */
 	public static void jatekInditas(boolean nincsAllapot) {
 		Log.call();
-		Jatek.LOG_CONSTRUCTORS = false;
-		Jatek.LOG_FUNCTION_CALLS = false;
+		Integer log_bkp = LOG_LEVEL;
+		LOG_LEVEL = -1;
 
 		Nap n = (Nap) Szkeleton.getObj("nap");
 		leptethetok.add(n);
 		if (nincsAllapot) {
 			ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
+			int vas = 0, szen = 0, vizjeg = 0, uran = 0;
 			for (int i = 0; i < 50; i++) {
+				Szkeleton.letrehoz("Aszteroida", "Aszteroida_" + i, "Nap");
+
 				Aszteroida a = new Aszteroida(n); // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
-				Nyersanyag ny;
+				Nyersanyag ny = null;
+				String nyersanyag_nev = "";
 				switch (i % 5) {
 					case 0:
-						ny = new Vas();
+						nyersanyag_nev = "Vas_" + vas++;
 						break;
 					case 1:
-						ny = new Szen();
+						nyersanyag_nev = "Szen_" + szen++;
 						break;
 					case 2:
-						ny = new Vizjeg();
+						nyersanyag_nev = "Vizjeg_" + vizjeg++;
 						break;
 					case 3:
-						ny = new Uran();
+						nyersanyag_nev = "Uran_" + uran++;
 						break;
 					default: // 4
+						nyersanyag_nev = "";
 						ny = null;
 				}
+				if (nyersanyag_nev != "") {
+					Szkeleton.letrehoz(nyersanyag_nev.split("_")[0], nyersanyag_nev);
+					ny = (Nyersanyag) Szkeleton.getObj(nyersanyag_nev);
+				}
 				a.setNyersanyag(ny);
-
 				a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
 				a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
 
 				if (i == 0) {
 					for (int j = 0; j < JATEKOS_SZAM; j++) {
-						Telepes t = new Telepes();
+						Szkeleton.letrehoz("Telepes", "Telepes_" + j);
+						Telepes t = (Telepes) Szkeleton.getObj("Telepes_" + j);
 						t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
 					}
 				}
@@ -320,19 +330,17 @@ public class Jatek {
 			}
 		}
 
-		allapot = 0; // futó állapit
-		Jatek.LOG_CONSTRUCTORS = true;
-		Jatek.LOG_FUNCTION_CALLS = true;
+		allapot = 0; // futó állapot
+		LOG_LEVEL = log_bkp;
 		InfoPanel infoPanel = new InfoPanel();
-		infoPanel.setTelepes((Telepes)leptethetok.get(1));
+		infoPanel.setTelepes((Telepes) leptethetok.get(1));
 		RajzPanel rajzPanel = new RajzPanel();
 		rajzPanel.setAszteroida(new Aszteroida(n));
 		GombokPanel gombokPanel = new GombokPanel();
-		gombokPanel.setTelepes((Telepes)leptethetok.get(1));
+		gombokPanel.setTelepes((Telepes) leptethetok.get(1));
 		foFrame = new FoFrame(gombokPanel, rajzPanel, infoPanel);
-		//foFrame = new FoFrame(new GombokPanel(), new RajzPanel(), new InfoPanel());
-		foFrame.setTelepes((Telepes)leptethetok.get(1));
-		foFrame.setVisible(true);		
+		foFrame.setTelepes((Telepes) leptethetok.get(1));
+		foFrame.setVisible(true);
 		kovetkezoLepes();
 	}
 
