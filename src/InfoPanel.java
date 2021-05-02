@@ -12,7 +12,7 @@ public class InfoPanel extends JPanel {
 	private Integer reteg = 0;
 	private Integer portal = 0;
 	private String napvihar = "";
-	private String asztnev = "";
+	private String asztnev = "TODO aszteroida nev gen";
 	private JLabel sorszLabel = new JLabel("Telepes sorszama: " + sorsz);
 	private JLabel nyersLabel = new JLabel("Telepes nyersanyagai: " + nyers);
 	private JLabel retegLabel = new JLabel("Aszteroida rétege: " + reteg);
@@ -33,6 +33,8 @@ public class InfoPanel extends JPanel {
 	}
 	
 	public void setTelepes(Telepes t) {
+		//TODO aszteroida nevgen 
+		//TODO uran jelezni hényat élt túl visszarakasnal is
 		jelenlegiTelepes = t;
 		sorsz = jelenlegiTelepes.getSorszam();
 		//asztnev = jelenlegiTelepes.getAszteroida().getNev();
@@ -54,7 +56,7 @@ public class InfoPanel extends JPanel {
 			napvihar = "Nem lesz napvihar!";
 		}
 		sorszLabel.setText("Telepes sorszama: " + sorsz);
-		sorszLabel.setText("Aszteroida neve: " + asztnev);
+		asztnevLabel.setText("Aszteroida neve: " + asztnev);
 		nyersLabel.setText("Telepes nyersanyagai: " + nyers);
 		retegLabel.setText("Aszteroida rétege: " + reteg);
 		portalLabel.setText("Portálkapuk száma: " + portal);
