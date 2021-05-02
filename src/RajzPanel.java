@@ -5,18 +5,18 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class RajzPanel extends JPanel {
-	private Telepes jelenlegiTelepes;
+	private Aszteroida jelenlegiAszteroida;
 	
 	public RajzPanel() {
 		
 	}
 	
-	public void setTelepes(Telepes t) {
-		jelenlegiTelepes = t;
+	public void setAszteroida(Aszteroida a) {
+		jelenlegiAszteroida = a;
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		jelenlegiTelepes.getAszteroida().getView().Draw(g,0); //Sorszam helyere 0 mer a sajátját nem használja
+		jelenlegiAszteroida.getView().Draw(g,0); //Sorszam helyere 0 mer a sajátját nem használja
 	}
 }
