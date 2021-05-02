@@ -3,7 +3,7 @@ package src;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class VizjegView {
+public class VizjegView extends JatekView{
 	public void Draw(Graphics g, Integer sorszam) {
 		int x,y,width,height;
 		x=0;

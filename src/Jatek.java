@@ -7,6 +7,8 @@ import java.util.ConcurrentModificationException;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.swing.JOptionPane;
+
 public class Jatek {
 
 	private static final Jatek INSTANCE = new Jatek();
@@ -43,6 +45,8 @@ public class Jatek {
 	//
 	public static Integer telepesszam = 0;
 	public static Integer allapot = 0;
+	private static Integer szamlalo = 0;
+	private static FoFrame foFrame;
 	public static ArrayList<Leptetheto> leptethetok;
 	private static NyersanyagKoltseg RobothozNyersanyag;
 	private static NyersanyagKoltseg PortalhozNyersanyag;
@@ -58,6 +62,37 @@ public class Jatek {
 	public static void beallitas_visszatoltes() {
 		beallitas_kezeles(false);
 	}
+	
+	/**
+	 * Átadja azt a telepest a FoFrame-nek akinek most jön a köre.
+	 * @param t telepes akinek a köre jön
+	 */
+	public static void enKorom(Telepes t) {
+		foFrame.setTelepes(t);
+	}
+	
+	
+	/**
+	*A kovetkező léptethető lépését hivja. Ha az utolsó léptethetőn vagyunk akkor vissz megy az első léptethetőre
+	*/
+	public static void kovetkezoLepes() {
+		if(allapot==0) {
+			if(szamlalo==leptethetok.size()){
+		          szamlalo=0;
+		    }
+		    leptethetok.get(szamlalo++).Lepes();
+		}else {
+			if(allapot==1) {
+				JOptionPane.showMessageDialog(foFrame,  "Gratulálunk Nyertél", "Hurrá", JOptionPane.INFORMATION_MESSAGE);
+			}else {
+				JOptionPane.showMessageDialog(foFrame,  "Gratulálunk Vesztettél", "Jajne!", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			foFrame.dispose();
+		}
+		
+	}
+
 
 	/**
 	 * Program indulásánál elmenti a játék beállításait és vissza is tölti azt
@@ -260,22 +295,9 @@ public class Jatek {
 		}
 
 		allapot = 0; // futó állapit
-		ArrayList<Leptetheto> temp = leptethetok;
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
-		Log.info(leptethetok.toString());
-		while (allapot == 0) {
-			try {
-				for (int i = 0; i < leptethetok.size(); i++) {
-					leptethetok.get(i).Lepes();
-					if (allapot != 0) { // ha egy lépés után vége a játéknak
-						break;
-					}
-				}
-			} catch (ConcurrentModificationException e) {
-
-			}
-		}
+		kovetkezoLepes();
 	}
 
 	/**
