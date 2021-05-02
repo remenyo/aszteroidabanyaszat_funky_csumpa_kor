@@ -2,6 +2,7 @@ package src;
 
 abstract public class Nyersanyag {
     private String nev = "Nyersanyag";
+    protected JatekView jatekView;
 
     Nyersanyag(String nev) {
         Log.ctor();
@@ -49,5 +50,9 @@ abstract public class Nyersanyag {
      */
     public String getNev() {
         return nev;
+    }
+    
+    public JatekView getView() {
+    	return jatekView;
     }
 }

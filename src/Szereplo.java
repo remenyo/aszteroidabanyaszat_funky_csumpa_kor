@@ -5,7 +5,8 @@ import java.util.ArrayList;
 abstract public class Szereplo implements Leptetheto {
     protected Aszteroida aszteroida; // Szereplő aszteroidája amin tartózkodik
     protected Boolean lepett = false;// Megmutatja, hogy lépette a szereplő ebben a körben
-
+    protected JatekView jatekView;
+    
     /**
      * Szereplo konstruktora
      */
@@ -106,5 +107,7 @@ abstract public class Szereplo implements Leptetheto {
         lepett = false;
     }
     
-    public abstract JatekView getView();
+    public JatekView getView() {
+    	return jatekView;
+    }
 }

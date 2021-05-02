@@ -35,8 +35,8 @@ public class Szkeleton {
 
 	public static void Fomenu() {
 		while (true) {
-			int valasz = Cin.kerdez_tobbvalasz("Főmenü", "Játék indítás", "Parancssor",
-					"Teszt betöltés", "Játék alaphelyzetbe állítása", "Kilépés");
+			int valasz = Cin.kerdez_tobbvalasz("FĹ‘menĂĽ", "JĂˇtĂ©k indĂ­tĂˇs", "Parancssor",
+					"Teszt betĂ¶ltĂ©s", "JĂˇtĂ©k alaphelyzetbe ĂˇllĂ­tĂˇsa", "KilĂ©pĂ©s");
 			switch (valasz) {
 				case 1:
 					Jatek.jatekInditas(objektumok.size() == 3);
@@ -45,13 +45,13 @@ public class Szkeleton {
 					teszt_parancssor();
 					break;
 				case 3:
-					teszt_betoltes(Cin.getString("A fájl neve/címe:"));
+					teszt_betoltes(Cin.getString("A fĂˇjl neve/cĂ­me:"));
 					break;
 				case 4:
 					teszt_reset();
 					break;
 				case 5:
-					if (Cin.getBool("Ez törli a játék állapotát, biztos vagy benne?"))
+					if (Cin.getBool("Ez tĂ¶rli a jĂˇtĂ©k ĂˇllapotĂˇt, biztos vagy benne?"))
 						return;
 				default:
 					break;
@@ -60,9 +60,9 @@ public class Szkeleton {
 	};
 
 	/**
-	 * Reseteli a jelenlegi állapotot vissza állítva a betöltési állapotba
+	 * Reseteli a jelenlegi Ăˇllapotot vissza ĂˇllĂ­tva a betĂ¶ltĂ©si Ăˇllapotba
 	 * 
-	 * @param ny Beállítandó nyersanyag
+	 * @param ny BeĂˇllĂ­tandĂł nyersanyag
 	 */
 	protected static void reset() {
 		inkonzisztens_allapot = false;
@@ -83,17 +83,17 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Visszaad egy tipus típusú objektumot, aminek az értéke az ertek. Ha létezik ertek
-	 * azonosí­tóval tipus típusú objektum az objektumok tömbben, akkor azt az objektumot adja
-	 * vissza. Ha nem sikeres az átalakí­tás, a függvény kivételt generál.
+	 * Visszaad egy tipus tĂ­pusĂş objektumot, aminek az Ă©rtĂ©ke az ertek. Ha lĂ©tezik ertek
+	 * azonosĂ­Â­tĂłval tipus tĂ­pusĂş objektum az objektumok tĂ¶mbben, akkor azt az objektumot adja
+	 * vissza. Ha nem sikeres az ĂˇtalakĂ­Â­tĂˇs, a fĂĽggvĂ©ny kivĂ©telt generĂˇl.
 	 * 
-	 * @param tipus A visszaadandó objektum tí­pusa
-	 * @param ertek Az objektum értéke
-	 * @return {@code tipus} tí­pusú, {@code ertek} értékű objektum
-	 * @throws Exception Ha nem sikerül az átlakí­tás, kivételt generál a függvény.
+	 * @param tipus A visszaadandĂł objektum tĂ­Â­pusa
+	 * @param ertek Az objektum Ă©rtĂ©ke
+	 * @return {@code tipus} tĂ­Â­pusĂş, {@code ertek} Ă©rtĂ©kĹ± objektum
+	 * @throws Exception Ha nem sikerĂĽl az ĂˇtlakĂ­Â­tĂˇs, kivĂ©telt generĂˇl a fĂĽggvĂ©ny.
 	 */
 	private static Object egyParameterTipusForditas(Class<?> tipus, String ertek) throws Exception {
-		// van ilyen objektumunk tárolva véletlen?
+		// van ilyen objektumunk tĂˇrolva vĂ©letlen?
 		if (objektumok.containsKey(ertek.toLowerCase())) {
 			if (tipus.isInstance(objektumok.get(ertek))) {
 
@@ -111,18 +111,18 @@ public class Szkeleton {
 			} catch (Exception e) {
 				Log.error(e.toString());
 				Log.debug(tipus.toString() + " " + ertek.toString());
-				throw new Exception("Fordí­tás sikertelen", e);
+				throw new Exception("FordĂ­Â­tĂˇs sikertelen", e);
 			}
 		}
 	}
 
 	/**
-	 * Az ertekek tömb érékeit a tipus tömb szerinti tí­pusú objektumokká alakí­tja, majd visszaadja
-	 * őket egy tömbben. Hiba esetén null-al tér vissza.
+	 * Az ertekek tĂ¶mb Ă©rĂ©keit a tipus tĂ¶mb szerinti tĂ­Â­pusĂş objektumokkĂˇ alakĂ­Â­tja, majd visszaadja
+	 * Ĺ‘ket egy tĂ¶mbben. Hiba esetĂ©n null-al tĂ©r vissza.
 	 * 
-	 * @param tipusok kí­vánt tí­pusok
-	 * @param ertekek kí­vánt értékek
-	 * @return {@code tipus} tí­pusú, {@code ertek} értékű objektum tömb
+	 * @param tipusok kĂ­Â­vĂˇnt tĂ­Â­pusok
+	 * @param ertekek kĂ­Â­vĂˇnt Ă©rtĂ©kek
+	 * @return {@code tipus} tĂ­Â­pusĂş, {@code ertek} Ă©rtĂ©kĹ± objektum tĂ¶mb
 	 */
 	private static Object[] tobbParameterTipusForditas(Class<?>[] tipusok, String[] ertekek) {
 		// a varargok kifogtak rajtam...
@@ -142,11 +142,11 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Megkeres és visszaadja a cls osztály vagy annak ősében található adattag_nev nevű adattagot.
+	 * Megkeres Ă©s visszaadja a cls osztĂˇly vagy annak Ĺ‘sĂ©ben talĂˇlhatĂł adattag_nev nevĹ± adattagot.
 	 * 
-	 * @param cls A keresendő osztály
-	 * @param adattag_nev A keresendő adattag név
-	 * @return A megtalált adattag. Ha nem létezik, nullal tér vissza.
+	 * @param cls A keresendĹ‘ osztĂˇly
+	 * @param adattag_nev A keresendĹ‘ adattag nĂ©v
+	 * @return A megtalĂˇlt adattag. Ha nem lĂ©tezik, nullal tĂ©r vissza.
 	 */
 	private static Field adattagKereses(Class<?> cls, String adattag_nev) {
 		do {
@@ -161,35 +161,35 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Létrehoz egy tipus tí­pusú objektumot az argumentumok felhasználásával, majd elmenti az
-	 * objektumok tömbbe, id azonosí­tóval. Ha nem talál megfelelő konstruktort, vagy nem tudja
-	 * átalakí­tani az argumentumokat megfelelő tí­pusra vagy az id azonosí­tó foglalt, nem hoz
-	 * létre semmit.
+	 * LĂ©trehoz egy tipus tĂ­Â­pusĂş objektumot az argumentumok felhasznĂˇlĂˇsĂˇval, majd elmenti az
+	 * objektumok tĂ¶mbbe, id azonosĂ­Â­tĂłval. Ha nem talĂˇl megfelelĹ‘ konstruktort, vagy nem tudja
+	 * ĂˇtalakĂ­Â­tani az argumentumokat megfelelĹ‘ tĂ­Â­pusra vagy az id azonosĂ­Â­tĂł foglalt, nem hoz
+	 * lĂ©tre semmit.
 	 * 
 	 * @param tipus
 	 * @param id
 	 * @param argumentumok
 	 * 
-	 * @return Boolean a függvény sikerességét jelzi.
+	 * @return Boolean a fĂĽggvĂ©ny sikeressĂ©gĂ©t jelzi.
 	 */
 	public static Boolean letrehoz(String tipus, String id, String... argumentumok) {
 		if (objektumok.containsKey(id)) {
-			Log.error("A megadott azonosí­tó már létezik! (" + id + ")");
+			Log.error("A megadott azonosĂ­Â­tĂł mĂˇr lĂ©tezik! (" + id + ")");
 			inkonzisztencia();
 			return false;
 		}
 		try {
 			Class<?> cls = Class.forName("src." + tipus);
 			Constructor<?>[] constructors = cls.getDeclaredConstructors();
-			// végignézem a konstruktorokat
+			// vĂ©gignĂ©zem a konstruktorokat
 			for (Constructor<?> constructor : constructors) {
 				Object[] tipusos_parameterek =
 						tobbParameterTipusForditas(constructor.getParameterTypes(), argumentumok);
 
-				if (tipusos_parameterek != null) { // A LÉNYEG
+				if (tipusos_parameterek != null) { // A LĂ‰NYEG
 					try {
 						objektumok.put(id, constructor.newInstance(tipusos_parameterek));
-						Log.info(id + " " + cls.getName() + " Sikeresen létrehozva");
+						Log.info(id + " " + cls.getName() + " Sikeresen lĂ©trehozva");
 						return true;
 					} catch (Exception e) {
 						inkonzisztencia();
@@ -205,18 +205,18 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Az id azonosí­tójú objektumon meghí­vja a fuggveny_nev nevű függvényt az argumentumok
-	 * argumentumokkal. A visszatérési érték a hí­vott függvény eredménye
+	 * Az id azonosĂ­Â­tĂłjĂş objektumon meghĂ­Â­vja a fuggveny_nev nevĹ± fĂĽggvĂ©nyt az argumentumok
+	 * argumentumokkal. A visszatĂ©rĂ©si Ă©rtĂ©k a hĂ­Â­vott fĂĽggvĂ©ny eredmĂ©nye
 	 * 
 	 * @param id
 	 * @param fuggveny_nev
 	 * @param argumentumok
 	 * 
-	 * @return A hívott függvény visszatérési értéke.
+	 * @return A hĂ­vott fĂĽggvĂ©ny visszatĂ©rĂ©si Ă©rtĂ©ke.
 	 */
 	public static Object hiv(String id, String fuggveny_nev, String... argumentumok) {
 		if (!objektumok.containsKey(id)) {
-			Log.error("Az azonosí­tó nem létezik! (" + id + ")");
+			Log.error("Az azonosĂ­Â­tĂł nem lĂ©tezik! (" + id + ")");
 			return null;
 		}
 		Class<?> cls = objektumok.get(id).getClass();
@@ -230,27 +230,27 @@ public class Szkeleton {
 						return fuggveny.invoke(objektumok.get(id), tipusos_parameterek);
 					} catch (Exception e) {
 						Log.warn(
-								"A függvényhí­vás hí­vás nem sikerült. A program inkonzisztens állapotba kerülhetett.");
+								"A fĂĽggvĂ©nyhĂ­Â­vĂˇs hĂ­Â­vĂˇs nem sikerĂĽlt. A program inkonzisztens Ăˇllapotba kerĂĽlhetett.");
 						inkonzisztencia();
 						Log.debug(e.toString());
 					}
 				}
 			}
 		}
-		Log.warn(fuggveny_nev + " nem található, vagy a megadott paraméterek nem megfelelőek. ("
-				+ cls.getName() + " osztályon hí­vva).");
+		Log.warn(fuggveny_nev + " nem talĂˇlhatĂł, vagy a megadott paramĂ©terek nem megfelelĹ‘ek. ("
+				+ cls.getName() + " osztĂˇlyon hĂ­Â­vva).");
 		return null;
 	}
 
 	/**
-	 * Az id azonosí­tójú objektum adattag_neve nevű adattagját uj_ertek értékre állí­tja be, ha
-	 * létezik az adattag, és átalakí­tható az uj_ertek az adattag tí­pusára.
+	 * Az id azonosĂ­Â­tĂłjĂş objektum adattag_neve nevĹ± adattagjĂˇt uj_ertek Ă©rtĂ©kre ĂˇllĂ­Â­tja be, ha
+	 * lĂ©tezik az adattag, Ă©s ĂˇtalakĂ­Â­thatĂł az uj_ertek az adattag tĂ­Â­pusĂˇra.
 	 * 
 	 * @param id
 	 * @param adattag_neve
 	 * @param uj_ertek
 	 * 
-	 * @return Boolean a függvény sikerességét jelzi.
+	 * @return Boolean a fĂĽggvĂ©ny sikeressĂ©gĂ©t jelzi.
 	 */
 	public static Boolean beallit(String id, String adattag_neve, String uj_ertek) {
 		Boolean sikeres = false;
@@ -259,7 +259,7 @@ public class Szkeleton {
 		boolean private_field = Modifier.isPrivate(modifier);
 		if (private_field) {
 			Log.warn(Modifier.toString(modifier) + " adattag (" + adattag.getName()
-					+ ") beállí­tása.");
+					+ ") beĂˇllĂ­Â­tĂˇsa.");
 			adattag.setAccessible(true);
 		}
 
@@ -280,16 +280,16 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Információ az adott azonosítójú objektumról
-	 * @param id - objektum azonosítója
-	 * @return - információ
+	 * InformĂˇciĂł az adott azonosĂ­tĂłjĂş objektumrĂłl
+	 * @param id - objektum azonosĂ­tĂłja
+	 * @return - informĂˇciĂł
 	 */
 	public static String info(String id) {
 		try {
 			return String.class.cast(hiv(id, "toString"));
 		} catch (Exception e) {
 			Log.error(e.toString());
-			return id + "-nek (" + className(id) + ") nincs toString() függvénye.";
+			return id + "-nek (" + className(id) + ") nincs toString() fĂĽggvĂ©nye.";
 		}
 	}
 
@@ -303,18 +303,18 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Objektum lekérdezése azonosítóból
-	 * @param id - azonosító
-	 * @return - megfelelő objektum
+	 * Objektum lekĂ©rdezĂ©se azonosĂ­tĂłbĂłl
+	 * @param id - azonosĂ­tĂł
+	 * @return - megfelelĹ‘ objektum
 	 */
 	public static Object getObj(String id) {
 		return objektumok.get(id);
 	}
 
 	/**
-	 * Azonosító lekérdezése
-	 * @param object - objektum, aminek az azonosítóját lekérdezzük
-	 * @return - azonosító
+	 * AzonosĂ­tĂł lekĂ©rdezĂ©se
+	 * @param object - objektum, aminek az azonosĂ­tĂłjĂˇt lekĂ©rdezzĂĽk
+	 * @return - azonosĂ­tĂł
 	 */
 	public static String getID(Object object) {
 		for (Entry<String, Object> e : objektumok.entrySet()) {
@@ -326,7 +326,7 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Inkonzisztens állapotba kerülés
+	 * Inkonzisztens Ăˇllapotba kerĂĽlĂ©s
 	 */
 	private static void inkonzisztencia() {
 		if (automata_futas) {
@@ -335,14 +335,14 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Játék menü műveletek
+	 * JĂˇtĂ©k menĂĽ mĹ±veletek
 	 */
 	public static void JatekMenu() {
-		switch (Cin.kerdez_tobbvalasz("MENÜ", "Mozgás űrhajóval", "Mozgás teleport kapun keresztül",
-				"Bányászat", "Ví­zjég Fúrás", "Urán fúrás", "Fúrás vas", "Portálkapu épí­tés",
-				"Robot épí­tés", "Nyersanyag visszahelyezés", "Portál lehelyezés",
-				"Robot Urán fúrás", "Napvihar")) {
-			// TODO ez kell még?
+		switch (Cin.kerdez_tobbvalasz("MENĂś", "MozgĂˇs Ĺ±rhajĂłval", "MozgĂˇs teleport kapun keresztĂĽl",
+				"BĂˇnyĂˇszat", "VĂ­Â­zjĂ©g FĂşrĂˇs", "UrĂˇn fĂşrĂˇs", "FĂşrĂˇs vas", "PortĂˇlkapu Ă©pĂ­Â­tĂ©s",
+				"Robot Ă©pĂ­Â­tĂ©s", "Nyersanyag visszahelyezĂ©s", "PortĂˇl lehelyezĂ©s",
+				"Robot UrĂˇn fĂşrĂˇs", "Napvihar")) {
+			// TODO ez kell mĂ©g?
 
 			default:
 				break;
@@ -350,12 +350,12 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Bányászat kiválasztása
+	 * BĂˇnyĂˇszat kivĂˇlasztĂˇsa
 	 */
 	public static void BanyaszatMenu() {
-		switch (Cin.kerdez_tobbvalasz("Bí?NYí?SZAT", "Urán Bányászat", "Ví­zjég Bányászat",
-				"Szén Bányászat", "Vas Bányászat")) {
-			// TODO ez kell még?
+		switch (Cin.kerdez_tobbvalasz("BĂ­?NYĂ­?SZAT", "UrĂˇn BĂˇnyĂˇszat", "VĂ­Â­zjĂ©g BĂˇnyĂˇszat",
+				"SzĂ©n BĂˇnyĂˇszat", "Vas BĂˇnyĂˇszat")) {
+			// TODO ez kell mĂ©g?
 
 			default:
 				break;
@@ -363,14 +363,14 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Visszahelyezendő nyersanyag kiválasztása
+	 * VisszahelyezendĹ‘ nyersanyag kivĂˇlasztĂˇsa
 	 */
 	public static void NyersanyagVisszahelyezesMenu() {
-		System.out.println("1. Urán visszahelyezés\r\n" + "2. Ví­zjég visszahelyezés\r\n"
-				+ "3. Szén visszahelyezés\r\n" + "4. Vas visszahelyezés");
-		switch (Cin.kerdez_tobbvalasz("BÁNYÁSZAT", "Urán visszahelyezés", "Ví­zjég visszahelyezés",
-				"Szén visszahelyezés", "Vas visszahelyezés")) {
-			// TODO ez kell még?
+		System.out.println("1. UrĂˇn visszahelyezĂ©s\r\n" + "2. VĂ­Â­zjĂ©g visszahelyezĂ©s\r\n"
+				+ "3. SzĂ©n visszahelyezĂ©s\r\n" + "4. Vas visszahelyezĂ©s");
+		switch (Cin.kerdez_tobbvalasz("BĂ�NYĂ�SZAT", "UrĂˇn visszahelyezĂ©s", "VĂ­Â­zjĂ©g visszahelyezĂ©s",
+				"SzĂ©n visszahelyezĂ©s", "Vas visszahelyezĂ©s")) {
+			// TODO ez kell mĂ©g?
 
 			default:
 				break;
@@ -378,8 +378,8 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Tesztek betöltése
-	 * @param mappa_vagy_file - mappa vagy file ahonnan a betöltés történik
+	 * Tesztek betĂ¶ltĂ©se
+	 * @param mappa_vagy_file - mappa vagy file ahonnan a betĂ¶ltĂ©s tĂ¶rtĂ©nik
 	 */
 	public static void teszt_betoltes(String mappa_vagy_file) {
 		automata_futas = true;
@@ -390,10 +390,10 @@ public class Szkeleton {
 			Log.debug("Teszt " + file.getName());
 			Filekezelo.auto_teszt_futtatas(file);
 			if (!automata_futas && inkonzisztens_allapot) {
-				Log.warn("A teszt nem biztos hogy végig lefutott.");
+				Log.warn("A teszt nem biztos hogy vĂ©gig lefutott.");
 				break;
 			} else {
-				Log.debug(file.getName() + " végig lefutott.");
+				Log.debug(file.getName() + " vĂ©gig lefutott.");
 				teszt_mentes(dir_to_save + "\\" + file.getName().replace(".txt", ""));
 			}
 		}
@@ -401,7 +401,7 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Parancssor működése
+	 * Parancssor mĹ±kĂ¶dĂ©se
 	 */
 	public static void teszt_parancssor() {
 		dir_to_save = "";
@@ -414,7 +414,7 @@ public class Szkeleton {
 			if (parancs.toLowerCase().equals("kilepes")) {
 				return;
 			} else if (parancs.toLowerCase().equals("parancssor")) {
-				Log.info("Már a parancssorban vagy.");
+				Log.info("MĂˇr a parancssorban vagy.");
 			} else {
 				String[] argumentumok = parancs.split(":");
 				if (argumentumok.length == 1) {
@@ -428,19 +428,19 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Minden parancs következményének elvetése
+	 * Minden parancs kĂ¶vetkezmĂ©nyĂ©nek elvetĂ©se
 	 */
 	public static void teszt_reset() {
 		if (automata_futas || Cin.getBool(
-				"A program minden beállí­tása alapértelmezett értékre áll vissza, és minden létrehozott objektum törlődik. Biztos vagy benne?")) {
+				"A program minden beĂˇllĂ­Â­tĂˇsa alapĂ©rtelmezett Ă©rtĂ©kre Ăˇll vissza, Ă©s minden lĂ©trehozott objektum tĂ¶rlĹ‘dik. Biztos vagy benne?")) {
 			reset();
 		}
 	}
 
 	/**
-	 * Portál létrehozása aszteroidán
-	 * @param pid - portál azonosítója
-	 * @param aid - aszteroida azonosítója
+	 * PortĂˇl lĂ©trehozĂˇsa aszteroidĂˇn
+	 * @param pid - portĂˇl azonosĂ­tĂłja
+	 * @param aid - aszteroida azonosĂ­tĂłja
 	 */
 	public static void teszt_letrehozPortalAszteroida(String pid, String aid) {
 		if (!letrehoz("Portal", pid))
@@ -450,9 +450,9 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Aszteroidák szomszédjának beállítása
-	 * @param aid1 - első aszteroida azonosítója
-	 * @param aid2 - másoik aszteroida azonosítója
+	 * AszteroidĂˇk szomszĂ©djĂˇnak beĂˇllĂ­tĂˇsa
+	 * @param aid1 - elsĹ‘ aszteroida azonosĂ­tĂłja
+	 * @param aid2 - mĂˇsoik aszteroida azonosĂ­tĂłja
 	 */
 	public static void teszt_osszekotAszteroida(String aid1, String aid2) {
 		hiv(aid1, "hozzaadSzomszed", aid2);
@@ -460,9 +460,9 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Portálpárok beállítása
-	 * @param pid1 - első portál azonosítója
-	 * @param pid2 - másoik portál azonosítója
+	 * PortĂˇlpĂˇrok beĂˇllĂ­tĂˇsa
+	 * @param pid1 - elsĹ‘ portĂˇl azonosĂ­tĂłja
+	 * @param pid2 - mĂˇsoik portĂˇl azonosĂ­tĂłja
 	 */
 	public static void teszt_osszekotPortal(String pid1, String pid2) {
 		hiv(pid1, "beallitPar", pid2);
@@ -476,9 +476,9 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Robot építése
-	 * @param tid - telepes azonosítója, aki építi a robotot
-	 * @param rid - Robot azonosítója
+	 * Robot Ă©pĂ­tĂ©se
+	 * @param tid - telepes azonosĂ­tĂłja, aki Ă©pĂ­ti a robotot
+	 * @param rid - Robot azonosĂ­tĂłja
 	 */
 	public static void teszt_epitRobot(String tid, String rid) {
 		if (lepesTeszt(tid)) {
@@ -489,8 +489,8 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Bányászás tesztelése
-	 * @param tid - telepes azonosítója, aki bányászik
+	 * BĂˇnyĂˇszĂˇs tesztelĂ©se
+	 * @param tid - telepes azonosĂ­tĂłja, aki bĂˇnyĂˇszik
 	 */
 	public static void teszt_banyaszas(String tid) {
 		if (lepesTeszt(tid)) {
@@ -499,18 +499,18 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Szó nagykezdőbetűbetűsítése
-	 * @param szo - átalakítandó szó
-	 * @return - átalakított szó
+	 * SzĂł nagykezdĹ‘betĹ±betĹ±sĂ­tĂ©se
+	 * @param szo - ĂˇtalakĂ­tandĂł szĂł
+	 * @return - ĂˇtalakĂ­tott szĂł
 	 */
 	public static String Nagykezdobetusites(String szo) {
 		return ((szo.charAt(0) + "").toUpperCase() + szo.substring(1));
 	}
 
 	/**
-	 * Nyersanyag létrehozása
-	 * @param nyid - nyersanyag azonosítója
-	 * @param tipus - nyersanyag típusa
+	 * Nyersanyag lĂ©trehozĂˇsa
+	 * @param nyid - nyersanyag azonosĂ­tĂłja
+	 * @param tipus - nyersanyag tĂ­pusa
 	 */
 	public static void teszt_letrehozNyersanyag(String nyid, String tipus) {
 		if (!letrehoz(Nagykezdobetusites(tipus), nyid))
@@ -518,11 +518,11 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Aszteroida létrehozása
-	 * @param aid - Aszteroida azonosítója
-	 * @param reteg - Aszteroida rétege
-	 * @param napkozel - Napközel vagy naptávol
-	 * @param nyid - nyersanyag, ami az aszteroidában van
+	 * Aszteroida lĂ©trehozĂˇsa
+	 * @param aid - Aszteroida azonosĂ­tĂłja
+	 * @param reteg - Aszteroida rĂ©tege
+	 * @param napkozel - NapkĂ¶zel vagy naptĂˇvol
+	 * @param nyid - nyersanyag, ami az aszteroidĂˇban van
 	 */
 	public static void teszt_letrehozAszteroida(String aid, String reteg, String napkozel,
 			String nyid) {
@@ -535,10 +535,10 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Telepes létrehozása
-	 * @param tid - telepes azonosítója
-	 * @param aid - aszteroida azonosítója, ahova a telepes kerül
-	 * @param nyids - nyersanyag azonosítója, ami a telepesnél lesz
+	 * Telepes lĂ©trehozĂˇsa
+	 * @param tid - telepes azonosĂ­tĂłja
+	 * @param aid - aszteroida azonosĂ­tĂłja, ahova a telepes kerĂĽl
+	 * @param nyids - nyersanyag azonosĂ­tĂłja, ami a telepesnĂ©l lesz
 	 */
 	public static void teszt_letrehozTelepes(String tid, String aid, String nyids) {
 		if (!letrehoz("Telepes", tid))
@@ -552,7 +552,7 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Adott azonosítójú objektum mozgatása egy helyre.
+	 * Adott azonosĂ­tĂłjĂş objektum mozgatĂˇsa egy helyre.
 	 * @param id - objektum, ami mozog
 	 * @param aid - hely, ahova mozog az objektum
 	 */
@@ -569,8 +569,8 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Adott azonosítójú objektum információjának kiiratása
-	 * @param id - objektum azonosítója
+	 * Adott azonosĂ­tĂłjĂş objektum informĂˇciĂłjĂˇnak kiiratĂˇsa
+	 * @param id - objektum azonosĂ­tĂłja
 	 */
 	public static void teszt_info(String id) {
 		String result = info(id);
@@ -579,9 +579,9 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Program kimenetének lementése 'nev'_eredmeny nevű jegyzettömbbe
-	 * @param nev - ez lesz a file első felének neve
-	 * @return - sikerességérték
+	 * Program kimenetĂ©nek lementĂ©se 'nev'_eredmeny nevĹ± jegyzettĂ¶mbbe
+	 * @param nev - ez lesz a file elsĹ‘ felĂ©nek neve
+	 * @return - sikeressĂ©gĂ©rtĂ©k
 	 */
 	public static Boolean teszt_mentes(String nev) {
 		// TODO beirni 0. fejezetbe hogy ne irjak oda hogy .txt
@@ -606,7 +606,7 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Minden információ kilogolása
+	 * Minden informĂˇciĂł kilogolĂˇsa
 	 */
 	public static void teszt_infoMinden() {
 		for (String id : objektumok.keySet()) {
@@ -617,7 +617,7 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Játék állapotának lekérése
+	 * JĂˇtĂ©k ĂˇllapotĂˇnak lekĂ©rĂ©se
 	 */
 	public static void teszt_infoAllapot() {
 		Integer jelenlegiAllapot = ((Integer) hiv("jatek", "getAllapot"));
@@ -635,7 +635,7 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Új kör indítása
+	 * Ăšj kĂ¶r indĂ­tĂˇsa
 	 */
 	public static void mindenkiLepett() {
 		if (Jatek.mindenkiLepett())
@@ -643,10 +643,10 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Robot létrehozása aszteroidára
+	 * Robot lĂ©trehozĂˇsa aszteroidĂˇra
 	 * 
-	 * @param rid - robot azonosítója
-	 * @param aid - Aszteroida azonosítója, ahova a robot kerülni fog
+	 * @param rid - robot azonosĂ­tĂłja
+	 * @param aid - Aszteroida azonosĂ­tĂłja, ahova a robot kerĂĽlni fog
 	 */
 	public static void teszt_letrehozRobot(String rid, String aid) {
 		if (!letrehoz("Robot", rid))
@@ -655,10 +655,10 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Ufó létrehozása eg aszteroidára
+	 * UfĂł lĂ©trehozĂˇsa eg aszteroidĂˇra
 	 * 
-	 * @param uid - ufó azonosítója
-	 * @param aid - Aszteroida azonosítója, ahova az ufó kerülni fog
+	 * @param uid - ufĂł azonosĂ­tĂłja
+	 * @param aid - Aszteroida azonosĂ­tĂłja, ahova az ufĂł kerĂĽlni fog
 	 */
 	public static void teszt_letrehozUfo(String uid, String aid) {
 		if (!letrehoz("Ufo", uid))
@@ -667,10 +667,10 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Portál létrehozása a telepes űrhajójába
+	 * PortĂˇl lĂ©trehozĂˇsa a telepes Ĺ±rhajĂłjĂˇba
 	 * 
-	 * @param pid - Létrehozandó portál azonosítója
-	 * @param tid - Telepes, akihez a portál kerülni fog
+	 * @param pid - LĂ©trehozandĂł portĂˇl azonosĂ­tĂłja
+	 * @param tid - Telepes, akihez a portĂˇl kerĂĽlni fog
 	 */
 	public static void teszt_letrehozPortalTelepes(String pid, String tid) {
 		if (((Telepes) getObj(tid)).getPortal().size() < 3) {
@@ -682,41 +682,41 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Nyersanyag visszarakásának tesztelése
+	 * Nyersanyag visszarakĂˇsĂˇnak tesztelĂ©se
 	 * 
 	 * @param tid - telepes, aki visszarakja a nyersanyagot
-	 * @param nyid - visszarakandó nyersanyag
+	 * @param nyid - visszarakandĂł nyersanyag
 	 */
 	public static void teszt_visszarakNyersanyag(String tid, String nyid) {
 		if (lepesTeszt(tid)) {
-			// if(((Telepes) getObj(tid)).getNyersanyagok().size()>0) //itt talán nem kellene
-			// ellenőrizni, mert a játék működése nem itt zajlik
+			// if(((Telepes) getObj(tid)).getNyersanyagok().size()>0) //itt talĂˇn nem kellene
+			// ellenĹ‘rizni, mert a jĂˇtĂ©k mĹ±kĂ¶dĂ©se nem itt zajlik
 			hiv(tid, "visszarakNyersanyag", nyid);
 		}
 	}
 
 	/**
-	 * Léptethetők lépésének tesztelése
+	 * LĂ©ptethetĹ‘k lĂ©pĂ©sĂ©nek tesztelĂ©se
 	 * 
-	 * @param id - léptethető azonosítója
-	 * @return - sikeres e a lépés
+	 * @param id - lĂ©ptethetĹ‘ azonosĂ­tĂłja
+	 * @return - sikeres e a lĂ©pĂ©s
 	 */
 	public static Boolean lepesTeszt(String id) {
 		if ((Boolean) hiv(id, "lepette") == false) {
 			beallit(id, "lepett", "true");
 			mindenkiLepett();
-			return true; // léphet
+			return true; // lĂ©phet
 		}
-		Log.warn("Már lépett!");
+		Log.warn("MĂˇr lĂ©pett!");
 		inkonzisztencia();
 		return false;
 	}
 
 	/**
-	 * Portál lerakásának tesztelése
+	 * PortĂˇl lerakĂˇsĂˇnak tesztelĂ©se
 	 * 
-	 * @param tid - telepes, aki lerakja a portált
-	 * @param pid - lerakandó portál zonosítója
+	 * @param tid - telepes, aki lerakja a portĂˇlt
+	 * @param pid - lerakandĂł portĂˇl zonosĂ­tĂłja
 	 */
 	public static void teszt_lerakPortal(String tid, String pid) {
 		if (lepesTeszt(tid)) {
@@ -725,16 +725,16 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Portálépítés tesztelése
+	 * PortĂˇlĂ©pĂ­tĂ©s tesztelĂ©se
 	 * 
-	 * @param tid - telepes építi a portált
-	 * @param pid1 - első építendő portál azonosítója
-	 * @param pid2 - második építendő portál azonosítója
+	 * @param tid - telepes Ă©pĂ­ti a portĂˇlt
+	 * @param pid1 - elsĹ‘ Ă©pĂ­tendĹ‘ portĂˇl azonosĂ­tĂłja
+	 * @param pid2 - mĂˇsodik Ă©pĂ­tendĹ‘ portĂˇl azonosĂ­tĂłja
 	 */
 	public static void teszt_epitPortal(String tid, String pid1, String pid2) {
 		if (lepesTeszt(tid)) {
 			ArrayList<Portal> portalok = (ArrayList<Portal>) hiv(tid, "epitPortal");
-			// Az Unchecked cast warning nem lényeges, az epitPortal biztosan
+			// Az Unchecked cast warning nem lĂ©nyeges, az epitPortal biztosan
 			// vagy ArrayList<Portal>-t vagy null-t ad vissza.
 			if (portalok != null) {
 				objektumok.put(pid1, portalok.get(0));
@@ -744,9 +744,9 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Fúrás tesztelése
+	 * FĂşrĂˇs tesztelĂ©se
 	 * 
-	 * @param id - ezen az azonosítójú objektumon meghívódik a fúrás
+	 * @param id - ezen az azonosĂ­tĂłjĂş objektumon meghĂ­vĂłdik a fĂşrĂˇs
 	 */
 	public static void teszt_furas(String id) {
 		if (lepesTeszt(id)) {
@@ -755,9 +755,9 @@ public class Szkeleton {
 	}
 
 	/**
-	 * Napvihar okozása aszteroidákon
+	 * Napvihar okozĂˇsa aszteroidĂˇkon
 	 * 
-	 * @param aids - azoknak az aszteroidáknak az azonosítója vesszőkkel elválasztva, amiken
+	 * @param aids - azoknak az aszteroidĂˇknak az azonosĂ­tĂłja vesszĹ‘kkel elvĂˇlasztva, amiken
 	 *        napvihar lesz
 	 */
 	public static void teszt_napviharOkozasa(String aids) { // hehe
