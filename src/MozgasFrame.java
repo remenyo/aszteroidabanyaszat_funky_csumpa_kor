@@ -22,7 +22,7 @@ public MozgasFrame(ArrayList<Hely> szomszedok1) {
 	add(rajzPanel);
 	box.addItemListener(new ItemListener() {
 		public void itemStateChanged(java.awt.event.ItemEvent evt) {
-            rajzPanel.setAszteroida((Hely)box.getSelectedItem());
+            rajzPanel.setAszteroida(szomszedok.get(box.getSelectedIndex()).szomszedosAszteroida());
         }
 	});
 	}
