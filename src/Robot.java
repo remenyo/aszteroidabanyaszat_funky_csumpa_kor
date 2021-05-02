@@ -2,7 +2,7 @@ package src;
 
 // Mesterséges intelligencia, amely fúrhat vagy mozoghat
 public class Robot extends Szereplo {
-
+	private RobotView robotView;
 	/**
 	 * Robot konstora
 	 */
@@ -70,5 +70,10 @@ public class Robot extends Szereplo {
 			super.Mozgas(sorszam);
 		}
 
+	}
+
+	@Override
+	public JatekView getView() {
+		return robotView;
 	}
 }
