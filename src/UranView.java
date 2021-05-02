@@ -10,7 +10,8 @@ public class UranView {
 		y=0;
 		width=0;
 		height=0;
-		g.setColor(Color.GREEN);
+		Color sotetzold = new Color(0,100,0);
+		g.setColor(sotetzold);
 		g.fillOval(x, y, width, height);
 	}
 }

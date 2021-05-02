@@ -10,7 +10,8 @@ public class VizjegView {
 		y=0;
 		width=0;
 		height=0;
-		g.setColor(Color.BLUE);
+		Color vilagoskek = new Color(135,206,250);
+		g.setColor(vilagoskek);
 		g.fillOval(x, y, width, height);
 	}
 }
