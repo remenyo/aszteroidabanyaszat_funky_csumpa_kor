@@ -19,7 +19,7 @@ public class App {
 
         do {
             // Szkeleton.Fomenu();
-
+            Jatek.jatekInditas(true);
             Szkeleton.reset();
         } while (Cin.getBool("Kezdjük újra?"));
 

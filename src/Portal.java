@@ -1,9 +1,9 @@
 package src;
 
 /**
- * aktiv - A portalon keresztül lehet e utazni birtokos - A telepes aki a portált birtokolni par -A
- * portál párja vegpont -az aszteroida, amin a portál elhelyezkedik megkergult - a portál
- * megkergültségét jellemzi
+ * aktiv - A portalon keresztül lehet e utazni birtokos - A telepes aki a
+ * portált birtokolni par -A portál párja vegpont -az aszteroida, amin a portál
+ * elhelyezkedik megkergult - a portál megkergültségét jellemzi
  */
 public class Portal extends Hely implements Leptetheto {
 	private Boolean aktiv = false;
@@ -30,7 +30,6 @@ public class Portal extends Hely implements Leptetheto {
 		aktiv = true;
 	}
 
-
 	/**
 	 * Visszaadja azt az aszteroidát, amin a portal elhelyezkedik
 	 * 
@@ -40,7 +39,6 @@ public class Portal extends Hely implements Leptetheto {
 		Log.call();
 		return vegpont;
 	}
-
 
 	/**
 	 * Beállítja a paraméterként kapott aszteroidát a portál végpontjának
@@ -57,7 +55,6 @@ public class Portal extends Hely implements Leptetheto {
 		mukodesbeHelyezes(a);
 	}
 
-
 	/**
 	 * A portál párjával való összerendelés
 	 * 
@@ -68,10 +65,9 @@ public class Portal extends Hely implements Leptetheto {
 		par = p;
 	}
 
-
 	/**
-	 * Ha a portálnak és a párjának is van végpontja, akkor engedélyezi az utazást két portálpár
-	 * között
+	 * Ha a portálnak és a párjának is van végpontja, akkor engedélyezi az utazást
+	 * két portálpár között
 	 * 
 	 * @param a
 	 */
@@ -101,8 +97,8 @@ public class Portal extends Hely implements Leptetheto {
 	}
 
 	/**
-	 * Ha a portál meg van kergülve, akkor minden körben mozog egyet a végpontja valamelyik
-	 * szomszédjára
+	 * Ha a portál meg van kergülve, akkor minden körben mozog egyet a végpontja
+	 * valamelyik szomszédjára
 	 */
 	public void Lepes() {
 		Log.call();
@@ -110,7 +106,7 @@ public class Portal extends Hely implements Leptetheto {
 			int szomszedhossz = vegpont.getSzomszedok().size();
 			Mozgas(RandomUtils.randomIntHatarokKozott(0, szomszedhossz));
 		}
-
+		Jatek.kovetkezoLepes();
 	}
 
 	/**
@@ -136,7 +132,6 @@ public class Portal extends Hely implements Leptetheto {
 		if (aktiv)
 			par.teleportalas(sz);
 	}
-
 
 	/**
 	 * A paraméterként kapott szereplőt utaztatja a végpontjára
@@ -169,7 +164,6 @@ public class Portal extends Hely implements Leptetheto {
 		Jatek.hozzaadLeptetheto(this);
 	}
 
-
 	/**
 	 * Őt birtokló telepes beállítása (teszthez)
 	 * 
@@ -179,7 +173,6 @@ public class Portal extends Hely implements Leptetheto {
 		Log.call();
 		birtokos = t;
 	}
-
 
 	/**
 	 * Annak az aszteroidának a beállítása, amin a portál el fog helyezkedni (teszt)

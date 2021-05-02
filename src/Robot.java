@@ -27,6 +27,7 @@ public class Robot extends Szereplo {
 			mozgasIntelligencia();
 		else
 			Furas();
+		Jatek.kovetkezoLepes();
 	}
 
 	/**
@@ -34,7 +35,8 @@ public class Robot extends Szereplo {
 	 */
 	public void mozgasIntelligencia() {
 		Log.call();
-		// Az aszteroida szomszédainak száma, a robot eldönti hogy hanyas számúra szeretne
+		// Az aszteroida szomszédainak száma, a robot eldönti hogy hanyas számúra
+		// szeretne
 		// mozogni
 		int szomszedszam = aszteroida.getSzomszedok().size() - 1;
 		Integer sorszam = RandomUtils.randomIntHatarokKozott(0, szomszedszam);
