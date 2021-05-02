@@ -30,6 +30,10 @@ public class Telepes extends Szereplo {
 	public Integer getSorszam() {
 		return sorszam;
 	}
+	
+	public void setSorszam(Integer sorsz) {
+		sorszam = sorsz;
+	}
 
 	/**
 	 * Meghívja a szereplő mozgás függvényét amivel egy mésik aszteroidára utazik a

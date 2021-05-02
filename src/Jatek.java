@@ -265,7 +265,7 @@ public class Jatek {
 	public static void jatekInditas(boolean nincsAllapot) {
 		Log.call();
 		Integer log_bkp = LOG_LEVEL;
-		LOG_LEVEL = -1;
+		// LOG_LEVEL = -1;
 
 		Nap n = (Nap) Szkeleton.getObj("nap");
 		leptethetok.add(n);
@@ -273,12 +273,11 @@ public class Jatek {
 			ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
 			int vas = 0, szen = 0, vizjeg = 0, uran = 0;
 			for (int i = 0; i < 50; i++) {
-				Szkeleton.letrehoz("Aszteroida", "Aszteroida_" + i, "Nap");
-
-				Aszteroida a = new Aszteroida(n); // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
-				Nyersanyag ny = null;
+				Szkeleton.letrehoz("AszteroidaView", "AszteroidaView_" + i);
+				Szkeleton.letrehoz("Aszteroida", "Aszteroida_" + i, "Nap", "AszteroidaView_" + i);
+				Nyersanyag ny;
 				String nyersanyag_nev = "";
-				switch (i % 5) {
+				switch (i % 5) { // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
 					case 0:
 						nyersanyag_nev = "Vas_" + vas++;
 						break;
@@ -295,18 +294,21 @@ public class Jatek {
 						nyersanyag_nev = "";
 						ny = null;
 				}
+				Aszteroida a = (Aszteroida) Szkeleton.getObj("Aszteroida_" + i);
+
 				if (nyersanyag_nev != "") {
 					Szkeleton.letrehoz(nyersanyag_nev.split("_")[0], nyersanyag_nev);
 					ny = (Nyersanyag) Szkeleton.getObj(nyersanyag_nev);
+					a.setNyersanyag(ny);
 				}
-				a.setNyersanyag(ny);
 				a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
 				a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
-
+				Szkeleton.hiv("AszteroidaView_" + i, "BeallitAszteroida", "Aszteroida_" + i); // lehetne getObj-al is...
 				if (i == 0) {
 					for (int j = 0; j < JATEKOS_SZAM; j++) {
 						Szkeleton.letrehoz("Telepes", "Telepes_" + j);
 						Telepes t = (Telepes) Szkeleton.getObj("Telepes_" + j);
+						t.setSorszam(j);
 						t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
 					}
 				}
@@ -335,7 +337,7 @@ public class Jatek {
 		InfoPanel infoPanel = new InfoPanel();
 		infoPanel.setTelepes((Telepes) leptethetok.get(1));
 		RajzPanel rajzPanel = new RajzPanel();
-		rajzPanel.setAszteroida(new Aszteroida(n));
+		// rajzPanel.setAszteroida(new Aszteroida(n,)); //TODO ez nem fasza igy teljesen
 		GombokPanel gombokPanel = new GombokPanel();
 		gombokPanel.setTelepes((Telepes) leptethetok.get(1));
 		foFrame = new FoFrame(gombokPanel, rajzPanel, infoPanel);
@@ -388,4 +390,9 @@ public class Jatek {
 			l.resetLepett();
 		}
 	}
+
+	public FoFrame getFoFrame() {
+		return foFrame;
+	}
+
 }

@@ -22,13 +22,13 @@ public class Aszteroida extends Hely {
      * @param nap A nap referenciája
      * @param nyersanyag Az aszteroida magjában található nyersanyag (opcoinális)
      */
-    Aszteroida(Nap nap) {
+    Aszteroida(Nap nap, AszteroidaView aszteroidaView) {
         this.nap = nap;
         szereplok = new ArrayList<Szereplo>();
         szomszedok = new ArrayList<Hely>();
         elorejelzesvan = false;
         nap.hozzaadAszteroida(this);
-        jatekView = new AszteroidaView(this);
+        jatekView = aszteroidaView;
         
     }
     
