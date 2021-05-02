@@ -29,7 +29,7 @@ public class Portal extends Hely implements Leptetheto {
 		Log.call();
 		aktiv = true;
 	}
-	
+
 	public Aszteroida szomszedosAszteroida() {
 		return par.getVegpont();
 	}
@@ -110,7 +110,7 @@ public class Portal extends Hely implements Leptetheto {
 			int szomszedhossz = vegpont.getSzomszedok().size();
 			Mozgas(RandomUtils.randomIntHatarokKozott(0, szomszedhossz));
 		}
-		Jatek.kovetkezoLepes();
+		Jatek.lepesKesz.notifyAll();
 	}
 
 	/**

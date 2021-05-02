@@ -38,7 +38,7 @@ public class Nap implements Leptetheto {
 			}
 			napviharfolyamatban = false;
 		}
-		Jatek.kovetkezoLepes();
+		Jatek.lepesKesz.notifyAll();
 	}
 
 	/**

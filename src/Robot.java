@@ -27,7 +27,7 @@ public class Robot extends Szereplo {
 			mozgasIntelligencia();
 		else
 			Furas();
-		Jatek.kovetkezoLepes();
+		Jatek.lepesKesz.notifyAll();
 	}
 
 	/**

@@ -3,7 +3,6 @@ package src;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -23,7 +22,8 @@ public class Jatek {
 	public static Boolean LOG_FUNCTION_CALLS = true;
 	public static Boolean LOG_CONSTRUCTORS = true;
 	public static Boolean LOG_GAME_INFO = true;
-	// -1 = semmi | 0 = ctor és call, ha engedéyezve vannak, 1 = csak error | 2 = 1+warn | 3 =
+	// -1 = semmi | 0 = ctor és call, ha engedéyezve vannak, 1 = csak error | 2 =
+	// 1+warn | 3 =
 	// 2+info | 4 = 3+debug
 	public static Integer LOG_LEVEL = 4;
 
@@ -47,6 +47,7 @@ public class Jatek {
 	public static Integer allapot = 0;
 	private static Integer szamlalo = 0;
 	private static FoFrame foFrame;
+	public static Object lepesKesz;
 	public static ArrayList<Leptetheto> leptethetok;
 	private static NyersanyagKoltseg RobothozNyersanyag;
 	private static NyersanyagKoltseg PortalhozNyersanyag;
@@ -62,37 +63,57 @@ public class Jatek {
 	public static void beallitas_visszatoltes() {
 		beallitas_kezeles(false);
 	}
-	
+
 	/**
 	 * Átadja azt a telepest a FoFrame-nek akinek most jön a köre.
+	 * 
 	 * @param t telepes akinek a köre jön
 	 */
 	public static void enKorom(Telepes t) {
 		foFrame.setTelepes(t);
 	}
-	
-	
-	/**
-	*A kovetkező léptethető lépését hivja. Ha az utolsó léptethetőn vagyunk akkor vissz megy az első léptethetőre
-	*/
-	public static void kovetkezoLepes() {
-		if(allapot==0) {
-			if(szamlalo==leptethetok.size()){
-		          szamlalo=0;
-		    }
-		    leptethetok.get(szamlalo++).Lepes();
-		}else {
-			if(allapot==1) {
-				JOptionPane.showMessageDialog(foFrame,  "Gratulálunk Nyertél", "Hurrá", JOptionPane.INFORMATION_MESSAGE);
-			}else {
-				JOptionPane.showMessageDialog(foFrame,  "Gratulálunk Vesztettél", "Jajne!", JOptionPane.INFORMATION_MESSAGE);
-			}
-			
-			foFrame.dispose();
-		}
-		
-	}
 
+	/**
+	 * A kovetkező léptethető lépését hivja. Ha az utolsó léptethetőn vagyunk akkor
+	 * vissz megy az első léptethetőre
+	 */
+	public static void kovetkezoLepes() {
+		while (allapot == 0) {
+			if (szamlalo == leptethetok.size())
+				szamlalo = 0;
+			new Thread(() -> {
+				leptethetok.get(szamlalo++).Lepes();
+			}).start();
+			try {
+				lepesKesz.wait();
+			} catch (Exception e) {
+				Log.error(e.toString());
+			}
+		}
+		if (allapot == 1) {
+			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jajne!", JOptionPane.INFORMATION_MESSAGE);
+		}
+		foFrame.dispose();
+		// if(allapot==0) {
+		// if(szamlalo==leptethetok.size()){
+		// szamlalo=0;
+		// }
+		// leptethetok.get(szamlalo++).Lepes();
+		// }else {
+		// if(allapot==1) {
+		// JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá",
+		// JOptionPane.INFORMATION_MESSAGE);
+		// }else {
+		// JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jajne!",
+		// JOptionPane.INFORMATION_MESSAGE);
+		// }
+		//
+		// foFrame.dispose();
+		// }
+
+	}
 
 	/**
 	 * Program indulásánál elmenti a játék beállításait és vissza is tölti azt
@@ -194,8 +215,8 @@ public class Jatek {
 	}
 
 	/**
-	 * Csökkenti a telepesszémot eggyel, és ha már nincs elég akkor meghívja a játék vége vesztett
-	 * fv.t
+	 * Csökkenti a telepesszémot eggyel, és ha már nincs elég akkor meghívja a játék
+	 * vége vesztett fv.t
 	 */
 	public static void telepesMeghal() {
 		Log.call();
@@ -231,8 +252,9 @@ public class Jatek {
 	/**
 	 * Játékban szereplő játékosok, aszteroidák inicializálásáért felelős
 	 * 
-	 * @param nincsAllapot Ha igaz akkor létre hozza alap értelmezett helyzetet ha hamis akkor a
-	 *        parancssorba lett beállítva valamilyen állapot
+	 * @param nincsAllapot Ha igaz akkor létre hozza alap értelmezett helyzetet ha
+	 *                     hamis akkor a parancssorba lett beállítva valamilyen
+	 *                     állapot
 	 */
 	public static void jatekInditas(boolean nincsAllapot) {
 		Log.call();
@@ -276,16 +298,15 @@ public class Jatek {
 
 				atmenetiAszteroidatar.add(a);
 			}
-			atmenetiAszteroidatar.get(0)
-					.hozzaadSzomszed(atmenetiAszteroidatar.get(atmenetiAszteroidatar.size() - 1));
+			atmenetiAszteroidatar.get(0).hozzaadSzomszed(atmenetiAszteroidatar.get(atmenetiAszteroidatar.size() - 1));
 			for (int i = 0; i < atmenetiAszteroidatar.size() - 1; i++) {
 				atmenetiAszteroidatar.get(i).hozzaadSzomszed(atmenetiAszteroidatar.get(i + 1));
 				atmenetiAszteroidatar.get(i + 1).hozzaadSzomszed(atmenetiAszteroidatar.get(i));
 				for (int j = 0; j < SZOMSZED_SZAM - 2; j++) {
-					Aszteroida randomAszteroida = atmenetiAszteroidatar.get(RandomUtils
-							.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1));
-					if (atmenetiAszteroidatar.get(i) != randomAszteroida && !atmenetiAszteroidatar
-							.get(i).getSzomszedok().contains(randomAszteroida)) {
+					Aszteroida randomAszteroida = atmenetiAszteroidatar
+							.get(RandomUtils.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1));
+					if (atmenetiAszteroidatar.get(i) != randomAszteroida
+							&& !atmenetiAszteroidatar.get(i).getSzomszedok().contains(randomAszteroida)) {
 						atmenetiAszteroidatar.get(i).hozzaadSzomszed(randomAszteroida);
 						randomAszteroida.hozzaadSzomszed(atmenetiAszteroidatar.get(i));
 					}

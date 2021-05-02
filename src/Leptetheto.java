@@ -6,7 +6,8 @@ public interface Leptetheto {
 
   /**
    * Visszaadja, hogy lépett-e már
-   * @return Ha igen true, ha nem false 
+   * 
+   * @return Ha igen true, ha nem false
    */
   public Boolean lepette();
 
