@@ -17,6 +17,9 @@ public class RajzPanel extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		jelenlegiAszteroida.getView().Draw(g,0); //Sorszam helyere 0 mer a sajátját nem használja
+		//if( jelenlegiAszteroida.getView() != null) {
+			jelenlegiAszteroida.getAszteroidaView().Draw(g,0); //Sorszam helyere 0 mer a sajátját nem használja	
+		//}
+		
 	}
 }

@@ -190,7 +190,7 @@ public class Jatek {
 		}
 		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
 
-		foFrame = new FoFrame(new GombokPanel(), new RajzPanel(), new InfoPanel());
+		//foFrame = new FoFrame(new GombokPanel(), new RajzPanel(), new InfoPanel());
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
 	}
@@ -323,12 +323,16 @@ public class Jatek {
 		allapot = 0; // futó állapit
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
-		//InfoPanel infoPanel = new InfoPanel();
-		//RajzPanel rajzPanel = new RajzPanel();
-		//GombokPanel gombokPanel = new GombokPanel();
-		//foFrame = new FoFrame(gombokPanel, rajzPanel, infoPanel);
-		foFrame.setVisible(true);
+		InfoPanel infoPanel = new InfoPanel();
+		infoPanel.setTelepes((Telepes)leptethetok.get(1));
+		RajzPanel rajzPanel = new RajzPanel();
+		rajzPanel.setAszteroida(new Aszteroida(n));
+		GombokPanel gombokPanel = new GombokPanel();
+		gombokPanel.setTelepes((Telepes)leptethetok.get(1));
+		foFrame = new FoFrame(gombokPanel, rajzPanel, infoPanel);
+		//foFrame = new FoFrame(new GombokPanel(), new RajzPanel(), new InfoPanel());
 		foFrame.setTelepes((Telepes)leptethetok.get(1));
+		foFrame.setVisible(true);		
 		kovetkezoLepes();
 	}
 

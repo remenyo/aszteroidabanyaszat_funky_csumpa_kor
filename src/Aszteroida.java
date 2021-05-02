@@ -12,7 +12,7 @@ public class Aszteroida extends Hely {
     private Nap nap;
     private Nyersanyag nyersanyag;
     private static NyersanyagKoltseg urbazisKoltseg;
-    private AszteroidaView aszteroidaView;
+    //private AszteroidaView aszteroidaView;
     private Integer sorszam;
 
     /**
@@ -28,12 +28,13 @@ public class Aszteroida extends Hely {
         szomszedok = new ArrayList<Hely>();
         elorejelzesvan = false;
         nap.hozzaadAszteroida(this);
-        jatekView=new AszteroidaView(this);
+        jatekView = new AszteroidaView(this);
+        
     }
     
-    public void addObszerver(AszteroidaView av) {
-    	aszteroidaView=av;
-    	aszteroidaView.BeallitAszteroida(this);
+    
+    public JatekView getAszteroidaView() {
+    	return jatekView;
     }
     
     public Integer getReteg() {
@@ -306,7 +307,7 @@ public class Aszteroida extends Hely {
         Log.call();
         sz.beallitAszteroida(this);
         Log.jatek("Átutaztál egy másik aszteroidára");
-        aszteroidaView.UpdateView();
+        jatekView.UpdateView();
     }
 
     /**
