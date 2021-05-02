@@ -1,5 +1,6 @@
 package src;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class TelepesView extends JatekView{
@@ -11,7 +12,8 @@ public TelepesView(Telepes t) {
 
 public void Draw(Graphics g, Integer sorszam) {
 	int x,y,width,height;
-	g.drawRect(x, y, width, height);
+	g.setColor(Color.WHITE);
+	g.fillRect(x, y, width, height);
 	
 }
 }
