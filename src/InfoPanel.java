@@ -33,9 +33,16 @@ public class InfoPanel extends JPanel {
 		jelenlegiTelepes = t;
 		sorsz = jelenlegiTelepes.getSorszam();
 		nyers = "";
-		for(Nyersanyag ny: jelenlegiTelepes.getNyersanyagok()) {
-			nyers += ny.getNev();
+		if(jelenlegiTelepes.getNyersanyagok().size() == 0) {
+			nyers = "Ures";
+		}else {
+			for(Nyersanyag ny: jelenlegiTelepes.getNyersanyagok()) {
+				nyers += ny.getNev();
+				nyers += " ";
+			}
 		}
+		
+		
 		reteg = jelenlegiTelepes.getAszteroida().getReteg();
 		portal = jelenlegiTelepes.getPortal().size();
 		if(jelenlegiTelepes.getAszteroida().getElorejelzesvan()) {
@@ -44,10 +51,10 @@ public class InfoPanel extends JPanel {
 			napvihar = "Nem lesz napvihar!";
 		}
 		sorszLabel.setText("Telepes sorszama: " + sorsz);
-		sorszLabel.setText("Telepes nyersanyagai: " + nyers);
-		sorszLabel.setText("Aszteroida rétege: " + reteg);
-		sorszLabel.setText("Portálkapuk száma: " + portal);
-		sorszLabel.setText("Napvihar előrejelzés: " + napvihar);
+		nyersLabel.setText("Telepes nyersanyagai: " + nyers);
+		retegLabel.setText("Aszteroida rétege: " + reteg);
+		portalLabel.setText("Portálkapuk száma: " + portal);
+		napviharLabel.setText("Napvihar előrejelzés: " + napvihar);
 		this.repaint();
 	}
 }

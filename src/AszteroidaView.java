@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class AszteroidaView extends JatekView {
 	private Aszteroida aszteroida;
-	private Integer reteg; 															//erre sztem nincs szukseg mo
+	private int reteg; 															//erre sztem nincs szukseg mo
 	private ArrayList<JatekView> nezetek = new ArrayList<JatekView>();
 	
 	static int x = 250;
@@ -18,14 +18,17 @@ public class AszteroidaView extends JatekView {
 	static int y_reteg = 250;
 	static int oldal_reteg = 100;
 	
-	public AszteroidaView(Aszteroida a){ 												//kell-e
+	/**
+	 * public AszteroidaView(Aszteroida a){ 												//kell-e
 		BeallitAszteroida(a);
 	}
+	 
+	 */
 	
 	public void BeallitAszteroida(Aszteroida a) {
 		aszteroida = a;
-		reteg=a.getReteg();
-	}
+		reteg = a.getReteg();
+	 }
 	
 	public void Draw(Graphics g, double sorszam) {
 		//int x,y, oldal;	

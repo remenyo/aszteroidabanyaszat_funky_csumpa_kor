@@ -271,7 +271,9 @@ public class Jatek {
 		if (nincsAllapot) {
 			ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
 			for (int i = 0; i < 50; i++) {
-				Aszteroida a = new Aszteroida(n); // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
+				AszteroidaView aszteroidaView = new AszteroidaView();		        
+				Aszteroida a = new Aszteroida(n, aszteroidaView); // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
+				
 				Nyersanyag ny;
 				switch (i % 5) {
 					case 0:
@@ -293,10 +295,11 @@ public class Jatek {
 
 				a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
 				a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
-
+				aszteroidaView.BeallitAszteroida(a);
 				if (i == 0) {
 					for (int j = 0; j < JATEKOS_SZAM; j++) {
 						Telepes t = new Telepes();
+						t.setSorszam(j);
 						t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
 					}
 				}
@@ -326,7 +329,7 @@ public class Jatek {
 		InfoPanel infoPanel = new InfoPanel();
 		infoPanel.setTelepes((Telepes)leptethetok.get(1));
 		RajzPanel rajzPanel = new RajzPanel();
-		rajzPanel.setAszteroida(new Aszteroida(n));
+		//rajzPanel.setAszteroida(new Aszteroida(n,)); //TODO ez nem fasza igy teljesen
 		GombokPanel gombokPanel = new GombokPanel();
 		gombokPanel.setTelepes((Telepes)leptethetok.get(1));
 		foFrame = new FoFrame(gombokPanel, rajzPanel, infoPanel);
@@ -380,4 +383,9 @@ public class Jatek {
 			l.resetLepett();
 		}
 	}
+	
+	public FoFrame getFoFrame() {
+		return foFrame;
+	}
+	
 }

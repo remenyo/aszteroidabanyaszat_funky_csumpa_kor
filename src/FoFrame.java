@@ -1,5 +1,6 @@
 package src;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
@@ -18,10 +19,11 @@ public class FoFrame extends JFrame {
 		infoPanel = ip;
 		this.setSize(800, 600);
 		
-		setLayout(new GridLayout(3, 1));
-		this.add(infoPanel);
-		this.add(rajzPanel);
-		this.add(gombPanel);
+		//setLayout(new GridLayout(3, 1));
+		setLayout(new BorderLayout());
+		this.add(infoPanel, BorderLayout.NORTH);
+		this.add(rajzPanel, BorderLayout.CENTER);
+		this.add(gombPanel, BorderLayout.SOUTH);
 	}
 
 	public void setTelepes(Telepes t) {
