@@ -35,6 +35,7 @@ public class GombokPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				//TODO uj menu mozgashoz			
 				//jelenlegiTelepes.Mozgas(sorszam);
+				Jatek.lepesKesz.notify();
 			}
 		}
 		mozgasButton.addActionListener(new mozgasButtonActionListener());
@@ -43,6 +44,7 @@ public class GombokPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.Furas();
+				Jatek.lepesKesz.notify();
 			}
 		}
 		furasButton.addActionListener(new furasButtonActionListener());
@@ -51,6 +53,7 @@ public class GombokPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.Banyaszat();
+				Jatek.lepesKesz.notify();
 			}
 		}
 		banyaszatButton.addActionListener(new banyaszatButtonActionListener());
@@ -59,6 +62,7 @@ public class GombokPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.epitRobot();
+				Jatek.lepesKesz.notify();
 			}
 		}
 		robotEpitesButton.addActionListener(new robotEpitesButtonActionListener());
@@ -67,6 +71,7 @@ public class GombokPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.epitPortal();
+				Jatek.lepesKesz.notify();
 			}
 		}
 		portalEpitesButton.addActionListener(new portalEpitesButtonActionListener());
@@ -75,7 +80,7 @@ public class GombokPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.lerakPortal(jelenlegiTelepes.getPortal().get(0));
-
+				Jatek.lepesKesz.notify();
 			}
 		}
 		portalLerakasButton.addActionListener(new portalLerakasButtonActionListener());
@@ -83,7 +88,6 @@ public class GombokPanel extends JPanel {
 		final class nyersanyagLerakasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO x re ne adjon vissza semmit.	
 				Integer visszarakando = -1;
 				JComboBox combobox = new JComboBox();
 				for(Nyersanyag ny: jelenlegiTelepes.getNyersanyagok()) {
@@ -96,6 +100,7 @@ public class GombokPanel extends JPanel {
 				}else {
 					JOptionPane.showMessageDialog(null,"Elveszett ez a köröd :(");
 				}
+				Jatek.lepesKesz.notify();
 			}
 		}
 		nyersanyagLerakasButton.addActionListener(new nyersanyagLerakasButtonActionListener());		
