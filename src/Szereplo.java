@@ -6,7 +6,7 @@ abstract public class Szereplo implements Leptetheto {
     protected Aszteroida aszteroida; // Szereplő aszteroidája amin tartózkodik
     protected Boolean lepett = false;// Megmutatja, hogy lépette a szereplő ebben a körben
     protected JatekView jatekView;
-    
+
     /**
      * Szereplo konstruktora
      */
@@ -16,7 +16,8 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * Az aszteroida paraméterül kapott sorszámú szomszédjára utazik és a jelenlegiről törli magát
+     * Az aszteroida paraméterül kapott sorszámú szomszédjára utazik és a
+     * jelenlegiről törli magát
      * 
      * @param sorszam Az aszteroida azonosítója
      */
@@ -106,8 +107,8 @@ abstract public class Szereplo implements Leptetheto {
     public void resetLepett() {
         lepett = false;
     }
-    
+
     public JatekView getView() {
-    	return jatekView;
+        return jatekView;
     }
 }

@@ -18,7 +18,8 @@ public class App {
         Log.info("Program elindult");
 
         do {
-            Szkeleton.Fomenu();
+            // Szkeleton.Fomenu();
+            Jatek.jatekInditas(true);
             Szkeleton.reset();
         } while (Cin.getBool("Kezdjük újra?"));
 

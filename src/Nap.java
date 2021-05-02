@@ -3,15 +3,17 @@ package src;
 import java.util.ArrayList;
 
 /**
- * Aszteroidákat ismer akiken meghívja a napvihart valamilyen valószínűséggel egy kör
- * előrejelzéssel, most tesztelés miatt egyből napvihart hív.
+ * Aszteroidákat ismer akiken meghívja a napvihart valamilyen valószínűséggel
+ * egy kör előrejelzéssel, most tesztelés miatt egyből napvihart hív.
  */
 public class Nap implements Leptetheto {
-	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>(); //Nap körüli aszteroidák
+	private ArrayList<Aszteroida> aszteroidak = new ArrayList<Aszteroida>(); // Nap körüli aszteroidák
 	private ArrayList<Aszteroida> napviharravarok = new ArrayList<Aszteroida>(); // Akiken meg lesz hívva a napvihar
 	private boolean napviharfolyamatban = false; // Azt jelzi, hogy az előrejelzés van-e
+
 	/**
-	 * Nap lépése, az aszteroidak 5% at kiválasztja és szól nekik madj, következő körben meghívja rajtuk.
+	 * Nap lépése, az aszteroidak 5% at kiválasztja és szól nekik madj, következő
+	 * körben meghívja rajtuk.
 	 */
 	public void Lepes() {
 		Log.call();
@@ -28,7 +30,7 @@ public class Nap implements Leptetheto {
 				for (Aszteroida a : napviharravarok) {
 					a.setElorejelzesvan();
 				}
-				napviharfolyamatban=true;
+				napviharfolyamatban = true;
 			}
 		} else {
 			for (Aszteroida a : napviharravarok) {
@@ -36,8 +38,8 @@ public class Nap implements Leptetheto {
 			}
 			napviharfolyamatban = false;
 		}
+		Jatek.kovetkezoLepes();
 	}
-
 
 	/**
 	 * Törli a naptól egy aszteroidát.
@@ -48,7 +50,6 @@ public class Nap implements Leptetheto {
 		Log.call();
 		aszteroidak.remove(a);
 	}
-
 
 	/**
 	 * A naphoz hozzáadunk egy aszteroida listát
@@ -62,18 +63,17 @@ public class Nap implements Leptetheto {
 
 	/**
 	 * A nap adatait adja vissza.
+	 * 
 	 * @return adatai
 	 */
 	public String toString() {
 		return Integer.toString(aszteroidak.size());
 	}
 
-
 	@Override // teszt miatt nem fontos
 	public Boolean lepette() {
 		return null;
 	}
-
 
 	@Override // teszt miatt nem fontos
 	public void resetLepett() {
