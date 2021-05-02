@@ -31,14 +31,12 @@ public class GombokPanel extends JPanel {
 		final class mozgasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 				//TODO uj menu mozgashoz			
 				//jelenlegiTelepes.Mozgas(sorszam);
-=======
+
 				// TODO uj menu mozgashoz
 
 				// jelenlegiTelepes.Mozgas(sorszam);
->>>>>>> 8624cf850c2801b01f34bf9fed2ab6ca1867db80
 			}
 		}
 		mozgasButton.addActionListener(new mozgasButtonActionListener());
@@ -78,11 +76,8 @@ public class GombokPanel extends JPanel {
 		final class portalLerakasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 				jelenlegiTelepes.lerakPortal(jelenlegiTelepes.getPortal().get(0));
-=======
-				// jelenlegiTelepes.lerakPortal(0);
->>>>>>> 8624cf850c2801b01f34bf9fed2ab6ca1867db80
+
 			}
 		}
 		portalLerakasButton.addActionListener(new portalLerakasButtonActionListener());
@@ -90,29 +85,15 @@ public class GombokPanel extends JPanel {
 		final class nyersanyagLerakasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 				//TODO vissarakas menu				
 				//jelenlegiTelepes.visszarakNyersanyag(ny);
 			}
 		}
 		nyersanyagLerakasButton.addActionListener(new nyersanyagLerakasButtonActionListener());		
-=======
-				// TODO vissarakas menu
-
-				// jelenlegiTelepes.visszarakNyersanyag(ny);
-			}
-		}
-		nyersanyagLerakasButton.addActionListener(new nyersanyagLerakasButtonActionListener());
-
->>>>>>> 8624cf850c2801b01f34bf9fed2ab6ca1867db80
+			
 	}
-
 	public void setTelepes(Telepes t) {
 		jelenlegiTelepes = t;
 	}
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> 8624cf850c2801b01f34bf9fed2ab6ca1867db80
 }
