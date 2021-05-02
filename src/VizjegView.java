@@ -11,6 +11,6 @@ public class VizjegView {
 		width=0;
 		height=0;
 		g.setColor(Color.BLUE);
-		g.fillRect(x, y, width, height);
+		g.fillOval(x, y, width, height);
 	}
 }

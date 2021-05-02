@@ -11,6 +11,6 @@ public class UranView {
 		width=0;
 		height=0;
 		g.setColor(Color.GREEN);
-		g.fillRect(x, y, width, height);
+		g.fillOval(x, y, width, height);
 	}
 }

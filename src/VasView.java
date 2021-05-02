@@ -11,6 +11,6 @@ public void Draw(Graphics g, Integer sorszam) {
 	width=0;
 	height=0;
 	g.setColor(Color.LIGHT_GRAY);
-	g.fillRect(x, y, width, height);
+	g.fillOval(x, y, width, height);
 }
 }
