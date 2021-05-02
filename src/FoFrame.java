@@ -1,6 +1,9 @@
 package src;
 
+import java.awt.GridLayout;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class FoFrame extends JFrame {
 	private Telepes jelenlegiTelepes;
@@ -14,7 +17,10 @@ public class FoFrame extends JFrame {
 		rajzPanel = rp;
 		infoPanel = ip;
 		
-		
+		setLayout(new GridLayout(3,1));
+		this.add(infoPanel);
+		this.add(rajzPanel);
+		this.add(gombPanel);
 		
 	}
 	
