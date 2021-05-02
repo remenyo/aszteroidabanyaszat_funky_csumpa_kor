@@ -9,7 +9,7 @@ public class SzenView {
 	static int y = 250;
 	static int oldal = 100;
 	
-	public void Draw(Graphics g, Integer sorszam) {
+	public void Draw(Graphics g, double sorszam) {
 		/*int x,y,width,height;
 		x=0;
 		y=0;
