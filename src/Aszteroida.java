@@ -44,8 +44,17 @@ public class Aszteroida extends Hely {
     
     public ArrayList<JatekView> getAllView(){
     	ArrayList<JatekView> osszes = new ArrayList<JatekView>();
-    	szereplok.forEach( szereplo -> osszes.add(szereplo.getView()));
-    	
+    	for(Szereplo szereplo : szereplok) {
+    		JatekView nezet = szereplo.getView();
+    		if(nezet!=null)
+    			osszes.add(nezet);
+    	}
+    	for(Hely szomszed : szomszedok) {
+    		JatekView nezet = szomszed.getView();
+    		if(nezet!=null)
+    			osszes.add(nezet);
+    	}
+    	return osszes;
     }
     
     /**
