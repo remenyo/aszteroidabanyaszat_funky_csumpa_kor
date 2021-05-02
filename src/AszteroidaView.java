@@ -18,7 +18,7 @@ public class AszteroidaView {
 	static int y_reteg = 250;
 	static int oldal_reteg = 100;
 	
-	public AszteroidaView(Aszteroida a){ 											//kell-e
+	public AszteroidaView(Aszteroida a){ 												//kell-e
 		aszteroida = a;
 	}
 	
@@ -27,14 +27,22 @@ public class AszteroidaView {
 		reteg=a.getReteg();
 	}
 	
-	public void Draw(Graphics g, Integer sorszam) {
-		//int x,y, oldal;
+	public void Draw(Graphics g, double sorszam) {
+		//int x,y, oldal;	
 		g.setColor(Color.DARK_GRAY);
 		g.drawOval(x,y,oldal, oldal);
 		
-		for(JatekView nezet : nezetek) {
-			nezet.Draw(g, sorszam);
+		int nezetmeret;
+		if(aszteroida.getNyersanyag()==null)
+			nezetmeret=nezetek.size();
+		else
+			nezetmeret=nezetek.size()-1;
+		
+		for(int i=0; i<nezetmeret; i++) {
+			nezetek.get(i).Draw(g, i*2*3.14/nezetmeret);
 		}
+			
+		
 		
 		if(reteg!=0) {
 			//réteg rárajzolása a nyersanyagra
@@ -46,6 +54,7 @@ public class AszteroidaView {
 	}
 	
 	public void UpdateView() {
+		nezetek.clear(); 													//lehet érdemesebb lenne tárolni, hogy változott e a legutolsó rajzolás óta
 		nezetek = aszteroida.getAllView();
 	}
 }

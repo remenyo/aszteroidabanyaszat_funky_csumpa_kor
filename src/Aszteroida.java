@@ -43,6 +43,11 @@ public class Aszteroida extends Hely {
     	return null;
     }
     
+    public Nyersanyag getNyersanyag() {
+    	return nyersanyag;
+    }
+    
+    
     public Aszteroida szomszedosAszteroida(){
     	return this;
     }
