@@ -13,6 +13,7 @@ public class Aszteroida extends Hely {
     private Nyersanyag nyersanyag;
     private static NyersanyagKoltseg urbazisKoltseg;
     private AszteroidaView aszteroidaView;
+    private Integer sorszam;
 
     /**
      * Aszteroida konstruktor
@@ -29,7 +30,7 @@ public class Aszteroida extends Hely {
         nap.hozzaadAszteroida(this);
     }
     
-    public void beallitAszteroidaView(AszteroidaView av) {
+    public void addObszerver(AszteroidaView av) {
     	aszteroidaView=av;
     	aszteroidaView.BeallitAszteroida(this);
     }
