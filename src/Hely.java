@@ -9,6 +9,7 @@ public abstract class Hely {
 	/**
 	 * Robbanás, amit a leszármazottak megvalósítanak
 	 */
+	protected JatekView jatekView;
 	public abstract void Robbanas();
 
 	/**
@@ -39,4 +40,8 @@ public abstract class Hely {
 	}
 	
 	abstract public Aszteroida szomszedosAszteroida();
+	
+	public JatekView getView() {
+		return jatekView;
+	}
 }
