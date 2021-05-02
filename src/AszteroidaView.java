@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class AszteroidaView {
+public class AszteroidaView extends JatekView {
 	private Aszteroida aszteroida;
 	private Integer reteg; 															//erre sztem nincs szukseg mo
 	private ArrayList<JatekView> nezetek = new ArrayList<JatekView>();

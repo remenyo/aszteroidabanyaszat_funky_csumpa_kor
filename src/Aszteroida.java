@@ -28,6 +28,7 @@ public class Aszteroida extends Hely {
         szomszedok = new ArrayList<Hely>();
         elorejelzesvan = false;
         nap.hozzaadAszteroida(this);
+        jatekView=new AszteroidaView(this);
     }
     
     public void addObszerver(AszteroidaView av) {

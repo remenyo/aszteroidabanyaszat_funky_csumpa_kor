@@ -12,6 +12,10 @@ public class Portal extends Hely implements Leptetheto {
 	private Portal par;
 	private Aszteroida vegpont;
 	private Boolean lepett = false;
+	
+	Portal() {
+		jatekView= new PortalView();
+	}
 
 	/**
 	 * Meghívja az aszteroidán és a párján a beszippantot.
