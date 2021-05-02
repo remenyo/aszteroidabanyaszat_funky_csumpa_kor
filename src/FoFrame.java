@@ -12,6 +12,7 @@ public class FoFrame extends JFrame {
 	private InfoPanel infoPanel;
 
 	public FoFrame(GombokPanel gp, RajzPanel rp, InfoPanel ip) {
+		super();
 		gombPanel = gp;
 		rajzPanel = rp;
 		infoPanel = ip;
@@ -20,7 +21,6 @@ public class FoFrame extends JFrame {
 		this.add(infoPanel);
 		this.add(rajzPanel);
 		this.add(gombPanel);
-
 	}
 
 	public void setTelepes(Telepes t) {

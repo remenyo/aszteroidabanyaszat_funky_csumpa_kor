@@ -20,7 +20,9 @@ public class Ufo extends Szereplo {
 			Integer sorszam = RandomUtils.randomIntHatarokKozott(0, aszteroida.getSzomszedok().size() - 1);
 			Mozgas(sorszam);
 		}
-		Jatek.kovetkezoLepes();
+		synchronized (Jatek.lepesKesz) {
+			Jatek.lepesKesz.notify();
+		}
 	}
 
 	/**

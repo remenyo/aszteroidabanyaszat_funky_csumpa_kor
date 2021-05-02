@@ -119,7 +119,9 @@ public class Telepes extends Szereplo {
 	@Override
 	public void Lepes() {
 		Jatek.enKorom(this);
-		Jatek.kovetkezoLepes();
+		synchronized (Jatek.lepesKesz) {
+			Jatek.lepesKesz.notify();
+		}
 		/*
 		 * Log.call(); Boolean elorejelzes = aszteroida.getElorejelzesvan(); if
 		 * (elorejelzes) { Log.jatek("Kovetkezo korbe napvihar lesz"); } Integer valasz

@@ -78,18 +78,35 @@ public class Jatek {
 	 * vissz megy az első léptethetőre
 	 */
 	public static void kovetkezoLepes() {
-		// while (allapot == 0) {
-		// if (szamlalo == leptethetok.size())
+		while (allapot == 0) {
+			if (szamlalo == leptethetok.size())
+				szamlalo = 0;
+			try {
+				new Thread(() -> {
+					leptethetok.get(szamlalo++).Lepes();
+				}).start();
+			} catch (Exception e) {
+				Log.error(e.toString());
+			}
+			synchronized (Jatek.lepesKesz) {
+				try {
+					lepesKesz.wait();
+				} catch (Exception e) {
+				}
+			}
+		}
+		if (allapot == 1) {
+			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jajne!", JOptionPane.INFORMATION_MESSAGE);
+		}
+		foFrame.dispose();
+		// if (allapot == 0) {
+		// if (szamlalo == leptethetok.size()) {
 		// szamlalo = 0;
-		// new Thread(() -> {
+		// }
 		// leptethetok.get(szamlalo++).Lepes();
-		// }).start();
-		// try {
-		// lepesKesz.wait();
-		// } catch (Exception e) {
-		// Log.error(e.toString());
-		// }
-		// }
+		// } else {
 		// if (allapot == 1) {
 		// JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá",
 		// JOptionPane.INFORMATION_MESSAGE);
@@ -98,20 +115,7 @@ public class Jatek {
 		// JOptionPane.INFORMATION_MESSAGE);
 		// }
 		// foFrame.dispose();
-		if (allapot == 0) {
-			if (szamlalo == leptethetok.size()) {
-				szamlalo = 0;
-			}
-			leptethetok.get(szamlalo++).Lepes();
-		} else {
-			if (allapot == 1) {
-				JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá", JOptionPane.INFORMATION_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jajne!",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-			foFrame.dispose();
-		}
+		// }
 
 	}
 
@@ -186,6 +190,7 @@ public class Jatek {
 		}
 		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
 
+		foFrame = new FoFrame(new GombokPanel(), new RajzPanel(), new InfoPanel());
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
 	}
