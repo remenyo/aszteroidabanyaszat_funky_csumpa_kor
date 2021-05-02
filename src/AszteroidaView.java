@@ -19,7 +19,7 @@ public class AszteroidaView extends JatekView {
 	static int oldal_reteg = 100;
 	
 	public AszteroidaView(Aszteroida a){ 												//kell-e
-		aszteroida = a;
+		BeallitAszteroida(a);
 	}
 	
 	public void BeallitAszteroida(Aszteroida a) {
