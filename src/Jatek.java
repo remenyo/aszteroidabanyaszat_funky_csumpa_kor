@@ -47,7 +47,7 @@ public class Jatek {
 	public static Integer allapot = 0;
 	private static Integer szamlalo = 0;
 	private static FoFrame foFrame;
-	public static Object lepesKesz;
+	public static Object lepesKesz = new Object();
 	public static ArrayList<Leptetheto> leptethetok;
 	private static NyersanyagKoltseg RobothozNyersanyag;
 	private static NyersanyagKoltseg PortalhozNyersanyag;
@@ -78,40 +78,40 @@ public class Jatek {
 	 * vissz megy az első léptethetőre
 	 */
 	public static void kovetkezoLepes() {
-		while (allapot == 0) {
-			if (szamlalo == leptethetok.size())
-				szamlalo = 0;
-			new Thread(() -> {
-				leptethetok.get(szamlalo++).Lepes();
-			}).start();
-			try {
-				lepesKesz.wait();
-			} catch (Exception e) {
-				Log.error(e.toString());
-			}
-		}
-		if (allapot == 1) {
-			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá", JOptionPane.INFORMATION_MESSAGE);
-		} else {
-			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jajne!", JOptionPane.INFORMATION_MESSAGE);
-		}
-		foFrame.dispose();
-		// if(allapot==0) {
-		// if(szamlalo==leptethetok.size()){
-		// szamlalo=0;
-		// }
+		// while (allapot == 0) {
+		// if (szamlalo == leptethetok.size())
+		// szamlalo = 0;
+		// new Thread(() -> {
 		// leptethetok.get(szamlalo++).Lepes();
-		// }else {
-		// if(allapot==1) {
+		// }).start();
+		// try {
+		// lepesKesz.wait();
+		// } catch (Exception e) {
+		// Log.error(e.toString());
+		// }
+		// }
+		// if (allapot == 1) {
 		// JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá",
 		// JOptionPane.INFORMATION_MESSAGE);
-		// }else {
+		// } else {
 		// JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jajne!",
 		// JOptionPane.INFORMATION_MESSAGE);
 		// }
-		//
 		// foFrame.dispose();
-		// }
+		if (allapot == 0) {
+			if (szamlalo == leptethetok.size()) {
+				szamlalo = 0;
+			}
+			leptethetok.get(szamlalo++).Lepes();
+		} else {
+			if (allapot == 1) {
+				JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá", JOptionPane.INFORMATION_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jajne!",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			foFrame.dispose();
+		}
 
 	}
 

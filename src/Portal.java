@@ -110,7 +110,7 @@ public class Portal extends Hely implements Leptetheto {
 			int szomszedhossz = vegpont.getSzomszedok().size();
 			Mozgas(RandomUtils.randomIntHatarokKozott(0, szomszedhossz));
 		}
-		Jatek.lepesKesz.notifyAll();
+		Jatek.kovetkezoLepes();
 	}
 
 	/**
