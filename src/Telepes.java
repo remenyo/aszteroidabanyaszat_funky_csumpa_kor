@@ -14,6 +14,8 @@ public class Telepes extends Szereplo {
 																									// a
 																									// költségtárolója.
 	private ArrayList<Portal> portal;// A Telepesnél lévő portálokat tárolja.
+	private Integer sorszam;
+	
 
 	/**
 	 * Telepes konstruktora
@@ -23,6 +25,10 @@ public class Telepes extends Szereplo {
 		nyersanyagok = new ArrayList<Nyersanyag>();
 		portal = new ArrayList<Portal>();
 		Jatek.telepesszam++;
+	}
+	
+	public Integer getSorszam() {
+		return sorszam;
 	}
 
 	/**
@@ -115,7 +121,8 @@ public class Telepes extends Szereplo {
 	 */
 	@Override
 	public void Lepes() {
-		Log.call();
+		Jatek.getInstance().enKorom(this);
+		/*Log.call();
 		Boolean elorejelzes = aszteroida.getElorejelzesvan();
 		if (elorejelzes) {
 			Log.jatek("Kovetkezo korbe napvihar lesz");
@@ -149,7 +156,7 @@ public class Telepes extends Szereplo {
 				return;
 			default:
 				break;
-		}
+		}*/
 	}
 
 	/**
