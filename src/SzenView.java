@@ -3,7 +3,7 @@ package src;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class SzenView {
+public class SzenView extends JatekView{
 	
 	static int x = 350;
 	static int y = 250;

@@ -12,6 +12,7 @@ public class Vizjeg extends Nyersanyag {
         Log.ctor();
         if (jatekonBelul)
             osszesVizjeg++;
+        jatekView = new VizjegView();
     }
 
     protected static void reset() {

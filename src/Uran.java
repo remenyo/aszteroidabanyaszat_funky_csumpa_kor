@@ -14,6 +14,7 @@ public class Uran extends Nyersanyag {
         if (jatekonBelul)
             osszesUran++;
         napfenyErte = 0;
+        jatekView = new UranView();
     }
 
     protected static void reset() {
