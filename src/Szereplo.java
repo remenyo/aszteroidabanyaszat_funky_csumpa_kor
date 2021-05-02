@@ -105,4 +105,6 @@ abstract public class Szereplo implements Leptetheto {
     public void resetLepett() {
         lepett = false;
     }
+    
+    public abstract JatekView getView();
 }
