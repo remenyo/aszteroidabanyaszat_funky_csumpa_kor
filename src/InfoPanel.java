@@ -12,17 +12,20 @@ public class InfoPanel extends JPanel {
 	private Integer reteg = 0;
 	private Integer portal = 0;
 	private String napvihar = "";
+	private String asztnev = "";
 	private JLabel sorszLabel = new JLabel("Telepes sorszama: " + sorsz);
 	private JLabel nyersLabel = new JLabel("Telepes nyersanyagai: " + nyers);
 	private JLabel retegLabel = new JLabel("Aszteroida rétege: " + reteg);
 	private JLabel portalLabel = new JLabel("Portálkapuk száma: " + portal);
 	private JLabel napviharLabel = new JLabel("Napvihar előrejelzés: " + napvihar);
+	private JLabel asztnevLabel = new JLabel("Aszteroida neve: " + asztnev);
 	
 	
 	
 	public InfoPanel() {
 		this.setLayout(new FlowLayout());
 		this.add(sorszLabel);
+		this.add(asztnevLabel);
 		this.add(nyersLabel);
 		this.add(retegLabel);
 		this.add(portalLabel);
@@ -32,6 +35,7 @@ public class InfoPanel extends JPanel {
 	public void setTelepes(Telepes t) {
 		jelenlegiTelepes = t;
 		sorsz = jelenlegiTelepes.getSorszam();
+		//asztnev = jelenlegiTelepes.getAszteroida().getNev();
 		nyers = "";
 		if(jelenlegiTelepes.getNyersanyagok().size() == 0) {
 			nyers = "Ures";
@@ -41,8 +45,7 @@ public class InfoPanel extends JPanel {
 				nyers += " ";
 			}
 		}
-		
-		
+				
 		reteg = jelenlegiTelepes.getAszteroida().getReteg();
 		portal = jelenlegiTelepes.getPortal().size();
 		if(jelenlegiTelepes.getAszteroida().getElorejelzesvan()) {
@@ -51,6 +54,7 @@ public class InfoPanel extends JPanel {
 			napvihar = "Nem lesz napvihar!";
 		}
 		sorszLabel.setText("Telepes sorszama: " + sorsz);
+		sorszLabel.setText("Aszteroida neve: " + asztnev);
 		nyersLabel.setText("Telepes nyersanyagai: " + nyers);
 		retegLabel.setText("Aszteroida rétege: " + reteg);
 		portalLabel.setText("Portálkapuk száma: " + portal);

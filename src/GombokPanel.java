@@ -1,8 +1,10 @@
 package src;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -34,11 +36,14 @@ public class GombokPanel extends JPanel {
 		final class mozgasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO uj menu mozgashoz		
+				//TODO A		
 				MozgasFrame mozgasFrame = new MozgasFrame(jelenlegiTelepes.getAszteroida().getSzomszedok());
-				mozgasFrame.setVisible(true);
-				mozgasFrame.setModal(true);
-				//jelenlegiTelepes.Mozgas(sorszam);
+				if(mozgasFrame.valasztott) {
+					jelenlegiTelepes.Mozgas(mozgasFrame.sorsz);
+				}else {
+					JOptionPane.showMessageDialog(Jatek.getInstance().getFoFrame(),"Elveszett ez a köröd :(");
+				}
+				
 				synchronized (Jatek.lepesKesz) {
 					Jatek.lepesKesz.notify();
 				}
