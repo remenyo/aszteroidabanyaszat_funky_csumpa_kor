@@ -43,6 +43,7 @@ public class Aszteroida extends Hely {
     	return null;
     }
     
+<<<<<<< HEAD
     public ArrayList<JatekView> getAllView(){
     	ArrayList<JatekView> osszes = new ArrayList<JatekView>();
     	for(Szereplo szereplo : szereplok) {
@@ -58,6 +59,27 @@ public class Aszteroida extends Hely {
     	return osszes;
     }
     
+=======
+    public Aszteroida szomszedosAszteroida(){
+    	return this;
+    }
+    
+    public ArrayList<JatekView> getAllView(){
+    	ArrayList<JatekView> osszes = new ArrayList<JatekView>();
+    	for(Szereplo szereplo : szereplok) {
+    		JatekView nezet = szereplo.getView();
+    		if(nezet!=null)
+    			osszes.add(nezet);
+    	}
+    	for(Hely szomszed : szomszedok) {
+    		JatekView nezet = szomszed.getView();
+    		if(nezet!=null)
+    			osszes.add(nezet);
+    	}
+    	return osszes;
+    }
+    
+>>>>>>> 60f17a0bac0d0e50a13cd5e4bc136532cfc4188f
     /**
      * Vissza adja azt az egy szomszéd Hely-et aki az i. indexen áll.
      * @param i A szomszéd azonosítója

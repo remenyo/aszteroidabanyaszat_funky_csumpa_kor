@@ -37,4 +37,6 @@ public abstract class Hely {
 	public void szomszedNapvihar() {
 
 	}
+	
+	abstract public Aszteroida szomszedosAszteroida();
 }
