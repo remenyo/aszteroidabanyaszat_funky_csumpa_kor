@@ -18,7 +18,8 @@ public class App {
         Log.info("Program elindult");
 
         do {
-            Szkeleton.Fomenu();
+            // Szkeleton.Fomenu();
+
             Szkeleton.reset();
         } while (Cin.getBool("Kezdjük újra?"));
 
