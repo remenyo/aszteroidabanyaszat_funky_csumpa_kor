@@ -7,6 +7,7 @@ public class Robot extends Szereplo {
 	 */
 	Robot() {
 		super(); // Beállításra kerülnek az alapértelmezések
+		jatekView = new RobotView();
 		Log.ctor();
 	}
 

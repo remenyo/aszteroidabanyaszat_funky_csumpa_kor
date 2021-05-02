@@ -6,6 +6,7 @@ public class Ufo extends Szereplo {
 	 */
 	Ufo() {
 		super();
+		jatekView = new UfoView();
 		Log.ctor();
 	}
 

@@ -21,6 +21,7 @@ public class Telepes extends Szereplo {
 	 */
 	Telepes() {
 		Log.ctor();
+		jatekView = new TelepesView(this);
 		nyersanyagok = new ArrayList<Nyersanyag>();
 		portal = new ArrayList<Portal>();
 		Jatek.telepesszam++;
