@@ -7,11 +7,16 @@ import javax.swing.JPanel;
 
 public class InfoPanel extends JPanel {
 	private Telepes jelenlegiTelepes;
-	private JLabel sorszLabel = new JLabel("Telepes sorszama: ");
-	private JLabel nyersLabel = new JLabel("Telepes nyersanyagai: ");
-	private JLabel retegLabel = new JLabel("Aszteroida rétege: ");
-	private JLabel portalLabel = new JLabel("Portálkapuk száma: ");
-	private JLabel napviharLabel = new JLabel("Napvihar előrejelzés: ");
+	private Integer sorsz = 0;
+	private String nyers = "";
+	private Integer reteg = 0;
+	private Integer portal = 0;
+	private String napvihar = "";
+	private JLabel sorszLabel = new JLabel("Telepes sorszama: " + sorsz);
+	private JLabel nyersLabel = new JLabel("Telepes nyersanyagai: " + nyers);
+	private JLabel retegLabel = new JLabel("Aszteroida rétege: " + reteg);
+	private JLabel portalLabel = new JLabel("Portálkapuk száma: " + portal);
+	private JLabel napviharLabel = new JLabel("Napvihar előrejelzés: " + napvihar);
 	
 	
 	
@@ -26,6 +31,17 @@ public class InfoPanel extends JPanel {
 	
 	public void setTelepes(Telepes t) {
 		jelenlegiTelepes = t;
-		
+		sorsz = jelenlegiTelepes.getSorszam();
+		nyers = "";
+		for(Nyersanyag ny: jelenlegiTelepes.getNyersanyagok()) {
+			nyers += ny.getNev();
+		}
+		reteg = jelenlegiTelepes.getAszteroida().getReteg();
+		portal = jelenlegiTelepes.getPortal().size();
+		if(jelenlegiTelepes.getAszteroida().getElorejelzesvan()) {
+			napvihar = "Napvihar lesz!";
+		}else {
+			napvihar = "Nem lesz napvihar!";
+		}
 	}
 }
