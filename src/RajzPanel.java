@@ -13,6 +13,7 @@ public class RajzPanel extends JPanel {
 	
 	public void setAszteroida(Aszteroida a) {
 		jelenlegiAszteroida = a;
+		this.repaint();
 	}
 	
 	public void paintComponent(Graphics g) {

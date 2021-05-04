@@ -185,6 +185,8 @@ public class Telepes extends Szereplo {
 				p2 = new Portal();
 				p1.beallitPar(p2);
 				p2.beallitPar(p1);
+				p1.setBirtokos(this);
+				p2.setBirtokos(this);
 				temp.add(p1);
 				temp.add(p2);
 				portal.add(p1);

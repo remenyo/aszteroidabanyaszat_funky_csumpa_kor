@@ -37,9 +37,9 @@ public class Jatek {
 	public static Double ROBOT_MOZGAS_VALOSZINUSEG = 0.7;
 
 	// ha ennél kevesebb telepes marad a játékban, a játéknak vége
-	public static Integer MIN_TELEPES_NYERESHEZ = 1;
+	public static Integer MIN_TELEPES_NYERESHEZ = 2;
 
-	public static Integer JATEKOS_SZAM = 5;
+	public static Integer JATEKOS_SZAM = 2;
 	public static Integer SZOMSZED_SZAM = 8;
 
 	//
@@ -176,10 +176,10 @@ public class Jatek {
 		Telepes.hozzaadKoltseg(RobothozNyersanyag);
 
 		PortalhozNyersanyag = new NyersanyagKoltseg();
-		PortalhozNyersanyag.hozzaadNyersanyag(new Uran(false));
+		//PortalhozNyersanyag.hozzaadNyersanyag(new Uran(false));
+		//PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
 		PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
-		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
+		//PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
 		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
 
 		UrbazishozNyersanyag = new NyersanyagKoltseg();

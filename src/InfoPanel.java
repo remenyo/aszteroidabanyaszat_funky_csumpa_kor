@@ -53,8 +53,8 @@ public class InfoPanel extends JPanel {
 		} else {
 			napvihar = "Nem lesz napvihar!";
 		}
-		sorszLabel.setText("#" + sorsz + " telepes," + sorsz);
-		asztnevLabel.setText(asztnev + "felszínén.");
+		sorszLabel.setText("#" + sorsz + " telepes");
+		asztnevLabel.setText(asztnev + " felszínén.");
 		nyersLabel.setText("Telepes nyersanyagai: " + nyers);
 		retegLabel.setText("Aszteroida rétegei: " + reteg);
 		portalLabel.setText("Portálkapuk száma: " + portal);

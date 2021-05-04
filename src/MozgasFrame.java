@@ -26,13 +26,15 @@ public MozgasFrame(ArrayList<Hely> szomszedok1) {
 	this.szomszedok = szomszedok1;
 	
 	for (Hely hely : szomszedok1) {
-		box.addItem(hely.szomszedosAszteroida());
+		if(hely.szomszedosAszteroida()!=null) {
+			box.addItem(hely.szomszedosAszteroida().getNev());	
+		}		
 	}
 	box.setSelectedIndex(0);	
 	box.addItemListener(new ItemListener() {
 		public void itemStateChanged(java.awt.event.ItemEvent evt) {
 			sorsz = box.getSelectedIndex();
-            rajzPanel.setAszteroida(szomszedok.get(box.getSelectedIndex()).szomszedosAszteroida());
+            rajzPanel.setAszteroida(szomszedok.get(box.getSelectedIndex()).szomszedosAszteroida());        
         }
 	});
 	

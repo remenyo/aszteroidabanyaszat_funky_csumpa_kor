@@ -105,6 +105,7 @@ public class Aszteroida extends Hely {
         for (int i = 0; i < eredeti; i++) {
             szereplok.get(0).Robbanas();
         }
+        
     }
 
     /**
@@ -131,6 +132,7 @@ public class Aszteroida extends Hely {
             }
 
         }
+        jatekView.UpdateView();
     }
 
     /**
@@ -148,6 +150,7 @@ public class Aszteroida extends Hely {
         } else {
             System.out.println("A réteg már át van fúrva!");
         }
+        jatekView.UpdateView();
     }
 
     /**
@@ -170,8 +173,8 @@ public class Aszteroida extends Hely {
                         // mert a robbanásban a robot nem halna meg
                         // hanem csak másik szomszédos aszteroidára kerülne de mivel
                         // nincs szomszéd ezért ő is meghal.
-
         }
+        jatekView.UpdateView();
     }
 
     /**
@@ -182,6 +185,7 @@ public class Aszteroida extends Hely {
     public void hozzaadSzomszed(Hely h) {
         Log.call();
         szomszedok.add(h);
+        jatekView.UpdateView();
     }
 
     /**
@@ -218,6 +222,7 @@ public class Aszteroida extends Hely {
     public void utazasHely(Portal hely) {
         hozzaadSzomszed(hely);
         hely.setVegpont(this);
+        jatekView.UpdateView();
     }
 
     /**
@@ -266,6 +271,7 @@ public class Aszteroida extends Hely {
     public void hozzaadSzereplo(Szereplo sz) {
         Log.call();
         szereplok.add(sz);
+        jatekView.UpdateView();
     }
 
     /**
@@ -276,6 +282,7 @@ public class Aszteroida extends Hely {
     public void torolSzereplo(Szereplo sz) {
         Log.call();
         szereplok.remove(sz);
+        jatekView.UpdateView();
     }
 
     /**
@@ -285,6 +292,7 @@ public class Aszteroida extends Hely {
     public void torolNyersanyag() {
         Log.call();
         nyersanyag = null;
+        jatekView.UpdateView();
     }
 
     /**
@@ -303,6 +311,7 @@ public class Aszteroida extends Hely {
             return true;
         }
         Log.jatek("Nyersanyag nem lett visszahelyezve");
+        jatekView.UpdateView();
         return false;
     }
 
