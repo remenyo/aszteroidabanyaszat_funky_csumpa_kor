@@ -24,7 +24,6 @@ public class Log {
 
     }
 
-
     /**
      * Visszaadja a stack {@code top-offset}-edik elemét.
      * 
@@ -36,42 +35,40 @@ public class Log {
         return Thread.currentThread().getStackTrace()[4 + offset]; // tru magic
     }
 
-
     /**
-     * Részletes log stringet építõ függvény. Az átadott hívó objektum részletesen lesz kiírva.
+     * Részletes log stringet építõ függvény. Az átadott hívó objektum részletesen
+     * lesz kiírva.
      * 
      * @param level A sor elején olvasható címke pl. INFO vagy WARN
-     * @param e A logot küldõ objektum
+     * @param e     A logot küldõ objektum
      * @return teljes log string
      */
     private static String verboseLogBuilder(String level, StackTraceElement e) {
         return "[" + level + RESET + "] " + e.toString();
     }
 
-
     /**
-     * Egyszerû log stringet építõ függvény. Az átadott hívó objektum pár információja lesz csak
-     * leírva.
+     * Egyszerû log stringet építõ függvény. Az átadott hívó objektum pár
+     * információja lesz csak leírva.
      * 
      * @param level A sor elején olvasható címke pl. INFO vagy WARN
-     * @param e A logot küldõ objektum
+     * @param e     A logot küldõ objektum
      * @return teljes log string
      */
     private static String simpleLogBuilder(String level, StackTraceElement e) {
         return "[" + level + RESET + "] " /* + e.getClassName() + "." + e.getMethodName() */;
     }
 
-
     /**
      * Log fõ függvény
      * 
-     * @param level A sor elején olvasható címke pl. INFO vagy WARN
-     * @param message A loghoz tartozó üzenet (opcionális)
-     * @param verbose A log részletessége (true = hívó részletes leírása)
+     * @param level               A sor elején olvasható címke pl. INFO vagy WARN
+     * @param message             A loghoz tartozó üzenet (opcionális)
+     * @param verbose             A log részletessége (true = hívó részletes
+     *                            leírása)
      * @param magic_stack_pointer A hívó stackban található helye
      */
-    private static void log(String level, String message, boolean verbose,
-            int magic_stack_pointer) {
+    private static void log(String level, String message, boolean verbose, int magic_stack_pointer) {
         if (verbose)
             System.out.println(verboseLogBuilder(level, getCaller(magic_stack_pointer))
                     + (message.equals("") ? "" : ": ") + message);
@@ -79,7 +76,6 @@ public class Log {
             System.out.println(simpleLogBuilder(level, getCaller(magic_stack_pointer))
                     + (message.equals("") ? "" : ": ") + message);
     }
-
 
     /**
      * Error üzenet logolása.
@@ -90,19 +86,17 @@ public class Log {
         error(message, 0, 1);
     }
 
-
     /**
      * Error üzenet logolása.
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
-     *        argumentum: stack pointer offset
+     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó
+     *                leírás ; második argumentum: stack pointer offset
      */
     static void error(String message, Integer... options) {
         if (Jatek.LOG_LEVEL > 0)
             log(RED + "ERROR", message, options[0] == 1, options[1]);
     }
-
 
     /**
      * Warn üzenet logolása.
@@ -113,19 +107,17 @@ public class Log {
         warn(message, 0, 1);
     }
 
-
     /**
      * Warn üzenet logolása.
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
-     *        argumentum: stack pointer offset
+     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó
+     *                leírás ; második argumentum: stack pointer offset
      */
     static void warn(String message, Integer... options) {
         if (Jatek.LOG_LEVEL > 1)
             log(YELLOW + "WARN", message, options[0] == 1, options[1]);
     }
-
 
     /**
      * Info üzenet logolása.
@@ -136,19 +128,17 @@ public class Log {
         info(message, 0, 1);
     }
 
-
     /**
      * Info üzenet logolása.
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
-     *        argumentum: stack pointer offset
+     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó
+     *                leírás ; második argumentum: stack pointer offset
      */
     static void info(String message, Integer... options) {
         if (Jatek.LOG_LEVEL > 2)
             log(BLUE + "INFO", message, options[0] == 1, options[1]);
     }
-
 
     /**
      * Debug üzenet logolása.
@@ -159,13 +149,12 @@ public class Log {
         debug(message, 0, 1);
     }
 
-
     /**
      * Debug üzenet logolása.
      * 
      * @param message A loghoz tartozó üzenet (opcionális)
-     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó leírás ; második
-     *        argumentum: stack pointer offset
+     * @param options elsõ argumentum: 1 = részletes hívó leírás, 0 = egyszerû hívó
+     *                leírás ; második argumentum: stack pointer offset
      */
     static void debug(String message, Integer... options) {
         if (Jatek.LOG_LEVEL > 3)
@@ -180,10 +169,9 @@ public class Log {
      * @see Jatek
      */
     static void call() {
-        if (Jatek.LOG_FUNCTION_CALLS)
+        if (Jatek.LOG_FUNCTION_CALLS && Jatek.LOG_LEVEL >= 0)
             log(GREEN + "CALL", "", true, 0);
     }
-
 
     /**
      * A játékosnak lehet üzenni ezzel a függvénnyel
@@ -191,7 +179,7 @@ public class Log {
      * @param message Az üzenet
      */
     static void jatek(String message) {
-        if (Jatek.LOG_GAME_INFO)
+        if (Jatek.LOG_GAME_INFO && Jatek.LOG_LEVEL >= 0)
             log(GREEN + "JATEK", message, false, 0);
     }
 
@@ -203,7 +191,7 @@ public class Log {
      * @see Jatek
      */
     static void ctor() {
-        if (Jatek.LOG_CONSTRUCTORS)
+        if (Jatek.LOG_CONSTRUCTORS && Jatek.LOG_LEVEL >= 0)
             log(CYAN + "CTOR", "", true, 0);
     }
 }

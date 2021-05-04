@@ -12,16 +12,14 @@ public class InfoPanel extends JPanel {
 	private Integer reteg = 0;
 	private Integer portal = 0;
 	private String napvihar = "";
-	private String asztnev = "TODO aszteroida nev gen";
+	private String asztnev = "";
 	private JLabel sorszLabel = new JLabel("Telepes sorszama: " + sorsz);
 	private JLabel nyersLabel = new JLabel("Telepes nyersanyagai: " + nyers);
 	private JLabel retegLabel = new JLabel("Aszteroida rétege: " + reteg);
 	private JLabel portalLabel = new JLabel("Portálkapuk száma: " + portal);
 	private JLabel napviharLabel = new JLabel("Napvihar előrejelzés: " + napvihar);
 	private JLabel asztnevLabel = new JLabel("Aszteroida neve: " + asztnev);
-	
-	
-	
+
 	public InfoPanel() {
 		this.setLayout(new FlowLayout());
 		this.add(sorszLabel);
@@ -31,34 +29,34 @@ public class InfoPanel extends JPanel {
 		this.add(portalLabel);
 		this.add(napviharLabel);
 	}
-	
+
 	public void setTelepes(Telepes t) {
-		//TODO aszteroida nevgen 
-		//TODO uran jelezni hényat élt túl visszarakasnal is
+		// TODO aszteroida nevgen
+		// TODO uran jelezni hényat élt túl visszarakasnal is
 		jelenlegiTelepes = t;
 		sorsz = jelenlegiTelepes.getSorszam();
-		//asztnev = jelenlegiTelepes.getAszteroida().getNev();
+		asztnev = jelenlegiTelepes.getAszteroida().getNev();
 		nyers = "";
-		if(jelenlegiTelepes.getNyersanyagok().size() == 0) {
+		if (jelenlegiTelepes.getNyersanyagok().size() == 0) {
 			nyers = "Ures";
-		}else {
-			for(Nyersanyag ny: jelenlegiTelepes.getNyersanyagok()) {
+		} else {
+			for (Nyersanyag ny : jelenlegiTelepes.getNyersanyagok()) {
 				nyers += ny.getNev();
 				nyers += " ";
 			}
 		}
-				
+
 		reteg = jelenlegiTelepes.getAszteroida().getReteg();
 		portal = jelenlegiTelepes.getPortal().size();
-		if(jelenlegiTelepes.getAszteroida().getElorejelzesvan()) {
+		if (jelenlegiTelepes.getAszteroida().getElorejelzesvan()) {
 			napvihar = "Napvihar lesz!";
-		}else {
+		} else {
 			napvihar = "Nem lesz napvihar!";
 		}
-		sorszLabel.setText("Telepes sorszama: " + sorsz);
-		asztnevLabel.setText("Aszteroida neve: " + asztnev);
+		sorszLabel.setText("#" + sorsz + " telepes," + sorsz);
+		asztnevLabel.setText(asztnev + "felszínén.");
 		nyersLabel.setText("Telepes nyersanyagai: " + nyers);
-		retegLabel.setText("Aszteroida rétege: " + reteg);
+		retegLabel.setText("Aszteroida rétegei: " + reteg);
 		portalLabel.setText("Portálkapuk száma: " + portal);
 		napviharLabel.setText("Napvihar előrejelzés: " + napvihar);
 		this.repaint();

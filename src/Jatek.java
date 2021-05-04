@@ -265,7 +265,7 @@ public class Jatek {
 	public static void jatekInditas(boolean nincsAllapot) {
 		Log.call();
 		Integer log_bkp = LOG_LEVEL;
-		// LOG_LEVEL = -1;
+		LOG_LEVEL = -1;
 
 		Nap n = (Nap) Szkeleton.getObj("nap");
 		leptethetok.add(n);
@@ -274,7 +274,7 @@ public class Jatek {
 			int vas = 0, szen = 0, vizjeg = 0, uran = 0;
 			for (int i = 0; i < 50; i++) {
 				Szkeleton.letrehoz("AszteroidaView", "AszteroidaView_" + i);
-				Szkeleton.letrehoz("Aszteroida", "Aszteroida_" + i, "Nap", "AszteroidaView_" + i);
+				Szkeleton.letrehoz("Aszteroida", "Aszteroida_" + i, "nap", "AszteroidaView_" + i);
 				Nyersanyag ny;
 				String nyersanyag_nev = "";
 				switch (i % 5) { // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
