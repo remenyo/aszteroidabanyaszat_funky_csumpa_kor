@@ -26,7 +26,7 @@ public MozgasFrame(ArrayList<Hely> szomszedok1) {
 	this.szomszedok = szomszedok1;
 	
 	for (Hely hely : szomszedok1) {
-		box.addItem(hely);
+		box.addItem(hely.szomszedosAszteroida());
 	}
 	box.setSelectedIndex(0);	
 	box.addItemListener(new ItemListener() {
