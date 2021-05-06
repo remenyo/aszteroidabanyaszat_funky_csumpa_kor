@@ -33,7 +33,7 @@ public class AszteroidaView extends JatekView {
 	public void Draw(Graphics g, double sorszam) {
 		//int x,y, oldal;	
 		g.setColor(Color.DARK_GRAY);
-		g.drawOval(x,y,oldal, oldal);
+		g.fillOval(x,y,oldal, oldal);
 		
 		int nezetmeret;
 		if(aszteroida.getNyersanyag()==null)
