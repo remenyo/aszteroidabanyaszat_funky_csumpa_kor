@@ -22,7 +22,7 @@ public void Draw(Graphics g, double sorszam) {
 	width=0;
 	height=0;*/
 	g.setColor(Color.WHITE);	
-	int ujx=(int) (Math.cos(sorszam)*206.1553+150);
+	int ujx=(int) (Math.cos(sorszam)*206.1553+350);
 	int ujy= (int)(Math.sin(sorszam)*206.1553+100);
 	g.fillRect(ujx, ujy, height, height);
 	
