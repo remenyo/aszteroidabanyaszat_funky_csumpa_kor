@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class AszteroidaView extends JatekView {
 	private Aszteroida aszteroida;
-	private int reteg; 															//erre sztem nincs szukseg mo
+	//private int reteg; 															//erre sztem nincs szukseg mo
 	private ArrayList<JatekView> nezetek = new ArrayList<JatekView>();
 	
 	static int x = 250;
@@ -27,13 +27,13 @@ public class AszteroidaView extends JatekView {
 	
 	public void BeallitAszteroida(Aszteroida a) {
 		aszteroida = a;
-		reteg = a.getReteg();
+		//reteg = a.getReteg();
 	 }
 	
 	public void Draw(Graphics g, double sorszam) {
 		//int x,y, oldal;	
 		g.setColor(Color.DARK_GRAY);
-		g.drawOval(x,y,oldal, oldal);
+		g.fillOval(x,y,oldal, oldal);
 		
 		int nezetmeret;
 		if(aszteroida.getNyersanyag()==null)
@@ -47,12 +47,17 @@ public class AszteroidaView extends JatekView {
 			
 		
 		
-		if(reteg!=0) {
+		if(aszteroida.getReteg()!=0) {
 			//réteg rárajzolása a nyersanyagra
 			//int x_reteg, y_reteg, oldal_reteg;
 			g.setColor(Color.GRAY);
-			g.drawOval(x_reteg,y_reteg,oldal_reteg, oldal_reteg);
+			g.fillOval(x_reteg,y_reteg,oldal_reteg, oldal_reteg);
+		}else {
+			nezetek.get(nezetek.size()-1).Draw(g, 0);
 		}
+		
+		//if(aszteroida.getReteg()==0)
+			//nezetek.get(nezetek.size()-1).Draw(g, 0);
 
 	}
 	
