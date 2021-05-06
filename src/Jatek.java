@@ -74,6 +74,16 @@ public class Jatek {
 	}
 
 	/**
+	 * Megjelenít egy funky üzenetet a felhasználónak.
+	 * 
+	 * @param feljlec az ablak fejlécében található szövegke.
+	 * @param uzenet az üzenet
+	 */
+	public static void uzenet(String fejlec, String uzenet) {
+		JOptionPane.showMessageDialog(foFrame, uzenet, fejlec, JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	/**
 	 * A kovetkező léptethető lépését hivja. Ha az utolsó léptethetőn vagyunk akkor vissz megy az
 	 * első léptethetőre
 	 */
@@ -82,9 +92,11 @@ public class Jatek {
 			if (szamlalo == leptethetok.size())
 				szamlalo = 0;
 			try {
-				new Thread(() -> {
+				Thread akcio_ablak = new Thread(() -> {
 					leptethetok.get(szamlalo++).Lepes();
-				}).start();
+				});
+				akcio_ablak.setDaemon(true);
+				akcio_ablak.start();
 			} catch (Exception e) {
 				Log.error(e.toString());
 			}
@@ -96,11 +108,9 @@ public class Jatek {
 			}
 		}
 		if (allapot == 1) {
-			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá",
-					JOptionPane.INFORMATION_MESSAGE);
+			uzenet("Hurrá", "Gratulálunk, nyertél :D");
 		} else {
-			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jaj... ÚRISTEN!",
-					JOptionPane.INFORMATION_MESSAGE);
+			uzenet("BAKKER", "Gratulálunk, vesztettél!");
 		}
 		foFrame.dispose();
 		// if (allapot == 0) {
