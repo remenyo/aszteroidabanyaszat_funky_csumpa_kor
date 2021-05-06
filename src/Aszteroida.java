@@ -258,7 +258,9 @@ public class Aszteroida extends Hely {
         Log.call();
         ArrayList<Nyersanyag> nyLista = new ArrayList<Nyersanyag>();
         for (Szereplo sz : szereplok) {
-            nyLista.addAll(sz.getNyersanyagok());
+        	if(sz.getNyersanyagok()!=null) {
+        		nyLista.addAll(sz.getNyersanyagok());
+        	}
         }
         if (urbazisKoltseg.koltsegSzamitas(nyLista)) {
             Jatek.jatekVegeNyert();
