@@ -15,7 +15,7 @@ public class FoFrame extends JFrame {
 		gombPanel = gp;
 		rajzPanel = rp;
 		infoPanel = ip;
-		this.setSize(800, 600);
+		this.setSize(850, 700);
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(infoPanel, BorderLayout.NORTH);
