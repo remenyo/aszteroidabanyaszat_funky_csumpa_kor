@@ -422,7 +422,10 @@ public class Aszteroida extends Hely {
         return kimenet;
 
     }
-
+    /**
+     * Aszteroida nevét adja vissza.
+     * @return
+     */
     public String getNev() {
         return Szkeleton.getID(this);
     }
