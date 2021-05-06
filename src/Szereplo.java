@@ -16,14 +16,14 @@ abstract public class Szereplo implements Leptetheto {
     }
 
     /**
-     * Az aszteroida paraméterül kapott sorszámú szomszédjára utazik és a
-     * jelenlegiről törli magát
+     * Az aszteroida paraméterül kapott sorszámú szomszédjára utazik és a jelenlegiről törli magát
      * 
      * @param sorszam Az aszteroida azonosítója
      */
     public void Mozgas(Integer sorszam) {
         Log.call();
         Hely uj = aszteroida.getSzomszed(sorszam);
+        Log.debug("Meggyüttem " + Szkeleton.getID((Aszteroida) uj) + "-ra.");
         aszteroida.torolSzereplo(this);
         uj.Utazas(this);
     }
