@@ -36,6 +36,9 @@ public class Jatek {
 	// a mozgás valószínűsége, ha nem mozog épp a robot akkor fúr
 	public static Double ROBOT_MOZGAS_VALOSZINUSEG = 0.7;
 
+	public static Double NAPVIHAR_VALOSZINUSEG = 0.05;
+
+
 	// ha ennél kevesebb telepes marad a játékban, a játéknak vége
 	public static Integer MIN_TELEPES_NYERESHEZ = 2;
 
@@ -323,7 +326,7 @@ public class Jatek {
 						t.setSorszam(j);
 						t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
 					}
-					//Ufo hozzáadása
+					// Ufo hozzáadása
 					Ufo ufo1 = new Ufo();
 					Ufo ufo2 = new Ufo();
 					Ufo ufo3 = new Ufo();
@@ -331,8 +334,8 @@ public class Jatek {
 					ufo2.beallitAszteroida(a);
 					ufo3.beallitAszteroida(a);
 				}
-				
-				
+
+
 
 				atmenetiAszteroidatar.add(a);
 			}
