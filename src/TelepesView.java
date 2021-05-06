@@ -6,9 +6,7 @@ import java.awt.Graphics;
 public class TelepesView extends JatekView{
 private Telepes taroltTelepes;
 
-static int x = 350;
-static int y = 100;
-//static int width = 100;
+
 static int height = 50;
 
 public TelepesView(Telepes t) {
@@ -22,8 +20,8 @@ public void Draw(Graphics g, double sorszam) {
 	width=0;
 	height=0;*/
 	g.setColor(Color.WHITE);	
-	int ujx=(int) (Math.cos(sorszam)*158.1139+375);//*206.1553+350);
-	int ujy= (int)(Math.sin(sorszam)*158.1139+275);//*206.1553+100);
+	int ujx=(int) (Math.cos(sorszam)*158.1139+375);
+	int ujy= (int)(Math.sin(sorszam)*158.1139+275);
 	g.fillRect(ujx, ujy, height, height);
 	
 }
