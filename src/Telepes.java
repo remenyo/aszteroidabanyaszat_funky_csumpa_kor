@@ -52,15 +52,14 @@ public class Telepes extends Szereplo {
 	 * A telepes meghívja a Banyaszat() fv-t azon az aszteroidán amelyiken áll, ha van nyersanyag az
 	 * aszteroidába akkor azt magához veszi és meghívja az ellenőriznyertet az aszteroidán.
 	 */
-	public Boolean Banyaszat() {
+	public void Banyaszat() {
 		Log.call();
 		Nyersanyag temp = aszteroida.Banyaszat();
 		if (temp != null) {
 			nyersanyagok.add(temp);
 			aszteroida.ellenorizNyert();
-			return true;
+			Jatek.uzenet("Pacek ⛏️", "Kibányásztad: " + Szkeleton.getID((Nyersanyag) temp));
 		}
-		return false;
 	}
 
 	/**
@@ -152,12 +151,15 @@ public class Telepes extends Szereplo {
 		Log.call();
 		Boolean vaneleg = epiteskoltseg.get(0).koltsegSzamitas(nyersanyagok);
 		if (vaneleg) {
-			Log.jatek("Robot Megépítve!");
-			Robot r = new Robot();
+			String id = "Robot_" + Szkeleton.getRobotID();
+			Szkeleton.letrehoz("Robot", id);
+			Robot r = (Robot) Szkeleton.getObj(id);
 			aszteroida.Utazas(r);
+			Jatek.uzenet("Robot 🤖 megépíve!",
+					id + " Mostantól fúr vagy mozog és segít a célodban, legyen az bármi.");
 			return r;
 		} else {
-			Log.jatek("Nincs elég nyersanyagod");
+			Log.debug("Nincs elég nyersanyag robot epitesehez");
 		}
 		return null;
 	}
@@ -178,7 +180,6 @@ public class Telepes extends Szereplo {
 		if (portal.size() <= 1) {
 			Boolean vaneleg = epiteskoltseg.get(1).koltsegSzamitas(nyersanyagok);
 			if (vaneleg) {
-				Log.jatek("Portál Megépítve!");
 				temp = new ArrayList<Portal>();
 				p1 = new Portal();
 				p2 = new Portal();
@@ -191,7 +192,7 @@ public class Telepes extends Szereplo {
 				portal.add(p1);
 				portal.add(p2);
 			} else {
-				Log.jatek("Nincs elég nyersanyagod");
+				Log.jatek("Nincs elég nyersanyag portálpár fabrikálásához");
 			}
 		}
 		return temp;

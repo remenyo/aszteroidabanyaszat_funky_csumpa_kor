@@ -1,8 +1,6 @@
 package src;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-
 import javax.swing.JFrame;
 
 public class FoFrame extends JFrame {

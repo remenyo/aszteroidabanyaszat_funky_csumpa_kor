@@ -66,7 +66,7 @@ public class GombokPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (jelenlegiTelepes.Furas())
-					Jatek.uzenet("MEG👏LETT👏FÚRVA", "A fúrás sikeres.");
+					Jatek.uzenet("MEG 👏 LETT 👏 FÚRVA", "A fúrás sikeres.");
 				else
 					bena();
 				mehetunk_tovabb();
@@ -86,7 +86,8 @@ public class GombokPanel extends JPanel {
 		final class robotEpitesButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				jelenlegiTelepes.epitRobot();
+				if (jelenlegiTelepes.epitRobot() == null)
+					bena();
 				mehetunk_tovabb();
 			}
 		}
@@ -95,7 +96,9 @@ public class GombokPanel extends JPanel {
 		final class portalEpitesButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				jelenlegiTelepes.epitPortal();
+				if (jelenlegiTelepes.epitPortal() == null) {
+					bena();
+				}
 				mehetunk_tovabb();
 			}
 		}
@@ -106,8 +109,10 @@ public class GombokPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (jelenlegiTelepes.getPortal().size() != 0) {
 					jelenlegiTelepes.lerakPortal(jelenlegiTelepes.getPortal().get(0));
-					mehetunk_tovabb();
-				}
+					Jatek.uzenet("LE 👏 LETT 👏 RAKVA", "Sikeresen lehelyezted a portált.");
+				} else
+					bena();
+				mehetunk_tovabb();
 			}
 		}
 		portalLerakasButton.addActionListener(new portalLerakasButtonActionListener());
@@ -128,10 +133,9 @@ public class GombokPanel extends JPanel {
 				if (visszarakando >= 0) {
 					jelenlegiTelepes.visszarakNyersanyag(
 							jelenlegiTelepes.getNyersanyagok().get(visszarakando));
-				} else {
-					JOptionPane.showMessageDialog(Jatek.getInstance().getFoFrame(),
-							"Elveszett ez a köröd :(");
-				}
+					Jatek.uzenet("LE 👏 LETT 👏 RAKVA", "Sikeresen lehelyeztél egy nyersanyagot.");
+				} else
+					bena();
 				mehetunk_tovabb();
 			}
 		}

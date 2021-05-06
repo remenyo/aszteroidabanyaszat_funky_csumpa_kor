@@ -3,7 +3,7 @@ package src;
 // Mesterséges intelligencia, amely fúrhat vagy mozoghat
 public class Robot extends Szereplo {
 	/**
-	 * Robot konstora
+	 * Robot konstruktora
 	 */
 	Robot() {
 		super(); // Beállításra kerülnek az alapértelmezések
