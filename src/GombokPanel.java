@@ -1,16 +1,13 @@
 package src;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 public class GombokPanel extends JPanel {
 	private Telepes jelenlegiTelepes;
@@ -21,6 +18,22 @@ public class GombokPanel extends JPanel {
 	private JButton portalEpitesButton = new JButton("Portal epites");
 	private JButton portalLerakasButton = new JButton("Portal lerakas");
 	private JButton nyersanyagLerakasButton = new JButton("Nyersanyag lerakas");
+
+	/**
+	 * A játéknak jelzi, hogy lehet tovább menni a körben.
+	 */
+	static void mehetunk_tovabb() {
+		synchronized (Jatek.lepesKesz) {
+			Jatek.lepesKesz.notify();
+		}
+	}
+
+	/**
+	 * Amennyiben a felhasználó hülyeséget csinál, ezt az üzenetet látja.
+	 */
+	static void bena() {
+		Jatek.uzenet("Béna vagy", "Ez a köröd elveszett.");
+	}
 
 	public GombokPanel() {
 
@@ -36,17 +49,15 @@ public class GombokPanel extends JPanel {
 		final class mozgasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO A		
-				MozgasFrame mozgasFrame = new MozgasFrame(jelenlegiTelepes.getAszteroida().getSzomszedok());
-				if(mozgasFrame.valasztott) {
+				// TODO A
+				MozgasFrame mozgasFrame =
+						new MozgasFrame(jelenlegiTelepes.getAszteroida().getSzomszedok());
+				if (mozgasFrame.valasztott) {
 					jelenlegiTelepes.Mozgas(mozgasFrame.sorsz);
-				}else {
-					JOptionPane.showMessageDialog(Jatek.getInstance().getFoFrame(),"Elveszett ez a köröd :(");
-				}
-				
-				synchronized (Jatek.lepesKesz) {
-					Jatek.lepesKesz.notify();
-				}
+					Jatek.uzenet("Utazás sikeres", "Sikeresen elutaztál");
+				} else
+					bena();
+				mehetunk_tovabb();
 			}
 		}
 		mozgasButton.addActionListener(new mozgasButtonActionListener());
@@ -54,10 +65,11 @@ public class GombokPanel extends JPanel {
 		final class furasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				jelenlegiTelepes.Furas();
-				synchronized (Jatek.lepesKesz) {
-					Jatek.lepesKesz.notify();
-				}
+				if (jelenlegiTelepes.Furas())
+					Jatek.uzenet("MEG👏LETT👏FÚRVA", "A fúrás sikeres.");
+				else
+					bena();
+				mehetunk_tovabb();
 			}
 		}
 		furasButton.addActionListener(new furasButtonActionListener());
@@ -66,9 +78,7 @@ public class GombokPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.Banyaszat();
-				synchronized (Jatek.lepesKesz) {
-					Jatek.lepesKesz.notify();
-				}
+				mehetunk_tovabb();
 			}
 		}
 		banyaszatButton.addActionListener(new banyaszatButtonActionListener());
@@ -77,9 +87,7 @@ public class GombokPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.epitRobot();
-				synchronized (Jatek.lepesKesz) {
-					Jatek.lepesKesz.notify();
-				}
+				mehetunk_tovabb();
 			}
 		}
 		robotEpitesButton.addActionListener(new robotEpitesButtonActionListener());
@@ -88,9 +96,7 @@ public class GombokPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jelenlegiTelepes.epitPortal();
-				synchronized (Jatek.lepesKesz) {
-					Jatek.lepesKesz.notify();
-				}
+				mehetunk_tovabb();
 			}
 		}
 		portalEpitesButton.addActionListener(new portalEpitesButtonActionListener());
@@ -98,46 +104,45 @@ public class GombokPanel extends JPanel {
 		final class portalLerakasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(jelenlegiTelepes.getPortal().size() != 0) {
+				if (jelenlegiTelepes.getPortal().size() != 0) {
 					jelenlegiTelepes.lerakPortal(jelenlegiTelepes.getPortal().get(0));
-					synchronized (Jatek.lepesKesz) {
-						Jatek.lepesKesz.notify();
-					}	
-				}				
+					mehetunk_tovabb();
+				}
 			}
 		}
 		portalLerakasButton.addActionListener(new portalLerakasButtonActionListener());
 
-		
-		
+
+
 		final class nyersanyagLerakasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Integer visszarakando = -1;
-				JComboBox combobox = new JComboBox();
-				for(Nyersanyag ny: jelenlegiTelepes.getNyersanyagok()) {
+				JComboBox<String> combobox = new JComboBox<String>();
+				for (Nyersanyag ny : jelenlegiTelepes.getNyersanyagok()) {
 					combobox.addItem(ny.getNev());
 				}
-				JOptionPane.showMessageDialog(Jatek.getInstance().getFoFrame(),combobox, "Válassza ki melyiket szeretné visszarakni!",JOptionPane.QUESTION_MESSAGE);
-				visszarakando = combobox.getSelectedIndex();	
-				if(visszarakando >= 0) {
-					jelenlegiTelepes.visszarakNyersanyag(jelenlegiTelepes.getNyersanyagok().get(visszarakando));
-				}else {
-					JOptionPane.showMessageDialog(Jatek.getInstance().getFoFrame(),"Elveszett ez a köröd :(");
+				JOptionPane.showMessageDialog(Jatek.getInstance().getFoFrame(), combobox,
+						"Válassza ki melyiket szeretné visszarakni!", JOptionPane.QUESTION_MESSAGE);
+				visszarakando = combobox.getSelectedIndex();
+				if (visszarakando >= 0) {
+					jelenlegiTelepes.visszarakNyersanyag(
+							jelenlegiTelepes.getNyersanyagok().get(visszarakando));
+				} else {
+					JOptionPane.showMessageDialog(Jatek.getInstance().getFoFrame(),
+							"Elveszett ez a köröd :(");
 				}
-				synchronized (Jatek.lepesKesz) {
-					Jatek.lepesKesz.notify();
-				}
+				mehetunk_tovabb();
 			}
 		}
-		nyersanyagLerakasButton.addActionListener(new nyersanyagLerakasButtonActionListener());		
-			
+		nyersanyagLerakasButton.addActionListener(new nyersanyagLerakasButtonActionListener());
+
 	}
-	
+
 	GombokPanel getInstance() {
 		return this;
 	}
-	
+
 	public void setTelepes(Telepes t) {
 		jelenlegiTelepes = t;
 	}
