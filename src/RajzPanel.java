@@ -1,5 +1,6 @@
 package src;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -8,7 +9,7 @@ public class RajzPanel extends JPanel {
 	private Aszteroida jelenlegiAszteroida;
 	
 	public RajzPanel() {
-		
+		this.setBackground(Color.BLACK);
 	}
 	
 	public void setAszteroida(Aszteroida a) {
