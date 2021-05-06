@@ -53,7 +53,8 @@ public class AszteroidaView extends JatekView {
 			g.setColor(Color.GRAY);
 			g.fillOval(x_reteg,y_reteg,oldal_reteg, oldal_reteg);
 		}else {
-			nezetek.get(nezetek.size()-1).Draw(g, 0);
+			if(aszteroida.getNyersanyag()!=null)
+				nezetek.get(nezetek.size()-1).Draw(g, 0);
 		}
 		
 		//if(aszteroida.getReteg()==0)
