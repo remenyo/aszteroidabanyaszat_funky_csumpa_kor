@@ -24,7 +24,6 @@ public class MozgasFrame extends JDialog {
 		super(Jatek.getInstance().getFoFrame(), true);
 		setLayout(new BorderLayout());
 		setSize(800, 600);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.szomszedok = szomszedok1;
 
 		for (Hely hely : szomszedok1) {

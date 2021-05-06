@@ -56,10 +56,11 @@ public class Telepes extends Szereplo {
 		Log.call();
 		Nyersanyag temp = aszteroida.Banyaszat();
 		if (temp != null) {
+			Jatek.uzenet("Pacek ⛏️", "Kibányásztad: " + Szkeleton.getID((Nyersanyag) temp));
 			nyersanyagok.add(temp);
 			aszteroida.ellenorizNyert();
-			Jatek.uzenet("Pacek ⛏️", "Kibányásztad: " + Szkeleton.getID((Nyersanyag) temp));
-		}
+		} else
+			Jatek.uzenet("Jaj", "Ez a köröd elveszett.");
 	}
 
 	/**

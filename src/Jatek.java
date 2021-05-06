@@ -42,10 +42,15 @@ public class Jatek {
 	// ha ennél kevesebb telepes marad a játékban, a játéknak vége
 	public static Integer MIN_TELEPES_NYERESHEZ = 2;
 
-	public static Integer JATEKOS_SZAM = 2;
+	public static Integer JATEKOS_SZAM = 3;
+	public static Double NYERSANYAG_MAGBAN_VALOSZINUSEG = 0.7;
+	public static Integer ASZTEROIDA_SZAM = 50;
 	public static Integer SZOMSZED_SZAM = 8;
+	private static Integer MIN_RETEG = 1;
+	private static Integer MAX_RETEG = 5;
+	private static Double NAPKOZELBEN_VALOSZINUSEG = 0.1;
 
-	//
+
 	public static Integer telepesszam = 0;
 	public static Integer allapot = 0;
 	private static Integer szamlalo = 0;
@@ -116,22 +121,6 @@ public class Jatek {
 			uzenet("BAKKER", "Gratulálunk, vesztettél!");
 		}
 		foFrame.dispose();
-		// if (allapot == 0) {
-		// if (szamlalo == leptethetok.size()) {
-		// szamlalo = 0;
-		// }
-		// leptethetok.get(szamlalo++).Lepes();
-		// } else {
-		// if (allapot == 1) {
-		// JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá",
-		// JOptionPane.INFORMATION_MESSAGE);
-		// } else {
-		// JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jajne!",
-		// JOptionPane.INFORMATION_MESSAGE);
-		// }
-		// foFrame.dispose();
-		// }
-
 	}
 
 	/**
@@ -184,28 +173,27 @@ public class Jatek {
 		Jatek.LOG_FUNCTION_CALLS = false;
 
 		RobothozNyersanyag = new NyersanyagKoltseg();
-		// RobothozNyersanyag.hozzaadNyersanyag(new Szen(false));
+		RobothozNyersanyag.hozzaadNyersanyag(new Szen(false));
 		RobothozNyersanyag.hozzaadNyersanyag(new Vas(false));
-		// RobothozNyersanyag.hozzaadNyersanyag(new Uran(false));
+		RobothozNyersanyag.hozzaadNyersanyag(new Uran(false));
 		Telepes.hozzaadKoltseg(RobothozNyersanyag);
 
 		PortalhozNyersanyag = new NyersanyagKoltseg();
-		// PortalhozNyersanyag.hozzaadNyersanyag(new Uran(false));
-		// PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
+		PortalhozNyersanyag.hozzaadNyersanyag(new Uran(false));
 		PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
-		// PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
+		PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
 		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
 
 		UrbazishozNyersanyag = new NyersanyagKoltseg();
 		for (int i = 0; i < 3; i++) {
 			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas(false));
-			// UrbazishozNyersanyag.hozzaadNyersanyag(new Szen(false));
-			// UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
-			// UrbazishozNyersanyag.hozzaadNyersanyag(new Uran(false));
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen(false));
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
+			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran(false));
 		}
 		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
 
-		// foFrame = new FoFrame(new GombokPanel(), new RajzPanel(), new InfoPanel());
 		Jatek.LOG_CONSTRUCTORS = true;
 		Jatek.LOG_FUNCTION_CALLS = true;
 	}
@@ -217,6 +205,7 @@ public class Jatek {
 	}
 
 	// Nem használjuk a tesztben, kezdetleges Kör
+	// TODO kell még?
 	public static void Kor() {
 		Log.call();
 		for (Leptetheto leptetheto : leptethetok) {
@@ -251,7 +240,7 @@ public class Jatek {
 	 */
 	public static void jatekVegeNyert() {
 		Log.call();
-		Log.jatek("Gratulálunk nyertél!! :)");
+		Log.jatek("Játék megnyerve!");
 		allapot = 1;
 	}
 
@@ -260,7 +249,7 @@ public class Jatek {
 	 */
 	public static void jatekVegeVesztett() {
 		Log.call();
-		Log.jatek("Gratulálunk vesztettél !! :)");
+		Log.jatek("Játék elveszítve!");
 		allapot = -1;
 	}
 
@@ -269,13 +258,15 @@ public class Jatek {
 		leptethetok.add(l);
 	}
 
+
+
 	/**
 	 * Játékban szereplő játékosok, aszteroidák inicializálásáért felelős
 	 * 
 	 * @param nincsAllapot Ha igaz akkor létre hozza alap értelmezett helyzetet ha hamis akkor a
 	 *        parancssorba lett beállítva valamilyen állapot
 	 */
-	public static void jatekInditas(boolean nincsAllapot) {
+	public static void jatekInditas(Boolean nincsAllapot) {
 		Log.call();
 		Integer log_bkp = LOG_LEVEL;
 		LOG_LEVEL = -1;
@@ -285,28 +276,34 @@ public class Jatek {
 		if (nincsAllapot) {
 			ArrayList<Aszteroida> atmenetiAszteroidatar = new ArrayList<Aszteroida>();
 			int vas = 0, szen = 0, vizjeg = 0, uran = 0;
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < ASZTEROIDA_SZAM; i++) {
 				Szkeleton.letrehoz("AszteroidaView", "AszteroidaView_" + i);
 				Szkeleton.letrehoz("Aszteroida", "Aszteroida_" + i, "nap", "AszteroidaView_" + i);
 				Nyersanyag ny;
 				String nyersanyag_nev = "";
-				switch (i % 5) { // 0 Vas 1 Szén 2 Vizjeg 3 Uran 4 üres
-					case 0:
-						nyersanyag_nev = "Vas_" + vas++;
-						break;
-					case 1:
-						nyersanyag_nev = "Szen_" + szen++;
-						break;
-					case 2:
-						nyersanyag_nev = "Vizjeg_" + vizjeg++;
-						break;
-					case 3:
-						nyersanyag_nev = "Uran_" + uran++;
-						break;
-					default: // 4
-						nyersanyag_nev = "";
-						ny = null;
+				if (RandomUtils.randomBooleanValoszinuseggel(NYERSANYAG_MAGBAN_VALOSZINUSEG)) {
+					switch (RandomUtils.randomIntHatarokKozott(1, 4)) {
+						// 1 Vas 2 Szén 3 Vizjeg 4 Uran
+						case 1:
+							nyersanyag_nev = "Vas_" + vas++;
+							break;
+						case 2:
+							nyersanyag_nev = "Szen_" + szen++;
+							break;
+						case 3:
+							nyersanyag_nev = "Vizjeg_" + vizjeg++;
+							break;
+						case 4:
+							nyersanyag_nev = "Uran_" + uran++;
+							break;
+						default: // ez nem fordul elő
+							break;
+					}
+				} else {
+					nyersanyag_nev = "";
+					ny = null;
 				}
+
 				Aszteroida a = (Aszteroida) Szkeleton.getObj("Aszteroida_" + i);
 
 				if (nyersanyag_nev != "") {
@@ -314,18 +311,10 @@ public class Jatek {
 					ny = (Nyersanyag) Szkeleton.getObj(nyersanyag_nev);
 					a.setNyersanyag(ny);
 				}
-				a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
-				a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
-				Szkeleton.hiv("AszteroidaView_" + i, "BeallitAszteroida", "Aszteroida_" + i); // lehetne
-																								// getObj-al
-																								// is...
+				a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(NAPKOZELBEN_VALOSZINUSEG));
+				a.setReteg(RandomUtils.randomIntHatarokKozott(MIN_RETEG, MAX_RETEG));
+				Szkeleton.hiv("AszteroidaView_" + i, "BeallitAszteroida", "Aszteroida_" + i);
 				if (i == 0) {
-					for (int j = 0; j < JATEKOS_SZAM; j++) {
-						Szkeleton.letrehoz("Telepes", "Telepes_" + j);
-						Telepes t = (Telepes) Szkeleton.getObj("Telepes_" + j);
-						t.setSorszam(j);
-						t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
-					}
 					// Ufo hozzáadása
 					Ufo ufo1 = new Ufo();
 					Ufo ufo2 = new Ufo();
@@ -334,11 +323,19 @@ public class Jatek {
 					ufo2.beallitAszteroida(a);
 					ufo3.beallitAszteroida(a);
 				}
-
-
-
 				atmenetiAszteroidatar.add(a);
 			}
+
+			// telepesek
+			for (int i = 0; i < JATEKOS_SZAM; i++) {
+				Szkeleton.letrehoz("Telepes", "Telepes_" + i);
+				Telepes t = (Telepes) Szkeleton.getObj("Telepes_" + i);
+				t.setSorszam(i);
+				// aszteroidanak is beallitja a szereplot
+				t.beallitAszteroida((Aszteroida) Szkeleton.getObj("Aszteroida_"
+						+ RandomUtils.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1)));
+			}
+
 			atmenetiAszteroidatar.get(0)
 					.hozzaadSzomszed(atmenetiAszteroidatar.get(atmenetiAszteroidatar.size() - 1));
 			for (int i = 0; i < atmenetiAszteroidatar.size() - 1; i++) {
@@ -360,13 +357,13 @@ public class Jatek {
 		allapot = 0; // futó állapot
 		LOG_LEVEL = log_bkp;
 		InfoPanel infoPanel = new InfoPanel();
-		infoPanel.setTelepes((Telepes) leptethetok.get(1));
+		// infoPanel.setTelepes((Telepes) leptethetok.get(1));
 		RajzPanel rajzPanel = new RajzPanel();
-		// rajzPanel.setAszteroida(new Aszteroida(n,)); //TODO ez nem fasza igy teljesen
+		// rajzPanel.setAszteroida(new Aszteroida(n,)); //TODO ez nem pömpölős igy teljesen
 		GombokPanel gombokPanel = new GombokPanel();
-		gombokPanel.setTelepes((Telepes) leptethetok.get(1));
+		// gombokPanel.setTelepes((Telepes) leptethetok.get(1));
 		foFrame = new FoFrame(gombokPanel, rajzPanel, infoPanel);
-		foFrame.setTelepes((Telepes) leptethetok.get(1));
+		// foFrame.setTelepes((Telepes) leptethetok.get(1));
 		foFrame.setVisible(true);
 		kovetkezoLepes();
 	}
