@@ -42,7 +42,7 @@ public class AszteroidaView extends JatekView {
 			nezetmeret=nezetek.size()-1;
 		
 		for(int i=0; i<nezetmeret; i++) {
-			nezetek.get(i).Draw(g, i*2*3.14/nezetmeret);
+			nezetek.get(i).Draw(g, (double) (i*2*3.14/nezetmeret));
 		}
 			
 		

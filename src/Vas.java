@@ -5,6 +5,7 @@ public class Vas extends Nyersanyag {
 
     Vas() {
         this(true);
+        jatekView = new VasView();
     }
 
     Vas(Boolean jatekonBelul) {

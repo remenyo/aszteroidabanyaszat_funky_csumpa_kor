@@ -6,6 +6,7 @@ public class Uran extends Nyersanyag {
 
     Uran() {
         this(true);
+        jatekView = new UranView();
     }
 
     Uran(Boolean jatekonBelul) {

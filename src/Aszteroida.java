@@ -65,6 +65,8 @@ public class Aszteroida extends Hely {
             if (nezet != null)
                 osszes.add(nezet);
         }
+        if(nyersanyag!=null)
+        	osszes.add(nyersanyag.getView());
         return osszes;
     }
 

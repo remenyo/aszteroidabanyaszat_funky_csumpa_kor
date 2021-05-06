@@ -5,6 +5,7 @@ public class Szen extends Nyersanyag {
 
     Szen() {
         this(true);
+        jatekView = new SzenView();
     }
 
     Szen(Boolean jatekonBelul) {

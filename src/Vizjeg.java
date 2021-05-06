@@ -5,6 +5,7 @@ public class Vizjeg extends Nyersanyag {
 
     Vizjeg() {
         this(true);
+        jatekView = new VizjegView();
     }
 
     Vizjeg(Boolean jatekonBelul) {
