@@ -6,11 +6,11 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 
 public class FoFrame extends JFrame {
-	private Telepes jelenlegiTelepes;
+	private Telepes jelenlegiTelepes;//Telepes akinek a köre van.
 
-	private GombokPanel gombPanel;
-	private RajzPanel rajzPanel;
-	private InfoPanel infoPanel;
+	private GombokPanel gombPanel;//Gombok panelja
+	private RajzPanel rajzPanel;//Rajzolára való panel
+	private InfoPanel infoPanel;//Infó kiírás panel
 
 	
 	public FoFrame(GombokPanel gp, RajzPanel rp, InfoPanel ip) {

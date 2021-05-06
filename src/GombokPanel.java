@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GombokPanel extends JPanel {
-	private Telepes jelenlegiTelepes;
+	private Telepes jelenlegiTelepes; //Jelenlegi atelepes akineka  köre van.
 	private JButton mozgasButton = new JButton("Mozgas");
 	private JButton furasButton = new JButton("Furas");
 	private JButton banyaszatButton = new JButton("Banyaszas");
