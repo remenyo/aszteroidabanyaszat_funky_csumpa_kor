@@ -51,7 +51,7 @@ public class AszteroidaView extends JatekView {
 			//réteg rárajzolása a nyersanyagra
 			//int x_reteg, y_reteg, oldal_reteg;
 			g.setColor(Color.GRAY);
-			g.drawOval(x_reteg,y_reteg,oldal_reteg, oldal_reteg);
+			g.fillOval(x_reteg,y_reteg,oldal_reteg, oldal_reteg);
 		}else {
 			nezetek.get(nezetek.size()-1).Draw(g, 0);
 		}
