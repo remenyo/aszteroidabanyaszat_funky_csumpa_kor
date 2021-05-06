@@ -170,9 +170,9 @@ public class Jatek {
 		Jatek.LOG_FUNCTION_CALLS = false;
 
 		RobothozNyersanyag = new NyersanyagKoltseg();
-		RobothozNyersanyag.hozzaadNyersanyag(new Szen(false));
+		//RobothozNyersanyag.hozzaadNyersanyag(new Szen(false));
 		RobothozNyersanyag.hozzaadNyersanyag(new Vas(false));
-		RobothozNyersanyag.hozzaadNyersanyag(new Uran(false));
+		//RobothozNyersanyag.hozzaadNyersanyag(new Uran(false));
 		Telepes.hozzaadKoltseg(RobothozNyersanyag);
 
 		PortalhozNyersanyag = new NyersanyagKoltseg();
