@@ -6,7 +6,7 @@ public class Uran extends Nyersanyag {
 
     Uran() {
         this(true);
-        jatekView = new UranView();
+        jatekView = new UranView(this);
     }
 
     Uran(Boolean jatekonBelul) {
@@ -15,7 +15,7 @@ public class Uran extends Nyersanyag {
         if (jatekonBelul)
             osszesUran++;
         napfenyErte = 0;
-        jatekView = new UranView();
+        jatekView = new UranView(this);
     }
 
     protected static void reset() {
@@ -66,6 +66,11 @@ public class Uran extends Nyersanyag {
      */
     public Integer getnapFenyerte() {
         return napfenyErte;
+    }
+    
+    @Override
+    public String getNev() {
+    	return nev+":"+napfenyErte;
     }
 
 }

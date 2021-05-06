@@ -323,7 +323,16 @@ public class Jatek {
 						t.setSorszam(j);
 						t.beallitAszteroida(a); // aszteroidanak is beallitja a szereplot
 					}
+					//Ufo hozzáadása
+					Ufo ufo1 = new Ufo();
+					Ufo ufo2 = new Ufo();
+					Ufo ufo3 = new Ufo();
+					ufo1.beallitAszteroida(a);
+					ufo2.beallitAszteroida(a);
+					ufo3.beallitAszteroida(a);
 				}
+				
+				
 
 				atmenetiAszteroidatar.add(a);
 			}

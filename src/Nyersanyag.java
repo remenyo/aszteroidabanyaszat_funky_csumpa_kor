@@ -1,7 +1,7 @@
 package src;
 
 abstract public class Nyersanyag {
-    private String nev = "Nyersanyag";
+    protected String nev = "Nyersanyag";
     protected JatekView jatekView;
 
     Nyersanyag(String nev) {
