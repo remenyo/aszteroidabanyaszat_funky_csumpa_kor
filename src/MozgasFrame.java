@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class MozgasFrame extends JDialog{
-private JComboBox<String> box = new JComboBox<String>();
+private JComboBox<String> box = new JComboBox<String>(); //Aszteroidákat tartalmazza amire lehet menni és ebből lehet választani hova akarunk menni.
 private ArrayList<Hely> szomszedok;
-private RajzPanel rajzPanel;
+private RajzPanel rajzPanel; //Aszteroidákat amiket kiválasztunk erre rajzolja ki.
 private Button valasztButton = new Button("Kivalaszt");
 public Integer sorsz = 0;
 public Boolean valasztott = false;
 
-
+//Konstruktor létrehozza a Dialogot és elrendezi.
 public MozgasFrame(ArrayList<Hely> szomszedok1) {
 	super(Jatek.getInstance().getFoFrame(),true);
 	setLayout(new BorderLayout());
@@ -37,6 +37,7 @@ public MozgasFrame(ArrayList<Hely> szomszedok1) {
         }
 	});
 	
+	//kivalasztjuk melyikre akarunk menni.
 	final class valasztButtonActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

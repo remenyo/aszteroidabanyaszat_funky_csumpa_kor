@@ -5,17 +5,13 @@ import java.awt.Graphics;
 
 public class SzenView extends JatekView{
 	
-	static int x = 350;
-	static int y = 250;
-	static int oldal = 100;
-	
+	/**
+	 * Szén kirajzolása
+	 * @param g: kirajzoló grafikus osztály
+	 * @param sorszam: Nincs jelentősége (csak leszármazás miatt van)
+	 */
 	public void Draw(Graphics g, double sorszam) {
-		/*int x,y,width,height;
-		x=0;
-		y=0;
-		width=0;
-		height=0;*/
 		g.setColor(Color.BLACK);
-		g.fillOval(x, y, oldal, oldal);
+		g.fillOval(350, 250, 100, 100);
 	}
 }

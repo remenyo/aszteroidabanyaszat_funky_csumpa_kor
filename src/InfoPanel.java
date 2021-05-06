@@ -7,13 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class InfoPanel extends JPanel {
-	private Telepes jelenlegiTelepes;
-	private Integer sorsz = 0;
-	private String nyers = "";
-	private Integer reteg = 0;
-	private Integer portal = 0;
-	private String napvihar = "";
-	private String asztnev = "";
+	private Telepes jelenlegiTelepes; //Jelenlegi telepes akinek a köre van.
+	private Integer sorsz = 0; //Telepes sorszáma
+	private String nyers = ""; //Telepes nyersayagai
+	private Integer reteg = 0; //Aszteroida amin van annak a rétege
+	private Integer portal = 0; //Hány portál van nála.
+	private String napvihar = ""; //Napvihar vane az aszteroidán
+	private String asztnev = ""; //Aszteroida neve amin van.
 	private JLabel sorszLabel = new JLabel("Telepes sorszama: " + sorsz);
 	private JLabel nyersLabel = new JLabel("Telepes nyersanyagai: " + nyers);
 	private JLabel retegLabel = new JLabel("Aszteroida rétege: " + reteg);
@@ -38,16 +38,13 @@ public class InfoPanel extends JPanel {
 		also.add(portalLabel);
 		this.add(felso);
 		this.add(also);
-
-		/*
-		 * this.add(sorszLabel); this.add(asztnevLabel); this.add(nyersLabel); this.add(retegLabel);
-		 * this.add(portalLabel); this.add(napviharLabel);
-		 */
 	}
 
+	/**
+	 * Beállítja a telepest akinek a köre van lekérdezi az adatait és kiírja JLabelekkel és újrarajzoltatja a kijelzőt.
+	 * @param t
+	 */
 	public void setTelepes(Telepes t) {
-		// TODO aszteroida nevgen
-		// TODO uran jelezni hényat élt túl visszarakasnal is
 		jelenlegiTelepes = t;
 		sorsz = jelenlegiTelepes.getSorszam();
 		asztnev = jelenlegiTelepes.getAszteroida().getNev();

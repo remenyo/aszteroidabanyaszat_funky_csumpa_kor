@@ -4,12 +4,13 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 public class FoFrame extends JFrame {
-	private Telepes jelenlegiTelepes;
+	private Telepes jelenlegiTelepes;//Telepes akinek a köre van.
 
-	private GombokPanel gombPanel;
-	private RajzPanel rajzPanel;
-	private InfoPanel infoPanel;
+	private GombokPanel gombPanel;//Gombok panelja
+	private RajzPanel rajzPanel;//Rajzolára való panel
+	private InfoPanel infoPanel;//Infó kiírás panel
 
+	
 	public FoFrame(GombokPanel gp, RajzPanel rp, InfoPanel ip) {
 		super();
 		gombPanel = gp;
@@ -23,8 +24,12 @@ public class FoFrame extends JFrame {
 		this.add(gombPanel, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * Beállítja a a frame-nek a telepest akineka köre van és
+	 * átadja a paneleknek.
+	 * @param t Telepes akinek köre van.
+	 */
 	public void setTelepes(Telepes t) {
-		// TODO lehet csak telepes viewjat kene atadni infoPanel-nak !!!!
 		jelenlegiTelepes = t;
 		gombPanel.setTelepes(t);
 		rajzPanel.setAszteroida(t.getAszteroida());
