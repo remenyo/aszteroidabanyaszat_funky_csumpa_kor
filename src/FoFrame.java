@@ -19,13 +19,14 @@ public class FoFrame extends JFrame {
 		infoPanel = ip;
 		this.setSize(800, 600);
 		this.setLayout(new BorderLayout());
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(infoPanel, BorderLayout.NORTH);
 		this.add(rajzPanel, BorderLayout.CENTER);
 		this.add(gombPanel, BorderLayout.SOUTH);
 	}
 
 	public void setTelepes(Telepes t) {
-		//TODO lehet csak telepes viewjat kene atadni infoPanel-nak !!!!
+		// TODO lehet csak telepes viewjat kene atadni infoPanel-nak !!!!
 		jelenlegiTelepes = t;
 		gombPanel.setTelepes(t);
 		rajzPanel.setAszteroida(t.getAszteroida());

@@ -22,9 +22,9 @@ public class InfoPanel extends JPanel {
 	private JLabel asztnevLabel = new JLabel("Aszteroida neve: " + asztnev);
 
 	public InfoPanel() {
-		
+
 		this.setLayout(new FlowLayout());
-		GridLayout grid = new GridLayout(2,1);
+		GridLayout grid = new GridLayout(2, 1);
 		this.setLayout(grid);
 		JPanel felso = new JPanel();
 		JPanel also = new JPanel();
@@ -40,13 +40,9 @@ public class InfoPanel extends JPanel {
 		this.add(also);
 
 		/*
-		this.add(sorszLabel);
-		this.add(asztnevLabel);
-		this.add(nyersLabel);
-		this.add(retegLabel);
-		this.add(portalLabel);
-		this.add(napviharLabel);
-		*/
+		 * this.add(sorszLabel); this.add(asztnevLabel); this.add(nyersLabel); this.add(retegLabel);
+		 * this.add(portalLabel); this.add(napviharLabel);
+		 */
 	}
 
 	public void setTelepes(Telepes t) {
