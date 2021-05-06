@@ -46,6 +46,7 @@ public class GombokPanel extends JPanel {
 		this.add(portalLerakasButton);
 		this.add(nyersanyagLerakasButton);
 
+		//Mozgat
 		final class mozgasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -62,6 +63,7 @@ public class GombokPanel extends JPanel {
 		}
 		mozgasButton.addActionListener(new mozgasButtonActionListener());
 
+		//Fúr
 		final class furasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -74,6 +76,7 @@ public class GombokPanel extends JPanel {
 		}
 		furasButton.addActionListener(new furasButtonActionListener());
 
+		//Banyaszat.
 		final class banyaszatButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -83,6 +86,7 @@ public class GombokPanel extends JPanel {
 		}
 		banyaszatButton.addActionListener(new banyaszatButtonActionListener());
 
+		//Robotot épít
 		final class robotEpitesButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -92,6 +96,8 @@ public class GombokPanel extends JPanel {
 		}
 		robotEpitesButton.addActionListener(new robotEpitesButtonActionListener());
 
+		
+		//Portált épít.
 		final class portalEpitesButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -101,6 +107,7 @@ public class GombokPanel extends JPanel {
 		}
 		portalEpitesButton.addActionListener(new portalEpitesButtonActionListener());
 
+		//Lerak egy portált
 		final class portalLerakasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -113,7 +120,7 @@ public class GombokPanel extends JPanel {
 		portalLerakasButton.addActionListener(new portalLerakasButtonActionListener());
 
 
-
+		//Lerakja a nyersanyagot
 		final class nyersanyagLerakasButtonActionListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -142,7 +149,11 @@ public class GombokPanel extends JPanel {
 	GombokPanel getInstance() {
 		return this;
 	}
-
+	
+	/**
+	 * Beállítja a telepest akineka a köre van.
+	 * @param t
+	 */
 	public void setTelepes(Telepes t) {
 		jelenlegiTelepes = t;
 	}

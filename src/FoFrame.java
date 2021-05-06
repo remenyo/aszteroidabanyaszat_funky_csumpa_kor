@@ -32,7 +32,6 @@ public class FoFrame extends JFrame {
 	 * @param t Telepes akinek köre van.
 	 */
 	public void setTelepes(Telepes t) {
-		// TODO lehet csak telepes viewjat kene atadni infoPanel-nak !!!!
 		jelenlegiTelepes = t;
 		gombPanel.setTelepes(t);
 		rajzPanel.setAszteroida(t.getAszteroida());
