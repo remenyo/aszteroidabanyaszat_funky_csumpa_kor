@@ -185,9 +185,9 @@ public class Jatek {
 		UrbazishozNyersanyag = new NyersanyagKoltseg();
 		for (int i = 0; i < 3; i++) {
 			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas(false));
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Szen(false));
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
-			UrbazishozNyersanyag.hozzaadNyersanyag(new Uran(false));
+			//UrbazishozNyersanyag.hozzaadNyersanyag(new Szen(false));
+			//UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
+			//UrbazishozNyersanyag.hozzaadNyersanyag(new Uran(false));
 		}
 		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
 
