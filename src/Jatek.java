@@ -74,8 +74,8 @@ public class Jatek {
 	}
 
 	/**
-	 * A kovetkező léptethető lépését hivja. Ha az utolsó léptethetőn vagyunk akkor
-	 * vissz megy az első léptethetőre
+	 * A kovetkező léptethető lépését hivja. Ha az utolsó léptethetőn vagyunk akkor vissz megy az
+	 * első léptethetőre
 	 */
 	public static void kovetkezoLepes() {
 		while (allapot == 0) {
@@ -96,7 +96,8 @@ public class Jatek {
 			}
 		}
 		if (allapot == 1) {
-			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Nyertél", "Hurrá",
+					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(foFrame, "Gratulálunk Vesztettél", "Jaj... ÚRISTEN!",
 					JOptionPane.INFORMATION_MESSAGE);
@@ -170,24 +171,24 @@ public class Jatek {
 		Jatek.LOG_FUNCTION_CALLS = false;
 
 		RobothozNyersanyag = new NyersanyagKoltseg();
-		//RobothozNyersanyag.hozzaadNyersanyag(new Szen(false));
+		// RobothozNyersanyag.hozzaadNyersanyag(new Szen(false));
 		RobothozNyersanyag.hozzaadNyersanyag(new Vas(false));
-		//RobothozNyersanyag.hozzaadNyersanyag(new Uran(false));
+		// RobothozNyersanyag.hozzaadNyersanyag(new Uran(false));
 		Telepes.hozzaadKoltseg(RobothozNyersanyag);
 
 		PortalhozNyersanyag = new NyersanyagKoltseg();
-		//PortalhozNyersanyag.hozzaadNyersanyag(new Uran(false));
-		//PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
+		// PortalhozNyersanyag.hozzaadNyersanyag(new Uran(false));
+		// PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
 		PortalhozNyersanyag.hozzaadNyersanyag(new Vas(false));
-		//PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
+		// PortalhozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
 		Telepes.hozzaadKoltseg(PortalhozNyersanyag);
 
 		UrbazishozNyersanyag = new NyersanyagKoltseg();
 		for (int i = 0; i < 3; i++) {
 			UrbazishozNyersanyag.hozzaadNyersanyag(new Vas(false));
-			//UrbazishozNyersanyag.hozzaadNyersanyag(new Szen(false));
-			//UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
-			//UrbazishozNyersanyag.hozzaadNyersanyag(new Uran(false));
+			// UrbazishozNyersanyag.hozzaadNyersanyag(new Szen(false));
+			// UrbazishozNyersanyag.hozzaadNyersanyag(new Vizjeg(false));
+			// UrbazishozNyersanyag.hozzaadNyersanyag(new Uran(false));
 		}
 		Aszteroida.hozzaadUrbazisKoltseg(UrbazishozNyersanyag);
 
@@ -221,8 +222,8 @@ public class Jatek {
 	}
 
 	/**
-	 * Csökkenti a telepesszémot eggyel, és ha már nincs elég akkor meghívja a játék
-	 * vége vesztett fv.t
+	 * Csökkenti a telepesszémot eggyel, és ha már nincs elég akkor meghívja a játék vége vesztett
+	 * fv.t
 	 */
 	public static void telepesMeghal() {
 		Log.call();
@@ -258,9 +259,8 @@ public class Jatek {
 	/**
 	 * Játékban szereplő játékosok, aszteroidák inicializálásáért felelős
 	 * 
-	 * @param nincsAllapot Ha igaz akkor létre hozza alap értelmezett helyzetet ha
-	 *                     hamis akkor a parancssorba lett beállítva valamilyen
-	 *                     állapot
+	 * @param nincsAllapot Ha igaz akkor létre hozza alap értelmezett helyzetet ha hamis akkor a
+	 *        parancssorba lett beállítva valamilyen állapot
 	 */
 	public static void jatekInditas(boolean nincsAllapot) {
 		Log.call();
@@ -303,7 +303,9 @@ public class Jatek {
 				}
 				a.setNapkozel(RandomUtils.randomBooleanValoszinuseggel(0.1));
 				a.setReteg(RandomUtils.randomIntHatarokKozott(1, 5));
-				Szkeleton.hiv("AszteroidaView_" + i, "BeallitAszteroida", "Aszteroida_" + i); // lehetne getObj-al is...
+				Szkeleton.hiv("AszteroidaView_" + i, "BeallitAszteroida", "Aszteroida_" + i); // lehetne
+																								// getObj-al
+																								// is...
 				if (i == 0) {
 					for (int j = 0; j < JATEKOS_SZAM; j++) {
 						Szkeleton.letrehoz("Telepes", "Telepes_" + j);
@@ -315,15 +317,16 @@ public class Jatek {
 
 				atmenetiAszteroidatar.add(a);
 			}
-			atmenetiAszteroidatar.get(0).hozzaadSzomszed(atmenetiAszteroidatar.get(atmenetiAszteroidatar.size() - 1));
+			atmenetiAszteroidatar.get(0)
+					.hozzaadSzomszed(atmenetiAszteroidatar.get(atmenetiAszteroidatar.size() - 1));
 			for (int i = 0; i < atmenetiAszteroidatar.size() - 1; i++) {
 				atmenetiAszteroidatar.get(i).hozzaadSzomszed(atmenetiAszteroidatar.get(i + 1));
 				atmenetiAszteroidatar.get(i + 1).hozzaadSzomszed(atmenetiAszteroidatar.get(i));
 				for (int j = 0; j < SZOMSZED_SZAM - 2; j++) {
-					Aszteroida randomAszteroida = atmenetiAszteroidatar
-							.get(RandomUtils.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1));
-					if (atmenetiAszteroidatar.get(i) != randomAszteroida
-							&& !atmenetiAszteroidatar.get(i).getSzomszedok().contains(randomAszteroida)) {
+					Aszteroida randomAszteroida = atmenetiAszteroidatar.get(RandomUtils
+							.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1));
+					if (atmenetiAszteroidatar.get(i) != randomAszteroida && !atmenetiAszteroidatar
+							.get(i).getSzomszedok().contains(randomAszteroida)) {
 						atmenetiAszteroidatar.get(i).hozzaadSzomszed(randomAszteroida);
 						randomAszteroida.hozzaadSzomszed(atmenetiAszteroidatar.get(i));
 					}
