@@ -47,14 +47,17 @@ public class AszteroidaView extends JatekView {
 			
 		
 		
-		if(aszteroida.getReteg()!=0) {
+		/*if(aszteroida.getReteg()!=0) {
 			//réteg rárajzolása a nyersanyagra
 			//int x_reteg, y_reteg, oldal_reteg;
 			g.setColor(Color.GRAY);
 			g.fillOval(x_reteg,y_reteg,oldal_reteg, oldal_reteg);
 		}else {
 			nezetek.get(nezetek.size()-1).Draw(g, 0);
-		}
+		}*/
+		
+		if(aszteroida.getReteg()==0)
+			nezetek.get(nezetek.size()-1).Draw(g, 0);
 
 	}
 	
