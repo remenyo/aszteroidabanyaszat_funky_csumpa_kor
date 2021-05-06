@@ -312,6 +312,7 @@ public class Aszteroida extends Hely {
             Log.jatek("Nyersanyag visszahelyezve");
             nyersanyag = ny;
             ny.felszinreKerul(this);
+            jatekView.UpdateView();
             return true;
         }
         Log.jatek("Nyersanyag nem lett visszahelyezve");
