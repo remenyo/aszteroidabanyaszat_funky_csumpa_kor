@@ -43,6 +43,7 @@ public class Robot extends Szereplo {
 		// mozogni
 		int szomszedszam = aszteroida.getSzomszedok().size() - 1;
 		Integer sorszam = RandomUtils.randomIntHatarokKozott(0, szomszedszam);
+		Log.debug(szomszedszam + "-ról " + sorszam + "-ra ugrottam");
 		Mozgas(sorszam); // véletlenszerűen vándorlik egy szomszédra
 	}
 
