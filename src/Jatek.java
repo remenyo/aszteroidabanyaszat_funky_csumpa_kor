@@ -332,8 +332,7 @@ public class Jatek {
 				Telepes t = (Telepes) Szkeleton.getObj("Telepes_" + i);
 				t.setSorszam(i);
 				// aszteroidanak is beallitja a szereplot
-				t.beallitAszteroida((Aszteroida) Szkeleton.getObj("Aszteroida_"
-						+ RandomUtils.randomIntHatarokKozott(0, atmenetiAszteroidatar.size() - 1)));
+				t.beallitAszteroida((Aszteroida) Szkeleton.getObj("Aszteroida_"+ 0));
 			}
 
 			atmenetiAszteroidatar.get(0)
